@@ -1,0 +1,1717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Havn Club</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    
+    :root {
+      --green-darkest: #0A1612;
+      --green-dark: #111E19;
+      --green-deep: #1A2F27;
+      --green-medium: #243D33;
+      --green-soft: #2D4A3E;
+      --green-brand: #1B5E40;
+      --cream: #F5F1EA;
+      --cream-warm: #F0EBE3;
+      --cream-dark: #E5E0D6;
+      --cream-muted: #C9C1B3;
+      --brass: #C4A87C;
+      --brass-muted: #A89060;
+      --charcoal: #1C1C1A;
+      --gray-warm: #5C5A55;
+      --gray-muted: #8A8680;
+      --gray-light: #B5B0A8;
+      --green-tag: #3D6B55;
+      --red-muted: #9B7065;
+      --font-display: 'Cormorant', Georgia, serif;
+      --font-body: 'DM Sans', -apple-system, sans-serif;
+    }
+    
+    html, body { height: 100%; }
+    
+    body {
+      font-family: var(--font-body);
+      background: #0A0A0A;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+    
+    .preview-label {
+      color: rgba(255,255,255,0.35);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    
+    .preview-title {
+      font-family: var(--font-display);
+      color: var(--cream);
+      font-size: 26px;
+      font-weight: 400;
+      margin-bottom: 28px;
+      letter-spacing: 0.02em;
+    }
+    
+    /* iPhone Frame */
+    .iphone-frame {
+      position: relative;
+      width: 393px;
+      height: 852px;
+      background: #1a1a1a;
+      border-radius: 55px;
+      padding: 12px;
+      box-shadow: 
+        0 0 0 1px rgba(255,255,255,0.06),
+        0 30px 60px rgba(0,0,0,0.5),
+        0 10px 20px rgba(0,0,0,0.3);
+      flex-shrink: 0;
+    }
+    
+    .iphone-screen {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 45px;
+      overflow: hidden;
+      background: var(--cream);
+    }
+    
+    .dynamic-island {
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 126px;
+      height: 37px;
+      background: #000;
+      border-radius: 20px;
+      z-index: 1000;
+    }
+    
+    .home-indicator {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 140px;
+      height: 5px;
+      background: rgba(0,0,0,0.12);
+      border-radius: 3px;
+      z-index: 1000;
+    }
+    
+    /* App */
+    .app {
+      position: absolute;
+      inset: 0;
+      background: var(--cream);
+      display: flex;
+      flex-direction: column;
+      font-family: var(--font-body);
+      color: var(--charcoal);
+      -webkit-font-smoothing: antialiased;
+      overflow: hidden;
+    }
+    
+    /* Subtle texture */
+    .app::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.018;
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    /* ==========================================
+       HEADER - Fixed at top
+    ========================================== */
+    
+    .header {
+      background: var(--green-darkest);
+      padding: 56px 16px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 10;
+      flex-shrink: 0;
+    }
+    
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    /* Logo - centered H */
+    .brand-logo {
+      width: 38px;
+      height: 38px;
+      background: var(--green-deep);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(196, 168, 124, 0.12);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .brand-logo svg {
+      display: block;
+    }
+    
+    .header-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+    
+    .header-name {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--cream);
+      letter-spacing: 0.01em;
+    }
+    
+    .header-meta {
+      font-size: 10px;
+      color: var(--cream-muted);
+      letter-spacing: 0.01em;
+    }
+    
+    .help-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-style: italic;
+      color: var(--cream-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+    
+    .help-btn:active {
+      transform: scale(0.92);
+      background: rgba(255,255,255,0.1);
+    }
+    
+    /* ==========================================
+       CONTENT - Scrollable area includes order bar
+    ========================================== */
+    
+    .content {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+      position: relative;
+      z-index: 2;
+    }
+    
+    /* ==========================================
+       ORDER BAR - Inside scrollable content
+    ========================================== */
+    
+    .order-bar {
+      background: var(--green-dark);
+      padding: 8px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .order-bar-title {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-style: italic;
+      color: var(--cream-muted);
+      letter-spacing: 0.01em;
+    }
+    
+    .order-bar-pricing {
+      font-size: 11px;
+      color: var(--cream-muted);
+      display: flex;
+      gap: 10px;
+    }
+    
+    .order-bar-pricing span {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+    
+    /* Section Divider */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      padding: 14px 16px 8px;
+      gap: 10px;
+    }
+    
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--cream-dark) 0%, transparent 100%);
+    }
+    
+    .section-line.right {
+      background: linear-gradient(90deg, transparent 0%, var(--cream-dark) 100%);
+    }
+    
+    .section-name {
+      font-family: var(--font-display);
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray-muted);
+    }
+    
+    /* ==========================================
+       MENU ITEMS
+    ========================================== */
+    
+    .menu-item {
+      display: flex;
+      align-items: stretch;
+      padding: 14px 12px 14px 0;
+      gap: 0;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      position: relative;
+      min-height: 100px;
+    }
+    
+    .menu-item::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 36px;
+      right: 14px;
+      height: 1px;
+      background: rgba(0,0,0,0.04);
+    }
+    
+    .menu-item:last-of-type::after {
+      display: none;
+    }
+    
+    .menu-item:active {
+      background: rgba(0,0,0,0.012);
+    }
+    
+    /* Selected state with warm glow */
+    .menu-item.selected {
+      background: linear-gradient(135deg, rgba(45, 74, 62, 0.06) 0%, rgba(45, 74, 62, 0.02) 100%);
+      box-shadow: inset 0 0 0 1px rgba(45, 74, 62, 0.06);
+    }
+    
+    /* Category label - centered vertically */
+    .item-cat {
+      width: 28px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin-left: 2px;
+    }
+    
+    .item-cat::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: var(--green-soft);
+      border-radius: 1px;
+      opacity: 0.2;
+    }
+    
+    .item-cat span {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      transform: rotate(180deg);
+      font-family: var(--font-display);
+      font-size: 7px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray-light);
+    }
+    
+    .menu-item.selected .item-cat::before {
+      opacity: 0.6;
+      background: var(--green-medium);
+    }
+    
+    .menu-item.selected .item-cat span {
+      color: var(--green-soft);
+    }
+    
+    .item-info {
+      flex: 1;
+      min-width: 0;
+      padding: 0 8px 0 6px;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .item-name {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--charcoal);
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+    
+    .item-desc {
+      font-size: 11px;
+      font-weight: 300;
+      color: var(--gray-warm);
+      line-height: 1.55;
+      margin-bottom: auto;
+      padding-bottom: 8px;
+    }
+    
+    /* Bottom row: macros + stepper */
+    .item-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: auto;
+    }
+    
+    /* Compact macros */
+    .item-macros {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      color: var(--gray-muted);
+    }
+    
+    .item-macros .dot {
+      width: 3px;
+      height: 3px;
+      background: var(--cream-dark);
+      border-radius: 50%;
+    }
+    
+    /* ==========================================
+       HORIZONTAL STEPPER
+    ========================================== */
+    
+    .stepper {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0;
+      flex-shrink: 0;
+    }
+    
+    .stepper-btn {
+      width: 30px;
+      height: 30px;
+      border: none;
+      background: var(--cream-warm);
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--gray-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+    }
+    
+    .stepper-btn.minus {
+      border-radius: 6px 0 0 6px;
+    }
+    
+    .stepper-btn.plus {
+      border-radius: 0 6px 6px 0;
+    }
+    
+    .stepper-btn:active {
+      background: var(--cream-dark);
+      transform: scale(0.95);
+    }
+    
+    .stepper-btn:disabled {
+      color: var(--cream-dark);
+      pointer-events: none;
+    }
+    
+    .menu-item.selected .stepper-btn {
+      background: var(--green-deep);
+      color: var(--cream);
+    }
+    
+    .menu-item.selected .stepper-btn:disabled {
+      color: rgba(245,241,234,0.3);
+    }
+    
+    .stepper-qty {
+      width: 30px;
+      height: 30px;
+      background: var(--cream-warm);
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      font-variant-numeric: tabular-nums lining-nums;
+      color: var(--charcoal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+    }
+    
+    .menu-item.selected .stepper-qty {
+      background: var(--green-deep);
+      color: var(--cream);
+    }
+    
+    /* ==========================================
+       DRAFT SECTION - Always visible
+    ========================================== */
+    
+    .draft-section {
+      padding: 16px 16px 0;
+    }
+    
+    .draft-label {
+      font-size: 10px;
+      color: var(--gray-muted);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .draft-status {
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(45, 74, 62, 0.1);
+      color: var(--green-soft);
+    }
+    
+    .draft-status.incomplete {
+      background: rgba(90, 88, 82, 0.08);
+      color: var(--gray-muted);
+    }
+    
+    .draft-bubble {
+      background: linear-gradient(150deg, var(--green-deep) 0%, var(--green-darkest) 100%);
+      color: var(--cream);
+      border-radius: 16px;
+      border-bottom-right-radius: 4px;
+      padding: 14px 16px;
+      font-size: 12px;
+      line-height: 1.6;
+      white-space: pre-line;
+      margin-bottom: 10px;
+      margin-left: 20%;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+    }
+    
+    /* Options stacked vertically, aligned right */
+    .draft-options {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: flex-end;
+      padding-bottom: 16px;
+    }
+    
+    .opt-bubble {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 7px 11px;
+      background: var(--cream-warm);
+      border-radius: 16px;
+      font-size: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .opt-bubble:active {
+      background: var(--cream-dark);
+      transform: scale(0.97);
+    }
+    
+    .opt-label {
+      color: var(--gray-muted);
+    }
+    
+    .opt-val {
+      font-weight: 500;
+      color: var(--charcoal);
+    }
+    
+    .opt-change {
+      color: var(--brass-muted);
+      font-weight: 500;
+    }
+    
+    /* Spacer to account for cart bar */
+    .draft-spacer {
+      height: 120px;
+    }
+    
+    .draft-spacer.with-prompt {
+      height: 160px;
+    }
+    
+    /* ==========================================
+       STICKY CART BAR
+    ========================================== */
+    
+    .cart-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--cream);
+      z-index: 100;
+      padding-bottom: 32px;
+      box-shadow: 0 -1px 0 rgba(0,0,0,0.04), 0 -8px 24px rgba(0,0,0,0.03);
+    }
+    
+    .cart-prompt {
+      display: none;
+      padding: 9px 16px;
+      background: linear-gradient(135deg, rgba(45,74,62,0.04) 0%, transparent 100%);
+      border-bottom: 1px solid rgba(0,0,0,0.02);
+    }
+    
+    .cart-prompt.visible {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    
+    .cart-prompt-text {
+      font-size: 11px;
+      color: var(--green-soft);
+      font-style: italic;
+    }
+    
+    .cart-prompt-btn {
+      padding: 7px 12px;
+      background: var(--green-deep);
+      border: none;
+      border-radius: 6px;
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--cream);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+    
+    .cart-prompt-btn:active {
+      transform: scale(0.95);
+    }
+    
+    .cart-main {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      gap: 12px;
+    }
+    
+    .cart-info {
+      flex: 1;
+    }
+    
+    .cart-count {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--charcoal);
+    }
+    
+    .cart-hint {
+      font-size: 10px;
+      color: var(--gray-muted);
+      margin-top: 1px;
+    }
+    
+    .cart-hint.warning {
+      color: var(--brass-muted);
+    }
+    
+    .send-btn {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 12px 18px;
+      background: var(--cream-dark);
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .send-btn.active {
+      background: var(--green-deep);
+      box-shadow: 0 2px 10px rgba(26, 47, 39, 0.25);
+    }
+    
+    .send-btn:active.active {
+      transform: scale(0.97);
+    }
+    
+    .send-btn svg {
+      width: 15px;
+      height: 15px;
+      fill: var(--gray-muted);
+      transition: fill 0.2s ease;
+    }
+    
+    .send-btn.active svg {
+      fill: var(--cream);
+    }
+    
+    .send-btn span {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--gray-muted);
+      transition: color 0.2s ease;
+    }
+    
+    .send-btn.active span {
+      color: var(--cream);
+    }
+    
+    .cart-deadline {
+      text-align: center;
+      padding: 4px 16px 0;
+      font-size: 9px;
+      color: var(--gray-light);
+    }
+    
+    /* ==========================================
+       SHEETS
+    ========================================== */
+    
+    .sheet-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(10,22,18,0.5);
+      z-index: 200;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.25s ease;
+      border-radius: 45px;
+      overflow: hidden;
+    }
+    
+    .sheet-overlay.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .sheet {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--cream);
+      border-radius: 20px 20px 0 0;
+      z-index: 201;
+      transform: translateY(100%);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      max-height: 80%;
+      overflow-y: auto;
+    }
+    
+    .sheet-overlay.visible .sheet {
+      transform: translateY(0);
+    }
+    
+    .sheet-handle {
+      width: 32px;
+      height: 4px;
+      background: var(--cream-dark);
+      border-radius: 2px;
+      margin: 10px auto 0;
+    }
+    
+    .sheet-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--cream-warm);
+      border: none;
+      font-size: 16px;
+      color: var(--gray-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+    }
+    
+    .sheet-close:active {
+      transform: scale(0.9);
+    }
+    
+    /* Detail Sheet */
+    .detail-content {
+      padding: 22px 20px 36px;
+    }
+    
+    .detail-name {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--charcoal);
+      margin-bottom: 10px;
+      padding-right: 36px;
+    }
+    
+    .detail-desc {
+      font-size: 13px;
+      color: var(--gray-warm);
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+    
+    .detail-macros {
+      font-size: 11px;
+      color: var(--gray-muted);
+      margin-bottom: 14px;
+      font-style: italic;
+    }
+    
+    .detail-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+    
+    .detail-tag {
+      padding: 6px 12px;
+      border-radius: 14px;
+      font-size: 10px;
+      font-weight: 500;
+    }
+    
+    .detail-tag.safe {
+      background: rgba(61, 107, 85, 0.12);
+      color: var(--green-tag);
+    }
+    
+    .detail-tag.allergen {
+      background: rgba(155, 112, 101, 0.12);
+      color: var(--red-muted);
+    }
+    
+    /* Customization */
+    .custom-field {
+      margin-bottom: 18px;
+    }
+    
+    .custom-label {
+      font-size: 10px;
+      color: var(--gray-muted);
+      margin-bottom: 6px;
+      display: block;
+    }
+    
+    .custom-input {
+      width: 100%;
+      padding: 12px 14px;
+      background: var(--cream-warm);
+      border: 1px solid var(--cream-dark);
+      border-radius: 10px;
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--charcoal);
+      resize: none;
+      outline: none;
+      transition: all 0.2s ease;
+      -webkit-appearance: none;
+    }
+    
+    .custom-input:focus {
+      border-color: var(--brass-muted);
+      background: #fff;
+    }
+    
+    .custom-input::placeholder {
+      color: var(--gray-light);
+    }
+    
+    /* Detail stepper */
+    .detail-stepper-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 16px;
+      border-top: 1px solid var(--cream-dark);
+    }
+    
+    .detail-stepper-label {
+      font-size: 13px;
+      color: var(--gray-warm);
+    }
+    
+    .detail-stepper {
+      display: flex;
+      align-items: center;
+      background: var(--green-deep);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    
+    .detail-stepper .stepper-btn {
+      background: transparent;
+      color: var(--cream);
+      width: 44px;
+      height: 44px;
+      font-size: 18px;
+      border-radius: 0;
+    }
+    
+    .detail-stepper .stepper-btn:disabled {
+      color: rgba(245,241,234,0.25);
+    }
+    
+    .detail-stepper .stepper-btn:active {
+      background: rgba(255,255,255,0.1);
+    }
+    
+    .detail-stepper .stepper-qty {
+      background: transparent;
+      color: var(--cream);
+      width: 36px;
+      text-align: center;
+      font-size: 16px;
+    }
+    
+    /* Options Sheet */
+    .options-content {
+      padding: 20px 0 36px;
+    }
+    
+    .options-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--charcoal);
+      padding: 0 20px 14px;
+    }
+    
+    .option-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+    
+    .option-row:active {
+      background: var(--cream-warm);
+    }
+    
+    .option-row.selected {
+      background: rgba(36, 61, 51, 0.04);
+    }
+    
+    .option-text {
+      font-size: 14px;
+      color: var(--charcoal);
+    }
+    
+    .option-check {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid var(--cream-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+    }
+    
+    .option-row.selected .option-check {
+      border-color: var(--green-deep);
+      background: var(--green-deep);
+    }
+    
+    .option-check svg {
+      width: 10px;
+      height: 10px;
+      fill: var(--cream);
+      opacity: 0;
+    }
+    
+    .option-row.selected .option-check svg {
+      opacity: 1;
+    }
+    
+    /* Help Sheet */
+    .help-content {
+      padding: 22px 20px 36px;
+    }
+    
+    .help-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--charcoal);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .help-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+    
+    .help-step {
+      display: flex;
+      gap: 12px;
+    }
+    
+    .help-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--green-deep);
+      color: var(--cream);
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .help-text {
+      font-size: 13px;
+      color: var(--gray-warm);
+      line-height: 1.5;
+      padding-top: 3px;
+    }
+    
+    .help-done {
+      width: 100%;
+      padding: 14px;
+      background: var(--green-deep);
+      border: none;
+      border-radius: 10px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--cream);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    
+    .help-done:active {
+      transform: scale(0.98);
+    }
+    
+    /* Responsive */
+    @media (max-height: 950px) {
+      .iphone-frame { transform: scale(0.8); transform-origin: top center; margin-bottom: -120px; }
+    }
+    @media (max-height: 800px) {
+      .iphone-frame { transform: scale(0.65); margin-bottom: -200px; }
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="preview-label">Final</div>
+  <h1 class="preview-title">Havn Club</h1>
+  
+  <div class="iphone-frame">
+    <div class="iphone-screen">
+      <div class="dynamic-island"></div>
+      
+      <div class="app">
+        <!-- Header - Fixed -->
+        <header class="header">
+          <div class="header-left">
+            <div class="brand-logo">
+              <!-- Centered H logo -->
+              <svg viewBox="0 0 24 28" width="20" height="24" fill="none">
+                <text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="Cormorant, serif" font-size="24" font-weight="400" font-style="italic" fill="#F0EBE3">H</text>
+              </svg>
+            </div>
+            <div class="header-info">
+              <span class="header-name">Havn Club</span>
+              <span class="header-meta">Jan 25 – 31</span>
+            </div>
+          </div>
+          <button class="help-btn" id="helpBtn">?</button>
+        </header>
+        
+        <!-- Content - Scrollable, includes order bar -->
+        <div class="content" id="content">
+          
+          <!-- Order Bar - Scrolls with content -->
+          <div class="order-bar">
+            <span class="order-bar-title">Build your order</span>
+            <div class="order-bar-pricing">
+              <span>$25 meal</span>
+              <span>$10 side</span>
+            </div>
+          </div>
+          
+          <!-- Meals Section -->
+          <div class="section-divider">
+            <div class="section-line"></div>
+            <span class="section-name">Meals</span>
+            <div class="section-line right"></div>
+          </div>
+          
+          <div class="menu-item" data-key="cheat">
+            <div class="item-cat"><span>Cheat</span></div>
+            <div class="item-info">
+              <h3 class="item-name">Braised Short Rib</h3>
+              <p class="item-desc">and a red wine reduction, with roasted rainbow carrots and broccolini over jasmine rice</p>
+              <div class="item-bottom">
+                <div class="item-macros">
+                  <span>744 cal</span>
+                  <span class="dot"></span>
+                  <span>56g protein</span>
+                </div>
+                <div class="stepper">
+                  <button class="stepper-btn minus" disabled>−</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="menu-item" data-key="chicken">
+            <div class="item-cat"><span>Chicken</span></div>
+            <div class="item-info">
+              <h3 class="item-name">Honey Harissa Chicken</h3>
+              <p class="item-desc">blackened chicken and a honey harissa glaze, with saffron roasted cauliflower and rainbow carrots over wild rice</p>
+              <div class="item-bottom">
+                <div class="item-macros">
+                  <span>707 cal</span>
+                  <span class="dot"></span>
+                  <span>61g protein</span>
+                </div>
+                <div class="stepper">
+                  <button class="stepper-btn minus" disabled>−</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="menu-item" data-key="beef">
+            <div class="item-cat"><span>Beef</span></div>
+            <div class="item-info">
+              <h3 class="item-name">Turkish Meatball</h3>
+              <p class="item-desc">and a Sicilian lemon tahini, with roasted zucchini and eggplant over turmeric rice</p>
+              <div class="item-bottom">
+                <div class="item-macros">
+                  <span>799 cal</span>
+                  <span class="dot"></span>
+                  <span>55g protein</span>
+                </div>
+                <div class="stepper">
+                  <button class="stepper-btn minus" disabled>−</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="menu-item" data-key="seafood">
+            <div class="item-cat"><span>Seafood</span></div>
+            <div class="item-info">
+              <h3 class="item-name">Pan Seared Salmon</h3>
+              <p class="item-desc">and a green goddess dressing, with roasted sweet potatoes and broccoli over tri-color quinoa</p>
+              <div class="item-bottom">
+                <div class="item-macros">
+                  <span>722 cal</span>
+                  <span class="dot"></span>
+                  <span>56g protein</span>
+                </div>
+                <div class="stepper">
+                  <button class="stepper-btn minus" disabled>−</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Sides Section -->
+          <div class="section-divider">
+            <div class="section-line"></div>
+            <span class="section-name">Sides</span>
+            <div class="section-line right"></div>
+          </div>
+          
+          <div class="menu-item" data-key="broth">
+            <div class="item-cat"><span>Broth</span></div>
+            <div class="item-info">
+              <h3 class="item-name">Classic Bone Broth</h3>
+              <p class="item-desc">chicken bone broth with marjoram, rosemary, oregano, and thyme</p>
+              <div class="item-bottom">
+                <div class="item-macros">
+                  <span>419 cal</span>
+                  <span class="dot"></span>
+                  <span>41g protein</span>
+                </div>
+                <div class="stepper">
+                  <button class="stepper-btn minus" disabled>−</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="menu-item" data-key="chia">
+            <div class="item-cat"><span>Chia</span></div>
+            <div class="item-info">
+              <h3 class="item-name">Matcha Chia Pudding</h3>
+              <p class="item-desc">topped with house made granola and fresh organic strawberries</p>
+              <div class="item-bottom">
+                <div class="item-macros">
+                  <span>377 cal</span>
+                  <span class="dot"></span>
+                  <span>24g protein</span>
+                </div>
+                <div class="stepper">
+                  <button class="stepper-btn minus" disabled>−</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Draft Section - Always visible -->
+          <div class="draft-section" id="draftSection">
+            <div class="draft-label">
+              <span>Message draft</span>
+              <span class="draft-status" id="draftStatus">Add 4 meals to order</span>
+            </div>
+            <div class="draft-bubble" id="draftBubble">Sunday Morning (10a–12p)
+Reusable Glass</div>
+            
+            <div class="draft-options">
+              <div class="opt-bubble" id="deliveryBubble">
+                <span class="opt-label">Delivery:</span>
+                <span class="opt-val" id="deliveryVal">Sun AM</span>
+                <span class="opt-change">Change</span>
+              </div>
+              <div class="opt-bubble" id="containerBubble">
+                <span class="opt-label">Container:</span>
+                <span class="opt-val" id="containerVal">Glass</span>
+                <span class="opt-change">Change</span>
+              </div>
+            </div>
+            
+            <!-- Dynamic spacer -->
+            <div class="draft-spacer" id="draftSpacer"></div>
+          </div>
+        </div>
+        
+        <!-- Sticky Cart Bar -->
+        <div class="cart-bar">
+          <div class="cart-prompt" id="cartPrompt">
+            <span class="cart-prompt-text" id="promptText"></span>
+            <button class="cart-prompt-btn" id="promptBtn"></button>
+          </div>
+          <div class="cart-main">
+            <div class="cart-info">
+              <div class="cart-count" id="cartCount">0 meals + 0 sides</div>
+              <div class="cart-hint" id="cartHint">Tap + to add meals</div>
+            </div>
+            <button class="send-btn" id="sendBtn">
+              <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+              <span>Send in Messages</span>
+            </button>
+          </div>
+          <div class="cart-deadline">Order by Thursday 4pm</div>
+        </div>
+        
+        <!-- Detail Sheet -->
+        <div class="sheet-overlay" id="detailOverlay">
+          <div class="sheet">
+            <div class="sheet-handle"></div>
+            <button class="sheet-close" onclick="closeDetail()">×</button>
+            <div class="detail-content">
+              <h2 class="detail-name" id="detailName"></h2>
+              <p class="detail-desc" id="detailDesc"></p>
+              <div class="detail-macros" id="detailMacros"></div>
+              <div class="detail-tags" id="detailTags"></div>
+              
+              <div class="custom-field">
+                <label class="custom-label">Customization (optional)</label>
+                <textarea class="custom-input" id="customInput" rows="2" placeholder="e.g., dairy free, gluten free, no cilantro, extra sauce"></textarea>
+              </div>
+              
+              <div class="detail-stepper-row">
+                <span class="detail-stepper-label">Quantity</span>
+                <div class="detail-stepper">
+                  <button class="stepper-btn minus" id="detailMinus">−</button>
+                  <span class="stepper-qty" id="detailQty">0</span>
+                  <button class="stepper-btn plus" id="detailPlus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Delivery Sheet -->
+        <div class="sheet-overlay" id="deliveryOverlay">
+          <div class="sheet">
+            <div class="sheet-handle"></div>
+            <div class="options-content">
+              <h3 class="options-title">Delivery Window</h3>
+              <div class="option-row selected" data-val="Sun AM|Sunday Morning (10a–12p)" onclick="selectDelivery(this)">
+                <span class="option-text">Sunday Morning (10a–12p)</span>
+                <span class="option-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+              </div>
+              <div class="option-row" data-val="Sun PM|Sunday Evening (7p–9p)" onclick="selectDelivery(this)">
+                <span class="option-text">Sunday Evening (7p–9p)</span>
+                <span class="option-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+              </div>
+              <div class="option-row" data-val="Mon AM|Monday Morning (10a–12p)" onclick="selectDelivery(this)">
+                <span class="option-text">Monday Morning (10a–12p)</span>
+                <span class="option-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Container Sheet -->
+        <div class="sheet-overlay" id="containerOverlay">
+          <div class="sheet">
+            <div class="sheet-handle"></div>
+            <div class="options-content">
+              <h3 class="options-title">Container Type</h3>
+              <div class="option-row selected" data-val="Glass|Reusable Glass" onclick="selectContainer(this)">
+                <span class="option-text">Reusable Glass</span>
+                <span class="option-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+              </div>
+              <div class="option-row" data-val="Plastic|BPA-Free Plastic" onclick="selectContainer(this)">
+                <span class="option-text">BPA-Free Plastic</span>
+                <span class="option-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Help Sheet -->
+        <div class="sheet-overlay" id="helpOverlay">
+          <div class="sheet">
+            <div class="sheet-handle"></div>
+            <div class="help-content">
+              <h3 class="help-title">How It Works</h3>
+              <div class="help-steps">
+                <div class="help-step">
+                  <span class="help-num">1</span>
+                  <span class="help-text">Tap + to add meals and sides</span>
+                </div>
+                <div class="help-step">
+                  <span class="help-num">2</span>
+                  <span class="help-text">We generate your order text</span>
+                </div>
+                <div class="help-step">
+                  <span class="help-num">3</span>
+                  <span class="help-text">Tap "Send in Messages" to open a prefilled draft</span>
+                </div>
+                <div class="help-step">
+                  <span class="help-num">4</span>
+                  <span class="help-text">Receive confirmation and payment link over text</span>
+                </div>
+              </div>
+              <button class="help-done" onclick="closeHelp()">Got it</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="home-indicator"></div>
+    </div>
+  </div>
+  
+  <script>
+    // Data - Full descriptions for detail sheet
+    const dishes = {
+      cheat: { 
+        name: 'Braised Short Rib', 
+        category: 'cheat',
+        desc: 'Slow-braised short rib finished with a glossy red wine reduction, served with roasted rainbow carrots and broccolini over fluffy jasmine rice.', 
+        macros: '744 cal · 56g protein · 37g fat · 7g fiber · 46g carbs',
+        tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy Free', safe: true }],
+        price: 25 
+      },
+      chicken: { 
+        name: 'Honey Harissa Chicken', 
+        category: 'chicken',
+        desc: 'Blackened chicken lacquered with a reduced honey harissa glaze, served with saffron roasted cauliflower and roasted rainbow carrots over wild rice.', 
+        macros: '707 cal · 61g protein · 33g fat · 8g fiber · 43g carbs',
+        tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy Free', safe: true }],
+        price: 25 
+      },
+      beef: { 
+        name: 'Turkish Meatball', 
+        category: 'beef',
+        desc: 'Hand-rolled Turkish meatballs seasoned with a warm spice blend, paired with Sicilian lemon tahini, roasted zucchini and eggplant over golden turmeric rice.', 
+        macros: '799 cal · 55g protein · 42g fat · 6g fiber · 50g carbs',
+        tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy Free', safe: true }],
+        price: 25 
+      },
+      seafood: { 
+        name: 'Pan Seared Salmon', 
+        category: 'seafood',
+        desc: 'Pan seared salmon finished with our herb-forward green goddess dressing, served with roasted sweet potatoes and broccoli over tri-color quinoa.', 
+        macros: '722 cal · 56g protein · 32g fat · 11g fiber · 52g carbs',
+        tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy (Yogurt)', safe: false }],
+        price: 25 
+      },
+      broth: { 
+        name: 'Classic Bone Broth', 
+        category: 'broth',
+        desc: 'Chicken bone broth slow-simmered for 24 hours with marjoram, rosemary, oregano, thyme, carrots, onion, celery, turmeric, black pepper, and salt. 16oz jar.', 
+        macros: '419 cal · 41g protein · 26g fat · 6g carbs',
+        tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy Free', safe: true }],
+        price: 10 
+      },
+      chia: { 
+        name: 'Matcha Chia Pudding', 
+        category: 'chia',
+        desc: 'A creamy chia pudding with ceremonial grade matcha, sweetened with maple syrup and topped with house made granola and fresh organic strawberries.', 
+        macros: '377 cal · 24g protein · 15g fat · 13g fiber · 35g carbs',
+        tags: [{ text: 'Gluten (Oat)', safe: false }, { text: 'Dairy (Yogurt)', safe: false }],
+        price: 10 
+      }
+    };
+    
+    const order = { cheat: 0, chicken: 0, beef: 0, seafood: 0, broth: 0, chia: 0 };
+    const customizations = { cheat: '', chicken: '', beef: '', seafood: '', broth: '', chia: '' };
+    let delivery = { short: 'Sun AM', full: 'Sunday Morning (10a–12p)' };
+    let container = { short: 'Glass', full: 'Reusable Glass' };
+    let currentDish = null;
+    let promptVisible = false;
+    
+    // Elements
+    const cartCount = document.getElementById('cartCount');
+    const cartHint = document.getElementById('cartHint');
+    const sendBtn = document.getElementById('sendBtn');
+    const draftSection = document.getElementById('draftSection');
+    const draftBubble = document.getElementById('draftBubble');
+    const draftStatus = document.getElementById('draftStatus');
+    const draftSpacer = document.getElementById('draftSpacer');
+    const cartPrompt = document.getElementById('cartPrompt');
+    const promptText = document.getElementById('promptText');
+    const promptBtn = document.getElementById('promptBtn');
+    
+    // Init steppers
+    document.querySelectorAll('.menu-item').forEach(item => {
+      const key = item.dataset.key;
+      const minus = item.querySelector('.minus');
+      const plus = item.querySelector('.plus');
+      
+      // Click on item info (not stepper) opens detail
+      item.querySelector('.item-info').addEventListener('click', (e) => {
+        if (e.target.closest('.stepper')) return;
+        openDetail(key);
+      });
+      
+      minus.addEventListener('click', e => {
+        e.stopPropagation();
+        if (order[key] > 0) { order[key]--; syncItem(key); update(); }
+      });
+      
+      plus.addEventListener('click', e => {
+        e.stopPropagation();
+        if (order[key] < 12) { order[key]++; syncItem(key); update(); }
+      });
+    });
+    
+    function syncItem(key) {
+      const item = document.querySelector(`[data-key="${key}"]`);
+      item.querySelector('.stepper-qty').textContent = order[key];
+      item.querySelector('.minus').disabled = order[key] === 0;
+      item.classList.toggle('selected', order[key] > 0);
+    }
+    
+    function update() {
+      const meals = order.cheat + order.chicken + order.beef + order.seafood;
+      const sides = order.broth + order.chia;
+      const hasBroth = order.broth > 0;
+      const hasChia = order.chia > 0;
+      const minMet = meals >= 4;
+      
+      cartCount.textContent = `${meals} meal${meals !== 1 ? 's' : ''} + ${sides} side${sides !== 1 ? 's' : ''}`;
+      
+      if (meals + sides === 0) {
+        cartHint.textContent = 'Tap + to add meals';
+        cartHint.classList.remove('warning');
+        sendBtn.classList.remove('active');
+        cartPrompt.classList.remove('visible');
+        promptVisible = false;
+        draftStatus.textContent = 'Add 4 meals to order';
+        draftStatus.classList.add('incomplete');
+      } else if (minMet) {
+        cartHint.textContent = 'Ready to send';
+        cartHint.classList.remove('warning');
+        sendBtn.classList.add('active');
+        draftStatus.textContent = 'Ready to send';
+        draftStatus.classList.remove('incomplete');
+        
+        // Smart prompts
+        if (!hasBroth && !hasChia) {
+          showPrompt('Add Bone Broth for extra protein', '+ Add', 'broth');
+        } else if (hasBroth && !hasChia) {
+          showPrompt('Add Chia Pudding for on-the-go', '+ Add', 'chia');
+        } else if (hasChia && !hasBroth) {
+          showPrompt('Add Bone Broth for extra protein', '+ Add', 'broth');
+        } else {
+          hidePrompt();
+        }
+      } else {
+        const need = 4 - meals;
+        cartHint.textContent = `${need} meal${need > 1 ? 's' : ''} to minimum`;
+        cartHint.classList.add('warning');
+        sendBtn.classList.remove('active');
+        draftStatus.textContent = `Add ${need} more meal${need > 1 ? 's' : ''}`;
+        draftStatus.classList.add('incomplete');
+        hidePrompt();
+      }
+      
+      updateDraft();
+      updateSpacer();
+    }
+    
+    function showPrompt(text, btnText, action) {
+      promptText.textContent = text;
+      promptBtn.textContent = btnText;
+      promptBtn.onclick = () => {
+        order[action]++;
+        syncItem(action);
+        update();
+      };
+      cartPrompt.classList.add('visible');
+      promptVisible = true;
+      updateSpacer();
+    }
+    
+    function hidePrompt() {
+      cartPrompt.classList.remove('visible');
+      promptVisible = false;
+      updateSpacer();
+    }
+    
+    function updateSpacer() {
+      // Adjust spacer height based on whether prompt is visible
+      if (promptVisible) {
+        draftSpacer.classList.add('with-prompt');
+      } else {
+        draftSpacer.classList.remove('with-prompt');
+      }
+    }
+    
+    function updateDraft() {
+      let lines = [
+        delivery.full,
+        container.full
+      ];
+      
+      // Add items if any
+      const items = Object.keys(order).filter(k => order[k] > 0);
+      if (items.length > 0) {
+        lines.push('');
+        items.forEach(k => lines.push(`${order[k]}× ${k}`));
+      }
+      
+      // Add notes if any
+      const notes = Object.keys(customizations)
+        .filter(k => order[k] > 0 && customizations[k].trim())
+        .map(k => `${k}: ${customizations[k].trim()}`);
+      
+      if (notes.length) {
+        lines.push('', 'Notes:');
+        notes.forEach(n => lines.push(n));
+      }
+      
+      draftBubble.textContent = lines.join('\n');
+    }
+    
+    // Detail Sheet
+    function openDetail(key) {
+      currentDish = key;
+      const d = dishes[key];
+      
+      document.getElementById('detailName').textContent = d.name;
+      document.getElementById('detailDesc').textContent = d.desc;
+      document.getElementById('detailMacros').textContent = d.macros;
+      
+      const tagsHtml = d.tags.map(t => 
+        `<span class="detail-tag ${t.safe ? 'safe' : 'allergen'}">${t.text}</span>`
+      ).join('');
+      document.getElementById('detailTags').innerHTML = tagsHtml;
+      
+      document.getElementById('detailQty').textContent = order[key];
+      document.getElementById('detailMinus').disabled = order[key] === 0;
+      
+      const input = document.getElementById('customInput');
+      input.value = customizations[key];
+      input.disabled = false;
+      
+      document.getElementById('detailOverlay').classList.add('visible');
+    }
+    
+    function closeDetail() {
+      if (currentDish) {
+        customizations[currentDish] = document.getElementById('customInput').value;
+        update();
+      }
+      document.getElementById('detailOverlay').classList.remove('visible');
+      currentDish = null;
+    }
+    
+    document.getElementById('detailOverlay').addEventListener('click', e => {
+      if (e.target.id === 'detailOverlay') closeDetail();
+    });
+    
+    document.getElementById('detailMinus').addEventListener('click', () => {
+      if (currentDish && order[currentDish] > 0) {
+        order[currentDish]--;
+        document.getElementById('detailQty').textContent = order[currentDish];
+        document.getElementById('detailMinus').disabled = order[currentDish] === 0;
+        syncItem(currentDish);
+        update();
+      }
+    });
+    
+    document.getElementById('detailPlus').addEventListener('click', () => {
+      if (currentDish && order[currentDish] < 12) {
+        order[currentDish]++;
+        document.getElementById('detailQty').textContent = order[currentDish];
+        document.getElementById('detailMinus').disabled = false;
+        syncItem(currentDish);
+        update();
+      }
+    });
+    
+    // Delivery/Container Sheets
+    document.getElementById('deliveryBubble').addEventListener('click', () => {
+      document.getElementById('deliveryOverlay').classList.add('visible');
+    });
+    
+    document.getElementById('containerBubble').addEventListener('click', () => {
+      document.getElementById('containerOverlay').classList.add('visible');
+    });
+    
+    function selectDelivery(el) {
+      const [short, full] = el.dataset.val.split('|');
+      delivery = { short, full };
+      document.getElementById('deliveryVal').textContent = short;
+      document.querySelectorAll('#deliveryOverlay .option-row').forEach(i => i.classList.remove('selected'));
+      el.classList.add('selected');
+      document.getElementById('deliveryOverlay').classList.remove('visible');
+      update();
+    }
+    
+    function selectContainer(el) {
+      const [short, full] = el.dataset.val.split('|');
+      container = { short, full };
+      document.getElementById('containerVal').textContent = short;
+      document.querySelectorAll('#containerOverlay .option-row').forEach(i => i.classList.remove('selected'));
+      el.classList.add('selected');
+      document.getElementById('containerOverlay').classList.remove('visible');
+      update();
+    }
+    
+    document.getElementById('deliveryOverlay').addEventListener('click', e => {
+      if (e.target.id === 'deliveryOverlay') e.target.classList.remove('visible');
+    });
+    
+    document.getElementById('containerOverlay').addEventListener('click', e => {
+      if (e.target.id === 'containerOverlay') e.target.classList.remove('visible');
+    });
+    
+    // Help Sheet
+    document.getElementById('helpBtn').addEventListener('click', () => {
+      document.getElementById('helpOverlay').classList.add('visible');
+    });
+    
+    function closeHelp() {
+      document.getElementById('helpOverlay').classList.remove('visible');
+    }
+    
+    document.getElementById('helpOverlay').addEventListener('click', e => {
+      if (e.target.id === 'helpOverlay') closeHelp();
+    });
+    
+    // Send Button
+    sendBtn.addEventListener('click', () => {
+      const meals = order.cheat + order.chicken + order.beef + order.seafood;
+      if (meals < 4) return;
+      
+      // Open Messages app with prefilled text
+      const smsBody = encodeURIComponent(draftBubble.textContent);
+      window.location.href = `sms:+12245370344&body=${smsBody}`;
+    });
+    
+    // Initialize draft on load
+    updateDraft();
+  </script>
+</body>
+</html>
