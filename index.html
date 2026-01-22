@@ -295,7 +295,7 @@
       text-orientation: mixed;
       transform: rotate(180deg);
       font-family: var(--font-display);
-      font-size: 7px;
+      font-size: 9px;
       font-weight: 500;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -1029,8 +1029,9 @@
           <div class="order-bar">
             <span class="order-bar-title">Build your order</span>
             <div class="order-bar-pricing">
-              <span>$25 meal</span>
-              <span>$10 side</span>
+              <span>$25/meal</span>
+              <span class="dot"></span>
+              <span>$10/side</span>
             </div>
           </div>
           
@@ -1628,10 +1629,19 @@ Reusable Glass</div>
     sendBtn.addEventListener('click', () => {
       const meals = order.cheat + order.chicken + order.beef + order.seafood;
       if (meals < 4) return;
-      
+
       // Open Messages app with prefilled text
+      // Works on both iPhone and Android
       const smsBody = encodeURIComponent(draftBubble.textContent);
-      window.location.href = `sms:+12245370344&body=${smsBody}`;
+      const phoneNumber = '12245370344';
+
+      // Detect iOS vs Android for proper SMS URL format
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+      const smsUrl = isIOS
+        ? `sms:+${phoneNumber}&body=${smsBody}`
+        : `sms:+${phoneNumber}?body=${smsBody}`;
+
+      window.location.href = smsUrl;
     });
     
     // Initialize draft on load
