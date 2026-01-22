@@ -673,7 +673,29 @@
     .send-btn.active span {
       color: var(--cream);
     }
-    
+
+    .copy-link {
+      text-align: center;
+      margin-top: 6px;
+      font-size: 10px;
+      color: var(--gray-light);
+      cursor: pointer;
+      transition: color 0.2s ease;
+      user-select: none;
+    }
+
+    .copy-link:hover {
+      color: var(--green-soft);
+    }
+
+    .copy-link:active {
+      color: var(--green-deep);
+    }
+
+    .copy-link.copied {
+      color: var(--green-deep);
+    }
+
     .cart-deadline {
       text-align: center;
       padding: 4px 16px 0;
@@ -1228,6 +1250,7 @@ Reusable Glass</div>
               <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
               <span>Send in Messages</span>
             </button>
+            <div class="copy-link" id="copyLink">Copy to clipboard</div>
           </div>
           <div class="cart-deadline">Orders close Thursday 4pm</div>
         </div>
@@ -1667,7 +1690,48 @@ Reusable Glass</div>
 
       window.location.href = smsUrl;
     });
-    
+
+    // Copy to clipboard functionality
+    const copyLink = document.getElementById('copyLink');
+    copyLink.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(draftBubble.textContent);
+
+        // Visual feedback
+        const originalText = copyLink.textContent;
+        copyLink.textContent = 'Copied!';
+        copyLink.classList.add('copied');
+
+        setTimeout(() => {
+          copyLink.textContent = originalText;
+          copyLink.classList.remove('copied');
+        }, 2000);
+      } catch (err) {
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = draftBubble.textContent;
+        textArea.style.position = 'fixed';
+        textArea.style.opacity = '0';
+        document.body.appendChild(textArea);
+        textArea.select();
+
+        try {
+          document.execCommand('copy');
+          copyLink.textContent = 'Copied!';
+          copyLink.classList.add('copied');
+
+          setTimeout(() => {
+            copyLink.textContent = 'Copy to clipboard';
+            copyLink.classList.remove('copied');
+          }, 2000);
+        } catch (fallbackErr) {
+          console.error('Copy failed:', fallbackErr);
+        }
+
+        document.body.removeChild(textArea);
+      }
+    });
+
     // Initialize draft on load
     updateDraft();
   </script>
