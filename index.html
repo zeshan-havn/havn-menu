@@ -660,7 +660,7 @@
     .cart-deadline {
       text-align: center;
       padding: 4px 16px 0;
-      font-size: 9px;
+      font-size: 11px;
       color: var(--gray-light);
     }
     
@@ -1212,7 +1212,7 @@ Reusable Glass</div>
               <span>Send in Messages</span>
             </button>
           </div>
-          <div class="cart-deadline">Order by Thursday 4pm</div>
+          <div class="cart-deadline">Orders close Thursday 4pm</div>
         </div>
         
         <!-- Detail Sheet -->
@@ -1522,23 +1522,30 @@ Reusable Glass</div>
     function openDetail(key) {
       currentDish = key;
       const d = dishes[key];
-      
+
       document.getElementById('detailName').textContent = d.name;
       document.getElementById('detailDesc').textContent = d.desc;
       document.getElementById('detailMacros').textContent = d.macros;
-      
-      const tagsHtml = d.tags.map(t => 
+
+      const tagsHtml = d.tags.map(t =>
         `<span class="detail-tag ${t.safe ? 'safe' : 'allergen'}">${t.text}</span>`
       ).join('');
       document.getElementById('detailTags').innerHTML = tagsHtml;
-      
+
       document.getElementById('detailQty').textContent = order[key];
       document.getElementById('detailMinus').disabled = order[key] === 0;
-      
+
       const input = document.getElementById('customInput');
       input.value = customizations[key];
       input.disabled = false;
-      
+
+      // Auto-scroll input into view when keyboard appears
+      input.addEventListener('focus', function() {
+        setTimeout(() => {
+          this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 300); // Delay to allow keyboard animation
+      });
+
       document.getElementById('detailOverlay').classList.add('visible');
     }
     
