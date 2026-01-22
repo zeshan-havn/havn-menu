@@ -629,7 +629,14 @@
     .cart-hint.warning {
       color: var(--brass-muted);
     }
-    
+
+    .send-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
     .send-btn {
       display: flex;
       align-items: center;
@@ -1246,11 +1253,13 @@ Reusable Glass</div>
               <div class="cart-count" id="cartCount">0 meals + 0 sides</div>
               <div class="cart-hint" id="cartHint">Tap + to add meals</div>
             </div>
-            <button class="send-btn" id="sendBtn">
-              <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-              <span>Send in Messages</span>
-            </button>
-            <div class="copy-link" id="copyLink">Copy to clipboard</div>
+            <div class="send-wrapper">
+              <button class="send-btn" id="sendBtn">
+                <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                <span>Send in Messages</span>
+              </button>
+              <div class="copy-link" id="copyLink">Copy to clipboard</div>
+            </div>
           </div>
           <div class="cart-deadline">Orders close Thursday 4pm</div>
         </div>
