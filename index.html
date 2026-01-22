@@ -35,87 +35,22 @@
       --font-body: 'DM Sans', -apple-system, sans-serif;
     }
     
-    html, body { height: 100%; }
-    
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       font-family: var(--font-body);
-      background: #0A0A0A;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 20px;
-    }
-    
-    .preview-label {
-      color: rgba(255,255,255,0.35);
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-    
-    .preview-title {
-      font-family: var(--font-display);
-      color: var(--cream);
-      font-size: 26px;
-      font-weight: 400;
-      margin-bottom: 28px;
-      letter-spacing: 0.02em;
-    }
-    
-    /* iPhone Frame */
-    .iphone-frame {
-      position: relative;
-      width: 393px;
-      height: 852px;
-      background: #1a1a1a;
-      border-radius: 55px;
-      padding: 12px;
-      box-shadow: 
-        0 0 0 1px rgba(255,255,255,0.06),
-        0 30px 60px rgba(0,0,0,0.5),
-        0 10px 20px rgba(0,0,0,0.3);
-      flex-shrink: 0;
-    }
-    
-    .iphone-screen {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      border-radius: 45px;
-      overflow: hidden;
       background: var(--cream);
-    }
-    
-    .dynamic-island {
-      position: absolute;
-      top: 12px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 126px;
-      height: 37px;
-      background: #000;
-      border-radius: 20px;
-      z-index: 1000;
-    }
-    
-    .home-indicator {
-      position: absolute;
-      bottom: 8px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 140px;
-      height: 5px;
-      background: rgba(0,0,0,0.12);
-      border-radius: 3px;
-      z-index: 1000;
+      min-height: 100vh;
+      overflow: hidden;
     }
     
     /* App */
     .app {
-      position: absolute;
+      position: fixed;
       inset: 0;
       background: var(--cream);
       display: flex;
@@ -124,6 +59,8 @@
       color: var(--charcoal);
       -webkit-font-smoothing: antialiased;
       overflow: hidden;
+      width: 100%;
+      height: 100%;
     }
     
     /* Subtle texture */
@@ -600,13 +537,13 @@
     ========================================== */
     
     .cart-bar {
-      position: absolute;
+      position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
       background: var(--cream);
       z-index: 100;
-      padding-bottom: 32px;
+      padding-bottom: env(safe-area-inset-bottom, 32px);
       box-shadow: 0 -1px 0 rgba(0,0,0,0.04), 0 -8px 24px rgba(0,0,0,0.03);
     }
     
@@ -732,14 +669,13 @@
     ========================================== */
     
     .sheet-overlay {
-      position: absolute;
+      position: fixed;
       inset: 0;
       background: rgba(10,22,18,0.5);
       z-index: 200;
       opacity: 0;
       visibility: hidden;
       transition: all 0.25s ease;
-      border-radius: 45px;
       overflow: hidden;
     }
     
@@ -749,7 +685,7 @@
     }
     
     .sheet {
-      position: absolute;
+      position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
@@ -1059,25 +995,16 @@
       transform: scale(0.98);
     }
     
-    /* Responsive */
-    @media (max-height: 950px) {
-      .iphone-frame { transform: scale(0.8); transform-origin: top center; margin-bottom: -120px; }
-    }
-    @media (max-height: 800px) {
-      .iphone-frame { transform: scale(0.65); margin-bottom: -200px; }
+    /* Safe area support for notch devices */
+    @supports (padding-top: env(safe-area-inset-top)) {
+      .header {
+        padding-top: calc(env(safe-area-inset-top) + 12px);
+      }
     }
   </style>
 </head>
 <body>
-  
-  <div class="preview-label">Final</div>
-  <h1 class="preview-title">Havn Club</h1>
-  
-  <div class="iphone-frame">
-    <div class="iphone-screen">
-      <div class="dynamic-island"></div>
-      
-      <div class="app">
+  <div class="app">
         <!-- Header - Fixed -->
         <header class="header">
           <div class="header-left">
@@ -1384,11 +1311,8 @@ Reusable Glass</div>
           </div>
         </div>
       </div>
-      
-      <div class="home-indicator"></div>
-    </div>
   </div>
-  
+
   <script>
     // Data - Full descriptions for detail sheet
     const dishes = {
