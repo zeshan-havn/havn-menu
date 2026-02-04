@@ -1221,8 +1221,7 @@
               <span>Message draft</span>
               <span class="draft-status" id="draftStatus">Add 4 meals to order</span>
             </div>
-            <div class="draft-bubble" id="draftBubble">Sunday Morning (10a–12p)
-Reusable Glass</div>
+            <div class="draft-bubble" id="draftBubble"></div>
             
             <div class="draft-options">
               <div class="opt-bubble" id="deliveryBubble">
@@ -1298,16 +1297,16 @@ Reusable Glass</div>
             <div class="sheet-handle"></div>
             <div class="options-content">
               <h3 class="options-title">Delivery Window</h3>
-              <div class="option-row selected" data-val="Sun AM|Sunday Morning (10a–12p)" onclick="selectDelivery(this)">
-                <span class="option-text">Sunday Morning (10a–12p)</span>
+              <div class="option-row" data-val="Sun AM|Sunday Morning (9a–12p)" onclick="selectDelivery(this)">
+                <span class="option-text">Sunday Morning (9a–12p)</span>
                 <span class="option-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
               </div>
-              <div class="option-row" data-val="Sun PM|Sunday Evening (7p–9p)" onclick="selectDelivery(this)">
-                <span class="option-text">Sunday Evening (7p–9p)</span>
+              <div class="option-row" data-val="Sun PM|Sunday Evening (6p–9p)" onclick="selectDelivery(this)">
+                <span class="option-text">Sunday Evening (6p–9p)</span>
                 <span class="option-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
               </div>
-              <div class="option-row" data-val="Mon AM|Monday Morning (10a–12p)" onclick="selectDelivery(this)">
-                <span class="option-text">Monday Morning (10a–12p)</span>
+              <div class="option-row" data-val="Mon AM|Monday Morning (9a–12p)" onclick="selectDelivery(this)">
+                <span class="option-text">Monday Morning (9a–12p)</span>
                 <span class="option-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
               </div>
             </div>
@@ -1418,7 +1417,13 @@ Reusable Glass</div>
     
     const order = { cheat: 0, chicken: 0, beef: 0, seafood: 0, broth: 0, chia: 0 };
     const customizations = { cheat: '', chicken: '', beef: '', seafood: '', broth: '', chia: '' };
-    let delivery = { short: 'Sun AM', full: 'Sunday Morning (10a–12p)' };
+    // Randomly assign default delivery window (equal 1/3 chance each)
+    const deliveryOptions = [
+      { short: 'Sun AM', full: 'Sunday Morning (9a–12p)' },
+      { short: 'Sun PM', full: 'Sunday Evening (6p–9p)' },
+      { short: 'Mon AM', full: 'Monday Morning (9a–12p)' }
+    ];
+    let delivery = deliveryOptions[Math.floor(Math.random() * 3)];
     let container = { short: 'Glass', full: 'Reusable Glass' };
     let currentDish = null;
     let promptVisible = false;
@@ -1741,7 +1746,13 @@ Reusable Glass</div>
       }
     });
 
-    // Initialize draft on load
+    // Initialize on load: set random delivery default in UI
+    document.getElementById('deliveryVal').textContent = delivery.short;
+    // Mark the matching delivery option as selected in the sheet
+    document.querySelectorAll('#deliveryOverlay .option-row').forEach(row => {
+      const [short] = row.dataset.val.split('|');
+      row.classList.toggle('selected', short === delivery.short);
+    });
     updateDraft();
   </script>
 </body>
