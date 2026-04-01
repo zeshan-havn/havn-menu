@@ -20,6 +20,24 @@
   <meta name="twitter:description" content="Premium meal delivery service. Order by Thursday 4pm for Sunday delivery.">
   <meta name="twitter:image" content="https://menu.havnclub.com/menu-preview.jpg">
 
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1512896839934759');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.net/tr?id=1512896839934759&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
@@ -1719,6 +1737,9 @@
     sendBtn.addEventListener('click', () => {
       const meals = order.special + order.chicken + order.beef + order.seafood + order.veg;
       if (meals < 4) return;
+
+      // Fire Meta Pixel conversion event
+      if (typeof fbq === 'function') fbq('track', 'Lead');
 
       // Open Messages app with prefilled text
       // Works on both iPhone and Android
