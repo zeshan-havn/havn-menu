@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://text.havnclub.com/sitemap.xml
