@@ -1738,8 +1738,8 @@
       const meals = order.special + order.chicken + order.beef + order.seafood + order.veg;
       if (meals < 4) return;
 
-      // Fire Meta Pixel conversion event (Contact — separate from Typeform "Lead")
-      if (typeof fbq === 'function') fbq('track', 'Contact');
+      // Fire Meta Pixel conversion event (custom event — separate from Typeform "Lead")
+      if (typeof fbq === 'function') fbq('trackCustom', 'OrderDraftSent');
 
       // Open Messages app with prefilled text
       // Works on both iPhone and Android
