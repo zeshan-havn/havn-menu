@@ -2234,8 +2234,7 @@
         lines.push('');
         items.forEach(k => lines.push(`${order[k]}× ${k}`));
         if (wellnessShots > 0) {
-          const suffix = wellnessShots > 1 ? '/each' : '';
-          lines.push(`+ ${wellnessShots} Wellness Shots ($25${suffix})`);
+          lines.push(`+ ${wellnessShots} Wellness Shots`);
         }
       }
 
