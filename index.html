@@ -848,6 +848,54 @@
       color: var(--red-muted);
     }
     
+    /* "Make it" modification pills */
+    .detail-mods {
+      margin-bottom: 18px;
+    }
+
+    .detail-mods-label {
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray-muted);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .mod-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .mod-pill {
+      padding: 8px 13px;
+      background: var(--cream);
+      border: 1px solid var(--cream-dark);
+      border-radius: 16px;
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--gray-warm);
+      cursor: pointer;
+      transition: all 0.18s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .mod-pill:active {
+      transform: scale(0.96);
+    }
+
+    .mod-pill.active {
+      background: var(--green-deep);
+      border-color: var(--green-deep);
+      color: var(--cream);
+      font-weight: 500;
+      box-shadow: 0 1px 4px rgba(26, 47, 39, 0.18);
+    }
+
     /* Customization */
     .custom-field {
       margin-bottom: 18px;
@@ -1741,10 +1789,20 @@
               <p class="detail-desc" id="detailDesc"></p>
               <div class="detail-macros" id="detailMacros"></div>
               <div class="detail-tags" id="detailTags"></div>
-              
+
+              <div class="detail-mods" id="detailMods">
+                <label class="detail-mods-label">Make it</label>
+                <div class="mod-pills">
+                  <button class="mod-pill" data-mod="dairy free" type="button">Dairy Free</button>
+                  <button class="mod-pill" data-mod="gluten free" type="button">Gluten Free</button>
+                  <button class="mod-pill" data-mod="low carb" type="button">Low Carb</button>
+                  <button class="mod-pill" data-mod="no carb" type="button">No Carb</button>
+                </div>
+              </div>
+
               <div class="custom-field">
-                <label class="custom-label">Customization (optional)</label>
-                <textarea class="custom-input" id="customInput" rows="2" placeholder="e.g., dairy free, gluten free, no cilantro, extra sauce"></textarea>
+                <label class="custom-label">Anything else? (optional)</label>
+                <textarea class="custom-input" id="customInput" rows="2" placeholder="e.g., no cilantro, extra sauce, spicy"></textarea>
               </div>
               
               <div class="detail-stepper-row">
@@ -1977,6 +2035,15 @@
     
     const order = { special: 0, chicken: 0, beef: 0, seafood: 0, veg: 0, broth: 0, chia: 0 };
     const customizations = { special: '', chicken: '', beef: '', seafood: '', veg: '', broth: '', chia: '' };
+    // Dietary modification pills per dish (meals only)
+    const dietaryPrefs = {
+      special: new Set(), chicken: new Set(), beef: new Set(),
+      seafood: new Set(), veg: new Set(),
+      broth: new Set(), chia: new Set()
+    };
+    const mealCategories = new Set(['special', 'chicken', 'beef', 'seafood', 'veg']);
+    // Low carb / no carb are mutually exclusive
+    const carbMods = { 'low carb': 'no carb', 'no carb': 'low carb' };
 
     // Wellness shots (separate from meal/side order — counted as N bundles)
     let wellnessShots = 0;
@@ -2238,10 +2305,16 @@
         }
       }
 
-      // Add notes if any
-      const notes = Object.keys(customizations)
-        .filter(k => order[k] > 0 && customizations[k].trim())
-        .map(k => `${k}: ${customizations[k].trim()}`);
+      // Add notes (dietary pills + free-text) if any
+      const notes = [];
+      Object.keys(order).forEach(k => {
+        if (order[k] <= 0) return;
+        const prefs = [...dietaryPrefs[k]];
+        const freeText = customizations[k].trim();
+        const parts = [...prefs];
+        if (freeText) parts.push(freeText);
+        if (parts.length) notes.push(`${k}: ${parts.join(', ')}`);
+      });
 
       if (notes.length) {
         lines.push('', 'Notes:');
@@ -2264,6 +2337,14 @@
         `<span class="detail-tag ${t.safe ? 'safe' : 'allergen'}">${t.text}</span>`
       ).join('');
       document.getElementById('detailTags').innerHTML = tagsHtml;
+
+      // Modification pills — meals only
+      const modsEl = document.getElementById('detailMods');
+      modsEl.style.display = mealCategories.has(d.category) ? 'block' : 'none';
+      const prefs = dietaryPrefs[key];
+      document.querySelectorAll('.mod-pill').forEach(pill => {
+        pill.classList.toggle('active', prefs.has(pill.dataset.mod));
+      });
 
       document.getElementById('detailQty').textContent = order[key];
       document.getElementById('detailMinus').disabled = order[key] === 0;
@@ -2313,6 +2394,30 @@
         syncItem(currentDish);
         update();
       }
+    });
+
+    // Modification pills — toggle on click; enforce low-carb / no-carb exclusion
+    document.querySelectorAll('.mod-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        if (!currentDish) return;
+        const mod = pill.dataset.mod;
+        const prefs = dietaryPrefs[currentDish];
+        if (prefs.has(mod)) {
+          prefs.delete(mod);
+          pill.classList.remove('active');
+        } else {
+          // Mutually exclusive carb mods
+          const opposite = carbMods[mod];
+          if (opposite && prefs.has(opposite)) {
+            prefs.delete(opposite);
+            const oppPill = document.querySelector(`.mod-pill[data-mod="${opposite}"]`);
+            if (oppPill) oppPill.classList.remove('active');
+          }
+          prefs.add(mod);
+          pill.classList.add('active');
+        }
+        update();
+      });
     });
     
     // Delivery/Container Sheets
