@@ -1058,7 +1058,415 @@
     .help-done:active {
       transform: scale(0.98);
     }
-    
+
+    /* ==========================================
+       WELLNESS COLLECTION (above Meals)
+    ========================================== */
+
+    .wellness-section {
+      padding: 16px 14px 4px;
+    }
+
+    .wellness-card {
+      position: relative;
+      background: linear-gradient(160deg, #FDFCF8 0%, var(--cream-warm) 100%);
+      border: 1px solid rgba(196, 168, 124, 0.22);
+      border-radius: 14px;
+      padding: 14px 14px 12px;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.02), 0 4px 16px rgba(26, 47, 39, 0.04);
+      overflow: hidden;
+    }
+
+    .wellness-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 14px;
+      right: 14px;
+      height: 2px;
+      background: linear-gradient(90deg, #E8A317 0%, #8B1A3A 33%, #3A7D44 66%, #2E5FAF 100%);
+      opacity: 0.9;
+    }
+
+    .wellness-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .wellness-head-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .wellness-title-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .wellness-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--charcoal);
+      line-height: 1.1;
+    }
+
+    .wellness-subtitle {
+      font-size: 11px;
+      color: var(--gray-warm);
+      font-weight: 300;
+      letter-spacing: 0.01em;
+    }
+
+    .new-badge {
+      font-family: var(--font-body);
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 7px;
+      border-radius: 4px;
+      background: var(--green-deep);
+      color: var(--cream);
+      flex-shrink: 0;
+    }
+
+    .wellness-body {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .shot-circles {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .shot-circle {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      cursor: pointer;
+      position: relative;
+      flex-shrink: 0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.12), inset 0 1px 1px rgba(255,255,255,0.25);
+      border: 1px solid rgba(255,255,255,0.28);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .shot-circle:active {
+      transform: scale(0.92);
+    }
+
+    .shot-circle.immunity {
+      background: linear-gradient(135deg, #F5C04A 0%, #E8A317 55%, #D4871C 100%);
+    }
+
+    .shot-circle.endurance {
+      background: linear-gradient(135deg, #C41E3A 0%, #8B1A3A 55%, #6B1229 100%);
+    }
+
+    .shot-circle.purify {
+      background: linear-gradient(135deg, #4CAF50 0%, #3A7D44 55%, #2D6A34 100%);
+    }
+
+    .shot-circle.clarity {
+      background: linear-gradient(135deg, #4A7FD4 0%, #2E5FAF 55%, #1A3A7A 100%);
+    }
+
+    .shot-circle.active {
+      box-shadow: 0 0 0 2px var(--cream), 0 0 0 3.5px var(--green-deep), 0 2px 6px rgba(0,0,0,0.15);
+      transform: scale(1.05);
+    }
+
+    .wellness-stepper {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-shrink: 0;
+    }
+
+    .wellness-stepper .stepper-btn {
+      width: 30px;
+      height: 30px;
+      background: var(--cream-warm);
+      border: 1px solid rgba(196, 168, 124, 0.18);
+      font-size: 15px;
+      color: var(--gray-muted);
+    }
+
+    .wellness-stepper .stepper-btn.minus {
+      border-radius: 6px 0 0 6px;
+      border-right: none;
+    }
+
+    .wellness-stepper .stepper-btn.plus {
+      border-radius: 0 6px 6px 0;
+      border-left: none;
+    }
+
+    .wellness-stepper .stepper-qty {
+      width: 30px;
+      height: 30px;
+      background: var(--cream-warm);
+      border-top: 1px solid rgba(196, 168, 124, 0.18);
+      border-bottom: 1px solid rgba(196, 168, 124, 0.18);
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      font-variant-numeric: tabular-nums lining-nums;
+      color: var(--charcoal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .wellness-card.selected .wellness-stepper .stepper-btn,
+    .wellness-card.selected .wellness-stepper .stepper-qty {
+      background: var(--green-deep);
+      color: var(--cream);
+      border-color: transparent;
+    }
+
+    .wellness-card.selected .wellness-stepper .stepper-btn:disabled {
+      color: rgba(245,241,234,0.3);
+    }
+
+    /* Expanded shot detail (inline) */
+    .shot-detail {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.28s ease, opacity 0.2s ease, margin-top 0.2s ease;
+      margin-top: 0;
+    }
+
+    .shot-detail.open {
+      max-height: 240px;
+      opacity: 1;
+      margin-top: 12px;
+    }
+
+    .shot-detail-inner {
+      padding-top: 12px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .shot-detail-head {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 4px;
+      flex-wrap: wrap;
+    }
+
+    .shot-detail-name {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--charcoal);
+      line-height: 1.2;
+    }
+
+    .shot-detail-sep {
+      color: var(--cream-dark);
+      font-size: 11px;
+    }
+
+    .shot-detail-fn {
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .shot-detail-fn.immunity { color: #B07E10; }
+    .shot-detail-fn.endurance { color: #8B1A3A; }
+    .shot-detail-fn.purify { color: #2D6A34; }
+    .shot-detail-fn.clarity { color: #2E5FAF; }
+
+    .shot-detail-ing {
+      font-size: 11px;
+      font-weight: 300;
+      color: var(--gray-warm);
+      line-height: 1.55;
+    }
+
+    .wellness-foot {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(0,0,0,0.04);
+      font-size: 10px;
+      color: var(--gray-muted);
+      text-align: center;
+      font-style: italic;
+      letter-spacing: 0.02em;
+    }
+
+    /* ==========================================
+       WELLNESS SHOTS DEEP-DETAIL SECTION (below Sides)
+    ========================================== */
+
+    .wellness-deep {
+      padding: 4px 14px 10px;
+    }
+
+    .wellness-deep-intro {
+      padding: 10px 2px 14px;
+      text-align: center;
+    }
+
+    .wellness-deep-title {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--charcoal);
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+
+    .wellness-deep-sub {
+      font-size: 11px;
+      color: var(--gray-warm);
+      font-weight: 300;
+      line-height: 1.55;
+      font-style: italic;
+    }
+
+    .wellness-deep-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .wellness-deep-card {
+      background: #FDFCF8;
+      border: 1px solid var(--cream-dark);
+      border-radius: 12px;
+      padding: 14px 14px 14px 52px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .wellness-deep-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 4px;
+    }
+
+    .wellness-deep-card.immunity::before { background: linear-gradient(180deg, #F5C04A, #D4871C); }
+    .wellness-deep-card.endurance::before { background: linear-gradient(180deg, #C41E3A, #6B1229); }
+    .wellness-deep-card.purify::before { background: linear-gradient(180deg, #4CAF50, #2D6A34); }
+    .wellness-deep-card.clarity::before { background: linear-gradient(180deg, #4A7FD4, #1A3A7A); }
+
+    .wellness-deep-dot {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.12), inset 0 1px 1px rgba(255,255,255,0.25);
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+
+    .wellness-deep-dot.immunity { background: linear-gradient(135deg, #F5C04A 0%, #E8A317 55%, #D4871C 100%); }
+    .wellness-deep-dot.endurance { background: linear-gradient(135deg, #C41E3A 0%, #8B1A3A 55%, #6B1229 100%); }
+    .wellness-deep-dot.purify { background: linear-gradient(135deg, #4CAF50 0%, #3A7D44 55%, #2D6A34 100%); }
+    .wellness-deep-dot.clarity { background: linear-gradient(135deg, #4A7FD4 0%, #2E5FAF 55%, #1A3A7A 100%); }
+
+    .wellness-deep-head {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .wellness-deep-name {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--charcoal);
+      line-height: 1.15;
+    }
+
+    .wellness-deep-fn {
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .wellness-deep-fn.immunity { color: #B07E10; }
+    .wellness-deep-fn.endurance { color: #8B1A3A; }
+    .wellness-deep-fn.purify { color: #2D6A34; }
+    .wellness-deep-fn.clarity { color: #2E5FAF; }
+
+    .wellness-deep-ing {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--gray-warm);
+      line-height: 1.55;
+      margin-bottom: 8px;
+    }
+
+    .wellness-deep-ing strong {
+      font-weight: 500;
+      color: var(--charcoal);
+    }
+
+    .wellness-deep-sci {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      padding-top: 8px;
+      border-top: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .wellness-deep-sci-bullet {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--brass-muted);
+      margin-top: 7px;
+      flex-shrink: 0;
+    }
+
+    .wellness-deep-sci-text {
+      font-size: 11px;
+      color: var(--gray-warm);
+      line-height: 1.55;
+      font-style: italic;
+    }
+
+    .wellness-deep-footnote {
+      margin-top: 12px;
+      padding: 10px 12px;
+      background: var(--cream-warm);
+      border-radius: 8px;
+      font-size: 10px;
+      color: var(--gray-muted);
+      line-height: 1.55;
+      text-align: center;
+    }
+
     /* Safe area support for notch devices */
     @supports (padding-top: env(safe-area-inset-top)) {
       .header {
@@ -1098,7 +1506,49 @@
               <span>$10/side</span>
             </div>
           </div>
-          
+
+          <!-- Wellness Collection -->
+          <div class="wellness-section">
+            <div class="wellness-card" id="wellnessCard">
+              <div class="wellness-head">
+                <div class="wellness-head-text">
+                  <div class="wellness-title-row">
+                    <span class="wellness-title">Wellness Collection</span>
+                    <span class="new-badge">New</span>
+                  </div>
+                  <span class="wellness-subtitle">4 wellness shots · $25 bundle</span>
+                </div>
+              </div>
+
+              <div class="wellness-body">
+                <div class="shot-circles">
+                  <div class="shot-circle immunity" data-shot="immunity" aria-label="Immunity shot"></div>
+                  <div class="shot-circle endurance" data-shot="endurance" aria-label="Endurance shot"></div>
+                  <div class="shot-circle purify" data-shot="purify" aria-label="Purify shot"></div>
+                  <div class="shot-circle clarity" data-shot="clarity" aria-label="Clarity shot"></div>
+                </div>
+                <div class="wellness-stepper">
+                  <button class="stepper-btn minus" id="wellnessMinus" disabled>−</button>
+                  <span class="stepper-qty" id="wellnessQty">0</span>
+                  <button class="stepper-btn plus" id="wellnessPlus">+</button>
+                </div>
+              </div>
+
+              <div class="shot-detail" id="shotDetail">
+                <div class="shot-detail-inner">
+                  <div class="shot-detail-head">
+                    <span class="shot-detail-name" id="shotDetailName"></span>
+                    <span class="shot-detail-sep">·</span>
+                    <span class="shot-detail-fn" id="shotDetailFn"></span>
+                  </div>
+                  <div class="shot-detail-ing" id="shotDetailIng"></div>
+                </div>
+              </div>
+
+              <div class="wellness-foot">Tap a vial to preview · 1 bundle counts toward your 4-item minimum</div>
+            </div>
+          </div>
+
           <!-- Meals Section -->
           <div class="section-divider">
             <div class="section-line"></div>
@@ -1252,12 +1702,82 @@
               </div>
             </div>
           </div>
-          
+
+          <!-- Wellness Shots Section (deeper detail) -->
+          <div class="section-divider">
+            <div class="section-line"></div>
+            <span class="section-name">Wellness Shots</span>
+            <div class="section-line right"></div>
+          </div>
+
+          <div class="wellness-deep">
+            <div class="wellness-deep-intro">
+              <div class="wellness-deep-title">4 colors · 4 functions</div>
+              <div class="wellness-deep-sub">Made fresh with whole ingredients, no artificial anything. Every color comes from the plants.</div>
+            </div>
+
+            <div class="wellness-deep-grid">
+              <div class="wellness-deep-card immunity">
+                <div class="wellness-deep-dot immunity"></div>
+                <div class="wellness-deep-head">
+                  <span class="wellness-deep-name">Immunity</span>
+                  <span class="wellness-deep-fn immunity">Anti-Inflammatory · Immune Support</span>
+                </div>
+                <div class="wellness-deep-ing"><strong>Fresh turmeric root, ginger root, lemon juice, black pepper, cayenne, raw honey.</strong></div>
+                <div class="wellness-deep-sci">
+                  <span class="wellness-deep-sci-bullet"></span>
+                  <span class="wellness-deep-sci-text">Curcumin has 389+ clinical trials behind it. Black pepper isn't optional — piperine increases turmeric absorption by 2,000%.</span>
+                </div>
+              </div>
+
+              <div class="wellness-deep-card endurance">
+                <div class="wellness-deep-dot endurance"></div>
+                <div class="wellness-deep-head">
+                  <span class="wellness-deep-name">Endurance</span>
+                  <span class="wellness-deep-fn endurance">Vitality · Blood Flow</span>
+                </div>
+                <div class="wellness-deep-ing"><strong>Cold-pressed beetroot juice, tart cherry juice, fresh ginger, lemon juice.</strong></div>
+                <div class="wellness-deep-sci">
+                  <span class="wellness-deep-sci-bullet"></span>
+                  <span class="wellness-deep-sci-text">Dietary nitrate converts to nitric oxide — dilates blood vessels, lowers blood pressure, improves oxygen delivery to muscles. Peaks 2–3 hours after drinking.</span>
+                </div>
+              </div>
+
+              <div class="wellness-deep-card purify">
+                <div class="wellness-deep-dot purify"></div>
+                <div class="wellness-deep-head">
+                  <span class="wellness-deep-name">Purify</span>
+                  <span class="wellness-deep-fn purify">Detox · Alkalinity</span>
+                </div>
+                <div class="wellness-deep-ing"><strong>Fresh wheatgrass juice, cucumber juice, liquid chlorophyll, fresh mint, lemon juice, ginger.</strong></div>
+                <div class="wellness-deep-sci">
+                  <span class="wellness-deep-sci-bullet"></span>
+                  <span class="wellness-deep-sci-text">Wheatgrass is ~70% chlorophyll by dry weight. Loaded with vitamins A, C, E, iron, magnesium, and all essential amino acids.</span>
+                </div>
+              </div>
+
+              <div class="wellness-deep-card clarity">
+                <div class="wellness-deep-dot clarity"></div>
+                <div class="wellness-deep-head">
+                  <span class="wellness-deep-name">Clarity</span>
+                  <span class="wellness-deep-fn clarity">Cognitive · Calm Focus</span>
+                </div>
+                <div class="wellness-deep-ing"><strong>Blue spirulina (phycocyanin), coconut water, L-theanine, lemon juice, fresh ginger, raw honey.</strong></div>
+                <div class="wellness-deep-sci">
+                  <span class="wellness-deep-sci-bullet"></span>
+                  <span class="wellness-deep-sci-text">The vivid blue is 100% natural — phycocyanin is a selective COX-2 inhibitor. L-theanine promotes alpha brain wave activity — calm focus without caffeine.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="wellness-deep-footnote">All shots are dairy-free, nut-free, vegan, gluten-free · 2 oz glass vials · 6 days refrigerated · Shake gently before drinking</div>
+          </div>
+
           <!-- Draft Section - Always visible -->
           <div class="draft-section" id="draftSection">
             <div class="draft-label">
               <span>Message draft</span>
-              <span class="draft-status" id="draftStatus">Add 4 meals to order</span>
+              <span class="draft-status incomplete" id="draftStatus">Add 4 items to order</span>
             </div>
             <div class="draft-bubble" id="draftBubble"></div>
             
@@ -1288,7 +1808,7 @@
           <div class="cart-main">
             <div class="cart-info">
               <div class="cart-count" id="cartCount">0 meals + 0 sides</div>
-              <div class="cart-hint" id="cartHint">Tap + to add meals</div>
+              <div class="cart-hint" id="cartHint">Tap + to add items</div>
             </div>
             <div class="send-wrapper">
               <button class="send-btn" id="sendBtn">
@@ -1467,6 +1987,35 @@
     
     const order = { special: 0, chicken: 0, beef: 0, seafood: 0, veg: 0, broth: 0, chia: 0 };
     const customizations = { special: '', chicken: '', beef: '', seafood: '', veg: '', broth: '', chia: '' };
+
+    // Wellness shots (separate from meal/side order — counted as N bundles)
+    let wellnessShots = 0;
+    let activeShot = null;
+
+    // Shot info for inline progressive disclosure (short version — deep detail lives in its own section below)
+    const shotInfo = {
+      immunity: {
+        name: 'Immunity',
+        fn: 'Anti-Inflammatory · Immune Support',
+        ing: 'Fresh turmeric, ginger, lemon, black pepper, cayenne, raw honey.'
+      },
+      endurance: {
+        name: 'Endurance',
+        fn: 'Vitality · Blood Flow',
+        ing: 'Cold-pressed beetroot, tart cherry, fresh ginger, lemon.'
+      },
+      purify: {
+        name: 'Purify',
+        fn: 'Detox · Alkalinity',
+        ing: 'Wheatgrass, cucumber, chlorophyll, mint, lemon, ginger.'
+      },
+      clarity: {
+        name: 'Clarity',
+        fn: 'Cognitive · Calm Focus',
+        ing: 'Blue spirulina, coconut water, L-theanine, lemon, ginger, honey.'
+      }
+    };
+
     // Delivery window options
     const deliveryOptions = [
       { short: 'Sunday Morning', full: 'Sunday Morning (9a–12p)' },
@@ -1497,21 +2046,71 @@
       const key = item.dataset.key;
       const minus = item.querySelector('.minus');
       const plus = item.querySelector('.plus');
-      
+
       // Click on item info (not stepper) opens detail
       item.querySelector('.item-info').addEventListener('click', (e) => {
         if (e.target.closest('.stepper')) return;
         openDetail(key);
       });
-      
+
       minus.addEventListener('click', e => {
         e.stopPropagation();
         if (order[key] > 0) { order[key]--; syncItem(key); update(); }
       });
-      
+
       plus.addEventListener('click', e => {
         e.stopPropagation();
         if (order[key] < 12) { order[key]++; syncItem(key); update(); }
+      });
+    });
+
+    // Wellness stepper
+    document.getElementById('wellnessMinus').addEventListener('click', e => {
+      e.stopPropagation();
+      if (wellnessShots > 0) {
+        wellnessShots--;
+        syncWellness();
+        update();
+      }
+    });
+
+    document.getElementById('wellnessPlus').addEventListener('click', e => {
+      e.stopPropagation();
+      if (wellnessShots < 12) {
+        wellnessShots++;
+        syncWellness();
+        update();
+      }
+    });
+
+    // Shot circle tap — inline progressive disclosure
+    document.querySelectorAll('.shot-circle').forEach(circle => {
+      circle.addEventListener('click', () => {
+        const key = circle.dataset.shot;
+        const panel = document.getElementById('shotDetail');
+        const nameEl = document.getElementById('shotDetailName');
+        const fnEl = document.getElementById('shotDetailFn');
+        const ingEl = document.getElementById('shotDetailIng');
+
+        if (activeShot === key) {
+          // Tap active shot to collapse
+          panel.classList.remove('open');
+          circle.classList.remove('active');
+          activeShot = null;
+          return;
+        }
+
+        // Clear previous active state
+        document.querySelectorAll('.shot-circle.active').forEach(c => c.classList.remove('active'));
+
+        const info = shotInfo[key];
+        nameEl.textContent = info.name;
+        fnEl.textContent = info.fn;
+        fnEl.className = 'shot-detail-fn ' + key;
+        ingEl.textContent = info.ing;
+        panel.classList.add('open');
+        circle.classList.add('active');
+        activeShot = key;
       });
     });
     
@@ -1521,23 +2120,39 @@
       item.querySelector('.minus').disabled = order[key] === 0;
       item.classList.toggle('selected', order[key] > 0);
     }
-    
+
+    function syncWellness() {
+      const card = document.getElementById('wellnessCard');
+      const qty = document.getElementById('wellnessQty');
+      const minus = document.getElementById('wellnessMinus');
+      qty.textContent = wellnessShots;
+      minus.disabled = wellnessShots === 0;
+      card.classList.toggle('selected', wellnessShots > 0);
+    }
+
     function update() {
       const meals = order.special + order.chicken + order.beef + order.seafood + order.veg;
       const sides = order.broth + order.chia;
       const hasBroth = order.broth > 0;
       const hasChia = order.chia > 0;
-      const minMet = meals >= 4;
-      
-      cartCount.textContent = `${meals} meal${meals !== 1 ? 's' : ''} + ${sides} side${sides !== 1 ? 's' : ''}`;
-      
-      if (meals + sides === 0) {
-        cartHint.textContent = 'Tap + to add meals';
+      // 1 bundle = 1 meal equivalent toward the 4-item minimum
+      const mealEquivalents = meals + wellnessShots;
+      const minMet = mealEquivalents >= 4;
+
+      // Cart count line — only show shots when > 0 so default display stays clean
+      let countText = `${meals} meal${meals !== 1 ? 's' : ''} + ${sides} side${sides !== 1 ? 's' : ''}`;
+      if (wellnessShots > 0) {
+        countText += ` + ${wellnessShots} shot${wellnessShots !== 1 ? 's' : ''}`;
+      }
+      cartCount.textContent = countText;
+
+      if (meals + sides + wellnessShots === 0) {
+        cartHint.textContent = 'Tap + to add items';
         cartHint.classList.remove('warning');
         sendBtn.classList.remove('active');
         cartPrompt.classList.remove('visible');
         promptVisible = false;
-        draftStatus.textContent = 'Add 4 meals to order';
+        draftStatus.textContent = 'Add 4 items to order';
         draftStatus.classList.add('incomplete');
       } else if (minMet) {
         cartHint.textContent = 'Ready to send';
@@ -1545,7 +2160,7 @@
         sendBtn.classList.add('active');
         draftStatus.textContent = 'Ready to send';
         draftStatus.classList.remove('incomplete');
-        
+
         // Smart prompts
         if (!hasBroth && !hasChia) {
           showPrompt('Add Bone Broth for extra protein', '+ Add', 'broth');
@@ -1557,15 +2172,15 @@
           hidePrompt();
         }
       } else {
-        const need = 4 - meals;
-        cartHint.textContent = `${need} meal${need > 1 ? 's' : ''} to minimum`;
+        const need = 4 - mealEquivalents;
+        cartHint.textContent = `${need} item${need > 1 ? 's' : ''} to minimum`;
         cartHint.classList.add('warning');
         sendBtn.classList.remove('active');
-        draftStatus.textContent = `Add ${need} more meal${need > 1 ? 's' : ''}`;
+        draftStatus.textContent = `Add ${need} more item${need > 1 ? 's' : ''}`;
         draftStatus.classList.add('incomplete');
         hidePrompt();
       }
-      
+
       updateDraft();
       updateSpacer();
     }
@@ -1603,24 +2218,29 @@
         delivery.full,
         container.full
       ];
-      
+
       // Add items if any
       const items = Object.keys(order).filter(k => order[k] > 0);
-      if (items.length > 0) {
+      const hasAnyItems = items.length > 0 || wellnessShots > 0;
+      if (hasAnyItems) {
         lines.push('');
         items.forEach(k => lines.push(`${order[k]}× ${k}`));
+        if (wellnessShots > 0) {
+          const suffix = wellnessShots > 1 ? '/each' : '';
+          lines.push(`+ ${wellnessShots} Wellness Shots ($25${suffix})`);
+        }
       }
-      
+
       // Add notes if any
       const notes = Object.keys(customizations)
         .filter(k => order[k] > 0 && customizations[k].trim())
         .map(k => `${k}: ${customizations[k].trim()}`);
-      
+
       if (notes.length) {
         lines.push('', 'Notes:');
         notes.forEach(n => lines.push(n));
       }
-      
+
       draftBubble.textContent = lines.join('\n');
     }
     
@@ -1808,7 +2428,7 @@
       const [short] = row.dataset.val.split('|');
       row.classList.toggle('selected', short === delivery.short);
     });
-    updateDraft();
+    update();
   </script>
 </body>
 </html>
