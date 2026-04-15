@@ -1075,6 +1075,13 @@
       padding: 14px 14px 12px;
       box-shadow: 0 1px 0 rgba(0,0,0,0.02), 0 4px 16px rgba(26, 47, 39, 0.04);
       overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .wellness-card:active {
+      transform: scale(0.995);
+      box-shadow: 0 1px 0 rgba(0,0,0,0.02), 0 2px 8px rgba(26, 47, 39, 0.06);
     }
 
     .wellness-card::before {
@@ -1243,104 +1250,74 @@
       color: rgba(245,241,234,0.3);
     }
 
-    /* Expanded shot detail (inline) */
-    .shot-detail {
-      max-height: 0;
-      overflow: hidden;
-      opacity: 0;
-      transition: max-height 0.28s ease, opacity 0.2s ease, margin-top 0.2s ease;
-      margin-top: 0;
-    }
-
-    .shot-detail.open {
-      max-height: 240px;
-      opacity: 1;
-      margin-top: 12px;
-    }
-
-    .shot-detail-inner {
-      padding-top: 12px;
-      border-top: 1px solid rgba(0,0,0,0.06);
-    }
-
-    .shot-detail-head {
-      display: flex;
-      align-items: baseline;
-      gap: 6px;
-      margin-bottom: 4px;
-      flex-wrap: wrap;
-    }
-
-    .shot-detail-name {
-      font-family: var(--font-display);
-      font-size: 16px;
-      font-weight: 500;
-      color: var(--charcoal);
-      line-height: 1.2;
-    }
-
-    .shot-detail-sep {
-      color: var(--cream-dark);
-      font-size: 11px;
-    }
-
-    .shot-detail-fn {
-      font-family: var(--font-body);
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    .shot-detail-fn.immunity { color: #B07E10; }
-    .shot-detail-fn.endurance { color: #8B1A3A; }
-    .shot-detail-fn.purify { color: #2D6A34; }
-    .shot-detail-fn.clarity { color: #2E5FAF; }
-
-    .shot-detail-ing {
-      font-size: 11px;
-      font-weight: 300;
-      color: var(--gray-warm);
-      line-height: 1.55;
-    }
-
     .wellness-foot {
       margin-top: 10px;
       padding-top: 10px;
       border-top: 1px solid rgba(0,0,0,0.04);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
       font-size: 10px;
       color: var(--gray-muted);
-      text-align: center;
       font-style: italic;
       letter-spacing: 0.02em;
     }
 
+    .wellness-foot-arrow {
+      font-style: normal;
+      color: var(--brass-muted);
+      font-size: 11px;
+      line-height: 1;
+      transform: translateY(0);
+      transition: transform 0.2s ease;
+    }
+
+    .wellness-card:active .wellness-foot-arrow {
+      transform: translateX(2px);
+    }
+
     /* ==========================================
-       WELLNESS SHOTS DEEP-DETAIL SECTION (below Sides)
+       WELLNESS SHOTS SHEET (popup, triggered from card)
     ========================================== */
 
-    .wellness-deep {
-      padding: 4px 14px 10px;
+    .wellness-sheet {
+      max-height: 88%;
     }
 
-    .wellness-deep-intro {
-      padding: 10px 2px 14px;
+    .wellness-sheet-content {
+      padding: 22px 18px 36px;
+    }
+
+    .wellness-sheet-head {
       text-align: center;
+      padding: 0 8px 14px;
+      margin-bottom: 14px;
+      border-bottom: 1px solid var(--cream-dark);
     }
 
-    .wellness-deep-title {
+    .wellness-sheet-title {
       font-family: var(--font-display);
-      font-size: 22px;
+      font-size: 24px;
       font-weight: 500;
       color: var(--charcoal);
-      line-height: 1.2;
-      margin-bottom: 4px;
+      line-height: 1.15;
+      margin-bottom: 6px;
+      padding-right: 20px;
     }
 
-    .wellness-deep-sub {
+    .wellness-sheet-sub {
       font-size: 11px;
+      color: var(--brass-muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .wellness-sheet-lede {
+      font-size: 12px;
       color: var(--gray-warm);
-      font-weight: 300;
       line-height: 1.55;
       font-style: italic;
     }
@@ -1457,7 +1434,7 @@
     }
 
     .wellness-deep-footnote {
-      margin-top: 12px;
+      margin-top: 14px;
       padding: 10px 12px;
       background: var(--cream-warm);
       border-radius: 8px;
@@ -1465,6 +1442,17 @@
       color: var(--gray-muted);
       line-height: 1.55;
       text-align: center;
+    }
+
+    /* Highlight animation when a shot is scrolled to in the sheet */
+    .wellness-deep-card.focused {
+      animation: shotFocusPulse 1.4s ease;
+    }
+
+    @keyframes shotFocusPulse {
+      0% { box-shadow: 0 0 0 0 rgba(26, 47, 39, 0); }
+      30% { box-shadow: 0 0 0 3px rgba(26, 47, 39, 0.18); }
+      100% { box-shadow: 0 0 0 0 rgba(26, 47, 39, 0); }
     }
 
     /* Safe area support for notch devices */
@@ -1534,18 +1522,10 @@
                 </div>
               </div>
 
-              <div class="shot-detail" id="shotDetail">
-                <div class="shot-detail-inner">
-                  <div class="shot-detail-head">
-                    <span class="shot-detail-name" id="shotDetailName"></span>
-                    <span class="shot-detail-sep">·</span>
-                    <span class="shot-detail-fn" id="shotDetailFn"></span>
-                  </div>
-                  <div class="shot-detail-ing" id="shotDetailIng"></div>
-                </div>
+              <div class="wellness-foot">
+                <span class="wellness-foot-text">Tap to see what's in each shot</span>
+                <span class="wellness-foot-arrow">→</span>
               </div>
-
-              <div class="wellness-foot">Tap a vial to preview · 1 bundle counts toward your 4-item minimum</div>
             </div>
           </div>
 
@@ -1703,76 +1683,6 @@
             </div>
           </div>
 
-          <!-- Wellness Shots Section (deeper detail) -->
-          <div class="section-divider">
-            <div class="section-line"></div>
-            <span class="section-name">Wellness Shots</span>
-            <div class="section-line right"></div>
-          </div>
-
-          <div class="wellness-deep">
-            <div class="wellness-deep-intro">
-              <div class="wellness-deep-title">4 colors · 4 functions</div>
-              <div class="wellness-deep-sub">Made fresh with whole ingredients, no artificial anything. Every color comes from the plants.</div>
-            </div>
-
-            <div class="wellness-deep-grid">
-              <div class="wellness-deep-card immunity">
-                <div class="wellness-deep-dot immunity"></div>
-                <div class="wellness-deep-head">
-                  <span class="wellness-deep-name">Immunity</span>
-                  <span class="wellness-deep-fn immunity">Anti-Inflammatory · Immune Support</span>
-                </div>
-                <div class="wellness-deep-ing"><strong>Fresh turmeric root, ginger root, lemon juice, black pepper, cayenne, raw honey.</strong></div>
-                <div class="wellness-deep-sci">
-                  <span class="wellness-deep-sci-bullet"></span>
-                  <span class="wellness-deep-sci-text">Curcumin has 389+ clinical trials behind it. Black pepper isn't optional — piperine increases turmeric absorption by 2,000%.</span>
-                </div>
-              </div>
-
-              <div class="wellness-deep-card endurance">
-                <div class="wellness-deep-dot endurance"></div>
-                <div class="wellness-deep-head">
-                  <span class="wellness-deep-name">Endurance</span>
-                  <span class="wellness-deep-fn endurance">Vitality · Blood Flow</span>
-                </div>
-                <div class="wellness-deep-ing"><strong>Cold-pressed beetroot juice, tart cherry juice, fresh ginger, lemon juice.</strong></div>
-                <div class="wellness-deep-sci">
-                  <span class="wellness-deep-sci-bullet"></span>
-                  <span class="wellness-deep-sci-text">Dietary nitrate converts to nitric oxide — dilates blood vessels, lowers blood pressure, improves oxygen delivery to muscles. Peaks 2–3 hours after drinking.</span>
-                </div>
-              </div>
-
-              <div class="wellness-deep-card purify">
-                <div class="wellness-deep-dot purify"></div>
-                <div class="wellness-deep-head">
-                  <span class="wellness-deep-name">Purify</span>
-                  <span class="wellness-deep-fn purify">Detox · Alkalinity</span>
-                </div>
-                <div class="wellness-deep-ing"><strong>Fresh wheatgrass juice, cucumber juice, liquid chlorophyll, fresh mint, lemon juice, ginger.</strong></div>
-                <div class="wellness-deep-sci">
-                  <span class="wellness-deep-sci-bullet"></span>
-                  <span class="wellness-deep-sci-text">Wheatgrass is ~70% chlorophyll by dry weight. Loaded with vitamins A, C, E, iron, magnesium, and all essential amino acids.</span>
-                </div>
-              </div>
-
-              <div class="wellness-deep-card clarity">
-                <div class="wellness-deep-dot clarity"></div>
-                <div class="wellness-deep-head">
-                  <span class="wellness-deep-name">Clarity</span>
-                  <span class="wellness-deep-fn clarity">Cognitive · Calm Focus</span>
-                </div>
-                <div class="wellness-deep-ing"><strong>Blue spirulina (phycocyanin), coconut water, L-theanine, lemon juice, fresh ginger, raw honey.</strong></div>
-                <div class="wellness-deep-sci">
-                  <span class="wellness-deep-sci-bullet"></span>
-                  <span class="wellness-deep-sci-text">The vivid blue is 100% natural — phycocyanin is a selective COX-2 inhibitor. L-theanine promotes alpha brain wave activity — calm focus without caffeine.</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="wellness-deep-footnote">All shots are dairy-free, nut-free, vegan, gluten-free · 2 oz glass vials · 6 days refrigerated · Shake gently before drinking</div>
-          </div>
-
           <!-- Draft Section - Always visible -->
           <div class="draft-section" id="draftSection">
             <div class="draft-label">
@@ -1893,6 +1803,86 @@
           </div>
         </div>
         
+        <!-- Wellness Shots Sheet -->
+        <div class="sheet-overlay" id="wellnessOverlay">
+          <div class="sheet wellness-sheet">
+            <div class="sheet-handle"></div>
+            <button class="sheet-close" onclick="closeWellness()">×</button>
+            <div class="wellness-sheet-content">
+              <div class="wellness-sheet-head">
+                <div class="wellness-sheet-title">Wellness Collection</div>
+                <div class="wellness-sheet-sub">4 colors · 4 functions · $25 for all 4</div>
+                <div class="wellness-sheet-lede">Made fresh with whole ingredients, no artificial anything. Every color comes from the plants.</div>
+              </div>
+
+              <div class="wellness-deep-grid">
+                <div class="wellness-deep-card immunity" id="sheetCardImmunity">
+                  <div class="wellness-deep-dot immunity"></div>
+                  <div class="wellness-deep-head">
+                    <span class="wellness-deep-name">Immunity</span>
+                    <span class="wellness-deep-fn immunity">Anti-Inflammatory · Immune Support</span>
+                  </div>
+                  <div class="wellness-deep-ing"><strong>Fresh turmeric root, ginger root, lemon juice, black pepper, cayenne, raw honey.</strong></div>
+                  <div class="wellness-deep-sci">
+                    <span class="wellness-deep-sci-bullet"></span>
+                    <span class="wellness-deep-sci-text">Curcumin has 389+ clinical trials behind it. Black pepper isn't optional — piperine increases turmeric absorption by 2,000%.</span>
+                  </div>
+                </div>
+
+                <div class="wellness-deep-card endurance" id="sheetCardEndurance">
+                  <div class="wellness-deep-dot endurance"></div>
+                  <div class="wellness-deep-head">
+                    <span class="wellness-deep-name">Endurance</span>
+                    <span class="wellness-deep-fn endurance">Vitality · Blood Flow</span>
+                  </div>
+                  <div class="wellness-deep-ing"><strong>Cold-pressed beetroot juice, tart cherry juice, fresh ginger, lemon juice.</strong></div>
+                  <div class="wellness-deep-sci">
+                    <span class="wellness-deep-sci-bullet"></span>
+                    <span class="wellness-deep-sci-text">Dietary nitrate converts to nitric oxide — dilates blood vessels, lowers blood pressure, improves oxygen delivery to muscles. Peaks 2–3 hours after drinking.</span>
+                  </div>
+                </div>
+
+                <div class="wellness-deep-card purify" id="sheetCardPurify">
+                  <div class="wellness-deep-dot purify"></div>
+                  <div class="wellness-deep-head">
+                    <span class="wellness-deep-name">Purify</span>
+                    <span class="wellness-deep-fn purify">Detox · Alkalinity</span>
+                  </div>
+                  <div class="wellness-deep-ing"><strong>Fresh wheatgrass juice, cucumber juice, liquid chlorophyll, fresh mint, lemon juice, ginger.</strong></div>
+                  <div class="wellness-deep-sci">
+                    <span class="wellness-deep-sci-bullet"></span>
+                    <span class="wellness-deep-sci-text">Wheatgrass is ~70% chlorophyll by dry weight. Loaded with vitamins A, C, E, iron, magnesium, and all essential amino acids.</span>
+                  </div>
+                </div>
+
+                <div class="wellness-deep-card clarity" id="sheetCardClarity">
+                  <div class="wellness-deep-dot clarity"></div>
+                  <div class="wellness-deep-head">
+                    <span class="wellness-deep-name">Clarity</span>
+                    <span class="wellness-deep-fn clarity">Cognitive · Calm Focus</span>
+                  </div>
+                  <div class="wellness-deep-ing"><strong>Blue spirulina (phycocyanin), coconut water, L-theanine, lemon juice, fresh ginger, raw honey.</strong></div>
+                  <div class="wellness-deep-sci">
+                    <span class="wellness-deep-sci-bullet"></span>
+                    <span class="wellness-deep-sci-text">The vivid blue is 100% natural — phycocyanin is a selective COX-2 inhibitor. L-theanine promotes alpha brain wave activity — calm focus without caffeine.</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="wellness-deep-footnote">All shots are dairy-free, nut-free, vegan, gluten-free · 2 oz glass vials · 6 days refrigerated · Shake gently before drinking</div>
+
+              <div class="detail-stepper-row">
+                <span class="detail-stepper-label">Bundles ($25 each)</span>
+                <div class="detail-stepper">
+                  <button class="stepper-btn minus" id="sheetWellnessMinus">−</button>
+                  <span class="stepper-qty" id="sheetWellnessQty">0</span>
+                  <button class="stepper-btn plus" id="sheetWellnessPlus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- Help Sheet -->
         <div class="sheet-overlay" id="helpOverlay">
           <div class="sheet">
@@ -1990,30 +1980,13 @@
 
     // Wellness shots (separate from meal/side order — counted as N bundles)
     let wellnessShots = 0;
-    let activeShot = null;
 
-    // Shot info for inline progressive disclosure (short version — deep detail lives in its own section below)
-    const shotInfo = {
-      immunity: {
-        name: 'Immunity',
-        fn: 'Anti-Inflammatory · Immune Support',
-        ing: 'Fresh turmeric, ginger, lemon, black pepper, cayenne, raw honey.'
-      },
-      endurance: {
-        name: 'Endurance',
-        fn: 'Vitality · Blood Flow',
-        ing: 'Cold-pressed beetroot, tart cherry, fresh ginger, lemon.'
-      },
-      purify: {
-        name: 'Purify',
-        fn: 'Detox · Alkalinity',
-        ing: 'Wheatgrass, cucumber, chlorophyll, mint, lemon, ginger.'
-      },
-      clarity: {
-        name: 'Clarity',
-        fn: 'Cognitive · Calm Focus',
-        ing: 'Blue spirulina, coconut water, L-theanine, lemon, ginger, honey.'
-      }
+    // Map shot key → element id of its card inside the sheet (for tap-to-focus)
+    const sheetCardIds = {
+      immunity: 'sheetCardImmunity',
+      endurance: 'sheetCardEndurance',
+      purify: 'sheetCardPurify',
+      clarity: 'sheetCardClarity'
     };
 
     // Delivery window options
@@ -2064,7 +2037,7 @@
       });
     });
 
-    // Wellness stepper
+    // Wellness card stepper (card-level, stops propagation so it doesn't open sheet)
     document.getElementById('wellnessMinus').addEventListener('click', e => {
       e.stopPropagation();
       if (wellnessShots > 0) {
@@ -2083,35 +2056,63 @@
       }
     });
 
-    // Shot circle tap — inline progressive disclosure
-    document.querySelectorAll('.shot-circle').forEach(circle => {
-      circle.addEventListener('click', () => {
-        const key = circle.dataset.shot;
-        const panel = document.getElementById('shotDetail');
-        const nameEl = document.getElementById('shotDetailName');
-        const fnEl = document.getElementById('shotDetailFn');
-        const ingEl = document.getElementById('shotDetailIng');
+    // Wellness sheet stepper (inside popup)
+    document.getElementById('sheetWellnessMinus').addEventListener('click', () => {
+      if (wellnessShots > 0) {
+        wellnessShots--;
+        syncWellness();
+        update();
+      }
+    });
 
-        if (activeShot === key) {
-          // Tap active shot to collapse
-          panel.classList.remove('open');
-          circle.classList.remove('active');
-          activeShot = null;
-          return;
-        }
+    document.getElementById('sheetWellnessPlus').addEventListener('click', () => {
+      if (wellnessShots < 12) {
+        wellnessShots++;
+        syncWellness();
+        update();
+      }
+    });
 
-        // Clear previous active state
-        document.querySelectorAll('.shot-circle.active').forEach(c => c.classList.remove('active'));
+    // Open wellness sheet (from card tap or circle tap)
+    function openWellnessSheet(focusShotKey) {
+      const overlay = document.getElementById('wellnessOverlay');
+      overlay.classList.add('visible');
+      // Reset scroll + any prior focus highlight
+      document.querySelectorAll('.wellness-deep-card.focused').forEach(c => c.classList.remove('focused'));
+      const sheetEl = overlay.querySelector('.sheet');
+      sheetEl.scrollTop = 0;
+      // After animation settles, scroll to the focused shot (if any) and pulse
+      if (focusShotKey && sheetCardIds[focusShotKey]) {
+        setTimeout(() => {
+          const cardEl = document.getElementById(sheetCardIds[focusShotKey]);
+          if (cardEl) {
+            cardEl.scrollIntoView({behavior: 'smooth', block: 'start'});
+            cardEl.classList.add('focused');
+          }
+        }, 360);
+      }
+    }
 
-        const info = shotInfo[key];
-        nameEl.textContent = info.name;
-        fnEl.textContent = info.fn;
-        fnEl.className = 'shot-detail-fn ' + key;
-        ingEl.textContent = info.ing;
-        panel.classList.add('open');
-        circle.classList.add('active');
-        activeShot = key;
-      });
+    function closeWellness() {
+      document.getElementById('wellnessOverlay').classList.remove('visible');
+    }
+
+    // Card tap → open sheet
+    document.getElementById('wellnessCard').addEventListener('click', (e) => {
+      // Ignore taps on the stepper
+      if (e.target.closest('.wellness-stepper')) return;
+      // Circle taps open sheet and focus that shot
+      const circle = e.target.closest('.shot-circle');
+      if (circle) {
+        openWellnessSheet(circle.dataset.shot);
+        return;
+      }
+      openWellnessSheet();
+    });
+
+    // Close sheet when tapping the backdrop
+    document.getElementById('wellnessOverlay').addEventListener('click', e => {
+      if (e.target.id === 'wellnessOverlay') closeWellness();
     });
     
     function syncItem(key) {
@@ -2128,6 +2129,13 @@
       qty.textContent = wellnessShots;
       minus.disabled = wellnessShots === 0;
       card.classList.toggle('selected', wellnessShots > 0);
+      // Mirror into sheet stepper
+      const sheetQty = document.getElementById('sheetWellnessQty');
+      const sheetMinus = document.getElementById('sheetWellnessMinus');
+      if (sheetQty) {
+        sheetQty.textContent = wellnessShots;
+        sheetMinus.disabled = wellnessShots === 0;
+      }
     }
 
     function update() {
