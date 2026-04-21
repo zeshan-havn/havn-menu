@@ -108,9 +108,314 @@
     }
     
     /* ==========================================
+       WELCOME OFFER (shown only on /welcome paths)
+    ========================================== */
+
+    /* Hidden by default; welcome mode toggles body[data-welcome] */
+    body:not([data-welcome]) .welcome-banner,
+    body:not([data-welcome]) .welcome-footer-note,
+    body:not([data-welcome]) .welcome-price,
+    body:not([data-welcome]) .tier-progress { display: none !important; }
+
+    .welcome-banner {
+      position: relative;
+      z-index: 5;
+      flex-shrink: 0;
+    }
+
+    /* ─────────── V1 · Editorial (minimal, magazine) ─────────── */
+    .welcome-banner.v1 {
+      background: var(--cream);
+      padding: 22px 20px 20px;
+      text-align: center;
+      border-top: 1px solid rgba(196, 168, 124, 0.45);
+      border-bottom: 1px solid rgba(196, 168, 124, 0.45);
+    }
+    .welcome-banner.v1 .v1-eyebrow {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      color: var(--brass-muted);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .welcome-banner.v1 .v1-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--green-darkest);
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+    .welcome-banner.v1 .v1-tiers {
+      font-size: 11px;
+      color: var(--gray-warm);
+      letter-spacing: 0.02em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+    }
+    .welcome-banner.v1 .v1-tiers strong {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--green-darkest);
+    }
+    .welcome-banner.v1 .v1-dot {
+      color: var(--brass);
+      font-size: 10px;
+    }
+
+    /* ─────────── V2 · Brand Dark Card (premium CTA) ─────────── */
+    .welcome-banner.v2 {
+      background: var(--green-darkest);
+      padding: 10px 16px 12px;
+      color: var(--cream);
+      border-bottom: 1px solid rgba(196, 168, 124, 0.25);
+    }
+    .welcome-banner.v2 .v2-label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.24em;
+      color: var(--brass);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .welcome-banner.v2 .v2-label::before,
+    .welcome-banner.v2 .v2-label::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: rgba(196, 168, 124, 0.35);
+    }
+    .welcome-banner.v2 .v2-tiers {
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+      gap: 14px;
+      align-items: center;
+    }
+    .welcome-banner.v2 .v2-tier {
+      text-align: center;
+      transition: opacity 0.4s ease;
+    }
+    /* Tier unlock feedback — tied to cart state via JS */
+    .welcome-banner.v2 .v2-tier.inactive {
+      opacity: 0.35;
+    }
+    .welcome-banner.v2 .v2-tier.applied .v2-amount {
+      animation: v2-pulse 0.6s ease-out;
+    }
+    .welcome-banner.v2 .v2-tier.applied .v2-qualifier {
+      color: #9BC79B;
+      font-weight: 600;
+    }
+    .welcome-banner.v2 .v2-tier.applied .v2-qualifier::before {
+      content: "✓ ";
+    }
+    @keyframes v2-pulse {
+      0%   { transform: scale(1);    text-shadow: 0 0 0 rgba(196, 168, 124, 0); }
+      40%  { transform: scale(1.08); text-shadow: 0 0 18px rgba(196, 168, 124, 0.55); }
+      100% { transform: scale(1);    text-shadow: 0 0 0 rgba(196, 168, 124, 0); }
+    }
+    .welcome-banner.v2 .v2-amount {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 400;
+      color: var(--brass);
+      line-height: 1;
+      letter-spacing: -0.01em;
+      display: inline-block;
+    }
+    .welcome-banner.v2 .v2-qualifier {
+      font-size: 9px;
+      color: var(--cream-muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-top: 4px;
+      transition: color 0.3s ease;
+    }
+    .welcome-banner.v2 .v2-divider {
+      width: 1px;
+      height: 30px;
+      background: rgba(196, 168, 124, 0.3);
+      justify-self: center;
+    }
+
+    /* ─────────── V3 · Ticket / Coupon (playful premium) ─────────── */
+    .welcome-banner.v3 {
+      background: var(--cream);
+      padding: 14px 16px;
+    }
+    .welcome-banner.v3 .v3-ticket {
+      background: var(--cream-warm);
+      border: 1px dashed var(--brass);
+      border-radius: 8px;
+      padding: 14px 16px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 16px;
+      position: relative;
+    }
+    .welcome-banner.v3 .v3-left .v3-label {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      color: var(--brass-muted);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .welcome-banner.v3 .v3-left .v3-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--green-darkest);
+      line-height: 1.15;
+    }
+    .welcome-banner.v3 .v3-right {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      text-align: right;
+      padding-left: 14px;
+      border-left: 1px dashed rgba(196, 168, 124, 0.55);
+    }
+    .welcome-banner.v3 .v3-row {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+    .welcome-banner.v3 .v3-amt {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--green-brand);
+      letter-spacing: -0.005em;
+    }
+    .welcome-banner.v3 .v3-desc {
+      font-size: 10px;
+      color: var(--gray-warm);
+      letter-spacing: 0.02em;
+    }
+
+    /* ─────────── V0 (current) kept as fallback ─────────── */
+    .welcome-banner.v0 {
+      background: linear-gradient(135deg, #C4A87C 0%, #B89868 100%);
+      padding: 14px 18px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      box-shadow: 0 1px 8px rgba(10, 22, 18, 0.06);
+      border-bottom: 1px solid rgba(10, 22, 18, 0.12);
+    }
+    .welcome-banner.v0 .welcome-banner-label {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.18em;
+      color: var(--green-darkest); text-transform: uppercase;
+      padding: 3px 9px; background: rgba(245, 241, 234, 0.55);
+      border-radius: 3px; align-self: flex-start;
+    }
+    .welcome-banner.v0 .welcome-banner-title {
+      font-family: var(--font-display); font-size: 17px; font-weight: 500;
+      color: var(--green-darkest); line-height: 1.25;
+    }
+    .welcome-banner.v0 .welcome-banner-tiers {
+      display: flex; gap: 8px; flex-wrap: wrap; margin-top: 2px;
+    }
+    .welcome-banner.v0 .welcome-tier-chip {
+      font-size: 11px; font-weight: 500; color: var(--green-darkest);
+      background: rgba(245, 241, 234, 0.55); padding: 4px 10px; border-radius: 14px;
+    }
+    .welcome-banner.v0 .welcome-tier-chip strong { font-weight: 700; }
+
+    /* Tier-progress badge in the draft-label area */
+    .tier-progress {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(196, 168, 124, 0.18);
+      color: var(--brass-muted);
+    }
+
+    .tier-progress.unlocked {
+      background: rgba(27, 94, 64, 0.14);
+      color: var(--green-brand);
+    }
+
+    /* Price breakdown card inside the draft section */
+    .welcome-price {
+      margin: 10px 0 8px 20%;
+      padding: 12px 14px;
+      background: var(--cream-warm);
+      border-radius: 12px;
+      border: 1px solid rgba(196, 168, 124, 0.22);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .welcome-price:not(.visible) { display: none; }
+
+    .welcome-price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      color: var(--gray-warm);
+    }
+
+    .welcome-price-row.discount { color: var(--green-brand); font-weight: 500; }
+
+    .welcome-price-divider {
+      height: 1px;
+      background: rgba(90, 88, 82, 0.18);
+      margin: 6px 0;
+    }
+
+    .welcome-price-row.total {
+      font-size: 14px;
+      color: var(--charcoal);
+      font-weight: 600;
+    }
+
+    .welcome-price-row .amt { font-variant-numeric: tabular-nums; }
+
+    /* Discount rows hidden until a tier is actually unlocked */
+    .welcome-price .welcome-price-discount-section { display: contents; }
+    .welcome-price:not(.has-discount) .welcome-price-discount-section { display: none; }
+
+    /* Nudge row — shown when order minimum is met but no tier is unlocked yet */
+    .welcome-price-nudge {
+      display: none;
+      margin-top: 4px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--brass-muted);
+      letter-spacing: 0.01em;
+    }
+    .welcome-price.needs-nudge .welcome-price-nudge { display: block; }
+
+    /* Footer clarifier under the cart bar */
+    .welcome-footer-note {
+      padding: 10px 18px 14px;
+      font-size: 10px;
+      line-height: 1.5;
+      color: var(--gray-muted);
+      text-align: center;
+      background: var(--cream);
+      border-top: 1px solid rgba(90, 88, 82, 0.08);
+    }
+
+    /* ==========================================
        HEADER - Fixed at top
     ========================================== */
-    
+
     .header {
       background: var(--green-darkest);
       padding: 56px 16px 12px;
@@ -1529,7 +1834,12 @@
           </div>
           <button class="help-btn" id="helpBtn">?</button>
         </header>
-        
+
+        <!-- Welcome Offer Banner — rendered by welcome-mode JS with a variant
+             class (v1/v2/v3/v0). Default shown when welcome mode is active but
+             no ?banner=X is set is v1 (editorial). -->
+        <div class="welcome-banner" id="welcomeBanner"></div>
+
         <!-- Content - Scrollable, includes order bar -->
         <div class="content" id="content">
           
@@ -1760,6 +2070,16 @@
             <div class="draft-label">
               <span>Message draft</span>
               <span class="draft-status incomplete" id="draftStatus">Add 4 items to order</span>
+              <span class="tier-progress" id="tierProgress"></span>
+            </div>
+            <div class="welcome-price" id="welcomePrice">
+              <div class="welcome-price-row"><span>Subtotal</span><span class="amt" id="priceSubtotal">$0</span></div>
+              <div class="welcome-price-nudge" id="priceNudge"></div>
+              <div class="welcome-price-discount-section">
+                <div class="welcome-price-row discount"><span id="priceDiscountLabel">Welcome discount</span><span class="amt" id="priceDiscount">–$0</span></div>
+                <div class="welcome-price-divider"></div>
+                <div class="welcome-price-row total"><span>Your total</span><span class="amt" id="priceTotal">$0</span></div>
+              </div>
             </div>
             <div class="draft-bubble" id="draftBubble"></div>
             
@@ -1802,7 +2122,12 @@
           </div>
           <div class="cart-deadline">Orders close Thursday evening</div>
         </div>
-        
+
+        <!-- Welcome Offer footer clarifier -->
+        <div class="welcome-footer-note">
+          First-time customers only. 4-meal minimum to order · $20 off at 5 meals · $40 off at 7 meals. Discount applies automatically.
+        </div>
+
         <!-- Detail Sheet -->
         <div class="sheet-overlay" id="detailOverlay">
           <div class="sheet">
@@ -2069,7 +2394,69 @@
       }
     };
     
-    const order = { special: 0, chicken: 0, chicken_2: 0, beef: 0, seafood: 0, veg: 0, broth: 0, chia: 0 };
+    // Welcome-mode detection — triggered when the page is served from /welcome/*
+    // (Netlify _redirects routes /welcome and /welcome/{token} to this index.html)
+    // or from any URL with ?welcome=1 (useful for previewing from the dev server).
+    // When true: welcome banner + tier badge + price card are active.
+    const isWelcomeMode =
+      /^\/welcome(\/|$)/.test(window.location.pathname) ||
+      new URLSearchParams(window.location.search).has('welcome');
+    if (isWelcomeMode) {
+      document.body.setAttribute('data-welcome', '');
+      document.title = 'Havn Club — Welcome Offer';
+
+      // Pick a banner variant. ?banner=1|2|3 for design comparisons; defaults to v1.
+      const bannerVariant = (new URLSearchParams(window.location.search).get('banner') || '1').trim();
+      const bannerEl = document.getElementById('welcomeBanner');
+      const bannerTemplates = {
+        '0': `
+          <span class="welcome-banner-label">✦ Your Welcome Offer</span>
+          <div class="welcome-banner-title">First-order discount applies automatically below.</div>
+          <div class="welcome-banner-tiers">
+            <span class="welcome-tier-chip"><strong>5 meals</strong> → $20 off</span>
+            <span class="welcome-tier-chip"><strong>7 meals</strong> → $40 off</span>
+          </div>`,
+        '1': `
+          <div class="v1-eyebrow">Welcome · First order only</div>
+          <div class="v1-title">A gift from the kitchen.</div>
+          <div class="v1-tiers">
+            <span><strong>5 meals</strong> — $20 off</span>
+            <span class="v1-dot">✦</span>
+            <span><strong>7 meals</strong> — $40 off</span>
+          </div>`,
+        '2': `
+          <div class="v2-label">Welcome Offer · This Week Only</div>
+          <div class="v2-tiers">
+            <div class="v2-tier" data-tier="20">
+              <div class="v2-amount">$20</div>
+              <div class="v2-qualifier">off 5 meals</div>
+            </div>
+            <div class="v2-divider"></div>
+            <div class="v2-tier" data-tier="40">
+              <div class="v2-amount">$40</div>
+              <div class="v2-qualifier">off 7 meals</div>
+            </div>
+          </div>`,
+        '3': `
+          <div class="v3-ticket">
+            <div class="v3-left">
+              <div class="v3-label">Your Welcome Gift</div>
+              <div class="v3-title">First-order savings</div>
+            </div>
+            <div class="v3-right">
+              <div class="v3-row"><span class="v3-amt">$20</span><span class="v3-desc">5-meal order</span></div>
+              <div class="v3-row"><span class="v3-amt">$40</span><span class="v3-desc">7-meal order</span></div>
+            </div>
+          </div>`,
+      };
+      const chosen = bannerTemplates[bannerVariant] || bannerTemplates['1'];
+      bannerEl.className = `welcome-banner v${bannerVariant in bannerTemplates ? bannerVariant : '1'}`;
+      bannerEl.innerHTML = chosen;
+    }
+
+    // Exposed on window for test-harness access (const would be block-scoped).
+    window.order = { special: 0, chicken: 0, chicken_2: 0, beef: 0, seafood: 0, veg: 0, broth: 0, chia: 0 };
+    const order = window.order;
     const customizations = { special: '', chicken: '', chicken_2: '', beef: '', seafood: '', veg: '', broth: '', chia: '' };
     // Dietary modification pills per dish (meals only)
     const dietaryPrefs = {
@@ -2082,7 +2469,8 @@
     const carbMods = { 'low carb': 'no carb', 'no carb': 'low carb' };
 
     // Wellness shots (separate from meal/side order — counted as N bundles)
-    let wellnessShots = 0;
+    // Exposed on window for test harness access (let would be block-scoped).
+    window.wellnessShots = 0;
 
     // Map shot key → element id of its card inside the sheet (for tap-to-focus)
     const sheetCardIds = {
@@ -2240,6 +2628,97 @@
       }
     }
 
+    // ── Welcome Offer tier logic — only runs when isWelcomeMode is true ──
+    // Tiers: 5-6 meals → $20 off, 7+ meals → $40 off.
+    function computeWelcomeDiscount(meals) {
+      if (meals >= 7) return 40;
+      if (meals >= 5) return 20;
+      return 0;
+    }
+
+    function updateWelcomeUI(meals, sides, shots) {
+      if (!isWelcomeMode) return { subtotal: 0, discount: 0, total: 0 };
+
+      const subtotal = meals * 25 + sides * 10 + shots * 25;
+      const discount = computeWelcomeDiscount(meals);
+      const total = subtotal - discount;
+      const mealEquivalents = meals + shots;
+      const minMet = mealEquivalents >= 4;
+
+      const tp = document.getElementById('tierProgress');
+      const wp = document.getElementById('welcomePrice');
+
+      // Price card — visible once the order minimum is met (4 meal-equivalents).
+      // Shows the subtotal + a nudge when no tier is unlocked yet; adds the
+      // discount + total rows once a tier is reached.
+      document.getElementById('priceSubtotal').textContent = `$${subtotal}`;
+
+      if (discount > 0) {
+        document.getElementById('priceDiscount').textContent = `–$${discount}`;
+        document.getElementById('priceTotal').textContent = `$${total}`;
+        wp.classList.add('visible', 'has-discount');
+        wp.classList.remove('needs-nudge');
+      } else if (minMet) {
+        // Min met but no discount unlocked — show nudge toward Tier 1.
+        const mealsNeeded = Math.max(1, 5 - meals);
+        document.getElementById('priceNudge').textContent =
+          `Add ${mealsNeeded} meal${mealsNeeded === 1 ? '' : 's'} → $20 off`;
+        wp.classList.add('visible', 'needs-nudge');
+        wp.classList.remove('has-discount');
+      } else {
+        wp.classList.remove('visible', 'has-discount', 'needs-nudge');
+      }
+
+      // Tier-progress badge
+      tp.classList.remove('unlocked');
+      tp.style.display = '';
+      if (meals === 0) {
+        tp.textContent = '$20 off @ 5 · $40 off @ 7';
+      } else if (meals < 5) {
+        const need = 5 - meals;
+        tp.textContent = `+${need} MEAL${need === 1 ? '' : 'S'} → $20 OFF`;
+      } else if (meals === 5) {
+        tp.textContent = '$20 APPLIED · +2 → $40 OFF';
+        tp.classList.add('unlocked');
+      } else if (meals === 6) {
+        tp.textContent = '$20 APPLIED · +1 → $40 OFF';
+        tp.classList.add('unlocked');
+      } else {
+        tp.textContent = '$40 APPLIED · MAX DISCOUNT';
+        tp.classList.add('unlocked');
+      }
+
+      // Banner tier-unlock feedback (V2 only).
+      // Links the static banner to cart progress so the customer gets a
+      // "progression reward" when they cross a tier.
+      const tier20 = document.querySelector('.welcome-banner.v2 .v2-tier[data-tier="20"]');
+      const tier40 = document.querySelector('.welcome-banner.v2 .v2-tier[data-tier="40"]');
+      if (tier20 && tier40) {
+        // Only re-apply "applied" class if the tier state actually changed —
+        // otherwise re-adding the class restarts the pulse animation on every
+        // update() call (and update() fires on every stepper tap).
+        const setTierState = (el, state) => {
+          if (el.dataset.state === state) return;
+          el.dataset.state = state;
+          el.classList.remove('applied', 'inactive');
+          if (state === 'applied') el.classList.add('applied');
+          else if (state === 'inactive') el.classList.add('inactive');
+        };
+        if (meals >= 7) {
+          setTierState(tier20, 'inactive');
+          setTierState(tier40, 'applied');
+        } else if (meals >= 5) {
+          setTierState(tier20, 'applied');
+          setTierState(tier40, 'inactive');
+        } else {
+          setTierState(tier20, 'neutral');
+          setTierState(tier40, 'neutral');
+        }
+      }
+
+      return { subtotal, discount, total };
+    }
+
     function update() {
       const meals = order.special + order.chicken + order.chicken_2 + order.beef + order.seafood + order.veg;
       const sides = order.broth + order.chia;
@@ -2248,6 +2727,8 @@
       // 1 bundle = 1 meal equivalent toward the 4-item minimum
       const mealEquivalents = meals + wellnessShots;
       const minMet = mealEquivalents >= 4;
+      // Welcome Offer — refresh banner + price card if we're in welcome mode
+      const welcomePricing = updateWelcomeUI(meals, sides, wellnessShots);
 
       // Cart count line — only show shots when > 0 so default display stays clean
       let countText = `${meals} meal${meals !== 1 ? 's' : ''} + ${sides} side${sides !== 1 ? 's' : ''}`;
@@ -2271,13 +2752,10 @@
         draftStatus.textContent = 'Ready to send';
         draftStatus.classList.remove('incomplete');
 
-        // Smart prompts
-        if (!hasBroth && !hasChia) {
-          showPrompt('Add Bone Broth for extra protein', '+ Add', 'broth');
-        } else if (hasBroth && !hasChia) {
-          showPrompt('Add Chia Pudding for on-the-go', '+ Add', 'chia');
-        } else if (hasChia && !hasBroth) {
-          showPrompt('Add Bone Broth for extra protein', '+ Add', 'broth');
+        // Always prompt for a wellness shot collection once min is met,
+        // unless the customer has already added one.
+        if (wellnessShots === 0) {
+          showPrompt('Add a wellness shot collection', '+ Add', 'wellness_shots');
         } else {
           hidePrompt();
         }
@@ -2299,8 +2777,13 @@
       promptText.textContent = text;
       promptBtn.textContent = btnText;
       promptBtn.onclick = () => {
-        order[action]++;
-        syncItem(action);
+        if (action === 'wellness_shots') {
+          window.wellnessShots++;
+          syncWellness();
+        } else {
+          order[action]++;
+          syncItem(action);
+        }
         update();
       };
       cartPrompt.classList.add('visible');
@@ -2342,7 +2825,7 @@
         lines.push('');
         items.forEach(k => lines.push(`${order[k]}× ${dishLabel(k)}`));
         if (wellnessShots > 0) {
-          lines.push(`${wellnessShots}× wellness shots`);
+          lines.push(`${wellnessShots}× Wellness Shots`);
         }
       }
 

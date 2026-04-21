@@ -1,1 +1,8 @@
-/* /index.html 200
+# Netlify routing.
+# Welcome-offer variant: same index.html, but served at /welcome/{token} so
+# index.html detects isWelcomeMode via window.location.pathname. Only customers
+# who get the welcome link (via Make.com Treatment send) hit this path; all
+# other traffic falls through to the default rewrite below.
+/welcome/*  /index.html 200
+/welcome    /index.html 200
+/*          /index.html 200
