@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Havn — Customization Mockups</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+    :root {
+      --green-darkest: #0A1612;
+      --green-dark: #111E19;
+      --green-deep: #1A2F27;
+      --green-medium: #243D33;
+      --green-soft: #2D4A3E;
+      --green-brand: #1B5E40;
+      --green-tag: #3D6B55;
+      --cream: #F5F1EA;
+      --cream-warm: #F0EBE3;
+      --cream-dark: #E5E0D6;
+      --cream-muted: #C9C1B3;
+      --brass: #C4A87C;
+      --brass-muted: #A89060;
+      --charcoal: #1C1C1A;
+      --gray-warm: #5C5A55;
+      --gray-muted: #8A8680;
+      --gray-light: #B5B0A8;
+      --red-muted: #9B7065;
+      --font-display: 'Cormorant', Georgia, serif;
+      --font-body: 'DM Sans', -apple-system, sans-serif;
+    }
+
+    html, body {
+      background: #E8E2D5;
+      font-family: var(--font-body);
+      color: var(--charcoal);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ==========================================
+       PAGE LAYOUT
+    ========================================== */
+
+    .page {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .page-title {
+      font-family: var(--font-display);
+      font-size: 40px;
+      font-weight: 400;
+      color: var(--charcoal);
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .page-sub {
+      font-size: 14px;
+      color: var(--gray-warm);
+      max-width: 620px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Tab switcher */
+    .tabs {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 36px 0 28px;
+      background: var(--cream-warm);
+      padding: 6px;
+      border-radius: 14px;
+      max-width: 880px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .tab {
+      flex: 1;
+      min-width: 180px;
+      padding: 12px 14px;
+      background: transparent;
+      border: none;
+      border-radius: 10px;
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--gray-warm);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    .tab:hover {
+      background: var(--cream);
+      color: var(--charcoal);
+    }
+
+    .tab.active {
+      background: var(--green-deep);
+      color: var(--cream);
+      box-shadow: 0 2px 8px rgba(26, 47, 39, 0.2);
+    }
+
+    .tab-label {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 500;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* Main display area */
+    .display {
+      display: grid;
+      grid-template-columns: auto 360px;
+      gap: 32px;
+      justify-content: center;
+      align-items: start;
+    }
+
+    @media (max-width: 980px) {
+      .display {
+        grid-template-columns: 1fr;
+        justify-items: center;
+      }
+    }
+
+    /* ==========================================
+       PHONE FRAME
+    ========================================== */
+
+    .phone {
+      width: 380px;
+      height: 780px;
+      background: var(--green-darkest);
+      border-radius: 38px;
+      padding: 8px;
+      box-shadow: 0 18px 60px rgba(10, 22, 18, 0.25), 0 4px 12px rgba(10, 22, 18, 0.12);
+      position: relative;
+    }
+
+    .phone-screen {
+      width: 100%;
+      height: 100%;
+      background: var(--cream);
+      border-radius: 30px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    .p-header {
+      background: var(--green-darkest);
+      padding: 28px 16px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    .p-header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .p-logo {
+      width: 32px;
+      height: 32px;
+      background: var(--green-deep);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(196, 168, 124, 0.15);
+    }
+
+    .p-logo-h {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--brass);
+    }
+
+    .p-header-name {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--cream);
+    }
+
+    .p-header-meta {
+      font-size: 9px;
+      color: var(--cream-muted);
+      margin-top: 1px;
+    }
+
+    .p-help {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 13px;
+      color: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Order bar */
+    .p-order-bar {
+      background: var(--green-dark);
+      padding: 7px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .p-order-title {
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-style: italic;
+      color: var(--cream-muted);
+    }
+
+    .p-order-pricing {
+      font-size: 10px;
+      color: var(--cream-muted);
+    }
+
+    /* Content */
+    .p-content {
+      flex: 1;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .p-content::-webkit-scrollbar {
+      width: 0;
+    }
+
+    /* Section divider */
+    .p-section {
+      display: flex;
+      align-items: center;
+      padding: 12px 16px 6px;
+      gap: 10px;
+    }
+
+    .p-section-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--cream-dark) 0%, transparent 100%);
+    }
+
+    .p-section-line.right {
+      background: linear-gradient(90deg, transparent 0%, var(--cream-dark) 100%);
+    }
+
+    .p-section-name {
+      font-family: var(--font-display);
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray-muted);
+    }
+
+    /* Menu items */
+    .p-menu-item {
+      display: flex;
+      padding: 12px 12px 12px 0;
+      cursor: pointer;
+      position: relative;
+      min-height: 88px;
+      transition: background 0.15s ease;
+    }
+
+    .p-menu-item:hover {
+      background: rgba(0,0,0,0.012);
+    }
+
+    .p-menu-item::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 36px;
+      right: 14px;
+      height: 1px;
+      background: rgba(0,0,0,0.04);
+    }
+
+    .p-menu-item.selected {
+      background: linear-gradient(135deg, rgba(45, 74, 62, 0.06) 0%, rgba(45, 74, 62, 0.02) 100%);
+    }
+
+    .p-item-cat {
+      width: 26px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin-left: 2px;
+    }
+
+    .p-item-cat::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: var(--green-soft);
+      border-radius: 1px;
+      opacity: 0.2;
+    }
+
+    .p-item-cat span {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-family: var(--font-display);
+      font-size: 8px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray-light);
+    }
+
+    .p-menu-item.selected .p-item-cat::before {
+      opacity: 0.6;
+    }
+
+    .p-menu-item.selected .p-item-cat span {
+      color: var(--green-soft);
+    }
+
+    .p-item-info {
+      flex: 1;
+      min-width: 0;
+      padding: 0 8px 0 6px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .p-item-name {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--charcoal);
+      line-height: 1.2;
+      margin-bottom: 3px;
+    }
+
+    .p-item-desc {
+      font-size: 10px;
+      font-weight: 300;
+      color: var(--gray-warm);
+      line-height: 1.55;
+      margin-bottom: auto;
+      padding-bottom: 6px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .p-item-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+    }
+
+    .p-item-macros {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 9px;
+      color: var(--gray-muted);
+    }
+
+    .p-item-macros .dot {
+      width: 2px;
+      height: 2px;
+      background: var(--cream-dark);
+      border-radius: 50%;
+    }
+
+    .p-stepper {
+      display: flex;
+      align-items: center;
+    }
+
+    .p-step-btn {
+      width: 26px;
+      height: 26px;
+      border: none;
+      background: var(--cream-warm);
+      font-size: 13px;
+      color: var(--gray-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-body);
+    }
+
+    .p-step-btn.minus { border-radius: 6px 0 0 6px; }
+    .p-step-btn.plus { border-radius: 0 6px 6px 0; }
+
+    .p-step-qty {
+      width: 26px;
+      height: 26px;
+      background: var(--cream-warm);
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--charcoal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .p-menu-item.selected .p-step-btn,
+    .p-menu-item.selected .p-step-qty {
+      background: var(--green-deep);
+      color: var(--cream);
+    }
+
+    /* ==========================================
+       ORDER-LEVEL DIETARY SECTION (Option B & C)
+    ========================================== */
+
+    .p-dietary-section {
+      padding: 12px 16px 4px;
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+      background: linear-gradient(180deg, rgba(245,241,234,0.6) 0%, transparent 100%);
+    }
+
+    .p-dietary-label {
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray-muted);
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .p-dietary-help {
+      font-size: 9px;
+      color: var(--gray-light);
+      text-transform: none;
+      letter-spacing: 0;
+      font-style: italic;
+    }
+
+    .p-dietary-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding-bottom: 4px;
+    }
+
+    /* ==========================================
+       CHIPS (shared)
+    ========================================== */
+
+    .p-chip {
+      padding: 7px 12px;
+      background: var(--cream-warm);
+      border: 1px solid var(--cream-dark);
+      border-radius: 16px;
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--charcoal);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .p-chip:hover {
+      background: var(--cream-dark);
+    }
+
+    .p-chip.active {
+      background: var(--green-deep);
+      border-color: var(--green-deep);
+      color: var(--cream);
+    }
+
+    .p-chip.active::before {
+      content: "✓";
+      font-size: 10px;
+    }
+
+    .p-chip.inherited {
+      background: rgba(26, 47, 39, 0.08);
+      border-color: rgba(26, 47, 39, 0.15);
+      color: var(--green-deep);
+    }
+
+    .p-chip.inherited::before {
+      content: "✓";
+      font-size: 10px;
+      color: var(--green-deep);
+    }
+
+    .p-chip-asterisk {
+      font-size: 9px;
+      color: var(--brass-muted);
+      margin-left: 2px;
+    }
+
+    .p-chip.active .p-chip-asterisk {
+      color: var(--cream-muted);
+    }
+
+    /* ==========================================
+       DRAFT SECTION
+    ========================================== */
+
+    .p-draft-section {
+      padding: 14px 16px 0;
+    }
+
+    .p-draft-label {
+      font-size: 9px;
+      color: var(--gray-muted);
+      margin-bottom: 8px;
+    }
+
+    .p-draft-bubble {
+      background: linear-gradient(150deg, var(--green-deep) 0%, var(--green-darkest) 100%);
+      color: var(--cream);
+      border-radius: 14px;
+      border-bottom-right-radius: 4px;
+      padding: 12px 14px;
+      font-size: 11px;
+      line-height: 1.55;
+      white-space: pre-line;
+      margin-left: 20%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .p-draft-opts {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      align-items: flex-end;
+      padding: 10px 0 80px;
+    }
+
+    .p-opt-bubble {
+      display: flex;
+      gap: 4px;
+      padding: 6px 10px;
+      background: var(--cream-warm);
+      border-radius: 14px;
+      font-size: 9px;
+      color: var(--gray-muted);
+    }
+
+    .p-opt-val {
+      color: var(--charcoal);
+      font-weight: 500;
+    }
+
+    /* ==========================================
+       CART BAR
+    ========================================== */
+
+    .p-cart {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--cream);
+      padding: 10px 16px 18px;
+      box-shadow: 0 -1px 0 rgba(0,0,0,0.04), 0 -8px 24px rgba(0,0,0,0.03);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border-radius: 0 0 30px 30px;
+    }
+
+    .p-cart-count {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--charcoal);
+    }
+
+    .p-cart-hint {
+      font-size: 10px;
+      color: var(--gray-muted);
+      margin-top: 1px;
+    }
+
+    .p-send-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 15px;
+      background: var(--green-deep);
+      border: none;
+      border-radius: 10px;
+      color: var(--cream);
+      font-size: 11px;
+      font-weight: 500;
+      box-shadow: 0 2px 10px rgba(26, 47, 39, 0.25);
+    }
+
+    /* ==========================================
+       SHEET (bottom sheet for detail)
+    ========================================== */
+
+    .p-sheet-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(10,22,18,0.5);
+      z-index: 50;
+      border-radius: 30px;
+      overflow: hidden;
+    }
+
+    .p-sheet {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--cream);
+      border-radius: 20px 20px 0 0;
+      max-height: 85%;
+      overflow-y: auto;
+    }
+
+    .p-sheet::-webkit-scrollbar { width: 0; }
+
+    .p-sheet-handle {
+      width: 32px;
+      height: 4px;
+      background: var(--cream-dark);
+      border-radius: 2px;
+      margin: 8px auto 0;
+    }
+
+    .p-sheet-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--cream-warm);
+      border: none;
+      font-size: 14px;
+      color: var(--gray-muted);
+      cursor: pointer;
+    }
+
+    .p-sheet-content {
+      padding: 20px 18px 28px;
+    }
+
+    .p-detail-name {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--charcoal);
+      margin-bottom: 8px;
+      padding-right: 30px;
+    }
+
+    .p-detail-desc {
+      font-size: 12px;
+      color: var(--gray-warm);
+      line-height: 1.55;
+      margin-bottom: 10px;
+    }
+
+    .p-detail-macros {
+      font-size: 10px;
+      color: var(--gray-muted);
+      font-style: italic;
+      margin-bottom: 12px;
+    }
+
+    .p-detail-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 14px;
+    }
+
+    .p-detail-tag {
+      padding: 5px 10px;
+      border-radius: 12px;
+      font-size: 9px;
+      font-weight: 500;
+    }
+
+    .p-detail-tag.safe {
+      background: rgba(61, 107, 85, 0.12);
+      color: var(--green-tag);
+    }
+
+    .p-detail-tag.allergen {
+      background: rgba(155, 112, 101, 0.12);
+      color: var(--red-muted);
+    }
+
+    .p-sheet-divider {
+      height: 1px;
+      background: var(--cream-dark);
+      margin: 14px 0;
+    }
+
+    .p-custom-label {
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray-muted);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .p-custom-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 12px;
+    }
+
+    .p-custom-note {
+      font-size: 9px;
+      color: var(--gray-light);
+      font-style: italic;
+      margin-bottom: 12px;
+    }
+
+    .p-textarea {
+      width: 100%;
+      padding: 10px 12px;
+      background: var(--cream-warm);
+      border: 1px solid var(--cream-dark);
+      border-radius: 10px;
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: var(--charcoal);
+      resize: none;
+      outline: none;
+      margin-bottom: 14px;
+    }
+
+    .p-textarea::placeholder {
+      color: var(--gray-light);
+    }
+
+    .p-qty-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 14px;
+      border-top: 1px solid var(--cream-dark);
+    }
+
+    .p-qty-label {
+      font-size: 12px;
+      color: var(--gray-warm);
+    }
+
+    .p-qty-stepper {
+      display: flex;
+      background: var(--green-deep);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .p-qty-stepper button {
+      width: 38px;
+      height: 38px;
+      background: transparent;
+      color: var(--cream);
+      border: none;
+      font-size: 16px;
+    }
+
+    .p-qty-stepper span {
+      width: 32px;
+      height: 38px;
+      color: var(--cream);
+      font-size: 14px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Customize button (Option D) */
+    .p-customize-btn {
+      width: 100%;
+      padding: 12px 14px;
+      background: var(--cream-warm);
+      border: 1px solid var(--cream-dark);
+      border-radius: 10px;
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--charcoal);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      margin-bottom: 14px;
+    }
+
+    .p-customize-btn.has-selections {
+      background: rgba(26, 47, 39, 0.06);
+      border-color: rgba(26, 47, 39, 0.2);
+      color: var(--green-deep);
+    }
+
+    .p-customize-btn-count {
+      font-size: 10px;
+      color: var(--gray-muted);
+    }
+
+    .p-customize-btn.has-selections .p-customize-btn-count {
+      color: var(--green-deep);
+      font-weight: 600;
+    }
+
+    /* "+N" more button for dietary section */
+    .p-more-btn {
+      padding: 7px 10px;
+      background: transparent;
+      border: 1px dashed var(--cream-dark);
+      border-radius: 16px;
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--gray-muted);
+      cursor: pointer;
+    }
+
+    .p-more-btn:hover {
+      border-color: var(--gray-light);
+      color: var(--charcoal);
+    }
+
+    /* ==========================================
+       SIDE PANEL (SMS preview + details)
+    ========================================== */
+
+    .side-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding-top: 16px;
+    }
+
+    .sms-card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 4px 20px rgba(10, 22, 18, 0.06);
+      border: 1px solid var(--cream-dark);
+    }
+
+    .sms-card-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--charcoal);
+      margin-bottom: 4px;
+    }
+
+    .sms-card-sub {
+      font-size: 11px;
+      color: var(--gray-muted);
+      margin-bottom: 14px;
+    }
+
+    .sms-bubble {
+      background: linear-gradient(150deg, var(--green-deep) 0%, var(--green-darkest) 100%);
+      color: var(--cream);
+      border-radius: 14px;
+      border-bottom-right-radius: 4px;
+      padding: 12px 14px;
+      font-family: -apple-system, 'SF Pro Text', sans-serif;
+      font-size: 12px;
+      line-height: 1.6;
+      white-space: pre-line;
+    }
+
+    .option-card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 4px 20px rgba(10, 22, 18, 0.06);
+      border: 1px solid var(--cream-dark);
+    }
+
+    .option-name {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .option-desc {
+      font-size: 12px;
+      color: var(--gray-warm);
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .option-section {
+      margin-top: 12px;
+    }
+
+    .option-label {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray-muted);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .pro-con-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .pro-con-list li {
+      font-size: 11px;
+      color: var(--gray-warm);
+      line-height: 1.5;
+      padding: 3px 0 3px 16px;
+      position: relative;
+    }
+
+    .pro-con-list li::before {
+      position: absolute;
+      left: 0;
+      top: 3px;
+      font-size: 10px;
+    }
+
+    .pro-con-list.pros li::before { content: "+"; color: var(--green-tag); font-weight: 700; }
+    .pro-con-list.cons li::before { content: "−"; color: var(--red-muted); font-weight: 700; }
+
+    .recommended-badge {
+      display: inline-block;
+      padding: 3px 8px;
+      background: var(--green-deep);
+      color: var(--cream);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 10px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    .hide { display: none !important; }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="page-header">
+    <h1 class="page-title">Customization Mockups</h1>
+    <p class="page-sub">Four ways to add one-tap customizations to the menu page. Click tabs below to switch between designs. Tap chips inside each mockup to feel the actual experience — the SMS draft on the right updates live.</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" data-opt="A">
+      <span class="tab-label">Option A</span>
+      Chips in detail sheet (per-meal)
+    </button>
+    <button class="tab" data-opt="B">
+      <span class="tab-label">Option B</span>
+      Order-level + per-meal split
+    </button>
+    <button class="tab" data-opt="C">
+      <span class="tab-label">Option C</span>
+      Hybrid both levels
+    </button>
+    <button class="tab" data-opt="D">
+      <span class="tab-label">Option D</span>
+      Dedicated customize sheet
+    </button>
+  </div>
+
+  <div class="display">
+
+    <!-- ===================== PHONE ===================== -->
+    <div class="phone" id="phone">
+      <div class="phone-screen">
+
+        <!-- Header -->
+        <div class="p-header">
+          <div class="p-header-left">
+            <div class="p-logo"><span class="p-logo-h">H</span></div>
+            <div>
+              <div class="p-header-name">Havn Club</div>
+              <div class="p-header-meta">Apr 14 — Sun/Mon Delivery</div>
+            </div>
+          </div>
+          <div class="p-help"><em>i</em></div>
+        </div>
+
+        <!-- Order bar -->
+        <div class="p-order-bar">
+          <span class="p-order-title">Weekly Menu</span>
+          <span class="p-order-pricing">$25 meal · $10 side</span>
+        </div>
+
+        <!-- Scrollable content -->
+        <div class="p-content" id="phoneContent">
+
+          <!-- OPTION B & C: Order-level dietary chips at top -->
+          <div class="p-dietary-section" id="orderDietary" style="display:none">
+            <div class="p-dietary-label">
+              <span>Dietary preferences</span>
+              <span class="p-dietary-help">applies to all meals</span>
+            </div>
+            <div class="p-dietary-chips" id="orderChips">
+              <button class="p-chip order-chip" data-tag="dairy free">Dairy free<span class="p-chip-asterisk">*</span></button>
+              <button class="p-chip order-chip" data-tag="gluten free">Gluten free<span class="p-chip-asterisk">*</span></button>
+              <button class="p-chip order-chip" data-tag="low carb">Low carb</button>
+              <button class="p-chip order-chip" data-tag="no carb">No carb</button>
+              <button class="p-chip order-chip" data-tag="extra protein">Extra protein</button>
+            </div>
+            <div class="p-custom-note" style="margin-top:4px;">* kitchen does their best — not a guarantee</div>
+          </div>
+
+          <!-- Meals section -->
+          <div class="p-section">
+            <div class="p-section-line"></div>
+            <div class="p-section-name">Meals</div>
+            <div class="p-section-line right"></div>
+          </div>
+
+          <!-- Chicken (selected, with qty=2) -->
+          <div class="p-menu-item selected" onclick="openDetail(event)">
+            <div class="p-item-cat"><span>Chicken</span></div>
+            <div class="p-item-info">
+              <div class="p-item-name">Butter Chicken</div>
+              <div class="p-item-desc">Creamy tikka masala sauce, charred broccolini, roasted eggplant over cardamom basmati rice</div>
+              <div class="p-item-bottom">
+                <div class="p-item-macros">
+                  <span>700 cal</span>
+                  <span class="dot"></span>
+                  <span>55g protein</span>
+                </div>
+                <div class="p-stepper" onclick="event.stopPropagation()">
+                  <button class="p-step-btn minus">−</button>
+                  <div class="p-step-qty">2</div>
+                  <button class="p-step-btn plus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Beef -->
+          <div class="p-menu-item" onclick="openDetail(event)">
+            <div class="p-item-cat"><span>Beef</span></div>
+            <div class="p-item-info">
+              <div class="p-item-name">Braised Short Rib</div>
+              <div class="p-item-desc">Slow-braised short rib with red wine reduction, truffle mash, glazed carrots</div>
+              <div class="p-item-bottom">
+                <div class="p-item-macros">
+                  <span>820 cal</span>
+                  <span class="dot"></span>
+                  <span>48g protein</span>
+                </div>
+                <div class="p-stepper" onclick="event.stopPropagation()">
+                  <button class="p-step-btn minus" disabled>−</button>
+                  <div class="p-step-qty">0</div>
+                  <button class="p-step-btn plus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Seafood -->
+          <div class="p-menu-item" onclick="openDetail(event)">
+            <div class="p-item-cat"><span>Seafood</span></div>
+            <div class="p-item-info">
+              <div class="p-item-name">Miso Glazed Salmon</div>
+              <div class="p-item-desc">White miso glaze, forbidden black rice, wok-charred bok choy, sesame seeds</div>
+              <div class="p-item-bottom">
+                <div class="p-item-macros">
+                  <span>670 cal</span>
+                  <span class="dot"></span>
+                  <span>52g protein</span>
+                </div>
+                <div class="p-stepper" onclick="event.stopPropagation()">
+                  <button class="p-step-btn minus" disabled>−</button>
+                  <div class="p-step-qty">0</div>
+                  <button class="p-step-btn plus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Draft section -->
+          <div class="p-draft-section">
+            <div class="p-draft-label">Message draft</div>
+            <div class="p-draft-bubble" id="phoneDraft">Sunday Morning (9a–12p)
+Reusable Glass
+
+2× chicken</div>
+          </div>
+
+          <div class="p-draft-opts">
+            <div class="p-opt-bubble">Container · <span class="p-opt-val">Glass</span></div>
+            <div class="p-opt-bubble">Delivery · <span class="p-opt-val">Sun AM</span></div>
+          </div>
+
+        </div>
+
+        <!-- Cart bar -->
+        <div class="p-cart">
+          <div>
+            <div class="p-cart-count">2 items</div>
+            <div class="p-cart-hint">Add 2 more to reach minimum</div>
+          </div>
+          <button class="p-send-btn">Send in Messages</button>
+        </div>
+
+        <!-- ================ DETAIL SHEET (overlay) ================ -->
+        <div class="p-sheet-overlay hide" id="detailSheet">
+          <div class="p-sheet">
+            <div class="p-sheet-handle"></div>
+            <button class="p-sheet-close" onclick="closeDetail()">×</button>
+            <div class="p-sheet-content">
+
+              <div class="p-detail-name">Butter Chicken</div>
+              <div class="p-detail-desc">Creamy tikka masala sauce, charred broccolini, roasted eggplant over cardamom basmati rice</div>
+              <div class="p-detail-macros">700 cal · 55g protein · 31g fat · 4g fiber · 56g carbs</div>
+
+              <div class="p-detail-tags">
+                <span class="p-detail-tag safe">Gluten Free</span>
+                <span class="p-detail-tag allergen">Dairy (Cream)</span>
+              </div>
+
+              <div class="p-sheet-divider"></div>
+
+              <!-- OPTION A: All chips per-meal -->
+              <div id="sheetOptionA" class="sheet-view">
+                <div class="p-custom-label">
+                  <span>Quick options</span>
+                </div>
+                <div class="p-custom-chips">
+                  <button class="p-chip meal-chip" data-tag="light sauce">Light sauce</button>
+                  <button class="p-chip meal-chip" data-tag="sauce on side">Sauce on side</button>
+                  <button class="p-chip meal-chip" data-tag="low carb">Low carb</button>
+                  <button class="p-chip meal-chip" data-tag="no carb">No carb</button>
+                  <button class="p-chip meal-chip" data-tag="extra protein">Extra protein</button>
+                  <button class="p-chip meal-chip" data-tag="dairy free">Dairy free<span class="p-chip-asterisk">*</span></button>
+                  <button class="p-chip meal-chip" data-tag="gluten free">Gluten free<span class="p-chip-asterisk">*</span></button>
+                </div>
+                <div class="p-custom-note">* we'll do our best — allergies need confirmation</div>
+
+                <div class="p-custom-label" style="margin-top:14px;"><span>Anything else</span></div>
+                <textarea class="p-textarea" rows="2" placeholder="e.g., no cilantro, substitute corn for onions"></textarea>
+              </div>
+
+              <!-- OPTION B: Only sauce/portion chips (dietary is global) -->
+              <div id="sheetOptionB" class="sheet-view hide">
+                <div class="p-custom-label"><span>Sauce / portion</span></div>
+                <div class="p-custom-chips">
+                  <button class="p-chip meal-chip" data-tag="light sauce">Light sauce</button>
+                  <button class="p-chip meal-chip" data-tag="sauce on side">Sauce on side</button>
+                </div>
+
+                <div class="p-custom-label" style="margin-top:14px;"><span>Anything else</span></div>
+                <textarea class="p-textarea" rows="2" placeholder="e.g., no cilantro"></textarea>
+              </div>
+
+              <!-- OPTION C: Inherited + all chips -->
+              <div id="sheetOptionC" class="sheet-view hide">
+                <div class="p-custom-label"><span>Customizations</span></div>
+                <div class="p-custom-chips" id="sheetCinheritedChips">
+                  <!-- Inherited chips get injected from order-level state -->
+                </div>
+                <div class="p-custom-chips" id="sheetCmealChips">
+                  <button class="p-chip meal-chip" data-tag="light sauce">Light sauce</button>
+                  <button class="p-chip meal-chip" data-tag="sauce on side">Sauce on side</button>
+                </div>
+                <div class="p-custom-note" id="sheetCNote" style="display:none;">✓ = applied from your dietary preferences (tap to remove for this meal)</div>
+
+                <div class="p-custom-label" style="margin-top:14px;"><span>Anything else</span></div>
+                <textarea class="p-textarea" rows="2" placeholder="e.g., no cilantro"></textarea>
+              </div>
+
+              <!-- OPTION D: Dedicated button -->
+              <div id="sheetOptionD" class="sheet-view hide">
+                <button class="p-customize-btn" id="customizeBtn" onclick="openCustomize(event)">
+                  <span>Customize meal</span>
+                  <span class="p-customize-btn-count" id="customizeCount">optional</span>
+                </button>
+                <div class="p-custom-note">Dietary, sauce, portion, or custom notes</div>
+              </div>
+
+              <div class="p-qty-row">
+                <div class="p-qty-label">Quantity</div>
+                <div class="p-qty-stepper">
+                  <button>−</button>
+                  <span>2</span>
+                  <button>+</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- ================ CUSTOMIZE SHEET (Option D) ================ -->
+        <div class="p-sheet-overlay hide" id="customizeSheet">
+          <div class="p-sheet">
+            <div class="p-sheet-handle"></div>
+            <button class="p-sheet-close" onclick="closeCustomize()">×</button>
+            <div class="p-sheet-content">
+
+              <div class="p-detail-name">Customize Butter Chicken</div>
+              <div class="p-custom-note" style="margin-bottom:18px;">Tap any that apply</div>
+
+              <div class="p-custom-chips" id="customizeChips">
+                <button class="p-chip customize-chip" data-tag="dairy free">Dairy free<span class="p-chip-asterisk">*</span></button>
+                <button class="p-chip customize-chip" data-tag="gluten free">Gluten free<span class="p-chip-asterisk">*</span></button>
+                <button class="p-chip customize-chip" data-tag="low carb">Low carb</button>
+                <button class="p-chip customize-chip" data-tag="no carb">No carb</button>
+                <button class="p-chip customize-chip" data-tag="extra protein">Extra protein</button>
+                <button class="p-chip customize-chip" data-tag="light sauce">Light sauce</button>
+                <button class="p-chip customize-chip" data-tag="sauce on side">Sauce on side</button>
+              </div>
+              <div class="p-custom-note" style="margin-bottom:14px;">* we'll do our best — not a guarantee</div>
+
+              <div class="p-custom-label" style="margin-top:10px;"><span>Anything else</span></div>
+              <textarea class="p-textarea" rows="3" placeholder="e.g., no cilantro, substitute corn for onions"></textarea>
+
+              <button class="p-send-btn" style="width:100%;justify-content:center;margin-top:8px;" onclick="closeCustomize()">Save</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===================== SIDE PANEL ===================== -->
+    <div class="side-panel">
+
+      <!-- SMS preview -->
+      <div class="sms-card">
+        <div class="sms-card-title">SMS draft</div>
+        <div class="sms-card-sub">What the customer's order text looks like</div>
+        <div class="sms-bubble" id="smsBubble">Sunday Morning (9a–12p)
+Reusable Glass
+
+2× chicken</div>
+      </div>
+
+      <!-- Option description -->
+      <div class="option-card" id="optionCard">
+        <!-- Filled by JS -->
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+  // ==========================================
+  // STATE
+  // ==========================================
+
+  let currentOption = 'A';
+
+  // Per-meal customization state. We simulate two meals (chicken=2, all tags only on chicken for demo)
+  const state = {
+    orderDietary: new Set(),    // Order-level (Option B, C)
+    mealChicken: new Set(),     // Per-meal (Option A, B, C, D)
+    mealChickenOverrides: new Set()  // Removed inherited chips (Option C only)
+  };
+
+  // Option metadata
+  const options = {
+    A: {
+      name: 'Chips in detail sheet (per-meal)',
+      desc: 'Add a row of toggleable chips above the existing textarea, inside each meal\'s detail sheet. Every meal gets all 7 chips. Free-text stays for unusual requests.',
+      pros: [
+        'Uses existing detail sheet — no new entry points',
+        'Per-meal control matches the current data model',
+        'Safest: no chips selected = identical to today',
+        'Smallest code change'
+      ],
+      cons: [
+        '7 chips + textarea makes the sheet denser',
+        'DF/GF customer has to tap the same chip on every meal (5× per order)',
+        'Chips wrap to 3 rows, can feel busy'
+      ]
+    },
+    B: {
+      name: 'Order-level + per-meal split',
+      recommended: true,
+      desc: 'Split chips by how customers actually use them: dietary traits go at the order level (once), sauce/portion stays per-meal in the detail sheet.',
+      pros: [
+        'Genuinely seamless — one tap of "Dairy free" covers all 5 meals',
+        'Detail sheet stays clean (just 2 sauce chips + textarea)',
+        'Maps to how Airtable already stores customizations',
+        'Matches real mental model: dietary = you, sauce = dish-specific',
+        'Stepping stone to structured dietary fields'
+      ],
+      cons: [
+        'New visual element on the main page (small section)',
+        'Edge case: "dairy-free only on chicken" needs the textarea',
+        'Slightly more logic (order/meal split in SMS draft)'
+      ]
+    },
+    C: {
+      name: 'Hybrid both levels with inheritance',
+      desc: 'Order-level chips act as defaults. Detail sheet shows the full chip set — chips you set globally appear pre-toggled (inherited) but can be untoggled for just that meal.',
+      pros: [
+        'Maximum flexibility for every edge case',
+        'Power users get full control',
+        'Order-level convenience + per-meal precision'
+      ],
+      cons: [
+        'Most complex. Three states per chip: unset / set / inherited-then-overridden',
+        'Detail sheet is the densest of all options',
+        'SMS draft rendering gets messy for mixed states',
+        'Likely overkill — most customers will never override'
+      ]
+    },
+    D: {
+      name: 'Dedicated customize sheet',
+      desc: 'Detail sheet stays minimal (description, macros, quantity). A "Customize meal" button opens a second sheet with all chips + textarea on a full screen.',
+      pros: [
+        'Detail sheet is the cleanest of all four',
+        'Customize sheet has room for everything — no density issues',
+        'Explicit action: customizing is a choice, not always visible'
+      ],
+      cons: [
+        'Adds a tap — measurably less seamless than A/B',
+        '"Out of sight, out of mind" — fewer customers will discover it',
+        'New sheet UI to build',
+        'Goes against stated goal of "seamless and frictionless"'
+      ]
+    }
+  };
+
+  // ==========================================
+  // TAB SWITCHING
+  // ==========================================
+
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      currentOption = tab.dataset.opt;
+      switchOption();
+    });
+  });
+
+  function switchOption() {
+    // Reset state on switch
+    state.orderDietary.clear();
+    state.mealChicken.clear();
+    state.mealChickenOverrides.clear();
+
+    // Close any open sheets
+    document.getElementById('detailSheet').classList.add('hide');
+    document.getElementById('customizeSheet').classList.add('hide');
+
+    // Show/hide order-level dietary section (B and C)
+    const orderDiet = document.getElementById('orderDietary');
+    if (currentOption === 'B' || currentOption === 'C') {
+      orderDiet.style.display = '';
+    } else {
+      orderDiet.style.display = 'none';
+    }
+
+    // Reset chip states
+    document.querySelectorAll('.p-chip').forEach(c => c.classList.remove('active', 'inherited'));
+
+    // Update option info card
+    renderOptionCard();
+    updateDraft();
+  }
+
+  // ==========================================
+  // CHIP TOGGLES
+  // ==========================================
+
+  // Order-level chips (B, C)
+  document.querySelectorAll('.order-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const tag = chip.dataset.tag;
+      if (state.orderDietary.has(tag)) {
+        state.orderDietary.delete(tag);
+        chip.classList.remove('active');
+      } else {
+        state.orderDietary.add(tag);
+        chip.classList.add('active');
+      }
+      updateDraft();
+    });
+  });
+
+  // Per-meal chips (Option A, B, C)
+  document.querySelectorAll('.meal-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const tag = chip.dataset.tag;
+      if (state.mealChicken.has(tag)) {
+        state.mealChicken.delete(tag);
+        chip.classList.remove('active');
+      } else {
+        state.mealChicken.add(tag);
+        chip.classList.add('active');
+      }
+      updateDraft();
+    });
+  });
+
+  // Customize sheet chips (Option D)
+  document.querySelectorAll('.customize-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const tag = chip.dataset.tag;
+      if (state.mealChicken.has(tag)) {
+        state.mealChicken.delete(tag);
+        chip.classList.remove('active');
+      } else {
+        state.mealChicken.add(tag);
+        chip.classList.add('active');
+      }
+      updateCustomizeCount();
+      updateDraft();
+    });
+  });
+
+  function updateCustomizeCount() {
+    const btn = document.getElementById('customizeBtn');
+    const count = document.getElementById('customizeCount');
+    const n = state.mealChicken.size;
+    if (n > 0) {
+      btn.classList.add('has-selections');
+      count.textContent = n + ' selected';
+    } else {
+      btn.classList.remove('has-selections');
+      count.textContent = 'optional';
+    }
+  }
+
+  // ==========================================
+  // DETAIL SHEET
+  // ==========================================
+
+  window.openDetail = function(e) {
+    // Only open for chicken (our demo item)
+    const item = e.currentTarget;
+    if (!item.querySelector('.p-item-name')?.textContent.includes('Butter Chicken')) return;
+
+    // Hide all sheet views, show current option's view
+    document.querySelectorAll('.sheet-view').forEach(v => v.classList.add('hide'));
+    const target = document.getElementById('sheetOption' + currentOption);
+    if (target) target.classList.remove('hide');
+
+    // For Option C, render inherited chips from order state
+    if (currentOption === 'C') {
+      renderOptionCInheritedChips();
+    }
+
+    // For Option D, update count
+    if (currentOption === 'D') {
+      updateCustomizeCount();
+    }
+
+    document.getElementById('detailSheet').classList.remove('hide');
+  };
+
+  window.closeDetail = function() {
+    document.getElementById('detailSheet').classList.add('hide');
+  };
+
+  function renderOptionCInheritedChips() {
+    const container = document.getElementById('sheetCinheritedChips');
+    container.innerHTML = '';
+    const orderTags = [...state.orderDietary];
+
+    if (orderTags.length === 0) {
+      document.getElementById('sheetCNote').style.display = 'none';
+      return;
+    }
+
+    document.getElementById('sheetCNote').style.display = '';
+
+    orderTags.forEach(tag => {
+      const chip = document.createElement('button');
+      const isOverridden = state.mealChickenOverrides.has(tag);
+      chip.className = isOverridden ? 'p-chip' : 'p-chip inherited';
+      chip.dataset.tag = tag;
+      chip.innerHTML = tag.charAt(0).toUpperCase() + tag.slice(1) + (tag.includes('free') ? '<span class="p-chip-asterisk">*</span>' : '');
+      chip.addEventListener('click', () => {
+        if (state.mealChickenOverrides.has(tag)) {
+          state.mealChickenOverrides.delete(tag);
+        } else {
+          state.mealChickenOverrides.add(tag);
+        }
+        renderOptionCInheritedChips();
+        updateDraft();
+      });
+      container.appendChild(chip);
+    });
+  }
+
+  // ==========================================
+  // CUSTOMIZE SHEET (Option D)
+  // ==========================================
+
+  window.openCustomize = function(e) {
+    e.stopPropagation();
+    document.getElementById('customizeSheet').classList.remove('hide');
+  };
+
+  window.closeCustomize = function() {
+    document.getElementById('customizeSheet').classList.add('hide');
+  };
+
+  // ==========================================
+  // DRAFT TEXT GENERATION
+  // ==========================================
+
+  function updateDraft() {
+    let lines = ['Sunday Morning (9a–12p)', 'Reusable Glass'];
+
+    // Add dietary line for Option B and C if order-level chips set
+    const orderTags = [...state.orderDietary];
+    if ((currentOption === 'B' || currentOption === 'C') && orderTags.length > 0) {
+      lines.push('Dietary: ' + orderTags.join(', '));
+    }
+
+    lines.push('');
+    lines.push('2× chicken');
+
+    // Per-meal notes
+    let chickenTags = [];
+
+    if (currentOption === 'A') {
+      chickenTags = [...state.mealChicken];
+    } else if (currentOption === 'B') {
+      // Only sauce/portion tags (no dietary from order; those are global)
+      chickenTags = [...state.mealChicken];
+    } else if (currentOption === 'C') {
+      // Inherited order tags (minus overrides) + per-meal tags
+      const inheritedFinal = orderTags.filter(t => !state.mealChickenOverrides.has(t));
+      chickenTags = [...inheritedFinal, ...state.mealChicken];
+    } else if (currentOption === 'D') {
+      chickenTags = [...state.mealChicken];
+    }
+
+    if (chickenTags.length > 0) {
+      lines.push('');
+      lines.push('Notes:');
+      lines.push('chicken: ' + chickenTags.join(', '));
+    }
+
+    const draft = lines.join('\n');
+    document.getElementById('phoneDraft').textContent = draft;
+    document.getElementById('smsBubble').textContent = draft;
+  }
+
+  // ==========================================
+  // OPTION CARD
+  // ==========================================
+
+  function renderOptionCard() {
+    const opt = options[currentOption];
+    const card = document.getElementById('optionCard');
+    card.innerHTML = `
+      <div class="option-name">Option ${currentOption}${opt.recommended ? '<span class="recommended-badge">Recommended</span>' : ''}</div>
+      <div class="option-label" style="margin-top:6px;">${opt.name}</div>
+      <div class="option-desc" style="margin-top:10px;">${opt.desc}</div>
+
+      <div class="option-section">
+        <div class="option-label">Pros</div>
+        <ul class="pro-con-list pros">
+          ${opt.pros.map(p => `<li>${p}</li>`).join('')}
+        </ul>
+      </div>
+
+      <div class="option-section">
+        <div class="option-label">Cons</div>
+        <ul class="pro-con-list cons">
+          ${opt.cons.map(c => `<li>${c}</li>`).join('')}
+        </ul>
+      </div>
+    `;
+  }
+
+  // Init
+  switchOption();
+</script>
+
+</body>
+</html>

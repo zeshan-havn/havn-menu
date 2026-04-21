@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Havn Club — Apr 26 Menu Portion Calculator</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@400;500;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-dark: #0A1612;
+    --green: #1B5E40;
+    --green-soft: #2D4A3E;
+    --cream: #F5F1EA;
+    --cream-warm: #F0EBE3;
+    --cream-dark: #E5E0D6;
+    --brass: #C4A87C;
+    --brass-muted: #A89060;
+    --charcoal: #1C1C1A;
+    --gray-warm: #5C5A55;
+    --gray-mid: #8A8680;
+    --gray-light: #B5B0A8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    margin: 0;
+    padding: 40px 20px;
+    line-height: 1.5;
+  }
+  .container { max-width: 1280px; margin: 0 auto; }
+  h1 {
+    font-family: 'Cormorant', serif;
+    font-weight: 500;
+    font-size: 48px;
+    color: var(--green-dark);
+    margin: 0 0 8px 0;
+    letter-spacing: -0.5px;
+  }
+  .subtitle {
+    color: var(--gray-warm);
+    font-size: 15px;
+    margin-bottom: 32px;
+  }
+  .dish {
+    background: var(--cream-warm);
+    border: 1px solid var(--cream-dark);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(10,22,18,0.04);
+  }
+  .dish-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--cream-dark);
+  }
+  .dish-title {
+    font-family: 'Cormorant', serif;
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--green-dark);
+    margin: 0;
+  }
+  .dish-slot {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--brass-muted);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  th {
+    text-align: left;
+    font-weight: 500;
+    color: var(--gray-warm);
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--cream-dark);
+  }
+  th.num, td.num { text-align: right; }
+  td {
+    padding: 10px;
+    border-bottom: 1px solid rgba(229, 224, 214, 0.5);
+  }
+  td.component { font-weight: 500; color: var(--charcoal); }
+  input[type="number"] {
+    width: 70px;
+    padding: 6px 8px;
+    border: 1px solid var(--cream-dark);
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    text-align: right;
+    background: white;
+    color: var(--charcoal);
+  }
+  input[type="number"]:focus {
+    outline: none;
+    border-color: var(--brass);
+    box-shadow: 0 0 0 2px rgba(196,168,124,0.2);
+  }
+  tr.total-row { background: var(--cream); font-weight: 600; }
+  tr.total-row td {
+    padding-top: 14px;
+    padding-bottom: 14px;
+    border-top: 2px solid var(--brass);
+    border-bottom: none;
+    color: var(--green-dark);
+  }
+  tr.total-row td.component { font-family: 'Cormorant', serif; font-size: 16px; font-weight: 600; }
+  .macro-label { color: var(--gray-mid); font-size: 10px; letter-spacing: 0.5px; }
+  .summary-bar {
+    background: var(--green-dark);
+    color: var(--cream);
+    padding: 20px 28px;
+    border-radius: 12px;
+    margin-bottom: 32px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+  }
+  .summary-item { text-align: center; }
+  .summary-num {
+    font-family: 'Cormorant', serif;
+    font-size: 32px;
+    font-weight: 500;
+    color: var(--brass);
+    display: block;
+  }
+  .summary-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--cream-dark);
+    text-transform: uppercase;
+  }
+  .info {
+    font-size: 12px;
+    color: var(--gray-mid);
+    margin-top: 8px;
+    font-style: italic;
+  }
+  .reset-btn {
+    background: transparent;
+    border: 1px solid var(--brass);
+    color: var(--brass-muted);
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .reset-btn:hover { background: var(--brass); color: white; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Apr 26 Menu — Portion Calculator</h1>
+  <div class="subtitle">Edit oz values. Macros recalculate live using USDA per-100g data. Cooked values throughout.</div>
+
+  <div id="menu"></div>
+</div>
+
+<script>
+// USDA per-100g macros: [calories, protein, fat, fiber, net_carbs]
+// Cooked values, middle of range for fat/carbs, top of range for protein/fiber
+const MACROS = {
+  // Proteins
+  "Ground beef (90/10 lean, cooked)": [217, 27, 11, 0, 0],
+  "Grilled chicken thighs": [209, 26, 10.9, 0, 0],
+  "Lemon herb chicken breast (marinated, grilled)": [140, 26, 4, 0, 1],
+  "Flank steak (lean trimmed, cooked)": [200, 28, 9, 0, 0],
+  "Cod (cooked)": [105, 23, 0.9, 0, 0],
+  "Crispy seared tofu (extra-firm, high-protein)": [170, 22, 9, 2, 2],
+
+  // Sauces
+  "Massaman coconut curry sauce": [180, 3, 16, 1, 7],
+  "Peri peri glaze": [110, 1, 6, 1, 14],
+  "Coconut yogurt drizzle": [100, 1, 8, 1, 6],
+  "Peruvian Aji Verde (silken tofu, dairy-free, no nuts)": [90, 4, 6, 1, 4],
+  "White miso glaze": [180, 4, 2, 2, 32],
+  "Gochujang glaze": [220, 4, 2, 3, 45],
+
+  // Starches
+  "Basmati rice": [130, 3, 0.3, 0.5, 28],
+  "Coconut rice": [175, 3, 5, 0.5, 31],
+  "Cilantro lime rice": [145, 3, 2, 0.6, 29],
+  "Wild rice": [101, 4, 0.3, 1.8, 21],
+
+  // Veggies
+  "Braised baby potatoes": [87, 2, 0.1, 1.8, 20],
+  "Charred green beans": [35, 1.8, 0.2, 3.4, 8],
+  "Fire-charred sweet corn": [96, 3.4, 1.5, 2.4, 21],
+  "Roasted cauliflower": [50, 2, 2, 2.5, 6],
+  "Roasted sweet plantains": [180, 1.3, 2, 2.3, 42],
+  "Pickled red onions": [25, 0.5, 0, 1, 6],
+  "Roasted baby bok choy": [40, 1.5, 2, 1.5, 4],
+  "Roasted kabocha squash (glazed)": [80, 1.5, 2, 2.5, 15],
+  "Charred broccoli": [55, 2.8, 2, 2.6, 7],
+  "Roasted cremini mushrooms": [50, 3, 2, 1.5, 4],
+  "Charred sweet potato": [100, 2, 3, 3, 16],
+  "House-pickled vegetable medley": [20, 0.5, 0, 1, 4],
+
+  // Finishing / accents
+  "Whipped lemon-garlic feta": [250, 11, 22, 0, 3],
+  "Dried cranberries": [308, 0.1, 1.4, 5.7, 72],
+  "Herb finishing oil": [880, 0, 99, 0, 0],
+
+  // Broth & chia
+  "Ginger miso bone broth": [92, 9, 5.7, 0, 1.3],
+  "Chia pudding base": [122, 10.3, 4.2, 3.8, 11],
+  "Coconut cream": [330, 3, 34, 2, 6],
+  "Fresh mango": [60, 0.8, 0.4, 1.6, 15],
+  "Toasted coconut flakes": [660, 7, 64, 16, 24],
+};
+
+const DISHES = [
+  {
+    slot: "Chef Special",
+    name: "Massaman Beef Curry",
+    components: [
+      ["Ground beef (90/10 lean, cooked)", 6],
+      ["Massaman coconut curry sauce", 3],
+      ["Braised baby potatoes", 2.5],
+      ["Charred green beans", 2.5],
+      ["Basmati rice", 4],
+    ]
+  },
+  {
+    slot: "Chicken",
+    name: "Peri Peri Chicken",
+    components: [
+      ["Grilled chicken thighs", 6],
+      ["Peri peri glaze", 2],
+      ["Coconut yogurt drizzle", 0.5],
+      ["Fire-charred sweet corn", 2.5],
+      ["Roasted cauliflower", 2.5],
+      ["Coconut rice", 4],
+    ]
+  },
+  {
+    slot: "Chicken #2",
+    name: "Lemon Herb Chicken with Whipped Feta",
+    components: [
+      ["Lemon herb chicken breast (marinated, grilled)", 5],
+      ["Whipped lemon-garlic feta", 2],
+      ["Charred sweet potato", 1.75],
+      ["Charred broccoli", 1.75],
+      ["House-pickled vegetable medley", 1.75],
+      ["Dried cranberries", 0.2],
+      ["Herb finishing oil", 0.2],
+    ]
+  },
+  {
+    slot: "Beef",
+    name: "Carne Asada Steak",
+    components: [
+      ["Flank steak (lean trimmed, cooked)", 6],
+      ["Peruvian Aji Verde (silken tofu, dairy-free, no nuts)", 2],
+      ["Roasted sweet plantains", 2.5],
+      ["Pickled red onions", 1.5],
+      ["Cilantro lime rice", 4],
+    ]
+  },
+  {
+    slot: "Seafood",
+    name: "Miso Glazed Cod",
+    components: [
+      ["Cod (cooked)", 6],
+      ["White miso glaze", 2],
+      ["Roasted baby bok choy", 2.5],
+      ["Roasted kabocha squash (glazed)", 2.5],
+      ["Wild rice", 4],
+    ]
+  },
+  {
+    slot: "Veg",
+    name: "Korean Seared Tofu",
+    components: [
+      ["Crispy seared tofu (extra-firm, high-protein)", 6],
+      ["Gochujang glaze", 2],
+      ["Charred broccoli", 2.5],
+      ["Roasted cremini mushrooms", 2.5],
+      ["Basmati rice", 4],
+    ]
+  },
+  {
+    slot: "Broth",
+    name: "Ginger Miso Bone Broth",
+    components: [
+      ["Ginger miso bone broth", 16],
+    ]
+  },
+  {
+    slot: "Chia",
+    name: "Mango Chia Pudding",
+    components: [
+      ["Chia pudding base", 7],
+      ["Coconut cream", 1],
+      ["Fresh mango", 1],
+    ]
+  }
+];
+
+const OZ_TO_G = 28.349523125;
+
+function calcRow(name, oz) {
+  const [cal, p, f, fib, nc] = MACROS[name];
+  const g = oz * OZ_TO_G;
+  return {
+    g,
+    cal: g * cal / 100,
+    p: g * p / 100,
+    f: g * f / 100,
+    fib: g * fib / 100,
+    nc: g * nc / 100,
+  };
+}
+
+function round(n) { return Math.round(n); }
+function round1(n) { return Math.round(n * 10) / 10; }
+
+function render() {
+  const menu = document.getElementById('menu');
+  menu.innerHTML = '';
+
+  let totalCal = 0, totalP = 0, totalF = 0, totalFib = 0, totalNC = 0;
+
+  DISHES.forEach((dish, di) => {
+    const card = document.createElement('div');
+    card.className = 'dish';
+
+    let rows = '';
+    let dCal = 0, dP = 0, dF = 0, dFib = 0, dNC = 0, dOz = 0;
+    dish.components.forEach((c, ci) => {
+      const [name, oz] = c;
+      const r = calcRow(name, oz);
+      dCal += r.cal; dP += r.p; dF += r.f; dFib += r.fib; dNC += r.nc; dOz += oz;
+      rows += `<tr>
+        <td class="component">${name}</td>
+        <td class="num"><input type="number" step="0.25" min="0" value="${oz}" data-di="${di}" data-ci="${ci}"> oz</td>
+        <td class="num">${round(r.g)}g</td>
+        <td class="num">${round(r.cal)}</td>
+        <td class="num">${round1(r.p)}</td>
+        <td class="num">${round1(r.f)}</td>
+        <td class="num">${round1(r.fib)}</td>
+        <td class="num">${round1(r.nc)}</td>
+      </tr>`;
+    });
+
+    rows += `<tr class="total-row">
+      <td class="component">Total</td>
+      <td class="num">${round1(dOz)} oz</td>
+      <td class="num">${round(dOz * OZ_TO_G)}g</td>
+      <td class="num">${round(dCal)}</td>
+      <td class="num">${round(dP)}</td>
+      <td class="num">${round(dF)}</td>
+      <td class="num">${round(dFib)}</td>
+      <td class="num">${round(dNC)}</td>
+    </tr>`;
+
+    totalCal += dCal; totalP += dP; totalF += dF; totalFib += dFib; totalNC += dNC;
+
+    card.innerHTML = `
+      <div class="dish-header">
+        <div>
+          <div class="dish-slot">${dish.slot}</div>
+          <h2 class="dish-title">${dish.name}</h2>
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Component</th>
+            <th class="num">Portion</th>
+            <th class="num">Grams</th>
+            <th class="num">Cal</th>
+            <th class="num">Protein (g)</th>
+            <th class="num">Fat (g)</th>
+            <th class="num">Fiber (g)</th>
+            <th class="num">Net Carbs (g)</th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+    `;
+    menu.appendChild(card);
+  });
+
+  // wire inputs
+  document.querySelectorAll('input[type="number"]').forEach(inp => {
+    inp.addEventListener('input', e => {
+      const di = +e.target.dataset.di;
+      const ci = +e.target.dataset.ci;
+      DISHES[di].components[ci][1] = +e.target.value || 0;
+      render();
+      // keep focus on the edited input
+      setTimeout(() => {
+        const sel = document.querySelector(`input[data-di="${di}"][data-ci="${ci}"]`);
+        if (sel) { sel.focus(); sel.select(); }
+      }, 0);
+    });
+  });
+}
+
+render();
+</script>
+</body>
+</html>
