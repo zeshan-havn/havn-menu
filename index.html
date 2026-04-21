@@ -1625,7 +1625,7 @@
           </div>
 
           <div class="menu-item" data-key="chicken_2">
-            <div class="item-cat"><span>Chicken_2</span></div>
+            <div class="item-cat"><span>Chicken</span></div>
             <div class="item-info">
               <h3 class="item-name">Lemon Herb Chicken with Whipped Feta</h3>
               <p class="item-desc">Pan Roasted Chicken Breast with a Whipped Lemon Garlic Feta and Charred Sweet Potato, Roasted Broccoli, House Pickled Vegetables, and Dried Cranberries</p>
@@ -1997,6 +1997,7 @@
     const dishes = {
       special: {
         name: 'Massaman Beef Curry',
+        shortName: 'Massaman Beef Curry',
         category: 'special',
         desc: 'Seasoned ground beef slow simmered in a rich Thai massaman coconut curry of cinnamon, cardamom, star anise, and lemongrass, served with roasted baby potatoes and charred green beans over basmati rice for a warm, aromatic plate with a rich, spiced finish.',
         macros: '756 cal · 55g protein · 33g fat · 5g fiber · 58g carbs',
@@ -2005,6 +2006,7 @@
       },
       chicken: {
         name: 'Peri Peri Chicken',
+        shortName: 'Peri Peri Chicken',
         category: 'chicken',
         desc: 'Charred chicken marinated in peri peri and finished with a spicy peri peri glaze and a cooling coconut yogurt drizzle, served with fire charred sweet corn and roasted cauliflower over coconut rice for a bold, Portuguese inspired plate with a bright, spiced finish.',
         macros: '734 cal · 52g protein · 31g fat · 5g fiber · 63g carbs',
@@ -2013,6 +2015,7 @@
       },
       chicken_2: {
         name: 'Lemon Herb Chicken with Whipped Feta',
+        shortName: 'Lemon Herb Chicken',
         category: 'chicken_2',
         desc: 'Lemon and herb marinated pan roasted chicken breast finished with a bright herb oil, served over a whipped lemon garlic feta with charred sweet potato, roasted broccoli, house pickled vegetables, and dried cranberries for a clean, Mediterranean inspired plate with a fresh, citrus finish.',
         macros: '494 cal · 46g protein · 26g fat · 4g fiber · 21g carbs',
@@ -2021,6 +2024,7 @@
       },
       beef: {
         name: 'Carne Asada Steak',
+        shortName: 'Carne Asada Steak',
         category: 'beef',
         desc: 'Citrus and garlic marinated flank steak chargrilled and sliced, finished with a creamy Peruvian aji verde of cilantro, huacatay, jalapeño, and lime, served with roasted sweet plantains and pickled red onions over cilantro lime rice for a bold, Latin inspired plate with a bright, herbaceous finish.',
         macros: '694 cal · 54g protein · 22g fat · 3g fiber · 67g carbs',
@@ -2029,6 +2033,7 @@
       },
       seafood: {
         name: 'Miso Glazed Cod',
+        shortName: 'Miso Glazed Cod',
         category: 'seafood',
         desc: 'Pan seared cod broiled with a sweet white miso glaze, served with roasted baby bok choy and oven roasted kabocha squash over wild rice for a clean, Japanese inspired plate with a savory, umami finish.',
         macros: '480 cal · 48g protein · 6g fat · 6g fiber · 55g carbs',
@@ -2037,6 +2042,7 @@
       },
       veg: {
         name: 'Korean Seared Tofu',
+        shortName: 'Korean Seared Tofu',
         category: 'veg',
         desc: 'Extra firm tofu seared crispy and finished with a sweet spicy gochujang glaze, served with charred broccoli and roasted cremini mushrooms over basmati rice for a bold, Korean inspired plate with a fiery, umami finish.',
         macros: '636 cal · 47g protein · 20g fat · 9g fiber · 68g carbs',
@@ -2045,6 +2051,7 @@
       },
       broth: {
         name: 'Ginger Miso Bone Broth',
+        shortName: 'Ginger Miso Broth',
         category: 'broth',
         desc: 'Our signature high protein and collagen rich chicken bone broth slow simmered for 24 hours with fresh ginger and white miso.',
         macros: '417 cal · 41g protein · 26g fat · 6g carbs',
@@ -2053,6 +2060,7 @@
       },
       chia: {
         name: 'Mango Chia Pudding',
+        shortName: 'Mango Chia Pudding',
         category: 'chia',
         desc: 'Creamy mango chia pudding layered with rich coconut cream and finished with fresh diced mango for a bright, tropical treat.',
         macros: '353 cal · 22g protein · 18g fat · 9g fiber · 28g carbs',
@@ -2321,12 +2329,18 @@
         container.full
       ];
 
+      // Resolve dish short name for drafter text (fallback to full name, then key)
+      const dishLabel = (k) => {
+        const d = dishes[k];
+        return (d && (d.shortName || d.name)) || k;
+      };
+
       // Add items if any
       const items = Object.keys(order).filter(k => order[k] > 0);
       const hasAnyItems = items.length > 0 || wellnessShots > 0;
       if (hasAnyItems) {
         lines.push('');
-        items.forEach(k => lines.push(`${order[k]}× ${k}`));
+        items.forEach(k => lines.push(`${order[k]}× ${dishLabel(k)}`));
         if (wellnessShots > 0) {
           lines.push(`${wellnessShots}× wellness shots`);
         }
@@ -2340,7 +2354,7 @@
         const freeText = customizations[k].trim();
         const parts = [...prefs];
         if (freeText) parts.push(freeText);
-        if (parts.length) notes.push(`${k}: ${parts.join(', ')}`);
+        if (parts.length) notes.push(`${dishLabel(k)}: ${parts.join(', ')}`);
       });
 
       if (notes.length) {
