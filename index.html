@@ -2074,12 +2074,12 @@
             </div>
             <div class="welcome-price" id="welcomePrice">
               <div class="welcome-price-row"><span>Subtotal</span><span class="amt" id="priceSubtotal">$0</span></div>
-              <div class="welcome-price-nudge" id="priceNudge"></div>
               <div class="welcome-price-discount-section">
                 <div class="welcome-price-row discount"><span id="priceDiscountLabel">Welcome discount</span><span class="amt" id="priceDiscount">–$0</span></div>
                 <div class="welcome-price-divider"></div>
                 <div class="welcome-price-row total"><span>Your total</span><span class="amt" id="priceTotal">$0</span></div>
               </div>
+              <div class="welcome-price-nudge" id="priceNudge"></div>
             </div>
             <div class="draft-bubble" id="draftBubble"></div>
             
@@ -2649,24 +2649,39 @@
       const wp = document.getElementById('welcomePrice');
 
       // Price card — visible once the order minimum is met (4 meal-equivalents).
-      // Shows the subtotal + a nudge when no tier is unlocked yet; adds the
-      // discount + total rows once a tier is reached.
+      // Shows subtotal + a nudge to the next tier whenever one exists.
       document.getElementById('priceSubtotal').textContent = `$${subtotal}`;
+
+      // Compute nudge toward the next tier.
+      // 4 meals: toward Tier 1 ($20 off). 5-6 meals: toward Tier 2 ($40 off).
+      // 7+: max tier, no nudge.
+      let nudgeText = '';
+      if (meals >= 7) {
+        nudgeText = '';
+      } else if (meals >= 5) {
+        const toTier2 = 7 - meals;
+        nudgeText = `Add ${toTier2} more meal${toTier2 === 1 ? '' : 's'} to get $40 off`;
+      } else if (minMet) {
+        const toTier1 = Math.max(1, 5 - meals);
+        nudgeText = `Add ${toTier1} more meal${toTier1 === 1 ? '' : 's'} to get $20 off`;
+      }
 
       if (discount > 0) {
         document.getElementById('priceDiscount').textContent = `–$${discount}`;
         document.getElementById('priceTotal').textContent = `$${total}`;
         wp.classList.add('visible', 'has-discount');
-        wp.classList.remove('needs-nudge');
       } else if (minMet) {
-        // Min met but no discount unlocked — show nudge toward Tier 1.
-        const mealsNeeded = Math.max(1, 5 - meals);
-        document.getElementById('priceNudge').textContent =
-          `Add ${mealsNeeded} meal${mealsNeeded === 1 ? '' : 's'} → $20 off`;
-        wp.classList.add('visible', 'needs-nudge');
+        wp.classList.add('visible');
         wp.classList.remove('has-discount');
       } else {
-        wp.classList.remove('visible', 'has-discount', 'needs-nudge');
+        wp.classList.remove('visible', 'has-discount');
+      }
+
+      if (nudgeText) {
+        document.getElementById('priceNudge').textContent = nudgeText;
+        wp.classList.add('needs-nudge');
+      } else {
+        wp.classList.remove('needs-nudge');
       }
 
       // Tier-progress badge
