@@ -111,10 +111,11 @@
        WELCOME OFFER (shown only on /welcome paths)
     ========================================== */
 
-    /* Hidden by default; welcome mode toggles body[data-welcome] */
+    /* Hidden by default; welcome mode toggles body[data-welcome].
+       NOTE: .welcome-price is NOT in this hide list — we re-use the card
+       shell on the regular menu too, just to show the below-minimum reminder. */
     body:not([data-welcome]) .welcome-banner,
     body:not([data-welcome]) .welcome-footer-note,
-    body:not([data-welcome]) .welcome-price,
     body:not([data-welcome]) .tier-progress { display: none !important; }
 
     .welcome-banner {
@@ -390,7 +391,8 @@
     .welcome-price .welcome-price-discount-section { display: contents; }
     .welcome-price:not(.has-discount) .welcome-price-discount-section { display: none; }
 
-    /* Nudge row — shown when order minimum is met but no tier is unlocked yet */
+    /* Nudge row — shown when order minimum is met but no tier is unlocked yet,
+       or when a tier is unlocked but a higher tier is still reachable. */
     .welcome-price-nudge {
       display: none;
       margin-top: 4px;
@@ -400,6 +402,20 @@
       letter-spacing: 0.01em;
     }
     .welcome-price.needs-nudge .welcome-price-nudge { display: block; }
+
+    /* Below-minimum message — shown when cart < 4 meal equivalents.
+       Replaces the subtotal/discount/nudge view with a single min reminder. */
+    .welcome-price-min {
+      display: none;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--brass-muted);
+      letter-spacing: 0.01em;
+    }
+    .welcome-price.below-min .welcome-price-min { display: block; }
+    .welcome-price.below-min .welcome-price-row,
+    .welcome-price.below-min .welcome-price-discount-section,
+    .welcome-price.below-min .welcome-price-nudge { display: none !important; }
 
     /* Footer clarifier under the cart bar */
     .welcome-footer-note {
@@ -2073,6 +2089,7 @@
               <span class="tier-progress" id="tierProgress"></span>
             </div>
             <div class="welcome-price" id="welcomePrice">
+              <div class="welcome-price-min" id="priceMin"></div>
               <div class="welcome-price-row"><span>Subtotal</span><span class="amt" id="priceSubtotal">$0</span></div>
               <div class="welcome-price-discount-section">
                 <div class="welcome-price-row discount"><span id="priceDiscountLabel">Welcome discount</span><span class="amt" id="priceDiscount">–$0</span></div>
@@ -2637,7 +2654,8 @@
     }
 
     function updateWelcomeUI(meals, sides, shots) {
-      if (!isWelcomeMode) return { subtotal: 0, discount: 0, total: 0 };
+      const wp = document.getElementById('welcomePrice');
+      if (!wp) return { subtotal: 0, discount: 0, total: 0 };
 
       const subtotal = meals * 25 + sides * 10 + shots * 25;
       const discount = computeWelcomeDiscount(meals);
@@ -2645,11 +2663,28 @@
       const mealEquivalents = meals + shots;
       const minMet = mealEquivalents >= 4;
 
-      const tp = document.getElementById('tierProgress');
-      const wp = document.getElementById('welcomePrice');
+      // ── Below-minimum message — runs on BOTH the welcome and regular menu.
+      // Shown once the customer has added something (1+ items) but hasn't
+      // hit the 4-item minimum yet. Empty cart (0 items) keeps the card
+      // hidden to avoid noise on the empty state.
+      if (!minMet && mealEquivalents >= 1) {
+        const need = 4 - mealEquivalents;
+        document.getElementById('priceMin').textContent =
+          `Add ${need} more meal${need === 1 ? '' : 's'} to meet the order minimum`;
+        wp.classList.add('visible', 'below-min');
+        wp.classList.remove('has-discount', 'needs-nudge');
+        // Still update tier badge on welcome page so the banner stays in sync
+        if (isWelcomeMode) updateTierBadge(meals);
+        return { subtotal, discount, total };
+      }
 
-      // Price card — visible once the order minimum is met (4 meal-equivalents).
-      // Shows subtotal + a nudge to the next tier whenever one exists.
+      // Not below min and not empty: welcome-only logic from here.
+      if (!isWelcomeMode) {
+        wp.classList.remove('visible', 'below-min', 'has-discount', 'needs-nudge');
+        return { subtotal, discount, total };
+      }
+
+      // ── Welcome-page price card logic ──
       document.getElementById('priceSubtotal').textContent = `$${subtotal}`;
 
       // Compute nudge toward the next tier.
@@ -2666,6 +2701,7 @@
         nudgeText = `Add ${toTier1} more meal${toTier1 === 1 ? '' : 's'} to get $20 off`;
       }
 
+      wp.classList.remove('below-min');
       if (discount > 0) {
         document.getElementById('priceDiscount').textContent = `–$${discount}`;
         document.getElementById('priceTotal').textContent = `$${total}`;
@@ -2683,35 +2719,38 @@
       } else {
         wp.classList.remove('needs-nudge');
       }
+      updateTierBadge(meals);
+      return { subtotal, discount, total };
+    }
 
-      // Tier-progress badge
-      tp.classList.remove('unlocked');
-      tp.style.display = '';
-      if (meals === 0) {
-        tp.textContent = '$20 off @ 5 · $40 off @ 7';
-      } else if (meals < 5) {
-        const need = 5 - meals;
-        tp.textContent = `+${need} MEAL${need === 1 ? '' : 'S'} → $20 OFF`;
-      } else if (meals === 5) {
-        tp.textContent = '$20 APPLIED · +2 → $40 OFF';
-        tp.classList.add('unlocked');
-      } else if (meals === 6) {
-        tp.textContent = '$20 APPLIED · +1 → $40 OFF';
-        tp.classList.add('unlocked');
-      } else {
-        tp.textContent = '$40 APPLIED · MAX DISCOUNT';
-        tp.classList.add('unlocked');
+    // Extracted so both the main welcome-mode branch and the below-min
+    // early-return branch can keep the tier badge + banner state in sync.
+    function updateTierBadge(meals) {
+      const tp = document.getElementById('tierProgress');
+      if (tp) {
+        tp.classList.remove('unlocked');
+        tp.style.display = '';
+        if (meals === 0) {
+          tp.textContent = '$20 off @ 5 · $40 off @ 7';
+        } else if (meals < 5) {
+          const need = 5 - meals;
+          tp.textContent = `+${need} MEAL${need === 1 ? '' : 'S'} → $20 OFF`;
+        } else if (meals === 5) {
+          tp.textContent = '$20 APPLIED · +2 → $40 OFF';
+          tp.classList.add('unlocked');
+        } else if (meals === 6) {
+          tp.textContent = '$20 APPLIED · +1 → $40 OFF';
+          tp.classList.add('unlocked');
+        } else {
+          tp.textContent = '$40 APPLIED · MAX DISCOUNT';
+          tp.classList.add('unlocked');
+        }
       }
 
       // Banner tier-unlock feedback (V2 only).
-      // Links the static banner to cart progress so the customer gets a
-      // "progression reward" when they cross a tier.
       const tier20 = document.querySelector('.welcome-banner.v2 .v2-tier[data-tier="20"]');
       const tier40 = document.querySelector('.welcome-banner.v2 .v2-tier[data-tier="40"]');
       if (tier20 && tier40) {
-        // Only re-apply "applied" class if the tier state actually changed —
-        // otherwise re-adding the class restarts the pulse animation on every
-        // update() call (and update() fires on every stepper tap).
         const setTierState = (el, state) => {
           if (el.dataset.state === state) return;
           el.dataset.state = state;
@@ -2730,8 +2769,6 @@
           setTierState(tier40, 'neutral');
         }
       }
-
-      return { subtotal, discount, total };
     }
 
     function update() {
