@@ -2406,7 +2406,7 @@
       document.title = 'Havn Club — Welcome Offer';
 
       // Pick a banner variant. ?banner=1|2|3 for design comparisons; defaults to v1.
-      const bannerVariant = (new URLSearchParams(window.location.search).get('banner') || '1').trim();
+      const bannerVariant = (new URLSearchParams(window.location.search).get('banner') || '2').trim();
       const bannerEl = document.getElementById('welcomeBanner');
       const bannerTemplates = {
         '0': `
@@ -2449,8 +2449,8 @@
             </div>
           </div>`,
       };
-      const chosen = bannerTemplates[bannerVariant] || bannerTemplates['1'];
-      bannerEl.className = `welcome-banner v${bannerVariant in bannerTemplates ? bannerVariant : '1'}`;
+      const chosen = bannerTemplates[bannerVariant] || bannerTemplates['2'];
+      bannerEl.className = `welcome-banner v${bannerVariant in bannerTemplates ? bannerVariant : '2'}`;
       bannerEl.innerHTML = chosen;
     }
 
