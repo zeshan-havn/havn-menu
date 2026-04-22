@@ -1,8 +1,20 @@
 # Netlify routing.
-# Welcome-offer variant: same index.html, but served at /welcome/{token} so
-# index.html detects isWelcomeMode via window.location.pathname. Only customers
-# who get the welcome link (via Make.com Treatment send) hit this path; all
-# other traffic falls through to the default rewrite below.
+#
+# Weekly cache-bust: the SMS send includes /{week} in the URL (e.g.
+# menu.havnclub.com/apr26, menu.havnclub.com/welcome/apr26). Each week has
+# a unique URL, so messaging apps (iMessage, WhatsApp) regenerate the link
+# preview instead of serving the previous week's cached image. Bump the
+# prefix weekly alongside the menu deploy.
+#
+# This rule strips the weekly prefix off static asset requests — e.g.
+# /apr26/menu-preview.jpg is served from /menu-preview.jpg. Customer-facing
+# page URLs like /apr26 or /welcome/apr26 fall through to the page rewrites
+# below and are detected in index.html via window.location.pathname.
+/apr26/*    /:splat 200
+
+# Welcome-offer variant: same index.html, detected via isWelcomeMode from
+# the pathname. Only customers who get the welcome link (via Make.com)
+# hit this path; all other traffic falls through to the default rewrite.
 /welcome/*  /index.html 200
 /welcome    /index.html 200
 /*          /index.html 200
