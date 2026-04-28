@@ -1845,7 +1845,7 @@
             </div>
             <div class="header-info">
               <span class="header-name">Havn Club</span>
-              <span class="header-meta">April 19 – 25</span>
+              <span class="header-meta">April 26 – May 2</span>
             </div>
           </div>
           <button class="help-btn" id="helpBtn">?</button>
@@ -2009,8 +2009,26 @@
               </div>
             </div>
           </div>
-          
-          
+
+          <div class="menu-item" data-key="seafood_2">
+            <div class="item-cat"><span>Seafood</span></div>
+            <div class="item-info">
+              <h3 class="item-name">Placeholder Dish - TBD</h3>
+              <p class="item-desc">Coming soon - check back for this week's second seafood option</p>
+              <div class="item-bottom">
+                <div class="item-macros">
+                  <span>— cal</span>
+                  <span class="dot"></span>
+                  <span>—g protein</span>
+                </div>
+                <div class="stepper" style="touch-action: manipulation;">
+                  <button class="stepper-btn minus" disabled style="touch-action: manipulation;">−</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus" style="touch-action: manipulation;">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
 
           <div class="menu-item" data-key="veg">
             <div class="item-cat"><span>Veg</span></div>
@@ -2382,6 +2400,15 @@
         tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy Free', safe: true }],
         price: 25
       },
+      seafood_2: {
+        name: 'Placeholder Dish - TBD',
+        shortName: 'Placeholder Dish',
+        category: 'seafood_2',
+        desc: 'Coming soon - details for this week\'s second seafood option will be available shortly.',
+        macros: '- cal - protein - fat - carbs',
+        tags: [],
+        price: 25
+      },
       veg: {
         name: 'Korean Seared Tofu',
         shortName: 'Korean Seared Tofu',
@@ -2472,16 +2499,16 @@
     }
 
     // Exposed on window for test-harness access (const would be block-scoped).
-    window.order = { special: 0, chicken: 0, chicken_2: 0, beef: 0, seafood: 0, veg: 0, broth: 0, chia: 0 };
+    window.order = { special: 0, chicken: 0, chicken_2: 0, beef: 0, seafood: 0, seafood_2: 0, veg: 0, broth: 0, chia: 0 };
     const order = window.order;
-    const customizations = { special: '', chicken: '', chicken_2: '', beef: '', seafood: '', veg: '', broth: '', chia: '' };
+    const customizations = { special: '', chicken: '', chicken_2: '', beef: '', seafood: '', seafood_2: '', veg: '', broth: '', chia: '' };
     // Dietary modification pills per dish (meals only)
     const dietaryPrefs = {
       special: new Set(), chicken: new Set(), chicken_2: new Set(), beef: new Set(),
-      seafood: new Set(), veg: new Set(),
+      seafood: new Set(), seafood_2: new Set(), veg: new Set(),
       broth: new Set(), chia: new Set()
     };
-    const mealCategories = new Set(['special', 'chicken', 'chicken_2', 'beef', 'seafood', 'veg']);
+    const mealCategories = new Set(['special', 'chicken', 'chicken_2', 'beef', 'seafood', 'seafood_2', 'veg']);
     // Low carb / no carb are mutually exclusive
     const carbMods = { 'low carb': 'no carb', 'no carb': 'low carb' };
 
@@ -2772,7 +2799,7 @@
     }
 
     function update() {
-      const meals = order.special + order.chicken + order.chicken_2 + order.beef + order.seafood + order.veg;
+      const meals = order.special + order.chicken + order.chicken_2 + order.beef + order.seafood + order.seafood_2 + order.veg;
       const sides = order.broth + order.chia;
       const hasBroth = order.broth > 0;
       const hasChia = order.chia > 0;
