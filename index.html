@@ -3030,7 +3030,8 @@
       const subtotal = meals * 25 + sides * 10 + shots * 25;
       const discount = computeWelcomeDiscount(meals);
       const total = subtotal - discount;
-      const mealEquivalents = meals + shots;
+      // Every 3 sides = 1 meal equivalent toward the 4-item minimum
+      const mealEquivalents = meals + shots + Math.floor(sides / 3);
       const minMet = mealEquivalents >= 4;
 
       // ── Below-minimum message — runs on BOTH the welcome and regular menu.
@@ -3146,8 +3147,8 @@
       const sides = order.broth + order.chia;
       const hasBroth = order.broth > 0;
       const hasChia = order.chia > 0;
-      // 1 bundle = 1 meal equivalent toward the 4-item minimum
-      const mealEquivalents = meals + wellnessShots;
+      // 1 wellness bundle = 1 meal equivalent; every 3 sides = 1 meal equivalent (4-item min)
+      const mealEquivalents = meals + wellnessShots + Math.floor(sides / 3);
       const minMet = mealEquivalents >= 4;
       // Welcome Offer — refresh banner + price card if we're in welcome mode
       const welcomePricing = updateWelcomeUI(meals, sides, wellnessShots);
