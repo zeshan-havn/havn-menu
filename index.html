@@ -8,7 +8,7 @@
   <!-- Open Graph / Social Media Preview -->
   <meta property="og:title" content="Havn Club - Weekly Menu">
   <meta property="og:description" content="Premium meal delivery service. Order by Thursday 4pm for Sunday delivery.">
-  <meta property="og:image" content="https://menu.havnclub.com/apr26/menu-preview.jpg">
+  <meta property="og:image" content="https://menu.havnclub.com/may3/menu-preview.jpg">
   <meta property="og:image:width" content="1620">
   <meta property="og:image:height" content="2716">
   <meta property="og:url" content="https://menu.havnclub.com">
@@ -18,7 +18,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Havn Club - Weekly Menu">
   <meta name="twitter:description" content="Premium meal delivery service. Order by Thursday 4pm for Sunday delivery.">
-  <meta name="twitter:image" content="https://menu.havnclub.com/apr26/menu-preview.jpg">
+  <meta name="twitter:image" content="https://menu.havnclub.com/may3/menu-preview.jpg">
 
   <!-- Meta Pixel Code -->
   <script>
@@ -585,123 +585,252 @@
     }
     
     /* ==========================================
-       MENU ITEMS
+       PILL NAV — category filter
     ========================================== */
-    
-    .menu-item {
-      display: flex;
-      align-items: stretch;
-      padding: 14px 12px 14px 0;
-      gap: 0;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      position: relative;
-      min-height: 100px;
-    }
-    
-    .menu-item::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 36px;
-      right: 14px;
-      height: 1px;
-      background: rgba(0,0,0,0.04);
-    }
-    
-    .menu-item:last-of-type::after {
-      display: none;
-    }
-    
-    .menu-item:active {
-      background: rgba(0,0,0,0.012);
-    }
-    
-    /* Selected state with warm glow */
-    .menu-item.selected {
-      background: linear-gradient(135deg, rgba(45, 74, 62, 0.06) 0%, rgba(45, 74, 62, 0.02) 100%);
-      box-shadow: inset 0 0 0 1px rgba(45, 74, 62, 0.06);
-    }
-    
-    /* Category label - centered vertically */
-    .item-cat {
-      width: 28px;
-      flex-shrink: 0;
+
+    .pill-nav {
       display: flex;
       align-items: center;
-      justify-content: center;
-      position: relative;
-      margin-left: 2px;
+      gap: 6px;
+      padding: 6px 12px 10px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
     }
-    
-    .item-cat::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 8px;
-      bottom: 8px;
-      width: 2px;
-      background: var(--green-soft);
-      border-radius: 1px;
-      opacity: 0.2;
-    }
-    
-    .item-cat span {
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
-      transform: rotate(180deg);
-      font-family: var(--font-display);
-      font-size: 9px;
+
+    .pill-nav::-webkit-scrollbar { display: none; }
+
+    .pill {
+      flex-shrink: 0;
+      padding: 6px 14px;
+      font-family: var(--font-body);
+      font-size: 12px;
       font-weight: 500;
-      letter-spacing: 0.08em;
+      color: var(--gray-warm);
+      background: transparent;
+      border: 1px solid rgba(196, 168, 124, 0.35);
+      border-radius: 100px;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      white-space: nowrap;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .pill:active { background: rgba(196, 168, 124, 0.10); }
+
+    .pill.active {
+      background: var(--green-darkest);
+      color: var(--cream);
+      border-color: var(--green-darkest);
+    }
+
+    /* ==========================================
+       MENU LIST — grid (All) / list (filtered)
+    ========================================== */
+
+    .menu-list {
+      display: grid;
+      gap: 10px;
+      padding: 4px 12px 0;
+    }
+
+    .menu-list.grid-mode { grid-template-columns: 1fr 1fr; }
+    .menu-list.list-mode { grid-template-columns: 1fr; }
+    .menu-list.hidden,
+    .section-divider.hidden { display: none; }
+
+    /* ==========================================
+       MENU ITEM — V1 Float card
+    ========================================== */
+
+    .menu-item {
+      display: flex;
+      flex-direction: column;
+      background: var(--cream-warm);
+      border: 1px solid rgba(196, 168, 124, 0.18);
+      border-radius: 10px;
+      padding: 12px 12px 10px;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.55),
+        0 2px 6px rgba(26, 47, 39, 0.06),
+        0 8px 20px rgba(26, 47, 39, 0.09),
+        0 22px 40px rgba(26, 47, 39, 0.07);
+      min-width: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .menu-item:active {
+      transform: translateY(1px);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.45),
+        0 1px 4px rgba(26, 47, 39, 0.07),
+        0 4px 12px rgba(26, 47, 39, 0.07),
+        0 12px 24px rgba(26, 47, 39, 0.05);
+    }
+
+    /* Selected state — warm glow + brass-tinted border */
+    .menu-item.selected {
+      background:
+        linear-gradient(135deg, rgba(45, 74, 62, 0.06) 0%, rgba(45, 74, 62, 0.02) 100%),
+        var(--cream-warm);
+      border-color: rgba(45, 74, 62, 0.30);
+    }
+
+    /* Category label — horizontal small caps at top of card */
+    .item-cat {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+
+    .item-cat > span:first-child {
+      font-family: var(--font-display);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--gray-light);
+      color: var(--green-brand);
     }
-    
-    .menu-item.selected .item-cat::before {
-      opacity: 0.6;
-      background: var(--green-medium);
+
+    .menu-item.selected .item-cat > span:first-child { color: var(--green-deep); }
+
+    /* Small allergen-status pills (e.g. "GF" "DF") — same green as detail sheet, smaller */
+    .item-tag {
+      font-family: var(--font-body);
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 1px 5px;
+      border-radius: 8px;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      height: 13px;
+      box-sizing: border-box;
     }
-    
-    .menu-item.selected .item-cat span {
-      color: var(--green-soft);
+
+    .item-tag.safe {
+      background: rgba(61, 107, 85, 0.12);
+      color: var(--green-tag);
     }
-    
+
+    .menu-item.chef-hero .item-tag.safe {
+      background: rgba(61, 107, 85, 0.30);
+      color: rgba(190, 222, 200, 1);
+    }
+
+    .menu-item.selected .item-tag.safe {
+      background: rgba(245, 241, 234, 0.18);
+      color: var(--cream);
+    }
+
     .item-info {
       flex: 1;
       min-width: 0;
-      padding: 0 8px 0 6px;
       display: flex;
       flex-direction: column;
+      padding: 0;
     }
-    
+
     .item-name {
       font-family: var(--font-display);
-      font-size: 20px;
+      font-size: 22px;
       font-weight: 500;
       color: var(--charcoal);
-      line-height: 1.2;
+      line-height: 1.18;
       margin-bottom: 4px;
     }
-    
+
+    /* Description: hidden in 2-col grid, visible in single-col list */
     .item-desc {
+      display: none;
       font-size: 11px;
       font-weight: 300;
       color: var(--gray-warm);
       line-height: 1.55;
-      margin-bottom: auto;
-      padding-bottom: 8px;
+      margin-bottom: 8px;
     }
+
+    .menu-list.list-mode .item-desc { display: block; }
+
+    .menu-list.list-mode .item-name {
+      font-size: 26px;
+      margin-bottom: 6px;
+    }
+
+    .menu-list.list-mode .menu-item {
+      padding: 16px;
+      min-height: 0;
+    }
+
+    /* ==========================================
+       CHEF HERO — full-width dark card (Special)
+    ========================================== */
+
+    .menu-item.chef-hero {
+      background: linear-gradient(135deg, #243D33 0%, #0F1F18 100%);
+      border: 1px solid rgba(196, 168, 124, 0.25);
+      border-radius: 12px;
+      padding: 16px;
+      margin: 4px 12px 14px;
+      box-shadow:
+        -3px -3px 14px rgba(255, 210, 180, 0.08),
+        3px 3px 14px rgba(196, 168, 124, 0.10),
+        0 6px 18px rgba(26, 47, 39, 0.18),
+        0 22px 40px rgba(26, 47, 39, 0.14);
+      min-height: 0;
+    }
+
+    .menu-item.chef-hero .item-cat { margin-bottom: 8px; }
+
+    .menu-item.chef-hero .item-cat span {
+      color: var(--brass);
+      letter-spacing: 0.16em;
+    }
+
+    .menu-item.chef-hero .item-name {
+      font-size: 30px;
+      color: var(--cream);
+      line-height: 1.12;
+      margin-bottom: 6px;
+    }
+
+    .menu-item.chef-hero .item-desc {
+      display: block;
+      color: var(--cream-muted);
+      font-size: 12px;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    .menu-item.chef-hero .item-macros { color: var(--cream-muted); }
+    .menu-item.chef-hero .item-macros .dot { background: rgba(196, 168, 124, 0.4); }
     
-    /* Bottom row: macros + stepper */
+    /* Bottom row: macros + stepper.
+       Stacks vertically in grid mode (narrow cards), goes horizontal in list-mode + chef-hero. */
     .item-bottom {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
+      flex-direction: column;
+      align-items: stretch;
       gap: 8px;
       margin-top: auto;
     }
-    
+
+    .item-bottom .stepper {
+      align-self: flex-end;
+    }
+
+    .menu-list.list-mode .item-bottom,
+    .menu-item.chef-hero .item-bottom {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
     /* Compact macros */
     .item-macros {
       display: flex;
@@ -709,13 +838,15 @@
       gap: 6px;
       font-size: 10px;
       color: var(--gray-muted);
+      white-space: nowrap;
     }
-    
+
     .item-macros .dot {
       width: 3px;
       height: 3px;
       background: var(--cream-dark);
       border-radius: 50%;
+      flex-shrink: 0;
     }
     
     /* ==========================================
@@ -728,56 +859,75 @@
       justify-content: flex-end;
       gap: 0;
       flex-shrink: 0;
+      background: var(--cream);
+      border: 1px solid rgba(196, 168, 124, 0.45);
+      border-radius: 6px;
+      overflow: hidden;
     }
-    
+
     .stepper-btn {
-      width: 30px;
-      height: 30px;
+      width: 28px;
+      height: 26px;
       border: none;
-      background: var(--cream-warm);
-      font-size: 15px;
-      font-weight: 400;
-      color: var(--gray-muted);
+      background: transparent;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--green-deep);
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: all 0.15s ease;
     }
-    
+
     .stepper-btn.minus {
-      border-radius: 6px 0 0 6px;
+      border-right: 1px solid rgba(196, 168, 124, 0.30);
+      border-radius: 0;
     }
-    
+
     .stepper-btn.plus {
-      border-radius: 0 6px 6px 0;
+      border-left: 1px solid rgba(196, 168, 124, 0.30);
+      border-radius: 0;
     }
-    
+
     .stepper-btn:active {
-      background: var(--cream-dark);
-      transform: scale(0.95);
+      background: rgba(196, 168, 124, 0.18);
+      transform: none;
     }
-    
+
     .stepper-btn:disabled {
-      color: var(--cream-dark);
+      color: var(--cream-muted);
       pointer-events: none;
     }
-    
-    .menu-item.selected .stepper-btn {
+
+    .menu-item.selected .stepper {
       background: var(--green-deep);
+      border-color: var(--green-deep);
+    }
+
+    .menu-item.selected .stepper-btn {
+      background: transparent;
       color: var(--cream);
     }
-    
-    .menu-item.selected .stepper-btn:disabled {
-      color: rgba(245,241,234,0.3);
+
+    .menu-item.selected .stepper-btn.minus {
+      border-right-color: rgba(245, 241, 234, 0.18);
     }
-    
+
+    .menu-item.selected .stepper-btn.plus {
+      border-left-color: rgba(245, 241, 234, 0.18);
+    }
+
+    .menu-item.selected .stepper-btn:disabled {
+      color: rgba(245, 241, 234, 0.3);
+    }
+
     .stepper-qty {
-      width: 30px;
-      height: 30px;
-      background: var(--cream-warm);
+      width: 28px;
+      height: 26px;
+      background: transparent;
       font-family: var(--font-body);
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 500;
       font-variant-numeric: tabular-nums lining-nums;
       color: var(--charcoal);
@@ -786,11 +936,23 @@
       justify-content: center;
       transition: all 0.15s ease;
     }
-    
+
     .menu-item.selected .stepper-qty {
-      background: var(--green-deep);
+      background: transparent;
       color: var(--cream);
     }
+
+    /* Chef hero stepper — dark-on-dark, brass border */
+    .menu-item.chef-hero .stepper {
+      background: rgba(0, 0, 0, 0.30);
+      border-color: rgba(196, 168, 124, 0.45);
+    }
+
+    .menu-item.chef-hero .stepper-btn { color: var(--cream); }
+    .menu-item.chef-hero .stepper-btn.minus { border-right-color: rgba(196, 168, 124, 0.20); }
+    .menu-item.chef-hero .stepper-btn.plus { border-left-color: rgba(196, 168, 124, 0.20); }
+    .menu-item.chef-hero .stepper-btn:disabled { color: rgba(245, 241, 234, 0.35); }
+    .menu-item.chef-hero .stepper-qty { color: var(--cream); }
     
     /* ==========================================
        DRAFT SECTION - Always visible
@@ -1845,7 +2007,7 @@
             </div>
             <div class="header-info">
               <span class="header-name">Havn Club</span>
-              <span class="header-meta">April 26 – May 2</span>
+              <span class="header-meta">May 3 – May 9</span>
             </div>
           </div>
           <button class="help-btn" id="helpBtn">?</button>
@@ -1903,41 +2065,32 @@
             </div>
           </div>
 
+          <!-- Pill Nav - filter meals by category -->
+          <nav class="pill-nav" id="pillNav" aria-label="Menu filter">
+            <button class="pill active" data-category="all">All</button>
+            <button class="pill" data-category="chicken">Chicken</button>
+            <button class="pill" data-category="beef">Beef</button>
+            <button class="pill" data-category="seafood">Seafood</button>
+            <button class="pill" data-category="veg">Veg</button>
+            <button class="pill" data-category="pasta">Pasta</button>
+            <button class="pill" data-category="sides">Sides</button>
+          </nav>
+
           <!-- Meals Section -->
-          <div class="section-divider">
+          <div class="section-divider meals-divider">
             <div class="section-line"></div>
             <span class="section-name">Meals</span>
             <div class="section-line right"></div>
           </div>
-          
-                    <div class="menu-item" data-key="special">
+
+                    <div class="menu-item chef-hero" data-key="special" data-category="beef">
             <div class="item-cat"><span>Special</span></div>
             <div class="item-info">
-              <h3 class="item-name">Massaman Beef Curry</h3>
-              <p class="item-desc">Seasoned Ground Beef in a Thai Massaman Coconut Curry with Roasted Baby Potatoes and Charred Green Beans over Basmati Rice</p>
+              <h3 class="item-name">Smash Burger Bowl</h3>
+              <p class="item-desc">Seasoned Ground Beef with a Smoky Special Burger Sauce and Caramelized Onions, Apple Cider Cabbage Slaw, and Roasted Sweet Potato Wedges</p>
               <div class="item-bottom">
                 <div class="item-macros">
-                  <span>756 cal</span>
-                  <span class="dot"></span>
-                  <span>55g protein</span>
-                </div>
-                <div class="stepper">
-                  <button class="stepper-btn minus" disabled>−</button>
-                  <span class="stepper-qty">0</span>
-                  <button class="stepper-btn plus">+</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="menu-item" data-key="chicken">
-            <div class="item-cat"><span>Chicken</span></div>
-            <div class="item-info">
-              <h3 class="item-name">Peri Peri Chicken</h3>
-              <p class="item-desc">Charred Chicken with a Peri Peri Glaze and Coconut Yogurt Drizzle with Fire Charred Sweet Corn and Roasted Cauliflower over Coconut Rice</p>
-              <div class="item-bottom">
-                <div class="item-macros">
-                  <span>734 cal</span>
+                  <span>716 cal</span>
                   <span class="dot"></span>
                   <span>52g protein</span>
                 </div>
@@ -1950,16 +2103,38 @@
             </div>
           </div>
 
-          <div class="menu-item" data-key="chicken_2">
+          <div class="menu-item chef-hero" data-key="pasta" data-category="pasta chicken">
+            <div class="item-cat"><span>Pasta</span></div>
+            <div class="item-info">
+              <h3 class="item-name">Vodka Pasta</h3>
+              <p class="item-desc">Blackened Chicken Breast over Luxurious Shell Pasta with a Dairy-Free Vodka Cream Sauce and Fresh Basil</p>
+              <div class="item-bottom">
+                <div class="item-macros">
+                  <span>677 cal</span>
+                  <span class="dot"></span>
+                  <span>56g protein</span>
+                </div>
+                <div class="stepper">
+                  <button class="stepper-btn minus" disabled>−</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-list meals-list grid-mode">
+
+          <div class="menu-item" data-key="chicken" data-category="chicken">
             <div class="item-cat"><span>Chicken</span></div>
             <div class="item-info">
-              <h3 class="item-name">Lemon Herb Chicken with Whipped Feta</h3>
-              <p class="item-desc">Pan Roasted Chicken Breast with a Whipped Lemon Garlic Feta and Charred Sweet Potato, Roasted Broccoli, House Pickled Vegetables, and Dried Cranberries</p>
+              <h3 class="item-name">Miso Garlic Chicken</h3>
+              <p class="item-desc">Miso Garlic Chicken with a White Miso Glaze and Charred Broccoli and Roasted Mushrooms over Jasmine Rice</p>
               <div class="item-bottom">
                 <div class="item-macros">
-                  <span>494 cal</span>
+                  <span>576 cal</span>
                   <span class="dot"></span>
-                  <span>46g protein</span>
+                  <span>52g protein</span>
                 </div>
                 <div class="stepper">
                   <button class="stepper-btn minus" disabled>−</button>
@@ -1970,16 +2145,36 @@
             </div>
           </div>
 
-          <div class="menu-item" data-key="beef">
+          <div class="menu-item" data-key="chicken_2" data-category="chicken">
+            <div class="item-cat"><span>Chicken</span></div>
+            <div class="item-info">
+              <h3 class="item-name">Basil Pesto Chicken</h3>
+              <p class="item-desc">Blackened Chicken Breast over a Basil Pesto Hummus with Charred Broccoli and Pickled Red Onions, Roasted Baby Potatoes</p>
+              <div class="item-bottom">
+                <div class="item-macros">
+                  <span>484 cal</span>
+                  <span class="dot"></span>
+                  <span>53g protein</span>
+                </div>
+                <div class="stepper">
+                  <button class="stepper-btn minus" disabled>−</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-item" data-key="beef" data-category="beef">
             <div class="item-cat"><span>Beef</span></div>
             <div class="item-info">
-              <h3 class="item-name">Carne Asada Steak</h3>
-              <p class="item-desc">Carne Asada Steak with a Creamy Peruvian Aji Verde and Roasted Sweet Plantains and Pickled Red Onions over Cilantro Lime Rice</p>
+              <h3 class="item-name">Rosemary Garlic Steak</h3>
+              <p class="item-desc">Rosemary Garlic Steak with a Red Wine Reduction and Roasted Mushrooms and Pickled Red Onions over Toasted Brown Rice</p>
               <div class="item-bottom">
                 <div class="item-macros">
-                  <span>694 cal</span>
+                  <span>588 cal</span>
                   <span class="dot"></span>
-                  <span>54g protein</span>
+                  <span>58g protein</span>
                 </div>
                 <div class="stepper">
                   <button class="stepper-btn minus" disabled>−</button>
@@ -1990,54 +2185,14 @@
             </div>
           </div>
 
-          <div class="menu-item" data-key="seafood">
+          <div class="menu-item" data-key="seafood" data-category="seafood">
             <div class="item-cat"><span>Seafood</span></div>
             <div class="item-info">
-              <h3 class="item-name">Miso Glazed Cod</h3>
-              <p class="item-desc">Miso Glazed Cod with a White Miso Glaze and Roasted Baby Bok Choy and Roasted Kabocha Squash over Wild Rice</p>
+              <h3 class="item-name">Blood Orange Salmon</h3>
+              <p class="item-desc">Seared Salmon with a Blood Orange Glaze and Roasted Beets, Charred Asparagus, and Roasted Sweet Potatoes</p>
               <div class="item-bottom">
                 <div class="item-macros">
-                  <span>480 cal</span>
-                  <span class="dot"></span>
-                  <span>48g protein</span>
-                </div>
-                <div class="stepper">
-                  <button class="stepper-btn minus" disabled>−</button>
-                  <span class="stepper-qty">0</span>
-                  <button class="stepper-btn plus">+</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="menu-item" data-key="seafood_2">
-            <div class="item-cat"><span>Seafood</span></div>
-            <div class="item-info">
-              <h3 class="item-name">Placeholder Dish - TBD</h3>
-              <p class="item-desc">Coming soon - check back for this week's second seafood option</p>
-              <div class="item-bottom">
-                <div class="item-macros">
-                  <span>- cal</span>
-                  <span class="dot"></span>
-                  <span>-g protein</span>
-                </div>
-                <div class="stepper" style="touch-action: manipulation;">
-                  <button class="stepper-btn minus" disabled style="touch-action: manipulation;">−</button>
-                  <span class="stepper-qty">0</span>
-                  <button class="stepper-btn plus" style="touch-action: manipulation;">+</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="menu-item" data-key="veg">
-            <div class="item-cat"><span>Veg</span></div>
-            <div class="item-info">
-              <h3 class="item-name">Korean Seared Tofu</h3>
-              <p class="item-desc">Crispy Seared Tofu with a Gochujang Glaze and Charred Broccoli and Roasted Cremini Mushrooms over Basmati Rice</p>
-              <div class="item-bottom">
-                <div class="item-macros">
-                  <span>636 cal</span>
+                  <span>544 cal</span>
                   <span class="dot"></span>
                   <span>47g protein</span>
                 </div>
@@ -2050,21 +2205,66 @@
             </div>
           </div>
 
+          <div class="menu-item" data-key="seafood_2" data-category="seafood">
+            <div class="item-cat"><span>Seafood</span></div>
+            <div class="item-info">
+              <h3 class="item-name">Seven Spice Shrimp</h3>
+              <p class="item-desc">Seven Spice Shrimp with a Smoky Chipotle Sauce and Charred Corn and Charred Bell Peppers over Cilantro Lime Rice</p>
+              <div class="item-bottom">
+                <div class="item-macros">
+                  <span>502 cal</span>
+                  <span class="dot"></span>
+                  <span>50g protein</span>
+                </div>
+                <div class="stepper" style="touch-action: manipulation;">
+                  <button class="stepper-btn minus" disabled style="touch-action: manipulation;">−</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus" style="touch-action: manipulation;">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-item" data-key="veg" data-category="veg">
+            <div class="item-cat"><span>Veg</span></div>
+            <div class="item-info">
+              <h3 class="item-name">Buffalo Cauliflower Bowl</h3>
+              <p class="item-desc">Crispy Buffalo Cauliflower and Crispy Tofu with a Tangy Buffalo Glaze and Roasted Rainbow Carrots over Herbed Quinoa</p>
+              <div class="item-bottom">
+                <div class="item-macros">
+                  <span>641 cal</span>
+                  <span class="dot"></span>
+                  <span>40g protein</span>
+                </div>
+                <div class="stepper">
+                  <button class="stepper-btn minus" disabled>−</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          </div>
+          <!-- /meals-list -->
+
           <!-- Sides Section -->
-          <div class="section-divider">
+          <div class="section-divider sides-divider">
             <div class="section-line"></div>
             <span class="section-name">Sides</span>
             <div class="section-line right"></div>
           </div>
 
-          <div class="menu-item" data-key="broth">
+          <div class="menu-list sides-list grid-mode">
+
+          <div class="menu-item" data-key="broth" data-category="sides">
             <div class="item-cat"><span>Broth</span></div>
             <div class="item-info">
-              <h3 class="item-name">Ginger Miso Bone Broth</h3>
-              <p class="item-desc">Collagen rich chicken bone broth slow simmered 24 hours with fresh ginger and white miso</p>
+              <h3 class="item-name">Classic Bone Broth</h3>
+              <p class="item-desc">Our classic high protein and collagen rich chicken bone broth slow simmered for 24 hours</p>
               <div class="item-bottom">
                 <div class="item-macros">
-                  <span>417 cal</span>
+                  <span>419 cal</span>
                   <span class="dot"></span>
                   <span>41g protein</span>
                 </div>
@@ -2077,16 +2277,16 @@
             </div>
           </div>
 
-          <div class="menu-item" data-key="chia">
+          <div class="menu-item" data-key="chia" data-category="sides">
             <div class="item-cat"><span>Chia</span></div>
             <div class="item-info">
-              <h3 class="item-name">Mango Chia Pudding</h3>
-              <p class="item-desc">Mango chia pudding with coconut cream and fresh diced mango</p>
+              <h3 class="item-name">Vanilla Chia Pudding</h3>
+              <p class="item-desc">Vanilla chia pudding with fresh blackberries and blueberries</p>
               <div class="item-bottom">
                 <div class="item-macros">
-                  <span>353 cal</span>
+                  <span>373 cal</span>
                   <span class="dot"></span>
-                  <span>22g protein</span>
+                  <span>24g protein</span>
                 </div>
                 <div class="stepper">
                   <button class="stepper-btn minus" disabled>−</button>
@@ -2096,8 +2296,10 @@
               </div>
             </div>
           </div>
-          
-          
+
+          </div>
+          <!-- /sides-list -->
+
 
           <!-- Draft Section - Always visible -->
           <div class="draft-section" id="draftSection">
@@ -2356,83 +2558,92 @@
     // Data - Full descriptions for detail sheet
     const dishes = {
       special: {
-        name: 'Massaman Beef Curry',
-        shortName: 'Massaman Beef Curry',
+        name: 'Smash Burger Bowl',
+        shortName: 'Smash Burger Bowl',
         category: 'special',
-        desc: 'Seasoned ground beef slow simmered in a rich Thai massaman coconut curry of cinnamon, cardamom, star anise, and lemongrass, served with roasted baby potatoes and charred green beans over basmati rice for a warm, aromatic plate with a rich, spiced finish.',
-        macros: '756 cal · 55g protein · 33g fat · 5g fiber · 58g carbs',
-        tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy Free', safe: true }],
+        desc: 'Seasoned ground beef finished with a smoky special burger sauce, served with caramelized onions, a crisp apple cider cabbage slaw, and roasted sweet potato wedges for a bold, craveable plate with a nostalgic, American finish.',
+        macros: '716 cal · 52g protein · 42g fat · 6g fiber · 33g carbs',
+        tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy (Yogurt)', safe: false }],
         price: 25
       },
       chicken: {
-        name: 'Peri Peri Chicken',
-        shortName: 'Peri Peri Chicken',
+        name: 'Miso Garlic Chicken',
+        shortName: 'Miso Garlic Chicken',
         category: 'chicken',
-        desc: 'Charred chicken marinated in peri peri and finished with a spicy peri peri glaze and a cooling coconut yogurt drizzle, served with fire charred sweet corn and roasted cauliflower over coconut rice for a bold, Portuguese inspired plate with a bright, spiced finish.',
-        macros: '734 cal · 52g protein · 31g fat · 5g fiber · 63g carbs',
+        desc: 'Tender miso garlic chicken finished with a savory white miso glaze, served with charred broccoli and roasted mushrooms over jasmine rice for a rich, umami forward plate with a warm, savory finish.',
+        macros: '576 cal · 52g protein · 22g fat · 5g fiber · 41g carbs',
         tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy Free', safe: true }],
         price: 25
       },
       chicken_2: {
-        name: 'Lemon Herb Chicken with Whipped Feta',
-        shortName: 'Lemon Herb Chicken',
+        name: 'Basil Pesto Chicken',
+        shortName: 'Basil Pesto Chicken',
         category: 'chicken_2',
-        desc: 'Lemon and herb marinated pan roasted chicken breast finished with a bright herb oil, served over a whipped lemon garlic feta with charred sweet potato, roasted broccoli, house pickled vegetables, and dried cranberries for a clean, Mediterranean inspired plate with a fresh, citrus finish.',
-        macros: '494 cal · 46g protein · 26g fat · 4g fiber · 21g carbs',
-        tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy (Feta & Yogurt)', safe: false }],
+        desc: 'Seasoned blackened chicken breast layered over a creamy basil pesto hummus, served with charred broccoli, pickled red onions, and roasted baby potatoes for a fresh, herbaceous plate with a bright, Mediterranean finish.',
+        macros: '484 cal · 53g protein · 16g fat · 8g fiber · 32g carbs',
+        tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy Free', safe: true }],
         price: 25
       },
       beef: {
-        name: 'Carne Asada Steak',
-        shortName: 'Carne Asada Steak',
+        name: 'Rosemary Garlic Steak',
+        shortName: 'Rosemary Garlic Steak',
         category: 'beef',
-        desc: 'Citrus and garlic marinated flank steak chargrilled and sliced, finished with a creamy Peruvian aji verde of cilantro, huacatay, jalapeño, and lime, served with roasted sweet plantains and pickled red onions over cilantro lime rice for a bold, Latin inspired plate with a bright, herbaceous finish.',
-        macros: '694 cal · 54g protein · 22g fat · 3g fiber · 67g carbs',
+        desc: 'Rosemary garlic marinated steak finished with a rich red wine reduction, served with roasted mushrooms and pickled red onions over toasted brown rice for a savory, deeply flavored plate with a refined, steakhouse finish.',
+        macros: '588 cal · 58g protein · 24g fat · 4g fiber · 34g carbs',
         tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy Free', safe: true }],
         price: 25
       },
       seafood: {
-        name: 'Miso Glazed Cod',
-        shortName: 'Miso Glazed Cod',
+        name: 'Blood Orange Salmon',
+        shortName: 'Blood Orange Salmon',
         category: 'seafood',
-        desc: 'Pan seared cod broiled with a sweet white miso glaze, served with roasted baby bok choy and oven roasted kabocha squash over wild rice for a clean, Japanese inspired plate with a savory, umami finish.',
-        macros: '480 cal · 48g protein · 6g fat · 6g fiber · 55g carbs',
+        desc: 'Seared salmon finished with a bright blood orange glaze, served with roasted beets, charred asparagus, and roasted sweet potatoes for a light, citrus forward plate with a vibrant, refreshing finish.',
+        macros: '544 cal · 47g protein · 26g fat · 7g fiber · 30g carbs',
         tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy Free', safe: true }],
         price: 25
       },
       seafood_2: {
-        name: 'Placeholder Dish - TBD',
-        shortName: 'Placeholder Dish',
+        name: 'Seven Spice Shrimp',
+        shortName: 'Seven Spice Shrimp',
         category: 'seafood_2',
-        desc: 'Coming soon - details for this week\'s second seafood option will be available shortly.',
-        macros: '- cal - protein - fat - carbs',
-        tags: [],
+        desc: 'Seven spice shrimp topped with a smoky chipotle sauce, served with charred corn and charred bell peppers over cilantro lime rice for a smoky, spice forward plate with a bright, Latin finish.',
+        macros: '502 cal · 50g protein · 11g fat · 6g fiber · 49g carbs',
+        tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy (Yogurt)', safe: false }],
         price: 25
       },
       veg: {
-        name: 'Korean Seared Tofu',
-        shortName: 'Korean Seared Tofu',
+        name: 'Buffalo Cauliflower Bowl',
+        shortName: 'Buffalo Cauliflower Bowl',
         category: 'veg',
-        desc: 'Extra firm tofu seared crispy and finished with a sweet spicy gochujang glaze, served with charred broccoli and roasted cremini mushrooms over basmati rice for a bold, Korean inspired plate with a fiery, umami finish.',
-        macros: '636 cal · 47g protein · 20g fat · 9g fiber · 68g carbs',
+        desc: 'Crispy buffalo cauliflower and crispy tofu finished with a tangy buffalo glaze, served with roasted rainbow carrots over herbed quinoa for a bold, comforting plate with a vibrant, plant forward finish.',
+        macros: '641 cal · 40g protein · 33g fat · 12g fiber · 46g carbs',
         tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy Free', safe: true }],
         price: 10
       },
+      pasta: {
+        name: 'Vodka Pasta',
+        shortName: 'Vodka Pasta',
+        category: 'pasta',
+        desc: 'Tender blackened chicken breast layered over luxurious shell pasta and finished with a silky dairy-free vodka cream sauce made from San Marzano tomatoes and coconut milk, topped with fresh basil for a rich, indulgent plate with a bright, classic Italian-American finish.',
+        macros: '677 cal · 56g protein · 22g fat · 5g fiber · 55g carbs',
+        tags: [{ text: 'Dairy Free', safe: true }, { text: 'Contains Gluten', safe: false }],
+        price: 25
+      },
       broth: {
-        name: 'Ginger Miso Bone Broth',
-        shortName: 'Ginger Miso Broth',
+        name: 'Classic Bone Broth',
+        shortName: 'Classic Bone Broth',
         category: 'broth',
-        desc: 'Our signature high protein and collagen rich chicken bone broth slow simmered for 24 hours with fresh ginger and white miso.',
-        macros: '417 cal · 41g protein · 26g fat · 6g carbs',
+        desc: 'Our classic chicken bone broth slow simmered for 24 hours with fresh herbs and spices.',
+        macros: '419 cal · 41g protein · 26g fat · 6g carbs',
         tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy Free', safe: true }],
         price: 10
       },
       chia: {
-        name: 'Mango Chia Pudding',
-        shortName: 'Mango Chia Pudding',
+        name: 'Vanilla Chia Pudding',
+        shortName: 'Vanilla Chia Pudding',
         category: 'chia',
-        desc: 'Creamy mango chia pudding layered with rich coconut cream and finished with fresh diced mango for a bright, tropical treat.',
-        macros: '353 cal · 22g protein · 18g fat · 9g fiber · 28g carbs',
+        desc: 'A creamy vanilla chia pudding sweetened with maple syrup and topped with fresh blackberries and blueberries.',
+        macros: '373 cal · 24g protein · 13g fat · 14g fiber · 41g carbs',
         tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy (Yogurt)', safe: false }],
         price: 10
       }
@@ -2499,16 +2710,16 @@
     }
 
     // Exposed on window for test-harness access (const would be block-scoped).
-    window.order = { special: 0, chicken: 0, chicken_2: 0, beef: 0, seafood: 0, seafood_2: 0, veg: 0, broth: 0, chia: 0 };
+    window.order = { special: 0, chicken: 0, chicken_2: 0, beef: 0, seafood: 0, seafood_2: 0, veg: 0, pasta: 0, broth: 0, chia: 0 };
     const order = window.order;
-    const customizations = { special: '', chicken: '', chicken_2: '', beef: '', seafood: '', seafood_2: '', veg: '', broth: '', chia: '' };
+    const customizations = { special: '', chicken: '', chicken_2: '', beef: '', seafood: '', seafood_2: '', veg: '', pasta: '', broth: '', chia: '' };
     // Dietary modification pills per dish (meals only)
     const dietaryPrefs = {
       special: new Set(), chicken: new Set(), chicken_2: new Set(), beef: new Set(),
-      seafood: new Set(), seafood_2: new Set(), veg: new Set(),
+      seafood: new Set(), seafood_2: new Set(), veg: new Set(), pasta: new Set(),
       broth: new Set(), chia: new Set()
     };
-    const mealCategories = new Set(['special', 'chicken', 'chicken_2', 'beef', 'seafood', 'seafood_2', 'veg']);
+    const mealCategories = new Set(['special', 'chicken', 'chicken_2', 'beef', 'seafood', 'seafood_2', 'veg', 'pasta']);
     // Low carb / no carb are mutually exclusive
     const carbMods = { 'low carb': 'no carb', 'no carb': 'low carb' };
 
@@ -2569,6 +2780,138 @@
         e.stopPropagation();
         if (order[key] < 12) { order[key]++; syncItem(key); update(); }
       });
+    });
+
+    // Pill nav — filter meals/sides by category, toggle grid/list layout
+    (function initPillNav() {
+      const pills = document.querySelectorAll('.pill-nav .pill');
+      const mealsList = document.querySelector('.meals-list');
+      const sidesList = document.querySelector('.sides-list');
+      const mealsDivider = document.querySelector('.meals-divider');
+      const sidesDivider = document.querySelector('.sides-divider');
+      const chefHeros = document.querySelectorAll('.menu-item.chef-hero');
+      const wellnessSection = document.querySelector('.wellness-section');
+      const allItems = document.querySelectorAll('.menu-item');
+
+      // Items can declare multiple categories via space-separated values
+      // (e.g. data-category="pasta chicken" — visible under both Pasta and Chicken pills).
+      const itemMatchesCategory = (item, category) => {
+        const cats = (item.dataset.category || '').split(/\s+/).filter(Boolean);
+        return cats.includes(category);
+      };
+
+      function applyFilter(category) {
+        pills.forEach(p => p.classList.toggle('active', p.dataset.category === category));
+
+        const isAll = category === 'all';
+        const isSides = category === 'sides';
+
+        // Layout mode: grid only on All, list mode on every filtered tab
+        [mealsList, sidesList].forEach(list => {
+          if (!list) return;
+          list.classList.toggle('grid-mode', isAll);
+          list.classList.toggle('list-mode', !isAll);
+        });
+
+        // Item visibility (supports multi-category items)
+        allItems.forEach(item => {
+          const matches = isAll || itemMatchesCategory(item, category);
+          item.style.display = matches ? '' : 'none';
+        });
+
+        // Chef-hero tiles — show on All or matching meal-category tab; hide on Sides
+        chefHeros.forEach(hero => {
+          const showHero = isAll || (!isSides && itemMatchesCategory(hero, category));
+          hero.style.display = showHero ? '' : 'none';
+        });
+
+        // Wellness Collection — visible on All and on Sides (it's a side/extra)
+        if (wellnessSection) {
+          wellnessSection.style.display = (isAll || isSides) ? '' : 'none';
+        }
+
+        // Hide a section if nothing in it is visible
+        const mealsHasVisible = isAll || (!isSides);
+        const sidesHasVisible = isAll || isSides;
+        if (mealsDivider) mealsDivider.classList.toggle('hidden', !mealsHasVisible);
+        if (mealsList) mealsList.classList.toggle('hidden', !mealsHasVisible);
+        if (sidesDivider) sidesDivider.classList.toggle('hidden', !sidesHasVisible);
+        if (sidesList) sidesList.classList.toggle('hidden', !sidesHasVisible);
+      }
+
+      pills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          applyFilter(pill.dataset.category);
+          // Re-equalize after layout settles. Sync call clears any stale grid-mode min-heights;
+          // the setTimeout call re-measures once the new mode has painted.
+          equalizeGridCardHeights();
+          setTimeout(equalizeGridCardHeights, 50);
+        });
+      });
+    })();
+
+    // Inject small allergen pills into each card based on the dish's tag data.
+    // Safe tags render as green abbreviations ("GF", "DF").
+    // Allergen tags render as a single red letter ("G" for gluten, "D" for dairy).
+    function renderItemTags() {
+      const SAFE_ABBR = { 'Gluten Free': 'GF', 'Dairy Free': 'DF' };
+      document.querySelectorAll('.menu-item').forEach(item => {
+        const data = (typeof dishes !== 'undefined') && dishes[item.dataset.key];
+        if (!data || !data.tags) return;
+        const cat = item.querySelector('.item-cat');
+        if (!cat) return;
+        // Clear any previously injected pills before re-rendering
+        cat.querySelectorAll('.item-tag').forEach(t => t.remove());
+        data.tags.forEach(tag => {
+          let abbr = null;
+          let cls = null;
+          if (tag.safe) {
+            abbr = SAFE_ABBR[tag.text];
+            cls = 'item-tag safe';
+          } else {
+            // Allergen tag — collapse any "Contains Gluten" / "Dairy (...)" wording to a single letter
+            if (/gluten/i.test(tag.text)) { abbr = 'G'; cls = 'item-tag allergen'; }
+            else if (/dairy/i.test(tag.text)) { abbr = 'D'; cls = 'item-tag allergen'; }
+          }
+          if (!abbr) return;
+          const pill = document.createElement('span');
+          pill.className = cls;
+          pill.textContent = abbr;
+          cat.appendChild(pill);
+        });
+      });
+    }
+    renderItemTags();
+
+    // Equalize all card heights in grid-mode to match the tallest card
+    // (so a long meal name like "Lemon Herb Chicken with Whipped Feta" sets the floor for the rest)
+    function equalizeGridCardHeights() {
+      // Reset every card's min-height first so we measure natural sizes
+      document.querySelectorAll('.menu-list .menu-item').forEach(c => { c.style.minHeight = ''; });
+
+      document.querySelectorAll('.menu-list.grid-mode').forEach(grid => {
+        const cards = Array.from(grid.querySelectorAll('.menu-item'))
+          .filter(c => c.offsetParent !== null); // only visible cards
+        if (cards.length === 0) return;
+        let maxHeight = 0;
+        cards.forEach(c => {
+          const h = c.getBoundingClientRect().height;
+          if (h > maxHeight) maxHeight = h;
+        });
+        cards.forEach(c => { c.style.minHeight = maxHeight + 'px'; });
+      });
+    }
+
+    // Run after fonts settle (text width can shift card height) + on window resize
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(equalizeGridCardHeights);
+    } else {
+      window.addEventListener('load', equalizeGridCardHeights);
+    }
+    let _resizeEqTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(_resizeEqTimer);
+      _resizeEqTimer = setTimeout(equalizeGridCardHeights, 150);
     });
 
     // Wellness card stepper (card-level, stops propagation so it doesn't open sheet)
@@ -2799,7 +3142,7 @@
     }
 
     function update() {
-      const meals = order.special + order.chicken + order.chicken_2 + order.beef + order.seafood + order.seafood_2 + order.veg;
+      const meals = order.special + order.chicken + order.chicken_2 + order.beef + order.seafood + order.seafood_2 + order.veg + order.pasta;
       const sides = order.broth + order.chia;
       const hasBroth = order.broth > 0;
       const hasChia = order.chia > 0;
