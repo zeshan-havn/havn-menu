@@ -3179,7 +3179,7 @@
       in: {
         title: 'Havn Club — Welcome Back · $25',
         tiers: [
-          { mealMin: 7, shotMin: 1, amount: 25 }
+          { mealMin: 7, shotMin: 0, amount: 25 }
         ]
       }
     };
@@ -3235,7 +3235,7 @@
           <div class="v2-tiers v2-tiers-single">
             <div class="v2-tier" data-tier="25">
               <div class="v2-amount">$25</div>
-              <div class="v2-qualifier">off 7 meals + Wellness Shots</div>
+              <div class="v2-qualifier">off any 7-meal order</div>
             </div>
           </div>`
       };
@@ -3853,13 +3853,19 @@
         }
         return '';
       }
-      // /ws and /in share the same $25 + 7 meals + shots logic
-      if (mode === 'ws' || mode === 'in') {
+      // /ws — shots required
+      if (mode === 'ws') {
         const need = Math.max(0, 7 - meals);
         const hasShots = shots >= 1;
         if (need === 0 && hasShots) return '';
         if (need === 0 && !hasShots) return 'Add Wellness Shots to unlock $25 off';
         if (need > 0 && !hasShots) return `Add Wellness Shots + ${need} more meal${need === 1 ? '' : 's'} for $25 off`;
+        return `Add ${need} more meal${need === 1 ? '' : 's'} for $25 off`;
+      }
+      // /in — meal-count only, no shots requirement
+      if (mode === 'in') {
+        const need = Math.max(0, 7 - meals);
+        if (need === 0) return '';
         return `Add ${need} more meal${need === 1 ? '' : 's'} for $25 off`;
       }
       return '';
