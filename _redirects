@@ -17,4 +17,8 @@
 # hit this path; all other traffic falls through to the default rewrite.
 /welcome/*  /index.html 200
 /welcome    /index.html 200
+
+# Internal weekly performance review — unguessable path, not linked from anywhere
+/may10-review  /may10-review.html  200
+
 /*          /index.html 200
