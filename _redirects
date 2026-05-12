@@ -10,6 +10,7 @@
 # /may10/menu-preview.jpg is served from /menu-preview.jpg. Customer-facing
 # page URLs like /may10 or /welcome/may10 fall through to the page rewrites
 # below and are detected in index.html via window.location.pathname.
+/may17/*    /:splat 200
 /may10/*    /:splat 200
 
 # Promo variants — same index.html, mode detected from window.location.pathname.
