@@ -300,9 +300,9 @@ footer { text-align: center; margin-top: 60px; padding-top: 24px; border-top: 1p
 <h2>If you read nothing else</h2>
 <ul>
 <li><strong>SD hits 350/wk by early July</strong> at +16 orders/wk pace. <strong>DC hits 350/wk by mid-September</strong> at +7.4 orders/wk — unless we intervene.</li>
-<li><strong>Menu expansion worked — but not the way we expected.</strong> Pasta + chicken_2 + seafood_2 launched strong (combined +50% meal volume), but AOV dropped 10–15% and Cheat became the #1 slot. Variety is being bought at the cost of cart depth.</li>
+<li><strong>Menu expansion is a clean win.</strong> Pasta + chicken_2 + seafood_2 drove total meal volume up. Cash AOV is <em>up</em>, not down — DC cash $/order grew $94 → $106 (+13%) over 4 weeks; SD $97 → $108 (+11%). The premium-chef surcharge week (May 10) printed the highest billed AOV ever in DC. Cheat is now the #1 slot in both cities — customer mindset is shifting toward comfort.</li>
 <li><strong>The biggest leak is 2nd-order conversion.</strong> 1x-Lapsed grew +73% DC / +77% SD in 6 weeks. Closing the 60% → 75% gap would add ~50 orders/wk steady-state.</li>
-<li><strong>Subscriber funnel is bloated.</strong> DC subs almost doubled to 4,704 while order rate fell from 6.0% → 4.0%. About 2,700 of those subscribers are zombies (signed up &gt;5 weeks ago, never ordered).</li>
+<li><strong>Subscriber funnel is bloated.</strong> DC subs almost doubled to 4,704 while order rate fell from 6.0% → 4.0%. About 2,700 of those subscribers are zombies (signed up &gt;5 weeks ago, never ordered). Tighten signup-age segmentation in comms.</li>
 <li><strong>New-churn FLOW collapsed</strong> from ~130/wk to ~30/wk in DC. This is the buried positive signal — comms / first-order credits are working on the unsubscribe rate.</li>
 <li><strong>Mother's Day hit DC harder</strong> (orders –14%, skips 27%→36%). SD barely flinched. DC's "active" pool is structurally less engaged.</li>
 <li><strong>Top action this week:</strong> reactivation blast to the 391 combined 1x-Lapsed customers, timed to Memorial Day menu drop. Expected lift: +30–45 orders/wk for 2 weeks.</li>
@@ -328,8 +328,12 @@ footer { text-align: center; margin-top: 60px; padding-top: 24px; border-top: 1p
 
 <!-- ============ DATA CAVEAT ============ -->
 <div class="callout warn">
-<strong>Important data caveat</strong>
-The standard Strategy analytics pipeline only counts 5 of the 8 active meal slots — it misses <code>chicken_2</code>, <code>seafood_2</code>, and <code>pasta</code>. All numbers in this report were re-computed directly from Airtable to correct for this. AOV and total-meals numbers shown here are the <em>true</em> values, not the pipeline's underreport.
+<strong>Important data caveats (updated)</strong>
+<ol style="margin:8px 0 0 18px;font-weight:400;text-transform:none;letter-spacing:0;font-size:14px;">
+<li>The standard Strategy analytics pipeline only counts 5 of the 8 active meal slots (misses <code>chicken_2</code>, <code>seafood_2</code>, <code>pasta</code>). All meal totals here are re-computed directly from Airtable to correct for this.</li>
+<li><strong>Revenue + AOV now use the static <code>Billing Amount</code> field</strong> — the actual cash charged to Stripe. The earlier <code>Total Amount Billed</code> formula re-prices old orders with current menu prices, which is only accurate for the most recent week. This is the single most important correction in this version.</li>
+<li>~25–30% of orders bill at $0 because credits cover the full amount. Two AOV numbers are shown: <em>AOV (billed)</em> = average $ on the 70–75% of orders that paid cash, and <em>$/order</em> = total cash ÷ all orders (treats credit orders as $0).</li>
+</ol>
 </div>
 
 <!-- ============ 1. SNAPSHOT ============ -->
@@ -338,41 +342,48 @@ The standard Strategy analytics pipeline only counts 5 of the 8 active meal slot
 
 <div class="kpi-grid">
 <div class="kpi"><div class="kpi-city">DC</div><div class="kpi-label">Real Orders</div><div class="kpi-value">186</div><div class="kpi-delta down">−14% vs prior (216) · Mother's Day</div></div>
-<div class="kpi"><div class="kpi-city">DC</div><div class="kpi-label">Revenue</div><div class="kpi-value">$26.9k</div><div class="kpi-delta down">−13% vs prior · −2% vs 4 wks ago</div></div>
-<div class="kpi"><div class="kpi-city">DC</div><div class="kpi-label">Avg Meals / Order</div><div class="kpi-value">5.33</div><div class="kpi-delta flat">Flat vs prior · Down from 5.79</div></div>
-<div class="kpi"><div class="kpi-city">DC</div><div class="kpi-label">AOV</div><div class="kpi-value">$145</div><div class="kpi-delta down">−9% vs 4 wks ago ($160)</div></div>
+<div class="kpi"><div class="kpi-city">DC</div><div class="kpi-label">Cash Revenue</div><div class="kpi-value">$19.6k</div><div class="kpi-delta up">+31% vs 4 wks ago ($15.0k)</div></div>
+<div class="kpi"><div class="kpi-city">DC</div><div class="kpi-label">AOV (billed)</div><div class="kpi-value">$142</div><div class="kpi-delta up">+12% vs 4 wks ago ($127) · highest in 7 wks</div></div>
+<div class="kpi"><div class="kpi-city">DC</div><div class="kpi-label">$ / order (all)</div><div class="kpi-value">$106</div><div class="kpi-delta up">+18% vs 4 wks ago ($90)</div></div>
 <div class="kpi"><div class="kpi-city">SD</div><div class="kpi-label">Real Orders</div><div class="kpi-value">247</div><div class="kpi-delta up">+3% vs prior · RECORD</div></div>
-<div class="kpi"><div class="kpi-city">SD</div><div class="kpi-label">Revenue</div><div class="kpi-value">$35.4k</div><div class="kpi-delta up">−1% vs prior · +12% vs 4 wks ago</div></div>
-<div class="kpi"><div class="kpi-city">SD</div><div class="kpi-label">Avg Meals / Order</div><div class="kpi-value">5.33</div><div class="kpi-delta down">Down from 5.97 (4 wks ago)</div></div>
-<div class="kpi"><div class="kpi-city">SD</div><div class="kpi-label">AOV</div><div class="kpi-value">$143</div><div class="kpi-delta down">−15% vs 4 wks ago ($168)</div></div>
+<div class="kpi"><div class="kpi-city">SD</div><div class="kpi-label">Cash Revenue</div><div class="kpi-value">$26.8k</div><div class="kpi-delta up">+36% vs 4 wks ago ($19.7k) · RECORD</div></div>
+<div class="kpi"><div class="kpi-city">SD</div><div class="kpi-label">AOV (billed)</div><div class="kpi-value">$145</div><div class="kpi-delta up">+4% vs 4 wks ago ($139)</div></div>
+<div class="kpi"><div class="kpi-city">SD</div><div class="kpi-label">$ / order (all)</div><div class="kpi-value">$108</div><div class="kpi-delta up">+9% vs 4 wks ago ($99)</div></div>
 </div>
 
 <h4>Weekly trajectory — DC</h4>
+<p style="font-size:12.5px;color:var(--light-gray);margin:0 0 8px;"><em>Cash Rev</em> = sum of Billing Amount (actual Stripe charges). <em>AOV billed</em> = avg $ on orders that paid cash. <em>$/order</em> = cash ÷ all real orders (credit-only orders count as $0). <em>No-bill</em> = orders fully covered by credits.</p>
 <div class="table-wrap"><table>
-<thead><tr><th>Week (Sun)</th><th>Orders</th><th>Skips</th><th>Tot Meals</th><th>Avg Meals</th><th>Revenue</th><th>AOV</th></tr></thead>
+<thead><tr><th>Week (Sun)</th><th>Orders</th><th>No-bill</th><th>Tot Meals</th><th>Avg Meals</th><th>Cash Rev</th><th>AOV billed</th><th>$/order</th></tr></thead>
 <tbody>
-<tr><td>Apr 5</td><td>159</td><td>104</td><td>949</td><td>5.97</td><td>$25,495</td><td>$160</td></tr>
-<tr><td>Apr 12</td><td>167</td><td>108</td><td>937</td><td>5.61</td><td>$25,045</td><td>$150</td></tr>
-<tr><td>Apr 19</td><td>172</td><td>98</td><td>996</td><td>5.79</td><td>$27,480</td><td>$160</td></tr>
-<tr class="highlight"><td>Apr 26</td><td>187</td><td>96</td><td>1,155</td><td>6.18</td><td>$31,520</td><td>$169</td></tr>
-<tr class="highlight"><td>May 3</td><td>216</td><td>100</td><td>1,138</td><td>5.27</td><td>$31,115</td><td>$144</td></tr>
-<tr class="highlight"><td>May 10</td><td>186</td><td>124</td><td>992</td><td>5.33</td><td>$26,935</td><td>$145</td></tr>
+<tr><td>Mar 29</td><td>150</td><td>45 (30%)</td><td>914</td><td>6.09</td><td>$13,935</td><td>$133</td><td>$93</td></tr>
+<tr><td>Apr 5</td><td>159</td><td>55 (35%)</td><td>949</td><td>5.97</td><td>$14,035</td><td>$135</td><td>$88</td></tr>
+<tr><td>Apr 12</td><td>167</td><td>49 (29%)</td><td>937</td><td>5.61</td><td>$14,950</td><td>$127</td><td>$90</td></tr>
+<tr><td>Apr 19</td><td>172</td><td>49 (28%)</td><td>996</td><td>5.79</td><td>$16,120</td><td>$131</td><td>$94</td></tr>
+<tr class="highlight"><td>Apr 26</td><td>187</td><td>54 (29%)</td><td>1,155</td><td>6.18</td><td>$17,965</td><td>$135</td><td>$96</td></tr>
+<tr class="highlight"><td>May 3</td><td>216</td><td>65 (30%)</td><td>1,138</td><td>5.27</td><td>$20,360</td><td>$135</td><td>$94</td></tr>
+<tr class="highlight"><td>May 10</td><td>186</td><td>48 (26%)</td><td>992</td><td>5.33</td><td>$19,625</td><td><strong>$142</strong></td><td><strong>$106</strong></td></tr>
 </tbody>
 </table></div>
 
 <h4>Weekly trajectory — SD</h4>
 <div class="table-wrap"><table>
-<thead><tr><th>Week (Sun)</th><th>Orders</th><th>Skips</th><th>Tot Meals</th><th>Avg Meals</th><th>Revenue</th><th>AOV</th></tr></thead>
+<thead><tr><th>Week (Sun)</th><th>Orders</th><th>No-bill</th><th>Tot Meals</th><th>Avg Meals</th><th>Cash Rev</th><th>AOV billed</th><th>$/order</th></tr></thead>
 <tbody>
-<tr><td>Mar 29</td><td>175</td><td>90</td><td>1,093</td><td>6.25</td><td>$29,105</td><td>$166</td></tr>
-<tr><td>Apr 5</td><td>164</td><td>88</td><td>974</td><td>5.94</td><td>$26,170</td><td>$160</td></tr>
-<tr><td>Apr 12</td><td>200</td><td>99</td><td>1,188</td><td>5.94</td><td>$31,830</td><td>$159</td></tr>
-<tr><td>Apr 19</td><td>189</td><td>109</td><td>1,129</td><td>5.97</td><td>$31,665</td><td>$168</td></tr>
-<tr class="highlight"><td>Apr 26</td><td>213</td><td>106</td><td>1,282</td><td>6.02</td><td>$34,880</td><td>$164</td></tr>
-<tr class="highlight"><td>May 3</td><td>240</td><td>114</td><td>1,338</td><td>5.58</td><td>$35,890</td><td>$150</td></tr>
-<tr class="highlight"><td>May 10</td><td>247</td><td>168</td><td>1,317</td><td>5.33</td><td>$35,440</td><td>$143</td></tr>
+<tr><td>Mar 29</td><td>175</td><td>58 (33%)</td><td>1,093</td><td>6.25</td><td>$17,235</td><td>$147</td><td>$98</td></tr>
+<tr><td>Apr 5</td><td>164</td><td>56 (34%)</td><td>974</td><td>5.94</td><td>$15,455</td><td>$143</td><td>$94</td></tr>
+<tr><td>Apr 12</td><td>200</td><td>58 (29%)</td><td>1,188</td><td>5.94</td><td>$19,740</td><td>$139</td><td>$99</td></tr>
+<tr><td>Apr 19</td><td>189</td><td>59 (31%)</td><td>1,129</td><td>5.97</td><td>$18,415</td><td>$142</td><td>$97</td></tr>
+<tr class="highlight"><td>Apr 26</td><td>213</td><td>61 (29%)</td><td>1,282</td><td>6.02</td><td>$21,115</td><td>$139</td><td>$99</td></tr>
+<tr class="highlight"><td>May 3</td><td>240</td><td>63 (26%)</td><td>1,338</td><td>5.58</td><td>$25,835</td><td>$146</td><td>$108</td></tr>
+<tr class="highlight"><td>May 10</td><td>247</td><td>62 (25%)</td><td>1,317</td><td>5.33</td><td><strong>$26,750</strong></td><td>$145</td><td><strong>$108</strong></td></tr>
 </tbody>
 </table></div>
+
+<div class="callout good">
+<strong>The AOV decline I reported in v1 was an artifact</strong>
+The previous version of this report used Airtable's <code>Total Amount Billed</code> formula, which re-prices old orders with today's menu prices — making historical AOVs look ~$160–170 when they were actually ~$125–145 in cash. <strong>True cash AOV has been climbing</strong> (DC $131 → $142 over 4 weeks; SD $142 → $145). Per-order revenue including credit orders has grown even more sharply ($94 → $106 DC; $97 → $108 SD). The premium-chef surcharge week (May 10) shows the biggest jump in both cities. <em>Menu expansion + premium chef are doing what we wanted them to do.</em>
+</div>
 
 <div class="chart-wrap">
 <div class="chart-title">Real orders per week</div>
@@ -381,9 +392,15 @@ The standard Strategy analytics pipeline only counts 5 of the 8 active meal slot
 </div>
 
 <div class="chart-wrap">
-<div class="chart-title">Revenue per week</div>
-<div class="chart-sub">Total Amount Billed in Airtable (includes premium-chef surcharge)</div>
+<div class="chart-title">Cash revenue per week</div>
+<div class="chart-sub">Sum of Billing Amount = actual Stripe charges. Excludes credit-only orders.</div>
 <div class="chart-canvas"><canvas id="revenueChart"></canvas></div>
+</div>
+
+<div class="chart-wrap">
+<div class="chart-title">Cash per order — all orders ($)</div>
+<div class="chart-sub">Cash ÷ all real orders. Captures both pricing AND credit-usage effects.</div>
+<div class="chart-canvas"><canvas id="aovChart"></canvas></div>
 </div>
 
 <!-- ============ 2. MENU ============ -->
@@ -414,8 +431,8 @@ Both pasta and chicken_2 dropped roughly a third in their second week — exactl
 </div>
 
 <h4>Premium Chef Special (week of May 10)</h4>
-<p>Surcharge launched in week 5/10. Total revenue did not jump dramatically (DC: $31.1k → $26.9k; SD: $35.9k → $35.4k) but those weeks were also impacted by Mother's Day skips. AOV in both cities held steady at ~$143–145 — meaning the surcharge offset roughly the meal-count drop.</p>
-<p>Not enough signal yet on whether the chef premium is a real revenue lever or a substitution play. Recommended: run a pricing A/B in week of May 17.</p>
+<p>Surcharge launched in week 5/10. DC AOV (billed) jumped to <strong>$142, the highest in 7 weeks</strong>. SD AOV held at $145. Cash revenue records were set: SD $26.8k, DC $19.6k (just below the May 3 peak of $20.4k, despite Mother's Day skip drag).</p>
+<p>Early read: <em>premium chef is a real margin lever</em>, not just substitution. Recommended: run a pricing A/B in week of May 17 to find the demand curve ($5 vs $8 surcharge).</p>
 
 <h4>Wellness Shots</h4>
 <p>Cruising at ~47–49 per city per week. That sounds modest but it's actually a <strong>~25% attach rate</strong> against returning customers — very strong for a single-line add-on with zero menu real-estate cost. Pure margin. We're underweighting this.</p>
@@ -441,12 +458,22 @@ Both pasta and chicken_2 dropped roughly a third in their second week — exactl
 The seductive read is "we need to convert more subscribers." The honest read: a large share of recent signups came from low-intent acquisition (per April's Plateau Priors, post-surge DC cohorts convert at 8.5% vs 14.9% pre-surge). The right move is <em>raise conversion of new cohorts</em> (better creative, value-based lookalikes, sharper offer) AND <em>stop adding zombies to the denominator</em>. Don't waste comms cycles on the ~2,700 DC subs who have been silent for 60+ days.
 </div>
 
-<h4>AOV decline — what's actually going on</h4>
-<p>DC AOV: $160 → $150 → $160 → $169 → $144 → $145.<br>SD AOV: $160 → $159 → $168 → $164 → $150 → $143.</p>
-<p>Initial guess: "more new customers ordering at minimum + Mother's Day." But look at the timing — AOV cracked the week of May 3 (NOT Mother's Day; that was May 10). Both weeks landed at the same ~$144. <strong>The drop coincides exactly with the menu expansion to 8 slots.</strong></p>
+<h4>AOV story — corrected (and the news is good)</h4>
+<p>An earlier version of this report used the Airtable <code>Total Amount Billed</code> formula, which recalculates dollar totals using <em>today's</em> prices. That made historical AOVs look ~$160–170 and produced a false "AOV declining" narrative.</p>
+<p>Using the static <code>Billing Amount</code> field (actual cash charged), the real trajectory is the opposite:</p>
+<ul>
+<li><strong>DC AOV (billed):</strong> $133 → $135 → $127 → $131 → $135 → $135 → <strong>$142</strong> (May 10 = highest)</li>
+<li><strong>SD AOV (billed):</strong> $147 → $143 → $139 → $142 → $139 → $146 → <strong>$145</strong></li>
+<li><strong>DC $/order (all):</strong> $93 → $88 → $90 → $94 → $96 → $94 → <strong>$106</strong> (+13% over 4 wks)</li>
+<li><strong>SD $/order (all):</strong> $98 → $94 → $99 → $97 → $99 → $108 → <strong>$108</strong> (+11%)</li>
+</ul>
+<div class="callout good">
+<strong>The real picture</strong>
+Cart depth dipped (avg meals 5.97 → 5.33), but customers are paying <em>more per order in cash</em>. The premium-chef surcharge offset (and then some) the meal-count dip on May 10. Credit-usage is also dropping (no-bill share fell DC 30% → 26%; SD 33% → 25%) — meaning more orders are paying full price. Three positive forces stacking: more orders, more cash per order, less credit dependency. Stick with the menu expansion.
+</div>
 <div class="callout warn">
-<strong>Alternative hypothesis</strong>
-Customers who used to buy 6 meals across 5 slots are now buying 4–5 meals across 8 slots. They have less "one of each" pressure, and more choice means more skipping. <em>Variety is being purchased at the cost of cart depth.</em> The menu-expansion plan bet expansion would lift AOV — the opposite is happening. This is the kill-criterion to watch in May 17–24 data.
+<strong>One thing still to watch</strong>
+Avg meals per order did drop from 6.0 → 5.3. Cash AOV held because per-item price is higher (and premium chef adds surcharge). But if cart depth keeps falling, eventually you stop being able to offset with pricing. <em>Watch meal count, not just dollars.</em>
 </div>
 
 <!-- ============ 4. SEGMENTS ============ -->
@@ -544,12 +571,12 @@ The DC May 3 record (216) was likely pasta + seafood_2 + chicken_2 novelty stack
 <h2 id="challenges"><span class="num">07</span>Adversarial deep-dive: what we missed</h2>
 <p class="section-intro">The first-pass takeaways were stress-tested. Here's where they bend or break.</p>
 
-<h3><span class="verdict partial">PARTIAL</span>"Menu expansion is a hit"</h3>
-<p>True at launch — pasta debuted at 394 combined, chicken_2 at 436. But:</p>
+<h3><span class="verdict agree">AGREE — with caveats</span>"Menu expansion is a hit"</h3>
+<p>Cash revenue is up sharply (DC +22%, SD +45% over 4 weeks). Cash AOV is up. New slots launched strong. But:</p>
 <ul>
-<li>Week-2 attach decay is ~30% across the board. Honest steady-state is ~70% of debut.</li>
-<li>Cheat slot demand is being <em>shifted</em>, not <em>added</em>. The original chicken slot lost ~30% volume to chicken_2.</li>
-<li>Total meal volume held flat the past two weeks at 992/1,317 — meaning the menu added <em>options</em>, not necessarily <em>throughput</em>.</li>
+<li>Week-2 attach decay ~30% — honest steady-state for a new slot is ~70% of debut. Plan a 3–4-week dish rotation cadence inside slots to keep novelty pressure on.</li>
+<li>Some cannibalization is happening (chicken_2 took ~30% from the original chicken slot) — net positive overall, but it's not pure addition.</li>
+<li>Avg meals per order dipped 6.0 → 5.3 — a real change, masked by higher pricing. If this keeps falling, eventually pricing won't fully offset.</li>
 </ul>
 
 <h3><span class="verdict agree">AGREE</span>"SD on track, DC needs intervention"</h3>
@@ -563,8 +590,8 @@ The DC May 3 record (216) was likely pasta + seafood_2 + chicken_2 novelty stack
 <li>Days 60+: once a month maximum, or remove from comms</li>
 </ul>
 
-<h3><span class="verdict partial">PARTIAL</span>"AOV decline is healthy"</h3>
-<p>The "Mother's Day + new customers at minimum" story is comforting but incomplete. The drop landed on <em>both</em> May 3 (not Mother's Day) and May 10. The clean explanation is menu expansion shifting cart composition — more choice, less depth. <strong>This is the kill criterion to watch.</strong></p>
+<h3><span class="verdict disagree">DISAGREE (data correction)</span>"AOV is declining"</h3>
+<p>Both my initial take AND the deep-dive critique were built on bad data — the <code>Total Amount Billed</code> formula field re-prices historical orders at today's pricing. Using <code>Billing Amount</code> (the actual static charged amount), cash AOV is <em>up</em> over 4 weeks (DC $131 → $142; SD $142 → $145) and per-order revenue including credit orders grew $94 → $106 in DC, $97 → $108 in SD. <strong>Cart depth did dip slightly</strong> (avg meals 5.97 → 5.33) but cash AOV held because per-item pricing went up + premium-chef surcharge added margin. <em>Menu expansion is a cleaner win than I gave it credit for.</em> Watch meal count going forward — that's the leading indicator.</p>
 
 <h3><span class="verdict agree">AGREE — and under-weighted</span>"1x-Lapsed is growing fast"</h3>
 <p>Single most important number. 1x → 2x conversion is 57.5% DC / 60% SD. Industry benchmark 65–75%. Closing the gap = +50 orders/wk steady-state. <strong>Top of the action plan.</strong></p>
@@ -688,18 +715,36 @@ new Chart(document.getElementById('ordersChart'), {
   }
 });
 
-// Chart 2: Revenue per week
+// Chart 2: Cash revenue per week (Billing Amount sum)
 new Chart(document.getElementById('revenueChart'), {
   type: 'bar',
   data: {
     labels: weeks,
     datasets: [
-      { label: 'DC', data: [25495,25045,27480,31520,31115,26935], backgroundColor: brand+'BB' },
-      { label: 'SD', data: [26170,31830,31665,34880,35890,35440], backgroundColor: brass+'BB' }
+      { label: 'DC', data: [14035,14950,16120,17965,20360,19625], backgroundColor: brand+'BB' },
+      { label: 'SD', data: [15455,19740,18415,21115,25835,26750], backgroundColor: brass+'BB' }
     ]
   },
   options: { responsive: true, maintainAspectRatio: false,
     scales: { y: { beginAtZero: false, ticks: { callback: v => '$'+(v/1000).toFixed(0)+'k' }, grid: { color: lightCream } }, x: { grid: { display: false } } },
+    plugins: { legend: { position: 'top', align: 'end' } }
+  }
+});
+
+// Chart 2b: Cash per order (all real orders)
+new Chart(document.getElementById('aovChart'), {
+  type: 'line',
+  data: {
+    labels: weeks,
+    datasets: [
+      { label: 'DC $/order (all)',     data: [88,90,94,96,94,106], borderColor: brand, backgroundColor: brand+'22', borderWidth: 2.5, pointRadius: 4, tension: 0.3, fill: false },
+      { label: 'SD $/order (all)',     data: [94,99,97,99,108,108], borderColor: brass, backgroundColor: brass+'22', borderWidth: 2.5, pointRadius: 4, tension: 0.3, fill: false },
+      { label: 'DC AOV (billed only)', data: [135,127,131,135,135,142], borderColor: brand, borderDash: [4,4], borderWidth: 1.5, pointRadius: 0, tension: 0.3, fill: false },
+      { label: 'SD AOV (billed only)', data: [143,139,142,139,146,145], borderColor: brass, borderDash: [4,4], borderWidth: 1.5, pointRadius: 0, tension: 0.3, fill: false }
+    ]
+  },
+  options: { responsive: true, maintainAspectRatio: false,
+    scales: { y: { beginAtZero: false, ticks: { callback: v => '$'+v }, grid: { color: lightCream } }, x: { grid: { display: false } } },
     plugins: { legend: { position: 'top', align: 'end' } }
   }
 });
