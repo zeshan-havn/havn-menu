@@ -1395,6 +1395,18 @@
       box-shadow: 0 1px 4px rgba(26, 47, 39, 0.18);
     }
 
+    .mod-pill .mod-price {
+      margin-left: 4px;
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--brass-muted);
+      letter-spacing: 0.01em;
+    }
+
+    .mod-pill.active .mod-price {
+      color: var(--brass);
+    }
+
     /* Customization */
     .custom-field {
       margin-bottom: 18px;
@@ -2008,6 +2020,409 @@
         padding-top: calc(env(safe-area-inset-top) + 12px);
       }
     }
+
+    /* ==========================================
+       PRESET BUNDLES — appears between order bar and wellness
+    ========================================== */
+
+    .presets-section {
+      padding: 14px 12px 4px;
+      background: var(--cream);
+    }
+
+    .presets-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding: 0 4px;
+    }
+    .presets-eyebrow .eyebrow-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--cream-dark) 0%, transparent 100%);
+    }
+    .presets-eyebrow .eyebrow-line.right {
+      background: linear-gradient(90deg, transparent 0%, var(--cream-dark) 100%);
+    }
+    .presets-eyebrow .eyebrow-text {
+      font-family: var(--font-display);
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray-muted);
+    }
+
+    .presets-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 7px;
+      padding: 0 2px 6px;
+    }
+
+    .preset-card {
+      background: var(--cream-warm);
+      border: 1px solid rgba(196, 168, 124, 0.22);
+      border-radius: 12px;
+      padding: 11px 10px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      cursor: pointer;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+      text-align: left;
+      position: relative;
+      min-width: 0;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.55),
+        0 2px 6px rgba(26, 47, 39, 0.06),
+        0 8px 18px rgba(26, 47, 39, 0.07);
+      -webkit-tap-highlight-color: transparent;
+    }
+    .preset-card:active { transform: translateY(1px); }
+
+    .preset-card.featured {
+      background: linear-gradient(135deg, #243D33 0%, #0F1F18 100%);
+      border-color: rgba(196, 168, 124, 0.35);
+      color: var(--cream);
+    }
+
+    .preset-tag {
+      position: absolute;
+      top: -7px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      background: var(--brass);
+      color: var(--green-darkest);
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+
+    .preset-eyebrow {
+      font-family: var(--font-body);
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--brass-muted);
+    }
+    .preset-card.featured .preset-eyebrow { color: var(--brass); }
+
+    .preset-title {
+      font-family: var(--font-display);
+      font-size: 19px;
+      font-weight: 500;
+      color: var(--charcoal);
+      line-height: 1.1;
+      letter-spacing: 0.005em;
+    }
+    .preset-card.featured .preset-title { color: var(--cream); }
+
+    .preset-meta {
+      font-size: 10px;
+      font-weight: 400;
+      color: var(--gray-warm);
+      line-height: 1.3;
+      margin-top: 1px;
+    }
+    .preset-card.featured .preset-meta { color: var(--cream-muted); }
+
+    .preset-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-top: 6px;
+    }
+
+    .preset-price {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--green-brand);
+      font-variant-numeric: tabular-nums;
+    }
+    .preset-card.featured .preset-price { color: var(--brass); }
+
+    .preset-cta {
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--brass-muted);
+    }
+    .preset-card.featured .preset-cta { color: var(--brass); }
+
+    /* ==========================================
+       BUNDLE SHEET — opens when a preset is tapped
+    ========================================== */
+
+    .bundle-head {
+      padding: 14px 20px 14px;
+      border-bottom: 1px solid rgba(196, 168, 124, 0.20);
+      flex-shrink: 0;
+      position: relative;
+    }
+    .bundle-head-eyebrow {
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--brass-muted);
+      margin-bottom: 5px;
+    }
+    .bundle-head-title {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 500;
+      color: var(--green-darkest);
+      letter-spacing: 0.005em;
+      margin-bottom: 4px;
+      line-height: 1.1;
+    }
+    .bundle-head-blurb {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--gray-warm);
+      line-height: 1.45;
+      max-width: 92%;
+    }
+
+    .bundle-body {
+      padding: 14px 16px 12px;
+      max-height: 50vh;
+      overflow-y: auto;
+    }
+    .bundle-body::-webkit-scrollbar { width: 0; }
+
+    .bundle-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      background: var(--cream-warm);
+      border: 1px solid rgba(196, 168, 124, 0.18);
+      border-radius: 10px;
+      margin-bottom: 8px;
+    }
+    .bundle-item.special {
+      background: linear-gradient(135deg, #243D33 0%, #0F1F18 100%);
+      border-color: rgba(196, 168, 124, 0.30);
+    }
+    .bundle-item-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .bundle-item-cat {
+      font-family: var(--font-display);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--green-brand);
+      margin-bottom: 3px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .bundle-item.special .bundle-item-cat { color: var(--brass); }
+    .bundle-item-cat .surcharge {
+      border: 1px solid var(--brass);
+      padding: 1px 5px;
+      font-size: 8px;
+      letter-spacing: 0.12em;
+      color: var(--brass);
+      border-radius: 3px;
+    }
+    .bundle-item-name {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--charcoal);
+      line-height: 1.15;
+      margin-bottom: 2px;
+    }
+    .bundle-item.special .bundle-item-name { color: var(--cream); }
+    .bundle-item-macros {
+      font-size: 10px;
+      color: var(--gray-warm);
+    }
+    .bundle-item.special .bundle-item-macros { color: var(--cream-muted); }
+    .bundle-item .stepper { flex-shrink: 0; }
+
+    .bundle-add-row {
+      margin-top: 4px;
+      padding: 12px;
+      border: 1px dashed rgba(196, 168, 124, 0.45);
+      border-radius: 10px;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--brass-muted);
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      background: transparent;
+      display: block;
+      width: 100%;
+      font-family: var(--font-body);
+    }
+    .bundle-add-row:active { background: rgba(196, 168, 124, 0.06); }
+
+    .bundle-add-options {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 8px;
+      padding: 10px;
+      border: 1px solid rgba(196, 168, 124, 0.30);
+      border-radius: 10px;
+      background: var(--cream-warm);
+    }
+    .bundle-add-options.open { display: flex; }
+    .bundle-add-options-title {
+      font-family: var(--font-display);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray-muted);
+      margin-bottom: 4px;
+    }
+    .add-option {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 10px;
+      background: var(--cream);
+      border: 1px solid rgba(196, 168, 124, 0.20);
+      border-radius: 8px;
+      font-size: 12px;
+      color: var(--charcoal);
+      cursor: pointer;
+      text-align: left;
+      font-family: var(--font-body);
+    }
+    .add-option:active { background: var(--cream-dark); }
+    .add-option .opt-cat {
+      font-family: var(--font-display);
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green-brand);
+      margin-right: 8px;
+    }
+    .add-option .opt-plus {
+      color: var(--brass-muted);
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .bundle-foot {
+      padding: 12px 18px 18px;
+      border-top: 1px solid rgba(196, 168, 124, 0.20);
+      background: var(--cream);
+      flex-shrink: 0;
+    }
+    .bundle-foot-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 10px;
+    }
+    .bundle-foot-label {
+      font-size: 12px;
+      color: var(--gray-warm);
+    }
+    .bundle-foot-label .count {
+      font-weight: 500;
+      color: var(--charcoal);
+    }
+    .bundle-foot-total {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--green-darkest);
+      font-variant-numeric: tabular-nums;
+    }
+    .bundle-foot-actions {
+      display: flex;
+      gap: 8px;
+    }
+    .bundle-cancel {
+      flex-shrink: 0;
+      padding: 12px 18px;
+      background: transparent;
+      border: 1px solid rgba(196, 168, 124, 0.45);
+      border-radius: 100px;
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--gray-warm);
+      cursor: pointer;
+    }
+    .bundle-commit {
+      flex: 1;
+      padding: 12px 18px;
+      background: var(--green-brand);
+      border: none;
+      border-radius: 100px;
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--cream);
+      cursor: pointer;
+      letter-spacing: 0.02em;
+    }
+    .bundle-commit:active { transform: scale(0.98); }
+
+    /* Running subtotal — non-welcome customers see a simple version */
+    body:not([data-welcome]) .welcome-price-discount-section,
+    body:not([data-welcome]) .welcome-price-nudge { display: none !important; }
+
+    body:not([data-welcome]) .welcome-price.visible {
+      display: block;
+    }
+
+    /* Single-tier promo banner (/ws and /in modes use $25 only) */
+    .welcome-banner.v2 .v2-tiers-single {
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+    .welcome-banner.v2 .v2-tiers-single .v2-amount {
+      font-size: 36px;
+    }
+    .welcome-banner.v2 .v2-tiers-single .v2-qualifier {
+      font-size: 10px;
+    }
+
+    /* Preset card strikethrough pricing — shows when an active promo applies */
+    .preset-price .price-original {
+      text-decoration: line-through;
+      color: var(--gray-muted);
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 400;
+      margin-right: 5px;
+      letter-spacing: 0;
+    }
+    .preset-price .price-discounted {
+      color: var(--green-brand);
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 500;
+    }
+    .preset-card.featured .preset-price .price-original {
+      color: rgba(245, 241, 234, 0.45);
+    }
+    .preset-card.featured .preset-price .price-discounted {
+      color: var(--brass);
+    }
   </style>
 </head>
 <body>
@@ -2044,6 +2459,45 @@
               <span>$25/meal</span>
               <span class="dot"></span>
               <span>$10/side</span>
+            </div>
+          </div>
+
+          <!-- Preset Bundles -->
+          <div class="presets-section">
+            <div class="presets-eyebrow">
+              <div class="eyebrow-line"></div>
+              <span class="eyebrow-text">Start with a preset</span>
+              <div class="eyebrow-line right"></div>
+            </div>
+            <div class="presets-row">
+              <button class="preset-card" data-preset="basic" type="button">
+                <span class="preset-eyebrow">Starter</span>
+                <span class="preset-title">Basic</span>
+                <span class="preset-meta">5 meals + chia</span>
+                <div class="preset-bottom">
+                  <span class="preset-price">$135</span>
+                  <span class="preset-cta">View →</span>
+                </div>
+              </button>
+              <button class="preset-card featured" data-preset="standard" type="button">
+                <span class="preset-tag">Most popular</span>
+                <span class="preset-eyebrow">The go-to</span>
+                <span class="preset-title">Standard</span>
+                <span class="preset-meta">7 meals + chia + shots</span>
+                <div class="preset-bottom">
+                  <span class="preset-price">$210</span>
+                  <span class="preset-cta">View →</span>
+                </div>
+              </button>
+              <button class="preset-card" data-preset="signature" type="button">
+                <span class="preset-eyebrow">Full menu</span>
+                <span class="preset-title">Signature</span>
+                <span class="preset-meta">One of everything</span>
+                <div class="preset-bottom">
+                  <span class="preset-price">$245</span>
+                  <span class="preset-cta">View →</span>
+                </div>
+              </button>
             </div>
           </div>
 
@@ -2399,6 +2853,8 @@
                   <button class="mod-pill" data-mod="gluten free" type="button">Gluten Free</button>
                   <button class="mod-pill" data-mod="low carb" type="button">Low Carb</button>
                   <button class="mod-pill" data-mod="no carb" type="button">No Carb</button>
+                  <button class="mod-pill" data-mod="extra protein" type="button">Extra Protein<span class="mod-price">+$2</span></button>
+                  <button class="mod-pill" data-mod="extra carbs" type="button">Extra Carbs</button>
                 </div>
               </div>
 
@@ -2539,6 +2995,30 @@
           </div>
         </div>
 
+        <!-- Bundle Sheet — opens when a preset card is tapped -->
+        <div class="sheet-overlay" id="bundleOverlay">
+          <div class="sheet">
+            <div class="sheet-handle"></div>
+            <button class="sheet-close" id="bundleClose">×</button>
+            <div class="bundle-head">
+              <div class="bundle-head-eyebrow" id="bundleEyebrow">Starter</div>
+              <div class="bundle-head-title" id="bundleTitle">Basic</div>
+              <div class="bundle-head-blurb" id="bundleBlurb"></div>
+            </div>
+            <div class="bundle-body" id="bundleBody"></div>
+            <div class="bundle-foot" id="bundleFoot">
+              <div class="bundle-foot-row">
+                <div class="bundle-foot-label"><span class="count" id="bundleCount">0 items</span> · adjust below</div>
+                <div class="bundle-foot-total" id="bundleTotal">$0</div>
+              </div>
+              <div class="bundle-foot-actions">
+                <button class="bundle-cancel" id="bundleCancel" type="button">Cancel</button>
+                <button class="bundle-commit" id="bundleCommit" type="button">Add to my order</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- Help Sheet -->
         <div class="sheet-overlay" id="helpOverlay">
           <div class="sheet">
@@ -2667,35 +3147,69 @@
     
     // Welcome-mode detection — triggered when the page is served from /welcome/*
     // (Netlify _redirects routes /welcome and /welcome/{token} to this index.html)
-    // or from any URL with ?welcome=1 (useful for previewing from the dev server).
-    // When true: welcome banner + tier badge + price card are active.
-    const isWelcomeMode =
-      /^\/welcome(\/|$)/.test(window.location.pathname) ||
-      new URLSearchParams(window.location.search).has('welcome');
-    if (isWelcomeMode) {
-      document.body.setAttribute('data-welcome', '');
-      document.title = 'Havn Club — Welcome Offer';
+    // Multi-promo mode detection — routes /welcome, /ws, /in to different promos.
+    // ?welcome / ?ws / ?in query params work too for local dev previewing.
+    const _path = window.location.pathname;
+    const _qs = new URLSearchParams(window.location.search);
+    const isWelcomeMode = /^\/welcome(\/|$)/.test(_path) || _qs.has('welcome');
+    const isWsMode = /^\/ws(\/|$)/.test(_path) || _qs.has('ws');
+    const isInMode = /^\/in(\/|$)/.test(_path) || _qs.has('in');
+    const activePromoMode = isWelcomeMode ? 'welcome' : isWsMode ? 'ws' : isInMode ? 'in' : null;
 
-      // Pick a banner variant. ?banner=1|2|3 for design comparisons; defaults to v1.
-      const bannerVariant = (new URLSearchParams(window.location.search).get('banner') || '2').trim();
+    // Promo config — single source of truth for tier rules + banner content per mode.
+    // Tier matches when meals >= mealMin AND shots >= shotMin. Highest matched tier wins.
+    // Backend gate (Option A): Promo Credits + Promo Meal Minimum on the customer record.
+    // The shots requirement is enforced ON THE MENU PAGE (visual nudge); Stripe billing
+    // honors the credit on any 7-meal order. If shot attach matters at billing time,
+    // see plan to extend Wellness Credit logic.
+    const PROMO_CONFIG = {
+      welcome: {
+        title: 'Havn Club — Welcome Offer',
+        tiers: [
+          { mealMin: 5, shotMin: 0, amount: 20 },
+          { mealMin: 7, shotMin: 0, amount: 40 }
+        ]
+      },
+      ws: {
+        title: 'Havn Club — $25 Credit',
+        tiers: [
+          { mealMin: 7, shotMin: 1, amount: 25 }
+        ]
+      },
+      in: {
+        title: 'Havn Club — Welcome Back · $25',
+        tiers: [
+          { mealMin: 7, shotMin: 1, amount: 25 }
+        ]
+      }
+    };
+
+    // Compute the matched discount for a (meals, shots) combo under the active mode.
+    function computePromoDiscount(meals, shots, mode) {
+      if (!mode) return 0;
+      const cfg = PROMO_CONFIG[mode];
+      if (!cfg) return 0;
+      let max = 0;
+      cfg.tiers.forEach(t => {
+        if (meals >= t.mealMin && shots >= (t.shotMin || 0)) {
+          if (t.amount > max) max = t.amount;
+        }
+      });
+      return max;
+    }
+
+    if (activePromoMode) {
+      // data-welcome reuses the existing CSS hook that gates the banner + price card.
+      // data-promo-mode lets per-mode CSS hooks layer in if needed.
+      document.body.setAttribute('data-welcome', '');
+      document.body.setAttribute('data-promo-mode', activePromoMode);
+      document.title = PROMO_CONFIG[activePromoMode].title;
+
       const bannerEl = document.getElementById('welcomeBanner');
-      const bannerTemplates = {
-        '0': `
-          <span class="welcome-banner-label">✦ Your Welcome Offer</span>
-          <div class="welcome-banner-title">First-order discount applies automatically below.</div>
-          <div class="welcome-banner-tiers">
-            <span class="welcome-tier-chip"><strong>5 meals</strong> → $20 off</span>
-            <span class="welcome-tier-chip"><strong>7 meals</strong> → $40 off</span>
-          </div>`,
-        '1': `
-          <div class="v1-eyebrow">Welcome · First order only</div>
-          <div class="v1-title">A gift from the kitchen.</div>
-          <div class="v1-tiers">
-            <span><strong>5 meals</strong> — $20 off</span>
-            <span class="v1-dot">✦</span>
-            <span><strong>7 meals</strong> — $40 off</span>
-          </div>`,
-        '2': `
+      // All modes use the v2 (brand-dark) banner shell — content varies per mode.
+      // Lead with the dollar amount; the qualifier is the small print.
+      const bannerByMode = {
+        welcome: `
           <div class="v2-label">Welcome Offer · This Week Only</div>
           <div class="v2-tiers">
             <div class="v2-tier" data-tier="20">
@@ -2708,22 +3222,30 @@
               <div class="v2-qualifier">off 7 meals</div>
             </div>
           </div>`,
-        '3': `
-          <div class="v3-ticket">
-            <div class="v3-left">
-              <div class="v3-label">Your Welcome Gift</div>
-              <div class="v3-title">First-order savings</div>
-            </div>
-            <div class="v3-right">
-              <div class="v3-row"><span class="v3-amt">$20</span><span class="v3-desc">5-meal order</span></div>
-              <div class="v3-row"><span class="v3-amt">$40</span><span class="v3-desc">7-meal order</span></div>
+        ws: `
+          <div class="v2-label">$25 Credit · With Wellness Shots</div>
+          <div class="v2-tiers v2-tiers-single">
+            <div class="v2-tier" data-tier="25">
+              <div class="v2-amount">$25</div>
+              <div class="v2-qualifier">off 7 meals + Wellness Shots</div>
             </div>
           </div>`,
+        in: `
+          <div class="v2-label">$25 Credit · Welcome Back</div>
+          <div class="v2-tiers v2-tiers-single">
+            <div class="v2-tier" data-tier="25">
+              <div class="v2-amount">$25</div>
+              <div class="v2-qualifier">off 7 meals + Wellness Shots</div>
+            </div>
+          </div>`
       };
-      const chosen = bannerTemplates[bannerVariant] || bannerTemplates['2'];
-      bannerEl.className = `welcome-banner v${bannerVariant in bannerTemplates ? bannerVariant : '2'}`;
-      bannerEl.innerHTML = chosen;
+      bannerEl.className = 'welcome-banner v2';
+      bannerEl.innerHTML = bannerByMode[activePromoMode];
     }
+
+    // Back-compat: existing welcome-tier logic reads `isWelcomeMode` directly.
+    // For /ws and /in we route through computePromoDiscount instead.
+    // Keep this aliased so older read paths still work without refactor.
 
     // Exposed on window for test-harness access (const would be block-scoped).
     window.order = { special: 0, chicken: 0, chicken_2: 0, beef: 0, seafood: 0, seafood_2: 0, veg: 0, pasta: 0, broth: 0, chia: 0 };
@@ -2736,8 +3258,12 @@
       broth: new Set(), chia: new Set()
     };
     const mealCategories = new Set(['special', 'chicken', 'chicken_2', 'beef', 'seafood', 'seafood_2', 'veg', 'pasta']);
-    // Low carb / no carb are mutually exclusive
-    const carbMods = { 'low carb': 'no carb', 'no carb': 'low carb' };
+    // Low carb / no carb / extra carbs are all mutually exclusive
+    const carbMods = {
+      'low carb':    ['no carb', 'extra carbs'],
+      'no carb':     ['low carb', 'extra carbs'],
+      'extra carbs': ['low carb', 'no carb']
+    };
 
     // Wellness shots (separate from meal/side order — counted as N bundles)
     // Exposed on window for test harness access (let would be block-scoped).
@@ -3007,7 +3533,281 @@
     document.getElementById('wellnessOverlay').addEventListener('click', e => {
       if (e.target.id === 'wellnessOverlay') closeWellness();
     });
-    
+
+    // ── Preset bundles ──────────────────────────────────────────
+    // Definitions per category. Composition picks broadest-appeal dish per slot
+    // and is stable across weeks even when the live dish names change.
+    const PRESETS = {
+      basic: {
+        eyebrow: 'Starter',
+        title:   'Basic',
+        blurb:   'A simple week — both chickens, one beef, one seafood, the chef\'s special, and chia pudding.',
+        items:   { special: 1, chicken: 1, chicken_2: 1, beef: 1, seafood: 1, chia: 1 },
+        shots:   0,
+      },
+      standard: {
+        eyebrow: 'The go-to · Most popular',
+        title:   'Standard',
+        blurb:   'The full Havn week: both chickens, both seafood, beef, pasta, the chef\'s special, wellness shots, and chia.',
+        items:   { special: 1, chicken: 1, chicken_2: 1, beef: 1, seafood: 1, seafood_2: 1, pasta: 1, chia: 1 },
+        shots:   1,
+      },
+      signature: {
+        eyebrow: 'The full menu',
+        title:   'Signature',
+        blurb:   'One of every meal on this week\'s menu, both sides, and the wellness shot bundle.',
+        items:   { special: 1, chicken: 1, chicken_2: 1, beef: 1, seafood: 1, seafood_2: 1, pasta: 1, veg: 1, broth: 1, chia: 1 },
+        shots:   1,
+      },
+    };
+
+    // In-flight bundle state — separate from main cart until commit
+    let bundleDraft = null;
+    let bundleShots = 0;
+
+    const SHOT_BUNDLE_PRICE = 25;
+    const SHOT_KEY = '__shots__';  // synthetic key for the shot row in the sheet
+
+    // ── Preset price math + strikethrough rendering for active promo modes ──
+    // Computes each preset's base price + discount, then rewrites the preset
+    // card's price element to show the crossed-out original alongside the
+    // discounted price. Runs once on page load; preset compositions are static.
+    function computePresetBasePrice(preset) {
+      let meals = 0, sides = 0;
+      Object.entries(preset.items || {}).forEach(([id, qty]) => {
+        if (!dishes[id]) return;
+        const isSide = id === 'broth' || id === 'chia';
+        if (isSide) sides += qty;
+        else meals += qty;
+      });
+      const shots = preset.shots || 0;
+      return meals * 25 + sides * 10 + shots * SHOT_BUNDLE_PRICE;
+    }
+
+    function presetMealCount(preset) {
+      let m = 0;
+      Object.entries(preset.items || {}).forEach(([id, qty]) => {
+        if (dishes[id] && id !== 'broth' && id !== 'chia') m += qty;
+      });
+      return m;
+    }
+
+    function renderPresetPromoPricing() {
+      if (!activePromoMode) return;
+      document.querySelectorAll('.preset-card').forEach(card => {
+        const key = card.dataset.preset;
+        const preset = PRESETS[key];
+        if (!preset) return;
+        const base = computePresetBasePrice(preset);
+        const meals = presetMealCount(preset);
+        const shots = preset.shots || 0;
+        const discount = computePromoDiscount(meals, shots, activePromoMode);
+        const priceEl = card.querySelector('.preset-price');
+        if (!priceEl) return;
+        if (discount > 0) {
+          priceEl.innerHTML = `<span class="price-original">$${base}</span><span class="price-discounted">$${base - discount}</span>`;
+        } else {
+          priceEl.textContent = `$${base}`;
+        }
+      });
+    }
+    renderPresetPromoPricing();
+
+    // Static metadata for the synthetic shot row
+    const SHOT_META = {
+      shortName: 'Wellness Shots',
+      cat:       'Wellness',
+      macros:    '4 shots · $25 bundle',
+    };
+
+    function openBundleSheet(which) {
+      const preset = PRESETS[which];
+      if (!preset) return;
+      bundleDraft = { ...preset.items };
+      bundleShots = preset.shots || 0;
+      document.getElementById('bundleEyebrow').textContent = preset.eyebrow;
+      document.getElementById('bundleTitle').textContent = preset.title;
+      document.getElementById('bundleBlurb').textContent = preset.blurb;
+      renderBundleSheet();
+      document.getElementById('bundleOverlay').classList.add('visible');
+    }
+
+    function closeBundleSheet() {
+      document.getElementById('bundleOverlay').classList.remove('visible');
+      bundleDraft = null;
+      bundleShots = 0;
+    }
+
+    function renderBundleSheet() {
+      const body = document.getElementById('bundleBody');
+      body.innerHTML = '';
+
+      // Meal/side rows from current bundle
+      Object.entries(bundleDraft).forEach(([id, qty]) => {
+        if (qty === 0 || !dishes[id]) return;
+        const dish = dishes[id];
+        const isSpecial = id === 'special';
+        const cat = dish.category ? dish.category.charAt(0).toUpperCase() + dish.category.slice(1).replace('_', ' ') : '';
+        const surcharge = isSpecial ? '<span class="surcharge">+$5/meal</span>' : '';
+        const row = document.createElement('div');
+        row.className = 'bundle-item' + (isSpecial ? ' special' : '');
+        row.innerHTML = `
+          <div class="bundle-item-info">
+            <div class="bundle-item-cat"><span>${cat}</span>${surcharge}</div>
+            <div class="bundle-item-name">${dish.shortName || dish.name}</div>
+            <div class="bundle-item-macros">${dish.macros || ''}</div>
+          </div>
+          <div class="stepper">
+            <button class="stepper-btn minus" data-bundle-minus="${id}" ${qty === 0 ? 'disabled' : ''}>−</button>
+            <span class="stepper-qty">${qty}</span>
+            <button class="stepper-btn plus" data-bundle-plus="${id}">+</button>
+          </div>
+        `;
+        body.appendChild(row);
+      });
+
+      // Wellness shots row (synthetic — separate from dish keys)
+      if (bundleShots > 0) {
+        const row = document.createElement('div');
+        row.className = 'bundle-item';
+        row.innerHTML = `
+          <div class="bundle-item-info">
+            <div class="bundle-item-cat"><span>${SHOT_META.cat}</span></div>
+            <div class="bundle-item-name">${SHOT_META.shortName}</div>
+            <div class="bundle-item-macros">${SHOT_META.macros}</div>
+          </div>
+          <div class="stepper">
+            <button class="stepper-btn minus" data-bundle-minus="${SHOT_KEY}">−</button>
+            <span class="stepper-qty">${bundleShots}</span>
+            <button class="stepper-btn plus" data-bundle-plus="${SHOT_KEY}">+</button>
+          </div>
+        `;
+        body.appendChild(row);
+      }
+
+      // Add another item — opens inline picker
+      const addRow = document.createElement('button');
+      addRow.className = 'bundle-add-row';
+      addRow.id = 'bundleAddBtn';
+      addRow.type = 'button';
+      addRow.textContent = '+ Add another item';
+      body.appendChild(addRow);
+
+      const addOpts = document.createElement('div');
+      addOpts.className = 'bundle-add-options';
+      addOpts.id = 'bundleAddOpts';
+      const candidateIds = Object.keys(dishes).filter(id => !bundleDraft[id] || bundleDraft[id] === 0);
+      const candidateRows = candidateIds.map(id => {
+        const d = dishes[id];
+        const cat = d.category ? d.category.charAt(0).toUpperCase() + d.category.slice(1).replace('_', ' ') : '';
+        return `<button class="add-option" data-bundle-add="${id}" type="button">
+          <span><span class="opt-cat">${cat}</span>${d.shortName || d.name}</span>
+          <span class="opt-plus">+</span>
+        </button>`;
+      }).join('');
+      const shotRow = bundleShots === 0 ? `<button class="add-option" data-bundle-add="${SHOT_KEY}" type="button">
+        <span><span class="opt-cat">Wellness</span>${SHOT_META.shortName}</span>
+        <span class="opt-plus">+</span>
+      </button>` : '';
+      addOpts.innerHTML = `<div class="bundle-add-options-title">Add to this pack</div>${candidateRows}${shotRow}`;
+      body.appendChild(addOpts);
+
+      // Wire stepper handlers
+      body.querySelectorAll('[data-bundle-plus]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.dataset.bundlePlus;
+          if (id === SHOT_KEY) bundleShots++;
+          else bundleDraft[id] = (bundleDraft[id] || 0) + 1;
+          renderBundleSheet();
+          updateBundleFoot();
+        });
+      });
+      body.querySelectorAll('[data-bundle-minus]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.dataset.bundleMinus;
+          if (id === SHOT_KEY) {
+            if (bundleShots > 0) bundleShots--;
+          } else {
+            if (bundleDraft[id] > 0) bundleDraft[id]--;
+            if (bundleDraft[id] === 0) delete bundleDraft[id];
+          }
+          renderBundleSheet();
+          updateBundleFoot();
+        });
+      });
+      body.querySelectorAll('[data-bundle-add]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.dataset.bundleAdd;
+          if (id === SHOT_KEY) bundleShots = 1;
+          else bundleDraft[id] = 1;
+          renderBundleSheet();
+          updateBundleFoot();
+        });
+      });
+      document.getElementById('bundleAddBtn').addEventListener('click', () => {
+        document.getElementById('bundleAddOpts').classList.toggle('open');
+      });
+
+      updateBundleFoot();
+    }
+
+    function updateBundleFoot() {
+      let mealCount = 0, sideCount = 0, total = 0;
+      Object.entries(bundleDraft).forEach(([id, qty]) => {
+        const d = dishes[id];
+        if (!d || qty === 0) return;
+        const isSide = id === 'broth' || id === 'chia';
+        if (isSide) {
+          sideCount += qty;
+          total += qty * 10;
+        } else {
+          mealCount += qty;
+          total += qty * 25;
+        }
+      });
+      total += bundleShots * SHOT_BUNDLE_PRICE;
+      const parts = [];
+      if (mealCount) parts.push(`${mealCount} meal${mealCount !== 1 ? 's' : ''}`);
+      if (sideCount) parts.push(`${sideCount} side${sideCount !== 1 ? 's' : ''}`);
+      if (bundleShots) parts.push(`${bundleShots}× shots`);
+      document.getElementById('bundleCount').textContent = parts.join(' · ') || '0 items';
+      document.getElementById('bundleTotal').textContent = '$' + total;
+    }
+
+    // Preset card clicks
+    document.querySelectorAll('.preset-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const which = card.dataset.preset;
+        openBundleSheet(which);
+      });
+    });
+
+    document.getElementById('bundleClose').addEventListener('click', closeBundleSheet);
+    document.getElementById('bundleCancel').addEventListener('click', closeBundleSheet);
+    document.getElementById('bundleOverlay').addEventListener('click', e => {
+      if (e.target.id === 'bundleOverlay') closeBundleSheet();
+    });
+
+    document.getElementById('bundleCommit').addEventListener('click', () => {
+      // Replace main cart with the bundle contents
+      Object.keys(order).forEach(k => { order[k] = 0; });
+      Object.entries(bundleDraft).forEach(([id, qty]) => {
+        if (order.hasOwnProperty(id)) order[id] = qty;
+      });
+      window.wellnessShots = bundleShots;
+      // Resync every item's stepper UI to reflect the new values
+      Object.keys(order).forEach(k => syncItem(k));
+      syncWellness();
+      closeBundleSheet();
+      update();
+      // Scroll to the draft section so customer sees the new subtotal
+      const draft = document.getElementById('draftSection');
+      const content = document.getElementById('content');
+      if (draft && content) {
+        content.scrollTo({ top: draft.offsetTop - 60, behavior: 'smooth' });
+      }
+    });
+
     function syncItem(key) {
       const item = document.querySelector(`[data-key="${key}"]`);
       item.querySelector('.stepper-qty').textContent = order[key];
@@ -3031,12 +3831,38 @@
       }
     }
 
-    // ── Welcome Offer tier logic — only runs when isWelcomeMode is true ──
-    // Tiers: 5-6 meals → $20 off, 7+ meals → $40 off.
-    function computeWelcomeDiscount(meals) {
-      if (meals >= 7) return 40;
-      if (meals >= 5) return 20;
-      return 0;
+    // ── Promo tier logic — handles /welcome, /ws, /in ──
+    // Back-compat shim — older code paths call computeWelcomeDiscount(meals).
+    function computeWelcomeDiscount(meals, shots = 0) {
+      return computePromoDiscount(meals, shots, activePromoMode);
+    }
+
+    // Build the in-cart nudge text per mode. Drives the inline copy
+    // ("Add 1 more meal to get $25 off") shown under the price card.
+    function buildPromoNudge(meals, shots, mode) {
+      if (!mode) return '';
+      if (mode === 'welcome') {
+        if (meals >= 7) return '';
+        if (meals >= 5) {
+          const n = 7 - meals;
+          return `Add ${n} more meal${n === 1 ? '' : 's'} to get $40 off`;
+        }
+        if (meals >= 4) {
+          const n = 5 - meals;
+          return `Add ${n} more meal${n === 1 ? '' : 's'} to get $20 off`;
+        }
+        return '';
+      }
+      // /ws and /in share the same $25 + 7 meals + shots logic
+      if (mode === 'ws' || mode === 'in') {
+        const need = Math.max(0, 7 - meals);
+        const hasShots = shots >= 1;
+        if (need === 0 && hasShots) return '';
+        if (need === 0 && !hasShots) return 'Add Wellness Shots to unlock $25 off';
+        if (need > 0 && !hasShots) return `Add Wellness Shots + ${need} more meal${need === 1 ? '' : 's'} for $25 off`;
+        return `Add ${need} more meal${need === 1 ? '' : 's'} for $25 off`;
+      }
+      return '';
     }
 
     function updateWelcomeUI(meals, sides, shots) {
@@ -3044,7 +3870,7 @@
       if (!wp) return { subtotal: 0, discount: 0, total: 0 };
 
       const subtotal = meals * 25 + sides * 10 + shots * 25;
-      const discount = computeWelcomeDiscount(meals);
+      const discount = computePromoDiscount(meals, shots, activePromoMode);
       const total = subtotal - discount;
       // Every 3 sides = 1 meal equivalent toward the 4-item minimum
       const mealEquivalents = meals + shots + Math.floor(sides / 3);
@@ -3065,31 +3891,33 @@
         return { subtotal, discount, total };
       }
 
-      // Not below min and not empty: welcome-only logic from here.
-      if (!isWelcomeMode) {
-        wp.classList.remove('visible', 'below-min', 'has-discount', 'needs-nudge');
+      // Not below min and not empty: customers without an active promo see a simple subtotal.
+      // (Promo branches below handle discount/nudge UI for /welcome, /ws, /in.)
+      if (!activePromoMode) {
+        if (mealEquivalents > 0) {
+          document.getElementById('priceSubtotal').textContent = `$${subtotal}`;
+          wp.classList.add('visible');
+          wp.classList.remove('below-min', 'has-discount', 'needs-nudge');
+        } else {
+          wp.classList.remove('visible', 'below-min', 'has-discount', 'needs-nudge');
+        }
         return { subtotal, discount, total };
       }
 
-      // ── Welcome-page price card logic ──
+      // ── Promo-mode price card (/welcome, /ws, /in) ──
       document.getElementById('priceSubtotal').textContent = `$${subtotal}`;
 
-      // Compute nudge toward the next tier.
-      // 4 meals: toward Tier 1 ($20 off). 5-6 meals: toward Tier 2 ($40 off).
-      // 7+: max tier, no nudge.
-      let nudgeText = '';
-      if (meals >= 7) {
-        nudgeText = '';
-      } else if (meals >= 5) {
-        const toTier2 = 7 - meals;
-        nudgeText = `Add ${toTier2} more meal${toTier2 === 1 ? '' : 's'} to get $40 off`;
-      } else if (minMet) {
-        const toTier1 = Math.max(1, 5 - meals);
-        nudgeText = `Add ${toTier1} more meal${toTier1 === 1 ? '' : 's'} to get $20 off`;
-      }
+      // Promo-aware nudge — copy is mode-specific
+      const nudgeText = buildPromoNudge(meals, shots, activePromoMode);
 
       wp.classList.remove('below-min');
       if (discount > 0) {
+        const labels = {
+          welcome: 'Welcome discount',
+          ws: 'Wellness credit',
+          in: 'Welcome back credit'
+        };
+        document.getElementById('priceDiscountLabel').textContent = labels[activePromoMode] || 'Discount';
         document.getElementById('priceDiscount').textContent = `–$${discount}`;
         document.getElementById('priceTotal').textContent = `$${total}`;
         wp.classList.add('visible', 'has-discount');
@@ -3106,7 +3934,9 @@
       } else {
         wp.classList.remove('needs-nudge');
       }
-      updateTierBadge(meals);
+      // Tier badge is welcome-specific (two-tier $20/$40 ladder).
+      // /ws and /in skip it — the banner + nudge already communicate the offer.
+      if (isWelcomeMode) updateTierBadge(meals);
       return { subtotal, discount, total };
     }
 
@@ -3369,12 +4199,16 @@
           prefs.delete(mod);
           pill.classList.remove('active');
         } else {
-          // Mutually exclusive carb mods
-          const opposite = carbMods[mod];
-          if (opposite && prefs.has(opposite)) {
-            prefs.delete(opposite);
-            const oppPill = document.querySelector(`.mod-pill[data-mod="${opposite}"]`);
-            if (oppPill) oppPill.classList.remove('active');
+          // Mutually exclusive carb mods — remove any conflicting one(s) first
+          const opposites = carbMods[mod];
+          if (opposites) {
+            opposites.forEach(opp => {
+              if (prefs.has(opp)) {
+                prefs.delete(opp);
+                const oppPill = document.querySelector(`.mod-pill[data-mod="${opp}"]`);
+                if (oppPill) oppPill.classList.remove('active');
+              }
+            });
           }
           prefs.add(mod);
           pill.classList.add('active');

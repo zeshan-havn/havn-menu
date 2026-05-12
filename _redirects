@@ -12,11 +12,17 @@
 # below and are detected in index.html via window.location.pathname.
 /may10/*    /:splat 200
 
-# Welcome-offer variant: same index.html, detected via isWelcomeMode from
-# the pathname. Only customers who get the welcome link (via Make.com)
-# hit this path; all other traffic falls through to the default rewrite.
+# Promo variants — same index.html, mode detected from window.location.pathname.
+# Each path is routed via Make.com to its own customer cohort:
+#   /welcome  → first-time customers (current $20-at-5 / $40-at-7 welcome offer)
+#   /ws       → first + second timers ($25 with Wellness Shots + 7 meals)
+#   /in       → inactive / win-back ($25 with Wellness Shots + 7 meals)
 /welcome/*  /index.html 200
 /welcome    /index.html 200
+/ws/*       /index.html 200
+/ws         /index.html 200
+/in/*       /index.html 200
+/in         /index.html 200
 
 # Internal weekly performance review — unguessable path, not linked from anywhere
 /may10-review  /may10-review.html  200
