@@ -1,0 +1,4350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Havn Club - Weekly Menu</title>
+
+  <!-- Open Graph / Social Media Preview -->
+  <meta property="og:title" content="Havn Club - Weekly Menu">
+  <meta property="og:description" content="Premium meal delivery service. Order by Thursday 4pm for Sunday delivery.">
+  <meta property="og:image" content="https://menu.havnclub.com/may10/menu-preview.jpg">
+  <meta property="og:image:width" content="2160">
+  <meta property="og:image:height" content="4226">
+  <meta property="og:url" content="https://menu.havnclub.com">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Havn Club - Weekly Menu">
+  <meta name="twitter:description" content="Premium meal delivery service. Order by Thursday 4pm for Sunday delivery.">
+  <meta name="twitter:image" content="https://menu.havnclub.com/may10/menu-preview.jpg">
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1512896839934759');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.net/tr?id=1512896839934759&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+    
+    :root {
+      --green-darkest: #0A1612;
+      --green-dark: #111E19;
+      --green-deep: #1A2F27;
+      --green-medium: #243D33;
+      --green-soft: #2D4A3E;
+      --green-brand: #1B5E40;
+      --cream: #F5F1EA;
+      --cream-warm: #F0EBE3;
+      --cream-dark: #E5E0D6;
+      --cream-muted: #C9C1B3;
+      --brass: #C4A87C;
+      --brass-muted: #A89060;
+      --charcoal: #1C1C1A;
+      --gray-warm: #5C5A55;
+      --gray-muted: #8A8680;
+      --gray-light: #B5B0A8;
+      --green-tag: #3D6B55;
+      --red-muted: #9B7065;
+      --font-display: 'Cormorant', Georgia, serif;
+      --font-body: 'DM Sans', -apple-system, sans-serif;
+    }
+    
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--cream);
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    
+    /* App */
+    .app {
+      position: fixed;
+      inset: 0;
+      background: var(--cream);
+      display: flex;
+      flex-direction: column;
+      font-family: var(--font-body);
+      color: var(--charcoal);
+      -webkit-font-smoothing: antialiased;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+    }
+    
+    /* Subtle texture */
+    .app::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.018;
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    /* ==========================================
+       WELCOME OFFER (shown only on /welcome paths)
+    ========================================== */
+
+    /* Hidden by default; welcome mode toggles body[data-welcome].
+       NOTE: .welcome-price is NOT in this hide list — we re-use the card
+       shell on the regular menu too, just to show the below-minimum reminder. */
+    body:not([data-welcome]) .welcome-banner,
+    body:not([data-welcome]) .welcome-footer-note,
+    body:not([data-welcome]) .tier-progress { display: none !important; }
+
+    .welcome-banner {
+      position: relative;
+      z-index: 5;
+      flex-shrink: 0;
+    }
+
+    /* ─────────── V1 · Editorial (minimal, magazine) ─────────── */
+    .welcome-banner.v1 {
+      background: var(--cream);
+      padding: 22px 20px 20px;
+      text-align: center;
+      border-top: 1px solid rgba(196, 168, 124, 0.45);
+      border-bottom: 1px solid rgba(196, 168, 124, 0.45);
+    }
+    .welcome-banner.v1 .v1-eyebrow {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      color: var(--brass-muted);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .welcome-banner.v1 .v1-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--green-darkest);
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+    .welcome-banner.v1 .v1-tiers {
+      font-size: 11px;
+      color: var(--gray-warm);
+      letter-spacing: 0.02em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+    }
+    .welcome-banner.v1 .v1-tiers strong {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--green-darkest);
+    }
+    .welcome-banner.v1 .v1-dot {
+      color: var(--brass);
+      font-size: 10px;
+    }
+
+    /* ─────────── V2 · Brand Dark Card (premium CTA) ─────────── */
+    .welcome-banner.v2 {
+      background: var(--green-darkest);
+      padding: 10px 16px 12px;
+      color: var(--cream);
+      border-bottom: 1px solid rgba(196, 168, 124, 0.25);
+    }
+    .welcome-banner.v2 .v2-label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.24em;
+      color: var(--brass);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .welcome-banner.v2 .v2-label::before,
+    .welcome-banner.v2 .v2-label::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: rgba(196, 168, 124, 0.35);
+    }
+    .welcome-banner.v2 .v2-tiers {
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+      gap: 14px;
+      align-items: center;
+    }
+    .welcome-banner.v2 .v2-tier {
+      text-align: center;
+      transition: opacity 0.4s ease;
+    }
+    /* Tier unlock feedback — tied to cart state via JS */
+    .welcome-banner.v2 .v2-tier.inactive {
+      opacity: 0.35;
+    }
+    .welcome-banner.v2 .v2-tier.applied .v2-amount {
+      animation: v2-pulse 0.6s ease-out;
+    }
+    .welcome-banner.v2 .v2-tier.applied .v2-qualifier {
+      color: #9BC79B;
+      font-weight: 600;
+    }
+    .welcome-banner.v2 .v2-tier.applied .v2-qualifier::before {
+      content: "✓ ";
+    }
+    @keyframes v2-pulse {
+      0%   { transform: scale(1);    text-shadow: 0 0 0 rgba(196, 168, 124, 0); }
+      40%  { transform: scale(1.08); text-shadow: 0 0 18px rgba(196, 168, 124, 0.55); }
+      100% { transform: scale(1);    text-shadow: 0 0 0 rgba(196, 168, 124, 0); }
+    }
+    .welcome-banner.v2 .v2-amount {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 400;
+      color: var(--brass);
+      line-height: 1;
+      letter-spacing: -0.01em;
+      display: inline-block;
+    }
+    .welcome-banner.v2 .v2-qualifier {
+      font-size: 9px;
+      color: var(--cream-muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-top: 4px;
+      transition: color 0.3s ease;
+    }
+    .welcome-banner.v2 .v2-divider {
+      width: 1px;
+      height: 30px;
+      background: rgba(196, 168, 124, 0.3);
+      justify-self: center;
+    }
+
+    /* ─────────── V3 · Ticket / Coupon (playful premium) ─────────── */
+    .welcome-banner.v3 {
+      background: var(--cream);
+      padding: 14px 16px;
+    }
+    .welcome-banner.v3 .v3-ticket {
+      background: var(--cream-warm);
+      border: 1px dashed var(--brass);
+      border-radius: 8px;
+      padding: 14px 16px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 16px;
+      position: relative;
+    }
+    .welcome-banner.v3 .v3-left .v3-label {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      color: var(--brass-muted);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .welcome-banner.v3 .v3-left .v3-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--green-darkest);
+      line-height: 1.15;
+    }
+    .welcome-banner.v3 .v3-right {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      text-align: right;
+      padding-left: 14px;
+      border-left: 1px dashed rgba(196, 168, 124, 0.55);
+    }
+    .welcome-banner.v3 .v3-row {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+    .welcome-banner.v3 .v3-amt {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--green-brand);
+      letter-spacing: -0.005em;
+    }
+    .welcome-banner.v3 .v3-desc {
+      font-size: 10px;
+      color: var(--gray-warm);
+      letter-spacing: 0.02em;
+    }
+
+    /* ─────────── V0 (current) kept as fallback ─────────── */
+    .welcome-banner.v0 {
+      background: linear-gradient(135deg, #C4A87C 0%, #B89868 100%);
+      padding: 14px 18px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      box-shadow: 0 1px 8px rgba(10, 22, 18, 0.06);
+      border-bottom: 1px solid rgba(10, 22, 18, 0.12);
+    }
+    .welcome-banner.v0 .welcome-banner-label {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.18em;
+      color: var(--green-darkest); text-transform: uppercase;
+      padding: 3px 9px; background: rgba(245, 241, 234, 0.55);
+      border-radius: 3px; align-self: flex-start;
+    }
+    .welcome-banner.v0 .welcome-banner-title {
+      font-family: var(--font-display); font-size: 17px; font-weight: 500;
+      color: var(--green-darkest); line-height: 1.25;
+    }
+    .welcome-banner.v0 .welcome-banner-tiers {
+      display: flex; gap: 8px; flex-wrap: wrap; margin-top: 2px;
+    }
+    .welcome-banner.v0 .welcome-tier-chip {
+      font-size: 11px; font-weight: 500; color: var(--green-darkest);
+      background: rgba(245, 241, 234, 0.55); padding: 4px 10px; border-radius: 14px;
+    }
+    .welcome-banner.v0 .welcome-tier-chip strong { font-weight: 700; }
+
+    /* Tier-progress badge in the draft-label area */
+    .tier-progress {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(196, 168, 124, 0.18);
+      color: var(--brass-muted);
+    }
+
+    .tier-progress.unlocked {
+      background: rgba(27, 94, 64, 0.14);
+      color: var(--green-brand);
+    }
+
+    /* Price breakdown card inside the draft section */
+    .welcome-price {
+      margin: 10px 0 8px 20%;
+      padding: 12px 14px;
+      background: var(--cream-warm);
+      border-radius: 12px;
+      border: 1px solid rgba(196, 168, 124, 0.22);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .welcome-price:not(.visible) { display: none; }
+
+    .welcome-price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      color: var(--gray-warm);
+    }
+
+    .welcome-price-row.discount { color: var(--green-brand); font-weight: 500; }
+
+    .welcome-price-divider {
+      height: 1px;
+      background: rgba(90, 88, 82, 0.18);
+      margin: 6px 0;
+    }
+
+    .welcome-price-row.total {
+      font-size: 14px;
+      color: var(--charcoal);
+      font-weight: 600;
+    }
+
+    .welcome-price-row .amt { font-variant-numeric: tabular-nums; }
+
+    /* Discount rows hidden until a tier is actually unlocked */
+    .welcome-price .welcome-price-discount-section { display: contents; }
+    .welcome-price:not(.has-discount) .welcome-price-discount-section { display: none; }
+
+    /* Nudge row — shown when order minimum is met but no tier is unlocked yet,
+       or when a tier is unlocked but a higher tier is still reachable. */
+    .welcome-price-nudge {
+      display: none;
+      margin-top: 4px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--brass-muted);
+      letter-spacing: 0.01em;
+    }
+    .welcome-price.needs-nudge .welcome-price-nudge { display: block; }
+
+    /* Below-minimum message — shown when cart < 4 meal equivalents.
+       Replaces the subtotal/discount/nudge view with a single min reminder. */
+    .welcome-price-min {
+      display: none;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--brass-muted);
+      letter-spacing: 0.01em;
+    }
+    .welcome-price.below-min .welcome-price-min { display: block; }
+    .welcome-price.below-min .welcome-price-row,
+    .welcome-price.below-min .welcome-price-discount-section,
+    .welcome-price.below-min .welcome-price-nudge { display: none !important; }
+
+    /* Footer clarifier under the cart bar */
+    .welcome-footer-note {
+      padding: 10px 18px 14px;
+      font-size: 10px;
+      line-height: 1.5;
+      color: var(--gray-muted);
+      text-align: center;
+      background: var(--cream);
+      border-top: 1px solid rgba(90, 88, 82, 0.08);
+    }
+
+    /* ==========================================
+       HEADER - Fixed at top
+    ========================================== */
+
+    .header {
+      background: var(--green-darkest);
+      padding: 56px 16px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 10;
+      flex-shrink: 0;
+    }
+    
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    /* Logo - centered H */
+    .brand-logo {
+      width: 38px;
+      height: 38px;
+      background: var(--green-deep);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(196, 168, 124, 0.12);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .brand-logo svg {
+      display: block;
+    }
+    
+    .header-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+    
+    .header-name {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--cream);
+      letter-spacing: 0.01em;
+    }
+    
+    .header-meta {
+      font-size: 10px;
+      color: var(--cream-muted);
+      letter-spacing: 0.01em;
+    }
+    
+    .help-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-style: italic;
+      color: var(--cream);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+    
+    .help-btn:active {
+      transform: scale(0.92);
+      background: rgba(255,255,255,0.1);
+    }
+    
+    /* ==========================================
+       CONTENT - Scrollable area includes order bar
+    ========================================== */
+    
+    .content {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+      position: relative;
+      z-index: 2;
+    }
+    
+    /* ==========================================
+       ORDER BAR - Inside scrollable content
+    ========================================== */
+    
+    .order-bar {
+      background: var(--green-dark);
+      padding: 8px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .order-bar-title {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-style: italic;
+      color: var(--cream-muted);
+      letter-spacing: 0.01em;
+    }
+    
+    .order-bar-pricing {
+      font-size: 11px;
+      color: var(--cream-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .order-bar-pricing .dot {
+      width: 3px;
+      height: 3px;
+      background: var(--cream-muted);
+      border-radius: 50%;
+    }
+    
+    /* Section Divider */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      padding: 14px 16px 8px;
+      gap: 10px;
+    }
+    
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--cream-dark) 0%, transparent 100%);
+    }
+    
+    .section-line.right {
+      background: linear-gradient(90deg, transparent 0%, var(--cream-dark) 100%);
+    }
+    
+    .section-name {
+      font-family: var(--font-display);
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray-muted);
+    }
+    
+    /* ==========================================
+       PILL NAV — category filter
+    ========================================== */
+
+    .pill-nav {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px 10px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .pill-nav::-webkit-scrollbar { display: none; }
+
+    .pill {
+      flex-shrink: 0;
+      padding: 6px 14px;
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--gray-warm);
+      background: transparent;
+      border: 1px solid rgba(196, 168, 124, 0.35);
+      border-radius: 100px;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      white-space: nowrap;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .pill:active { background: rgba(196, 168, 124, 0.10); }
+
+    .pill.active {
+      background: var(--green-darkest);
+      color: var(--cream);
+      border-color: var(--green-darkest);
+    }
+
+    /* ==========================================
+       MENU LIST — grid (All) / list (filtered)
+    ========================================== */
+
+    .menu-list {
+      display: grid;
+      gap: 10px;
+      padding: 4px 12px 0;
+    }
+
+    .menu-list.grid-mode { grid-template-columns: 1fr 1fr; }
+    .menu-list.list-mode { grid-template-columns: 1fr; }
+    .menu-list.hidden,
+    .section-divider.hidden { display: none; }
+
+    /* ==========================================
+       MENU ITEM — V1 Float card
+    ========================================== */
+
+    .menu-item {
+      display: flex;
+      flex-direction: column;
+      background: var(--cream-warm);
+      border: 1px solid rgba(196, 168, 124, 0.18);
+      border-radius: 10px;
+      padding: 12px 12px 10px;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.55),
+        0 2px 6px rgba(26, 47, 39, 0.06),
+        0 8px 20px rgba(26, 47, 39, 0.09),
+        0 22px 40px rgba(26, 47, 39, 0.07);
+      min-width: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .menu-item:active {
+      transform: translateY(1px);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.45),
+        0 1px 4px rgba(26, 47, 39, 0.07),
+        0 4px 12px rgba(26, 47, 39, 0.07),
+        0 12px 24px rgba(26, 47, 39, 0.05);
+    }
+
+    /* Selected state — warm glow + brass-tinted border */
+    .menu-item.selected {
+      background:
+        linear-gradient(135deg, rgba(45, 74, 62, 0.06) 0%, rgba(45, 74, 62, 0.02) 100%),
+        var(--cream-warm);
+      border-color: rgba(45, 74, 62, 0.30);
+    }
+
+    /* Category label — horizontal small caps at top of card */
+    .item-cat {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+
+    .item-cat > span:first-child {
+      font-family: var(--font-display);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--green-brand);
+    }
+
+    .menu-item.selected .item-cat > span:first-child { color: var(--green-deep); }
+
+    /* Small allergen-status pills (e.g. "GF" "DF") — same green as detail sheet, smaller */
+    .item-tag {
+      font-family: var(--font-body);
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 1px 5px;
+      border-radius: 8px;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      height: 13px;
+      box-sizing: border-box;
+    }
+
+    .item-tag.safe {
+      background: rgba(61, 107, 85, 0.12);
+      color: var(--green-tag);
+    }
+
+    .menu-item.chef-hero .item-tag.safe {
+      background: rgba(61, 107, 85, 0.30);
+      color: rgba(190, 222, 200, 1);
+    }
+
+    .menu-item.selected .item-tag.safe {
+      background: rgba(245, 241, 234, 0.18);
+      color: var(--cream);
+    }
+
+    .item-info {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+    }
+
+    .item-name {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--charcoal);
+      line-height: 1.18;
+      margin-bottom: 4px;
+    }
+
+    /* Description: hidden in 2-col grid, visible in single-col list */
+    .item-desc {
+      display: none;
+      font-size: 11px;
+      font-weight: 300;
+      color: var(--gray-warm);
+      line-height: 1.55;
+      margin-bottom: 8px;
+    }
+
+    .menu-list.list-mode .item-desc { display: block; }
+
+    .menu-list.list-mode .item-name {
+      font-size: 26px;
+      margin-bottom: 6px;
+    }
+
+    .menu-list.list-mode .menu-item {
+      padding: 16px;
+      min-height: 0;
+    }
+
+    /* ==========================================
+       CHEF HERO — full-width dark card (Special)
+    ========================================== */
+
+    .menu-item.chef-hero {
+      background: linear-gradient(135deg, #243D33 0%, #0F1F18 100%);
+      border: 1px solid rgba(196, 168, 124, 0.25);
+      border-radius: 12px;
+      padding: 16px;
+      margin: 4px 12px 14px;
+      box-shadow:
+        -3px -3px 14px rgba(255, 210, 180, 0.08),
+        3px 3px 14px rgba(196, 168, 124, 0.10),
+        0 6px 18px rgba(26, 47, 39, 0.18),
+        0 22px 40px rgba(26, 47, 39, 0.14);
+      min-height: 0;
+    }
+
+    .menu-item.chef-hero .item-cat { margin-bottom: 8px; }
+
+    .menu-item.chef-hero .item-cat span {
+      color: var(--brass);
+      letter-spacing: 0.16em;
+    }
+
+    .menu-item.chef-hero .item-cat .item-surcharge {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--brass);
+      border-radius: 3px;
+      padding: 2px 7px;
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--brass);
+      background: transparent;
+      line-height: 1.2;
+    }
+
+    .menu-item.chef-hero .item-name {
+      font-size: 30px;
+      color: var(--cream);
+      line-height: 1.12;
+      margin-bottom: 6px;
+    }
+
+    .menu-item.chef-hero .item-desc {
+      display: block;
+      color: var(--cream-muted);
+      font-size: 12px;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    .menu-item.chef-hero .item-macros { color: var(--cream-muted); }
+    .menu-item.chef-hero .item-macros .dot { background: rgba(196, 168, 124, 0.4); }
+    
+    /* Bottom row: macros + stepper.
+       Stacks vertically in grid mode (narrow cards), goes horizontal in list-mode + chef-hero. */
+    .item-bottom {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 8px;
+      margin-top: auto;
+    }
+
+    .item-bottom .stepper {
+      align-self: flex-end;
+    }
+
+    .menu-list.list-mode .item-bottom,
+    .menu-item.chef-hero .item-bottom {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Compact macros */
+    .item-macros {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      color: var(--gray-muted);
+      white-space: nowrap;
+    }
+
+    .item-macros .dot {
+      width: 3px;
+      height: 3px;
+      background: var(--cream-dark);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    
+    /* ==========================================
+       HORIZONTAL STEPPER
+    ========================================== */
+    
+    .stepper {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0;
+      flex-shrink: 0;
+      background: var(--cream);
+      border: 1px solid rgba(196, 168, 124, 0.45);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .stepper-btn {
+      width: 28px;
+      height: 26px;
+      border: none;
+      background: transparent;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--green-deep);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+    }
+
+    .stepper-btn.minus {
+      border-right: 1px solid rgba(196, 168, 124, 0.30);
+      border-radius: 0;
+    }
+
+    .stepper-btn.plus {
+      border-left: 1px solid rgba(196, 168, 124, 0.30);
+      border-radius: 0;
+    }
+
+    .stepper-btn:active {
+      background: rgba(196, 168, 124, 0.18);
+      transform: none;
+    }
+
+    .stepper-btn:disabled {
+      color: var(--cream-muted);
+      pointer-events: none;
+    }
+
+    .menu-item.selected .stepper {
+      background: var(--green-deep);
+      border-color: var(--green-deep);
+    }
+
+    .menu-item.selected .stepper-btn {
+      background: transparent;
+      color: var(--cream);
+    }
+
+    .menu-item.selected .stepper-btn.minus {
+      border-right-color: rgba(245, 241, 234, 0.18);
+    }
+
+    .menu-item.selected .stepper-btn.plus {
+      border-left-color: rgba(245, 241, 234, 0.18);
+    }
+
+    .menu-item.selected .stepper-btn:disabled {
+      color: rgba(245, 241, 234, 0.3);
+    }
+
+    .stepper-qty {
+      width: 28px;
+      height: 26px;
+      background: transparent;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 500;
+      font-variant-numeric: tabular-nums lining-nums;
+      color: var(--charcoal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+    }
+
+    .menu-item.selected .stepper-qty {
+      background: transparent;
+      color: var(--cream);
+    }
+
+    /* Chef hero stepper — dark-on-dark, brass border */
+    .menu-item.chef-hero .stepper {
+      background: rgba(0, 0, 0, 0.30);
+      border-color: rgba(196, 168, 124, 0.45);
+    }
+
+    .menu-item.chef-hero .stepper-btn { color: var(--cream); }
+    .menu-item.chef-hero .stepper-btn.minus { border-right-color: rgba(196, 168, 124, 0.20); }
+    .menu-item.chef-hero .stepper-btn.plus { border-left-color: rgba(196, 168, 124, 0.20); }
+    .menu-item.chef-hero .stepper-btn:disabled { color: rgba(245, 241, 234, 0.35); }
+    .menu-item.chef-hero .stepper-qty { color: var(--cream); }
+    
+    /* ==========================================
+       DRAFT SECTION - Always visible
+    ========================================== */
+    
+    .draft-section {
+      padding: 16px 16px 0;
+    }
+    
+    .draft-label {
+      font-size: 10px;
+      color: var(--gray-muted);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .draft-status {
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(45, 74, 62, 0.1);
+      color: var(--green-soft);
+    }
+    
+    .draft-status.incomplete {
+      background: rgba(90, 88, 82, 0.08);
+      color: var(--gray-muted);
+    }
+    
+    .draft-bubble {
+      background: linear-gradient(150deg, var(--green-deep) 0%, var(--green-darkest) 100%);
+      color: var(--cream);
+      border-radius: 16px;
+      border-bottom-right-radius: 4px;
+      padding: 14px 16px;
+      font-size: 12px;
+      line-height: 1.6;
+      white-space: pre-line;
+      margin-bottom: 10px;
+      margin-left: 20%;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+    }
+    
+    /* Options stacked vertically, aligned right */
+    .draft-options {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: flex-end;
+      padding-bottom: 16px;
+    }
+    
+    .opt-bubble {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 7px 11px;
+      background: var(--cream-warm);
+      border-radius: 16px;
+      font-size: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .opt-bubble:active {
+      background: var(--cream-dark);
+      transform: scale(0.97);
+    }
+    
+    .opt-label {
+      color: var(--gray-muted);
+    }
+    
+    .opt-val {
+      font-weight: 500;
+      color: var(--charcoal);
+    }
+    
+    .opt-change {
+      color: var(--brass-muted);
+      font-weight: 500;
+    }
+    
+    /* Spacer to account for cart bar */
+    .draft-spacer {
+      height: 120px;
+    }
+    
+    .draft-spacer.with-prompt {
+      height: 160px;
+    }
+    
+    /* ==========================================
+       STICKY CART BAR
+    ========================================== */
+    
+    .cart-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--cream);
+      z-index: 100;
+      padding-bottom: env(safe-area-inset-bottom, 32px);
+      box-shadow: 0 -1px 0 rgba(0,0,0,0.04), 0 -8px 24px rgba(0,0,0,0.03);
+    }
+    
+    .cart-prompt {
+      display: none;
+      padding: 9px 16px;
+      background: linear-gradient(135deg, rgba(45,74,62,0.04) 0%, transparent 100%);
+      border-bottom: 1px solid rgba(0,0,0,0.02);
+    }
+    
+    .cart-prompt.visible {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    
+    .cart-prompt-text {
+      font-size: 11px;
+      color: var(--green-soft);
+      font-style: italic;
+    }
+    
+    .cart-prompt-btn {
+      padding: 7px 12px;
+      background: var(--green-deep);
+      border: none;
+      border-radius: 6px;
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--cream);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+    
+    .cart-prompt-btn:active {
+      transform: scale(0.95);
+    }
+    
+    .cart-main {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      gap: 12px;
+    }
+    
+    .cart-info {
+      flex: 1;
+    }
+    
+    .cart-count {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--charcoal);
+    }
+    
+    .cart-hint {
+      font-size: 10px;
+      color: var(--gray-muted);
+      margin-top: 1px;
+    }
+    
+    .cart-hint.warning {
+      color: var(--brass-muted);
+    }
+
+    .send-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    .send-btn {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 12px 18px;
+      background: var(--cream-dark);
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .send-btn.active {
+      background: var(--green-deep);
+      box-shadow: 0 2px 10px rgba(26, 47, 39, 0.25);
+    }
+    
+    .send-btn:active.active {
+      transform: scale(0.97);
+    }
+    
+    .send-btn svg {
+      width: 15px;
+      height: 15px;
+      fill: var(--gray-muted);
+      transition: fill 0.2s ease;
+    }
+    
+    .send-btn.active svg {
+      fill: var(--cream);
+    }
+    
+    .send-btn span {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--gray-muted);
+      transition: color 0.2s ease;
+    }
+    
+    .send-btn.active span {
+      color: var(--cream);
+    }
+
+    .copy-link {
+      text-align: center;
+      margin-top: 6px;
+      font-size: 10px;
+      color: var(--gray-light);
+      cursor: pointer;
+      transition: color 0.2s ease;
+      user-select: none;
+    }
+
+    .copy-link:hover {
+      color: var(--green-soft);
+    }
+
+    .copy-link:active {
+      color: var(--green-deep);
+    }
+
+    .copy-link.copied {
+      color: var(--green-deep);
+    }
+
+    .cart-deadline {
+      text-align: center;
+      padding: 4px 16px 0;
+      font-size: 11px;
+      color: var(--gray-light);
+    }
+    
+    /* ==========================================
+       SHEETS
+    ========================================== */
+    
+    .sheet-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10,22,18,0.5);
+      z-index: 200;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.25s ease;
+      overflow: hidden;
+    }
+    
+    .sheet-overlay.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .sheet {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--cream);
+      border-radius: 20px 20px 0 0;
+      z-index: 201;
+      transform: translateY(100%);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      max-height: 80%;
+      overflow-y: auto;
+    }
+    
+    .sheet-overlay.visible .sheet {
+      transform: translateY(0);
+    }
+    
+    .sheet-handle {
+      width: 32px;
+      height: 4px;
+      background: var(--cream-dark);
+      border-radius: 2px;
+      margin: 10px auto 0;
+    }
+    
+    .sheet-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--cream-warm);
+      border: none;
+      font-size: 16px;
+      color: var(--gray-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+    }
+    
+    .sheet-close:active {
+      transform: scale(0.9);
+    }
+    
+    /* Detail Sheet */
+    .detail-content {
+      padding: 22px 20px 36px;
+    }
+    
+    .detail-name {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--charcoal);
+      margin-bottom: 10px;
+      padding-right: 36px;
+    }
+    
+    .detail-desc {
+      font-size: 13px;
+      color: var(--gray-warm);
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+    
+    .detail-macros {
+      font-size: 11px;
+      color: var(--gray-muted);
+      margin-bottom: 14px;
+      font-style: italic;
+    }
+    
+    .detail-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+    
+    .detail-tag {
+      padding: 6px 12px;
+      border-radius: 14px;
+      font-size: 10px;
+      font-weight: 500;
+    }
+    
+    .detail-tag.safe {
+      background: rgba(61, 107, 85, 0.12);
+      color: var(--green-tag);
+    }
+    
+    .detail-tag.allergen {
+      background: rgba(155, 112, 101, 0.12);
+      color: var(--red-muted);
+    }
+    
+    /* "Make it" modification pills */
+    .detail-mods {
+      margin-bottom: 18px;
+    }
+
+    .detail-mods-label {
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray-muted);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .mod-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .mod-pill {
+      padding: 8px 13px;
+      background: var(--cream);
+      border: 1px solid var(--cream-dark);
+      border-radius: 16px;
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--gray-warm);
+      cursor: pointer;
+      transition: all 0.18s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .mod-pill:active {
+      transform: scale(0.96);
+    }
+
+    .mod-pill.active {
+      background: var(--green-deep);
+      border-color: var(--green-deep);
+      color: var(--cream);
+      font-weight: 500;
+      box-shadow: 0 1px 4px rgba(26, 47, 39, 0.18);
+    }
+
+    .mod-pill .mod-price {
+      margin-left: 4px;
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--brass-muted);
+      letter-spacing: 0.01em;
+    }
+
+    .mod-pill.active .mod-price {
+      color: var(--brass);
+    }
+
+    /* Customization */
+    .custom-field {
+      margin-bottom: 18px;
+    }
+    
+    .custom-label {
+      font-size: 10px;
+      color: var(--gray-muted);
+      margin-bottom: 6px;
+      display: block;
+    }
+    
+    .custom-input {
+      width: 100%;
+      padding: 12px 14px;
+      background: var(--cream-warm);
+      border: 1px solid var(--cream-dark);
+      border-radius: 10px;
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--charcoal);
+      resize: none;
+      outline: none;
+      transition: all 0.2s ease;
+      -webkit-appearance: none;
+    }
+    
+    .custom-input:focus {
+      border-color: var(--brass-muted);
+      background: #fff;
+    }
+    
+    .custom-input::placeholder {
+      color: var(--gray-light);
+    }
+    
+    /* Detail stepper */
+    .detail-stepper-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 16px;
+      border-top: 1px solid var(--cream-dark);
+    }
+    
+    .detail-stepper-label {
+      font-size: 13px;
+      color: var(--gray-warm);
+    }
+    
+    .detail-stepper {
+      display: flex;
+      align-items: center;
+      background: var(--green-deep);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    
+    .detail-stepper .stepper-btn {
+      background: transparent;
+      color: var(--cream);
+      width: 44px;
+      height: 44px;
+      font-size: 18px;
+      border-radius: 0;
+    }
+    
+    .detail-stepper .stepper-btn:disabled {
+      color: rgba(245,241,234,0.25);
+    }
+    
+    .detail-stepper .stepper-btn:active {
+      background: rgba(255,255,255,0.1);
+    }
+    
+    .detail-stepper .stepper-qty {
+      background: transparent;
+      color: var(--cream);
+      width: 36px;
+      text-align: center;
+      font-size: 16px;
+    }
+    
+    /* Options Sheet */
+    .options-content {
+      padding: 20px 0 36px;
+    }
+    
+    .options-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--charcoal);
+      padding: 0 20px 14px;
+    }
+    
+    .option-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+    
+    .option-row:active {
+      background: var(--cream-warm);
+    }
+    
+    .option-row.selected {
+      background: rgba(36, 61, 51, 0.04);
+    }
+    
+    .option-text {
+      font-size: 14px;
+      color: var(--charcoal);
+    }
+    
+    .option-check {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid var(--cream-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+    }
+    
+    .option-row.selected .option-check {
+      border-color: var(--green-deep);
+      background: var(--green-deep);
+    }
+    
+    .option-check svg {
+      width: 10px;
+      height: 10px;
+      fill: var(--cream);
+      opacity: 0;
+    }
+    
+    .option-row.selected .option-check svg {
+      opacity: 1;
+    }
+    
+    /* Help Sheet */
+    .help-content {
+      padding: 22px 20px 36px;
+    }
+    
+    .help-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--charcoal);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .help-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+    
+    .help-step {
+      display: flex;
+      gap: 12px;
+    }
+    
+    .help-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--green-deep);
+      color: var(--cream);
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .help-text {
+      font-size: 13px;
+      color: var(--gray-warm);
+      line-height: 1.5;
+      padding-top: 3px;
+    }
+    
+    .help-done {
+      width: 100%;
+      padding: 14px;
+      background: var(--green-deep);
+      border: none;
+      border-radius: 10px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--cream);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    
+    .help-done:active {
+      transform: scale(0.98);
+    }
+
+    /* ==========================================
+       WELLNESS COLLECTION (above Meals)
+    ========================================== */
+
+    .wellness-section {
+      padding: 16px 14px 4px;
+    }
+
+    .wellness-card {
+      position: relative;
+      background: linear-gradient(160deg, #FDFCF8 0%, var(--cream-warm) 100%);
+      border: 1px solid rgba(196, 168, 124, 0.22);
+      border-radius: 14px;
+      padding: 14px 14px 12px;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.02), 0 4px 16px rgba(26, 47, 39, 0.04);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .wellness-card:active {
+      transform: scale(0.995);
+      box-shadow: 0 1px 0 rgba(0,0,0,0.02), 0 2px 8px rgba(26, 47, 39, 0.06);
+    }
+
+    .wellness-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 14px;
+      right: 14px;
+      height: 2px;
+      background: linear-gradient(90deg, #E8A317 0%, #8B1A3A 33%, #3A7D44 66%, #2E5FAF 100%);
+      opacity: 0.9;
+    }
+
+    .wellness-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .wellness-head-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .wellness-title-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .wellness-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--charcoal);
+      line-height: 1.1;
+    }
+
+    .wellness-subtitle {
+      font-size: 11px;
+      color: var(--gray-warm);
+      font-weight: 300;
+      letter-spacing: 0.01em;
+    }
+
+    .new-badge {
+      font-family: var(--font-body);
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 7px;
+      border-radius: 4px;
+      background: var(--green-deep);
+      color: var(--cream);
+      flex-shrink: 0;
+    }
+
+    .wellness-body {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .shot-circles {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .shot-circle {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      cursor: pointer;
+      position: relative;
+      flex-shrink: 0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.12), inset 0 1px 1px rgba(255,255,255,0.25);
+      border: 1px solid rgba(255,255,255,0.28);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .shot-circle:active {
+      transform: scale(0.92);
+    }
+
+    .shot-circle.immunity {
+      background: linear-gradient(135deg, #F5C04A 0%, #E8A317 55%, #D4871C 100%);
+    }
+
+    .shot-circle.endurance {
+      background: linear-gradient(135deg, #C41E3A 0%, #8B1A3A 55%, #6B1229 100%);
+    }
+
+    .shot-circle.purify {
+      background: linear-gradient(135deg, #4CAF50 0%, #3A7D44 55%, #2D6A34 100%);
+    }
+
+    .shot-circle.clarity {
+      background: linear-gradient(135deg, #4A7FD4 0%, #2E5FAF 55%, #1A3A7A 100%);
+    }
+
+    .shot-circle.active {
+      box-shadow: 0 0 0 2px var(--cream), 0 0 0 3.5px var(--green-deep), 0 2px 6px rgba(0,0,0,0.15);
+      transform: scale(1.05);
+    }
+
+    .wellness-stepper {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-shrink: 0;
+    }
+
+    .wellness-stepper .stepper-btn {
+      width: 30px;
+      height: 30px;
+      background: var(--cream-warm);
+      border: 1px solid rgba(196, 168, 124, 0.18);
+      font-size: 15px;
+      color: var(--gray-muted);
+    }
+
+    .wellness-stepper .stepper-btn.minus {
+      border-radius: 6px 0 0 6px;
+      border-right: none;
+    }
+
+    .wellness-stepper .stepper-btn.plus {
+      border-radius: 0 6px 6px 0;
+      border-left: none;
+    }
+
+    .wellness-stepper .stepper-qty {
+      width: 30px;
+      height: 30px;
+      background: var(--cream-warm);
+      border-top: 1px solid rgba(196, 168, 124, 0.18);
+      border-bottom: 1px solid rgba(196, 168, 124, 0.18);
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      font-variant-numeric: tabular-nums lining-nums;
+      color: var(--charcoal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .wellness-card.selected .wellness-stepper .stepper-btn,
+    .wellness-card.selected .wellness-stepper .stepper-qty {
+      background: var(--green-deep);
+      color: var(--cream);
+      border-color: transparent;
+    }
+
+    .wellness-card.selected .wellness-stepper .stepper-btn:disabled {
+      color: rgba(245,241,234,0.3);
+    }
+
+    .wellness-foot {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(0,0,0,0.04);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 10px;
+      color: var(--gray-muted);
+      font-style: italic;
+      letter-spacing: 0.02em;
+    }
+
+    .wellness-foot-arrow {
+      font-style: normal;
+      color: var(--brass-muted);
+      font-size: 11px;
+      line-height: 1;
+      transform: translateY(0);
+      transition: transform 0.2s ease;
+    }
+
+    .wellness-card:active .wellness-foot-arrow {
+      transform: translateX(2px);
+    }
+
+    /* ==========================================
+       WELLNESS SHOTS SHEET (popup, triggered from card)
+    ========================================== */
+
+    .wellness-sheet {
+      max-height: 88%;
+    }
+
+    .wellness-sheet-content {
+      padding: 22px 18px 36px;
+    }
+
+    .wellness-sheet-head {
+      text-align: center;
+      padding: 0 8px 14px;
+      margin-bottom: 14px;
+      border-bottom: 1px solid var(--cream-dark);
+    }
+
+    .wellness-sheet-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 500;
+      color: var(--charcoal);
+      line-height: 1.15;
+      margin-bottom: 6px;
+      padding-right: 20px;
+    }
+
+    .wellness-sheet-sub {
+      font-size: 11px;
+      color: var(--brass-muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .wellness-sheet-lede {
+      font-size: 12px;
+      color: var(--gray-warm);
+      line-height: 1.55;
+      font-style: italic;
+    }
+
+    .wellness-deep-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .wellness-deep-card {
+      background: #FDFCF8;
+      border: 1px solid var(--cream-dark);
+      border-radius: 12px;
+      padding: 14px 14px 14px 52px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .wellness-deep-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 4px;
+    }
+
+    .wellness-deep-card.immunity::before { background: linear-gradient(180deg, #F5C04A, #D4871C); }
+    .wellness-deep-card.endurance::before { background: linear-gradient(180deg, #C41E3A, #6B1229); }
+    .wellness-deep-card.purify::before { background: linear-gradient(180deg, #4CAF50, #2D6A34); }
+    .wellness-deep-card.clarity::before { background: linear-gradient(180deg, #4A7FD4, #1A3A7A); }
+
+    .wellness-deep-dot {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.12), inset 0 1px 1px rgba(255,255,255,0.25);
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+
+    .wellness-deep-dot.immunity { background: linear-gradient(135deg, #F5C04A 0%, #E8A317 55%, #D4871C 100%); }
+    .wellness-deep-dot.endurance { background: linear-gradient(135deg, #C41E3A 0%, #8B1A3A 55%, #6B1229 100%); }
+    .wellness-deep-dot.purify { background: linear-gradient(135deg, #4CAF50 0%, #3A7D44 55%, #2D6A34 100%); }
+    .wellness-deep-dot.clarity { background: linear-gradient(135deg, #4A7FD4 0%, #2E5FAF 55%, #1A3A7A 100%); }
+
+    .wellness-deep-head {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .wellness-deep-name {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--charcoal);
+      line-height: 1.15;
+    }
+
+    .wellness-deep-fn {
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .wellness-deep-fn.immunity { color: #B07E10; }
+    .wellness-deep-fn.endurance { color: #8B1A3A; }
+    .wellness-deep-fn.purify { color: #2D6A34; }
+    .wellness-deep-fn.clarity { color: #2E5FAF; }
+
+    .wellness-deep-ing {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--gray-warm);
+      line-height: 1.55;
+      margin-bottom: 8px;
+    }
+
+    .wellness-deep-ing strong {
+      font-weight: 500;
+      color: var(--charcoal);
+    }
+
+    .wellness-deep-sci {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      padding-top: 8px;
+      border-top: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .wellness-deep-sci-bullet {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--brass-muted);
+      margin-top: 7px;
+      flex-shrink: 0;
+    }
+
+    .wellness-deep-sci-text {
+      font-size: 11px;
+      color: var(--gray-warm);
+      line-height: 1.55;
+      font-style: italic;
+    }
+
+    .wellness-deep-footnote {
+      margin-top: 14px;
+      padding: 10px 12px;
+      background: var(--cream-warm);
+      border-radius: 8px;
+      font-size: 10px;
+      color: var(--gray-muted);
+      line-height: 1.55;
+      text-align: center;
+    }
+
+    /* Highlight animation when a shot is scrolled to in the sheet */
+    .wellness-deep-card.focused {
+      animation: shotFocusPulse 1.4s ease;
+    }
+
+    @keyframes shotFocusPulse {
+      0% { box-shadow: 0 0 0 0 rgba(26, 47, 39, 0); }
+      30% { box-shadow: 0 0 0 3px rgba(26, 47, 39, 0.18); }
+      100% { box-shadow: 0 0 0 0 rgba(26, 47, 39, 0); }
+    }
+
+    /* Safe area support for notch devices */
+    @supports (padding-top: env(safe-area-inset-top)) {
+      .header {
+        padding-top: calc(env(safe-area-inset-top) + 12px);
+      }
+    }
+
+    /* ==========================================
+       PRESET BUNDLES — appears between order bar and wellness
+    ========================================== */
+
+    .presets-section {
+      padding: 14px 12px 4px;
+      background: var(--cream);
+    }
+
+    .presets-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding: 0 4px;
+    }
+    .presets-eyebrow .eyebrow-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--cream-dark) 0%, transparent 100%);
+    }
+    .presets-eyebrow .eyebrow-line.right {
+      background: linear-gradient(90deg, transparent 0%, var(--cream-dark) 100%);
+    }
+    .presets-eyebrow .eyebrow-text {
+      font-family: var(--font-display);
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray-muted);
+    }
+
+    .presets-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 7px;
+      padding: 0 2px 6px;
+    }
+
+    .preset-card {
+      background: var(--cream-warm);
+      border: 1px solid rgba(196, 168, 124, 0.22);
+      border-radius: 12px;
+      padding: 11px 10px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      cursor: pointer;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+      text-align: left;
+      position: relative;
+      min-width: 0;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.55),
+        0 2px 6px rgba(26, 47, 39, 0.06),
+        0 8px 18px rgba(26, 47, 39, 0.07);
+      -webkit-tap-highlight-color: transparent;
+    }
+    .preset-card:active { transform: translateY(1px); }
+
+    .preset-card.featured {
+      background: linear-gradient(135deg, #243D33 0%, #0F1F18 100%);
+      border-color: rgba(196, 168, 124, 0.35);
+      color: var(--cream);
+    }
+
+    .preset-tag {
+      position: absolute;
+      top: -7px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      background: var(--brass);
+      color: var(--green-darkest);
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+
+    .preset-eyebrow {
+      font-family: var(--font-body);
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--brass-muted);
+    }
+    .preset-card.featured .preset-eyebrow { color: var(--brass); }
+
+    .preset-title {
+      font-family: var(--font-display);
+      font-size: 19px;
+      font-weight: 500;
+      color: var(--charcoal);
+      line-height: 1.1;
+      letter-spacing: 0.005em;
+    }
+    .preset-card.featured .preset-title { color: var(--cream); }
+
+    .preset-meta {
+      font-size: 10px;
+      font-weight: 400;
+      color: var(--gray-warm);
+      line-height: 1.3;
+      margin-top: 1px;
+    }
+    .preset-card.featured .preset-meta { color: var(--cream-muted); }
+
+    .preset-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-top: 6px;
+    }
+
+    .preset-price {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--green-brand);
+      font-variant-numeric: tabular-nums;
+    }
+    .preset-card.featured .preset-price { color: var(--brass); }
+
+    .preset-cta {
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--brass-muted);
+    }
+    .preset-card.featured .preset-cta { color: var(--brass); }
+
+    /* ==========================================
+       BUNDLE SHEET — opens when a preset is tapped
+    ========================================== */
+
+    .bundle-head {
+      padding: 14px 20px 14px;
+      border-bottom: 1px solid rgba(196, 168, 124, 0.20);
+      flex-shrink: 0;
+      position: relative;
+    }
+    .bundle-head-eyebrow {
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--brass-muted);
+      margin-bottom: 5px;
+    }
+    .bundle-head-title {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 500;
+      color: var(--green-darkest);
+      letter-spacing: 0.005em;
+      margin-bottom: 4px;
+      line-height: 1.1;
+    }
+    .bundle-head-blurb {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--gray-warm);
+      line-height: 1.45;
+      max-width: 92%;
+    }
+
+    .bundle-body {
+      padding: 14px 16px 12px;
+      max-height: 50vh;
+      overflow-y: auto;
+    }
+    .bundle-body::-webkit-scrollbar { width: 0; }
+
+    .bundle-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      background: var(--cream-warm);
+      border: 1px solid rgba(196, 168, 124, 0.18);
+      border-radius: 10px;
+      margin-bottom: 8px;
+    }
+    .bundle-item.special {
+      background: linear-gradient(135deg, #243D33 0%, #0F1F18 100%);
+      border-color: rgba(196, 168, 124, 0.30);
+    }
+    .bundle-item-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .bundle-item-cat {
+      font-family: var(--font-display);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--green-brand);
+      margin-bottom: 3px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .bundle-item.special .bundle-item-cat { color: var(--brass); }
+    .bundle-item-cat .surcharge {
+      border: 1px solid var(--brass);
+      padding: 1px 5px;
+      font-size: 8px;
+      letter-spacing: 0.12em;
+      color: var(--brass);
+      border-radius: 3px;
+    }
+    .bundle-item-name {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--charcoal);
+      line-height: 1.15;
+      margin-bottom: 2px;
+    }
+    .bundle-item.special .bundle-item-name { color: var(--cream); }
+    .bundle-item-macros {
+      font-size: 10px;
+      color: var(--gray-warm);
+    }
+    .bundle-item.special .bundle-item-macros { color: var(--cream-muted); }
+    .bundle-item .stepper { flex-shrink: 0; }
+
+    .bundle-add-row {
+      margin-top: 4px;
+      padding: 12px;
+      border: 1px dashed rgba(196, 168, 124, 0.45);
+      border-radius: 10px;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--brass-muted);
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      background: transparent;
+      display: block;
+      width: 100%;
+      font-family: var(--font-body);
+    }
+    .bundle-add-row:active { background: rgba(196, 168, 124, 0.06); }
+
+    .bundle-add-options {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 8px;
+      padding: 10px;
+      border: 1px solid rgba(196, 168, 124, 0.30);
+      border-radius: 10px;
+      background: var(--cream-warm);
+    }
+    .bundle-add-options.open { display: flex; }
+    .bundle-add-options-title {
+      font-family: var(--font-display);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray-muted);
+      margin-bottom: 4px;
+    }
+    .add-option {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 10px;
+      background: var(--cream);
+      border: 1px solid rgba(196, 168, 124, 0.20);
+      border-radius: 8px;
+      font-size: 12px;
+      color: var(--charcoal);
+      cursor: pointer;
+      text-align: left;
+      font-family: var(--font-body);
+    }
+    .add-option:active { background: var(--cream-dark); }
+    .add-option .opt-cat {
+      font-family: var(--font-display);
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green-brand);
+      margin-right: 8px;
+    }
+    .add-option .opt-plus {
+      color: var(--brass-muted);
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .bundle-foot {
+      padding: 12px 18px 18px;
+      border-top: 1px solid rgba(196, 168, 124, 0.20);
+      background: var(--cream);
+      flex-shrink: 0;
+    }
+    .bundle-foot-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 10px;
+    }
+    .bundle-foot-label {
+      font-size: 12px;
+      color: var(--gray-warm);
+    }
+    .bundle-foot-label .count {
+      font-weight: 500;
+      color: var(--charcoal);
+    }
+    .bundle-foot-total {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--green-darkest);
+      font-variant-numeric: tabular-nums;
+    }
+    .bundle-foot-actions {
+      display: flex;
+      gap: 8px;
+    }
+    .bundle-cancel {
+      flex-shrink: 0;
+      padding: 12px 18px;
+      background: transparent;
+      border: 1px solid rgba(196, 168, 124, 0.45);
+      border-radius: 100px;
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--gray-warm);
+      cursor: pointer;
+    }
+    .bundle-commit {
+      flex: 1;
+      padding: 12px 18px;
+      background: var(--green-brand);
+      border: none;
+      border-radius: 100px;
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--cream);
+      cursor: pointer;
+      letter-spacing: 0.02em;
+    }
+    .bundle-commit:active { transform: scale(0.98); }
+
+    /* Running subtotal — non-welcome customers see a simple version */
+    body:not([data-welcome]) .welcome-price-discount-section,
+    body:not([data-welcome]) .welcome-price-nudge { display: none !important; }
+
+    body:not([data-welcome]) .welcome-price.visible {
+      display: block;
+    }
+
+    /* Single-tier promo banner (/ws and /in modes use $25 only) */
+    .welcome-banner.v2 .v2-tiers-single {
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+    .welcome-banner.v2 .v2-tiers-single .v2-amount {
+      font-size: 36px;
+    }
+    .welcome-banner.v2 .v2-tiers-single .v2-qualifier {
+      font-size: 10px;
+    }
+
+    /* Preset card strikethrough pricing — shows when an active promo applies */
+    .preset-price .price-original {
+      text-decoration: line-through;
+      color: var(--gray-muted);
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 400;
+      margin-right: 5px;
+      letter-spacing: 0;
+    }
+    .preset-price .price-discounted {
+      color: var(--green-brand);
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 500;
+    }
+    .preset-card.featured .preset-price .price-original {
+      color: rgba(245, 241, 234, 0.45);
+    }
+    .preset-card.featured .preset-price .price-discounted {
+      color: var(--brass);
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+        <!-- Header - Fixed -->
+        <header class="header">
+          <div class="header-left">
+            <div class="brand-logo">
+              <!-- Centered H logo -->
+              <svg viewBox="0 0 24 28" width="20" height="24" fill="none">
+                <text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="Cormorant, serif" font-size="24" font-weight="400" font-style="italic" fill="#F0EBE3">H</text>
+              </svg>
+            </div>
+            <div class="header-info">
+              <span class="header-name">Havn Club</span>
+              <span class="header-meta">May 10 – May 16</span>
+            </div>
+          </div>
+          <button class="help-btn" id="helpBtn">?</button>
+        </header>
+
+        <!-- Welcome Offer Banner — rendered by welcome-mode JS with a variant
+             class (v1/v2/v3/v0). Default shown when welcome mode is active but
+             no ?banner=X is set is v1 (editorial). -->
+        <div class="welcome-banner" id="welcomeBanner"></div>
+
+        <!-- Content - Scrollable, includes order bar -->
+        <div class="content" id="content">
+          
+          <!-- Order Bar - Scrolls with content -->
+          <div class="order-bar">
+            <span class="order-bar-title">Build your order</span>
+            <div class="order-bar-pricing">
+              <span>$25/meal</span>
+              <span class="dot"></span>
+              <span>$10/side</span>
+            </div>
+          </div>
+
+          <!-- Preset Bundles -->
+          <div class="presets-section">
+            <div class="presets-eyebrow">
+              <div class="eyebrow-line"></div>
+              <span class="eyebrow-text">Start with a preset</span>
+              <div class="eyebrow-line right"></div>
+            </div>
+            <div class="presets-row">
+              <button class="preset-card" data-preset="basic" type="button">
+                <span class="preset-eyebrow">Starter</span>
+                <span class="preset-title">Basic</span>
+                <span class="preset-meta">5 meals + chia</span>
+                <div class="preset-bottom">
+                  <span class="preset-price">$135</span>
+                  <span class="preset-cta">View →</span>
+                </div>
+              </button>
+              <button class="preset-card featured" data-preset="standard" type="button">
+                <span class="preset-tag">Most popular</span>
+                <span class="preset-eyebrow">The go-to</span>
+                <span class="preset-title">Standard</span>
+                <span class="preset-meta">7 meals + chia + shots</span>
+                <div class="preset-bottom">
+                  <span class="preset-price">$210</span>
+                  <span class="preset-cta">View →</span>
+                </div>
+              </button>
+              <button class="preset-card" data-preset="signature" type="button">
+                <span class="preset-eyebrow">Full menu</span>
+                <span class="preset-title">Signature</span>
+                <span class="preset-meta">One of everything</span>
+                <div class="preset-bottom">
+                  <span class="preset-price">$245</span>
+                  <span class="preset-cta">View →</span>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Wellness Collection -->
+          <div class="wellness-section">
+            <div class="wellness-card" id="wellnessCard">
+              <div class="wellness-head">
+                <div class="wellness-head-text">
+                  <div class="wellness-title-row">
+                    <span class="wellness-title">Wellness Collection</span>
+                    <span class="new-badge">New</span>
+                  </div>
+                  <span class="wellness-subtitle">4 wellness shots · $25 bundle</span>
+                </div>
+              </div>
+
+              <div class="wellness-body">
+                <div class="shot-circles">
+                  <div class="shot-circle immunity" data-shot="immunity" aria-label="Immunity shot"></div>
+                  <div class="shot-circle endurance" data-shot="endurance" aria-label="Endurance shot"></div>
+                  <div class="shot-circle purify" data-shot="purify" aria-label="Purify shot"></div>
+                  <div class="shot-circle clarity" data-shot="clarity" aria-label="Clarity shot"></div>
+                </div>
+                <div class="wellness-stepper">
+                  <button class="stepper-btn minus" id="wellnessMinus" disabled>−</button>
+                  <span class="stepper-qty" id="wellnessQty">0</span>
+                  <button class="stepper-btn plus" id="wellnessPlus">+</button>
+                </div>
+              </div>
+
+              <div class="wellness-foot">
+                <span class="wellness-foot-text">Tap to see what's in each shot</span>
+                <span class="wellness-foot-arrow">→</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pill Nav - filter meals by category -->
+          <nav class="pill-nav" id="pillNav" aria-label="Menu filter">
+            <button class="pill active" data-category="all">All</button>
+            <button class="pill" data-category="chicken">Chicken</button>
+            <button class="pill" data-category="beef">Beef</button>
+            <button class="pill" data-category="seafood">Seafood</button>
+            <button class="pill" data-category="veg">Veg</button>
+            <button class="pill" data-category="pasta">Pasta</button>
+            <button class="pill" data-category="sides">Sides</button>
+          </nav>
+
+          <!-- Meals Section -->
+          <div class="section-divider meals-divider">
+            <div class="section-line"></div>
+            <span class="section-name">Meals</span>
+            <div class="section-line right"></div>
+          </div>
+
+                    <div class="menu-item chef-hero" data-key="special" data-category="beef">
+            <div class="item-cat"><span>Special</span><span class="item-surcharge">+$5/Meal</span></div>
+            <div class="item-info">
+              <h3 class="item-name">Filet Mignon</h3>
+              <p class="item-desc">Filet Mignon Steak with a Wild Mushroom Sauce and Honey Glazed Rainbow Carrots and Rosemary Garlic Baby Potatoes</p>
+              <div class="item-bottom">
+                <div class="item-macros">
+                  <span>728 cal</span>
+                  <span class="dot"></span>
+                  <span>51g protein</span>
+                </div>
+                <div class="stepper">
+                  <button class="stepper-btn minus" disabled>−</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-item chef-hero" data-key="pasta" data-category="pasta chicken">
+            <div class="item-cat"><span>Pasta</span></div>
+            <div class="item-info">
+              <h3 class="item-name">Hot Honey Mac and Cheese</h3>
+              <p class="item-desc">Hot Honey Chicken Breast with a Hot Honey Sauce over Creamy Mac and Cheese</p>
+              <div class="item-bottom">
+                <div class="item-macros">
+                  <span>789 cal</span>
+                  <span class="dot"></span>
+                  <span>55g protein</span>
+                </div>
+                <div class="stepper">
+                  <button class="stepper-btn minus" disabled>−</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-list meals-list grid-mode">
+
+          <div class="menu-item" data-key="chicken" data-category="chicken">
+            <div class="item-cat"><span>Chicken</span></div>
+            <div class="item-info">
+              <h3 class="item-name">Blackened Chicken</h3>
+              <p class="item-desc">Blackened Chicken with a Honey Sriracha Glaze and Charred Broccoli and Roasted Bell Peppers over Basmati Rice</p>
+              <div class="item-bottom">
+                <div class="item-macros">
+                  <span>632 cal</span>
+                  <span class="dot"></span>
+                  <span>51g protein</span>
+                </div>
+                <div class="stepper">
+                  <button class="stepper-btn minus" disabled>−</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-item" data-key="chicken_2" data-category="chicken">
+            <div class="item-cat"><span>Chicken</span></div>
+            <div class="item-info">
+              <h3 class="item-name">Lemon Herb Chicken with Whipped Feta</h3>
+              <p class="item-desc">Pan Roasted Chicken Breast with a Whipped Lemon Garlic Feta and Charred Sweet Potato, Roasted Broccoli, House Pickled Vegetables, and Dried Cranberries</p>
+              <div class="item-bottom">
+                <div class="item-macros">
+                  <span>518 cal</span>
+                  <span class="dot"></span>
+                  <span>53g protein</span>
+                </div>
+                <div class="stepper">
+                  <button class="stepper-btn minus" disabled>−</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-item" data-key="beef" data-category="beef">
+            <div class="item-cat"><span>Beef</span></div>
+            <div class="item-info">
+              <h3 class="item-name">Korean Beef Bibimbap</h3>
+              <p class="item-desc">Pear Marinated Flank Steak with a House Gochujang Sauce and Roasted Zucchini, Sautéed Shiitake Mushrooms, and Pickled Cucumber over Calrose Rice</p>
+              <div class="item-bottom">
+                <div class="item-macros">
+                  <span>644 cal</span>
+                  <span class="dot"></span>
+                  <span>57g protein</span>
+                </div>
+                <div class="stepper">
+                  <button class="stepper-btn minus" disabled>−</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-item" data-key="seafood" data-category="seafood">
+            <div class="item-cat"><span>Seafood</span></div>
+            <div class="item-info">
+              <h3 class="item-name">Lemon Caper Salmon</h3>
+              <p class="item-desc">Pan Seared Salmon with a Lemon Caper Dill Sauce and Roasted Broccoli and Roasted Beets over Lemon Herb Quinoa</p>
+              <div class="item-bottom">
+                <div class="item-macros">
+                  <span>595 cal</span>
+                  <span class="dot"></span>
+                  <span>53g protein</span>
+                </div>
+                <div class="stepper">
+                  <button class="stepper-btn minus" disabled>−</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-item" data-key="seafood_2" data-category="seafood">
+            <div class="item-cat"><span>Seafood</span></div>
+            <div class="item-info">
+              <h3 class="item-name">Honey Chipotle Shrimp</h3>
+              <p class="item-desc">Honey Chipotle Shrimp with a Tahini Green Goddess Dressing and Charred Corn and Charred Broccoli over Cilantro Lime Rice</p>
+              <div class="item-bottom">
+                <div class="item-macros">
+                  <span>590 cal</span>
+                  <span class="dot"></span>
+                  <span>44g protein</span>
+                </div>
+                <div class="stepper" style="touch-action: manipulation;">
+                  <button class="stepper-btn minus" disabled style="touch-action: manipulation;">−</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus" style="touch-action: manipulation;">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-item" data-key="veg" data-category="veg">
+            <div class="item-cat"><span>Veg</span></div>
+            <div class="item-info">
+              <h3 class="item-name">Thai Coconut Curry Bowl</h3>
+              <p class="item-desc">Oven Roasted Tofu in a Thai Coconut Curry with Roasted Bell Peppers and Roasted Broccoli over Jasmine Rice</p>
+              <div class="item-bottom">
+                <div class="item-macros">
+                  <span>687 cal</span>
+                  <span class="dot"></span>
+                  <span>46g protein</span>
+                </div>
+                <div class="stepper">
+                  <button class="stepper-btn minus" disabled>−</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          </div>
+          <!-- /meals-list -->
+
+          <!-- Sides Section -->
+          <div class="section-divider sides-divider">
+            <div class="section-line"></div>
+            <span class="section-name">Sides</span>
+            <div class="section-line right"></div>
+          </div>
+
+          <div class="menu-list sides-list grid-mode">
+
+          <div class="menu-item" data-key="broth" data-category="sides">
+            <div class="item-cat"><span>Broth</span></div>
+            <div class="item-info">
+              <h3 class="item-name">Golden Broth</h3>
+              <p class="item-desc">Our golden high protein and collagen rich turmeric and coconut milk bone broth slow simmered for 24 hours</p>
+              <div class="item-bottom">
+                <div class="item-macros">
+                  <span>432 cal</span>
+                  <span class="dot"></span>
+                  <span>36g protein</span>
+                </div>
+                <div class="stepper">
+                  <button class="stepper-btn minus" disabled>−</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-item" data-key="chia" data-category="sides">
+            <div class="item-cat"><span>Chia</span></div>
+            <div class="item-info">
+              <h3 class="item-name">Tiramisu Chia Pudding</h3>
+              <p class="item-desc">Tiramisu chia pudding with a sweet tiramisu style cream topped with a light cocoa dusting</p>
+              <div class="item-bottom">
+                <div class="item-macros">
+                  <span>320 cal</span>
+                  <span class="dot"></span>
+                  <span>27g protein</span>
+                </div>
+                <div class="stepper">
+                  <button class="stepper-btn minus" disabled>−</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          </div>
+          <!-- /sides-list -->
+
+
+          <!-- Draft Section - Always visible -->
+          <div class="draft-section" id="draftSection">
+            <div class="draft-label">
+              <span>Message draft</span>
+              <span class="draft-status incomplete" id="draftStatus">Add 4 items to order</span>
+              <span class="tier-progress" id="tierProgress"></span>
+            </div>
+            <div class="welcome-price" id="welcomePrice">
+              <div class="welcome-price-min" id="priceMin"></div>
+              <div class="welcome-price-row"><span>Subtotal</span><span class="amt" id="priceSubtotal">$0</span></div>
+              <div class="welcome-price-discount-section">
+                <div class="welcome-price-row discount"><span id="priceDiscountLabel">Welcome discount</span><span class="amt" id="priceDiscount">–$0</span></div>
+                <div class="welcome-price-divider"></div>
+                <div class="welcome-price-row total"><span>Your total</span><span class="amt" id="priceTotal">$0</span></div>
+              </div>
+              <div class="welcome-price-nudge" id="priceNudge"></div>
+            </div>
+            <div class="draft-bubble" id="draftBubble"></div>
+            
+            <div class="draft-options">
+              <div class="opt-bubble" id="deliveryBubble">
+                <span class="opt-label">Delivery:</span>
+                <span class="opt-val" id="deliveryVal">Sun AM</span>
+                <span class="opt-change">Change</span>
+              </div>
+              <div class="opt-bubble" id="containerBubble">
+                <span class="opt-label">Container:</span>
+                <span class="opt-val" id="containerVal">Glass</span>
+                <span class="opt-change">Change</span>
+              </div>
+            </div>
+            
+            <!-- Dynamic spacer -->
+            <div class="draft-spacer" id="draftSpacer"></div>
+          </div>
+        </div>
+        
+        <!-- Sticky Cart Bar -->
+        <div class="cart-bar">
+          <div class="cart-prompt" id="cartPrompt">
+            <span class="cart-prompt-text" id="promptText"></span>
+            <button class="cart-prompt-btn" id="promptBtn"></button>
+          </div>
+          <div class="cart-main">
+            <div class="cart-info">
+              <div class="cart-count" id="cartCount">0 meals + 0 sides</div>
+              <div class="cart-hint" id="cartHint">Tap + to add items</div>
+            </div>
+            <div class="send-wrapper">
+              <button class="send-btn" id="sendBtn">
+                <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                <span>Send in Messages</span>
+              </button>
+              <div class="copy-link" id="copyLink">Copy to clipboard</div>
+            </div>
+          </div>
+          <div class="cart-deadline">Orders close Thursday evening</div>
+        </div>
+
+        <!-- Welcome Offer footer clarifier -->
+        <div class="welcome-footer-note">
+          First-time customers only. 4-meal minimum to order · $20 off at 5 meals · $40 off at 7 meals. Discount applies automatically.
+        </div>
+
+        <!-- Detail Sheet -->
+        <div class="sheet-overlay" id="detailOverlay">
+          <div class="sheet">
+            <div class="sheet-handle"></div>
+            <button class="sheet-close" onclick="closeDetail()">×</button>
+            <div class="detail-content">
+              <h2 class="detail-name" id="detailName"></h2>
+              <p class="detail-desc" id="detailDesc"></p>
+              <div class="detail-macros" id="detailMacros"></div>
+              <div class="detail-tags" id="detailTags"></div>
+
+              <div class="detail-mods" id="detailMods">
+                <label class="detail-mods-label">Make it</label>
+                <div class="mod-pills">
+                  <button class="mod-pill" data-mod="dairy free" type="button">Dairy Free</button>
+                  <button class="mod-pill" data-mod="gluten free" type="button">Gluten Free</button>
+                  <button class="mod-pill" data-mod="low carb" type="button">Low Carb</button>
+                  <button class="mod-pill" data-mod="no carb" type="button">No Carb</button>
+                  <button class="mod-pill" data-mod="extra protein" type="button">Extra Protein<span class="mod-price">+$2</span></button>
+                  <button class="mod-pill" data-mod="extra carbs" type="button">Extra Carbs</button>
+                </div>
+              </div>
+
+              <div class="custom-field">
+                <label class="custom-label">Anything else? (optional)</label>
+                <textarea class="custom-input" id="customInput" rows="2" placeholder="e.g., no cilantro, extra sauce, spicy"></textarea>
+              </div>
+              
+              <div class="detail-stepper-row">
+                <span class="detail-stepper-label">Quantity</span>
+                <div class="detail-stepper">
+                  <button class="stepper-btn minus" id="detailMinus">−</button>
+                  <span class="stepper-qty" id="detailQty">0</span>
+                  <button class="stepper-btn plus" id="detailPlus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Delivery Sheet -->
+        <div class="sheet-overlay" id="deliveryOverlay">
+          <div class="sheet">
+            <div class="sheet-handle"></div>
+            <div class="options-content">
+              <h3 class="options-title">Delivery Window</h3>
+              <div class="option-row" data-val="Sunday Morning|Sunday Morning (9a–12p)" onclick="selectDelivery(this)">
+                <span class="option-text">Sunday Morning (9a–12p)</span>
+                <span class="option-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+              </div>
+              <div class="option-row" data-val="Sunday Evening|Sunday Evening (6p–9p)" onclick="selectDelivery(this)">
+                <span class="option-text">Sunday Evening (6p–9p)</span>
+                <span class="option-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+              </div>
+              <div class="option-row" data-val="Monday Morning|Monday Morning (9a–12p)" onclick="selectDelivery(this)">
+                <span class="option-text">Monday Morning (9a–12p)</span>
+                <span class="option-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Container Sheet -->
+        <div class="sheet-overlay" id="containerOverlay">
+          <div class="sheet">
+            <div class="sheet-handle"></div>
+            <div class="options-content">
+              <h3 class="options-title">Container Type</h3>
+              <div class="option-row selected" data-val="Glass|Reusable Glass" onclick="selectContainer(this)">
+                <span class="option-text">Reusable Glass</span>
+                <span class="option-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+              </div>
+              <div class="option-row" data-val="Plastic|BPA-Free Plastic" onclick="selectContainer(this)">
+                <span class="option-text">BPA-Free Plastic</span>
+                <span class="option-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Wellness Shots Sheet -->
+        <div class="sheet-overlay" id="wellnessOverlay">
+          <div class="sheet wellness-sheet">
+            <div class="sheet-handle"></div>
+            <button class="sheet-close" onclick="closeWellness()">×</button>
+            <div class="wellness-sheet-content">
+              <div class="wellness-sheet-head">
+                <div class="wellness-sheet-title">Wellness Collection</div>
+                <div class="wellness-sheet-sub">4 colors · 4 functions · $25 for all 4</div>
+                <div class="wellness-sheet-lede">Made fresh with whole ingredients, no artificial anything. Every color comes from the plants.</div>
+              </div>
+
+              <div class="wellness-deep-grid">
+                <div class="wellness-deep-card immunity" id="sheetCardImmunity">
+                  <div class="wellness-deep-dot immunity"></div>
+                  <div class="wellness-deep-head">
+                    <span class="wellness-deep-name">Immunity</span>
+                    <span class="wellness-deep-fn immunity">Anti-Inflammatory</span>
+                  </div>
+                  <div class="wellness-deep-ing"><strong>Fresh turmeric root, ginger root, lemon juice, black pepper, cayenne, raw honey.</strong></div>
+                  <div class="wellness-deep-sci">
+                    <span class="wellness-deep-sci-bullet"></span>
+                    <span class="wellness-deep-sci-text">Curcumin is one of the most studied anti-inflammatory compounds in food, with 389+ clinical trials behind it. Black pepper isn't optional here; piperine boosts turmeric's absorption by 2,000%.</span>
+                  </div>
+                </div>
+
+                <div class="wellness-deep-card endurance" id="sheetCardEndurance">
+                  <div class="wellness-deep-dot endurance"></div>
+                  <div class="wellness-deep-head">
+                    <span class="wellness-deep-name">Endurance</span>
+                    <span class="wellness-deep-fn endurance">Energy + Recovery</span>
+                  </div>
+                  <div class="wellness-deep-ing"><strong>Cold-pressed beetroot juice, tart cherry juice, fresh ginger, lemon juice.</strong></div>
+                  <div class="wellness-deep-sci">
+                    <span class="wellness-deep-sci-bullet"></span>
+                    <span class="wellness-deep-sci-text">Beetroot fuels sustained energy by improving how efficiently your muscles use oxygen. Tart cherry is clinically shown to reduce post-workout soreness. Energy in, recovery out.</span>
+                  </div>
+                </div>
+
+                <div class="wellness-deep-card purify" id="sheetCardPurify">
+                  <div class="wellness-deep-dot purify"></div>
+                  <div class="wellness-deep-head">
+                    <span class="wellness-deep-name">Purify</span>
+                    <span class="wellness-deep-fn purify">Daily Greens + Digestion</span>
+                  </div>
+                  <div class="wellness-deep-ing"><strong>Fresh wheatgrass juice, cucumber juice, liquid chlorophyll, fresh mint, lemon juice, ginger.</strong></div>
+                  <div class="wellness-deep-sci">
+                    <span class="wellness-deep-sci-bullet"></span>
+                    <span class="wellness-deep-sci-text">A full serving of greens concentrated into 2 oz. Wheatgrass is ~70% chlorophyll by dry weight, loaded with vitamins A, C, E, iron, and all essential amino acids. Mint and ginger keep digestion smooth.</span>
+                  </div>
+                </div>
+
+                <div class="wellness-deep-card clarity" id="sheetCardClarity">
+                  <div class="wellness-deep-dot clarity"></div>
+                  <div class="wellness-deep-head">
+                    <span class="wellness-deep-name">Clarity</span>
+                    <span class="wellness-deep-fn clarity">Focus + Cognition</span>
+                  </div>
+                  <div class="wellness-deep-ing"><strong>Blue spirulina (phycocyanin), coconut water, L-theanine, lemon juice, fresh ginger, raw honey.</strong></div>
+                  <div class="wellness-deep-sci">
+                    <span class="wellness-deep-sci-bullet"></span>
+                    <span class="wellness-deep-sci-text">L-theanine promotes alpha brain-wave activity, the state tied to sharp, sustained focus without caffeine jitters. Phycocyanin (the natural blue pigment from spirulina) supports long-term cognitive function.</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="wellness-deep-footnote">All shots are dairy-free, nut-free, vegan, gluten-free · 2 oz glass vials · 6 days refrigerated · Shake gently before drinking</div>
+
+              <div class="detail-stepper-row">
+                <span class="detail-stepper-label">Bundles ($25 each)</span>
+                <div class="detail-stepper">
+                  <button class="stepper-btn minus" id="sheetWellnessMinus">−</button>
+                  <span class="stepper-qty" id="sheetWellnessQty">0</span>
+                  <button class="stepper-btn plus" id="sheetWellnessPlus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bundle Sheet — opens when a preset card is tapped -->
+        <div class="sheet-overlay" id="bundleOverlay">
+          <div class="sheet">
+            <div class="sheet-handle"></div>
+            <button class="sheet-close" id="bundleClose">×</button>
+            <div class="bundle-head">
+              <div class="bundle-head-eyebrow" id="bundleEyebrow">Starter</div>
+              <div class="bundle-head-title" id="bundleTitle">Basic</div>
+              <div class="bundle-head-blurb" id="bundleBlurb"></div>
+            </div>
+            <div class="bundle-body" id="bundleBody"></div>
+            <div class="bundle-foot" id="bundleFoot">
+              <div class="bundle-foot-row">
+                <div class="bundle-foot-label"><span class="count" id="bundleCount">0 items</span> · adjust below</div>
+                <div class="bundle-foot-total" id="bundleTotal">$0</div>
+              </div>
+              <div class="bundle-foot-actions">
+                <button class="bundle-cancel" id="bundleCancel" type="button">Cancel</button>
+                <button class="bundle-commit" id="bundleCommit" type="button">Add to my order</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Help Sheet -->
+        <div class="sheet-overlay" id="helpOverlay">
+          <div class="sheet">
+            <div class="sheet-handle"></div>
+            <div class="help-content">
+              <h3 class="help-title">How It Works</h3>
+              <div class="help-steps">
+                <div class="help-step">
+                  <span class="help-num">1</span>
+                  <span class="help-text">Tap + to add meals and sides</span>
+                </div>
+                <div class="help-step">
+                  <span class="help-num">2</span>
+                  <span class="help-text">We generate your order text</span>
+                </div>
+                <div class="help-step">
+                  <span class="help-num">3</span>
+                  <span class="help-text">Tap "Send in Messages" to open a prefilled draft</span>
+                </div>
+                <div class="help-step">
+                  <span class="help-num">4</span>
+                  <span class="help-text">Receive confirmation and payment link over text</span>
+                </div>
+              </div>
+              <button class="help-done" onclick="closeHelp()">Got it</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <script>
+    // Data - Full descriptions for detail sheet
+    const dishes = {
+      special: {
+        name: 'Filet Mignon',
+        shortName: 'Filet Mignon',
+        category: 'special',
+        desc: 'Filet mignon steak dry brined and crusted with thyme, garlic, and black pepper, finished with a rich wild mushroom sauce of cremini and shiitake, served with honey glazed rainbow carrots and rosemary garlic baby potatoes for a refined, steakhouse inspired plate with a deeply savory finish.',
+        macros: '728 cal · 51g protein · 42g fat · 6g fiber · 36g carbs',
+        tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy (Butter)', safe: false }],
+        price: 25
+      },
+      chicken: {
+        name: 'Blackened Chicken',
+        shortName: 'Blackened Chicken',
+        category: 'chicken',
+        desc: 'Bold blackened chicken finished with a sweet and spicy honey sriracha glaze, served with charred broccoli and roasted bell peppers over fluffy basmati rice for a balanced sweet heat plate with a fresh, vibrant finish.',
+        macros: '632 cal · 51g protein · 22g fat · 4g fiber · 59g carbs',
+        tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy Free', safe: true }],
+        price: 25
+      },
+      chicken_2: {
+        name: 'Lemon Herb Chicken with Whipped Feta',
+        shortName: 'Lemon Herb Chicken',
+        category: 'chicken_2',
+        desc: 'Lemon and herb marinated pan roasted chicken breast finished with a bright herb oil, served over a whipped lemon garlic feta with charred sweet potato, roasted broccoli, house pickled vegetables, and dried cranberries for a clean, Mediterranean inspired plate with a fresh, citrus finish.',
+        macros: '518 cal · 53g protein · 21g fat · 6g fiber · 28g carbs',
+        tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy (Feta)', safe: false }],
+        price: 25
+      },
+      beef: {
+        name: 'Korean Beef Bibimbap',
+        shortName: 'Korean Beef Bibimbap',
+        category: 'beef',
+        desc: 'Pear marinated flank steak roasted at high heat and sliced thin against the grain, finished with a house gochujang sauce, served over short grain calrose rice with roasted zucchini, sautéed shiitake mushrooms, and quick pickled cucumber for a savory, Korean inspired plate with a balanced umami finish.',
+        macros: '644 cal · 57g protein · 21g fat · 3g fiber · 56g carbs',
+        tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy Free', safe: true }],
+        price: 25
+      },
+      seafood: {
+        name: 'Lemon Caper Salmon',
+        shortName: 'Lemon Caper Salmon',
+        category: 'seafood',
+        desc: 'Pan seared salmon finished with a bright lemon caper dill sauce, served with roasted broccoli and roasted beets over fluffy lemon herb quinoa for a clean, Mediterranean inspired plate with a bright, herbaceous finish.',
+        macros: '595 cal · 53g protein · 28g fat · 7g fiber · 32g carbs',
+        tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy (Yogurt)', safe: false }],
+        price: 25
+      },
+      seafood_2: {
+        name: 'Honey Chipotle Shrimp',
+        shortName: 'Honey Chipotle Shrimp',
+        category: 'seafood_2',
+        desc: 'Honey chipotle marinated shrimp seared and finished with a creamy tahini green goddess dressing, served with charred corn and charred broccoli over bright cilantro lime rice for a smoky, sweet heat plate with a fresh, herbaceous finish.',
+        macros: '590 cal · 44g protein · 21g fat · 5g fiber · 56g carbs',
+        tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy Free', safe: true }],
+        price: 25
+      },
+      veg: {
+        name: 'Thai Coconut Curry Bowl',
+        shortName: 'Thai Coconut Curry Bowl',
+        category: 'veg',
+        desc: 'Oven roasted tofu in a rich Thai coconut curry, served with roasted bell peppers and roasted broccoli over fluffy jasmine rice with shredded purple cabbage and pickled red onion for a warm, fragrant plate with a creamy, aromatic finish.',
+        macros: '687 cal · 46g protein · 34g fat · 6g fiber · 49g carbs',
+        tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy Free', safe: true }],
+        price: 10
+      },
+      pasta: {
+        name: 'Hot Honey Mac and Cheese',
+        shortName: 'Hot Honey Mac and Cheese',
+        category: 'pasta',
+        desc: 'Tender hot honey marinated chicken breast finished with a sweet and spicy hot honey sauce, served over rich and creamy mac and cheese for an indulgent, comfort forward plate with a bold, sweet heat finish.',
+        macros: '789 cal · 55g protein · 29g fat · 2g fiber · 77g carbs',
+        tags: [{ text: 'Gluten (Pasta)', safe: false }, { text: 'Dairy (Cheese)', safe: false }],
+        price: 25
+      },
+      broth: {
+        name: 'Golden Broth',
+        shortName: 'Golden Broth',
+        category: 'broth',
+        desc: 'Our golden turmeric and coconut milk bone broth slow simmered for 24 hours with fresh ginger and warming spices.',
+        macros: '432 cal · 36g protein · 29g fat · 7g carbs',
+        tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy Free', safe: true }],
+        price: 10
+      },
+      chia: {
+        name: 'Tiramisu Chia Pudding',
+        shortName: 'Tiramisu Chia Pudding',
+        category: 'chia',
+        desc: 'Creamy vanilla chia pudding layered with a lightly sweet tiramisu style cream, finished with a light cocoa dusting for a rich, dessert inspired treat.',
+        macros: '320 cal · 27g protein · 11g fat · 10g fiber · 29g carbs',
+        tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy (Yogurt)', safe: false }],
+        price: 10
+      }
+    };
+    
+    // Welcome-mode detection — triggered when the page is served from /welcome/*
+    // (Netlify _redirects routes /welcome and /welcome/{token} to this index.html)
+    // Multi-promo mode detection — routes /welcome, /ws, /in to different promos.
+    // ?welcome / ?ws / ?in query params work too for local dev previewing.
+    const _path = window.location.pathname;
+    const _qs = new URLSearchParams(window.location.search);
+    const isWelcomeMode = /^\/welcome(\/|$)/.test(_path) || _qs.has('welcome');
+    const isWsMode = /^\/ws(\/|$)/.test(_path) || _qs.has('ws');
+    const isInMode = /^\/in(\/|$)/.test(_path) || _qs.has('in');
+    const activePromoMode = isWelcomeMode ? 'welcome' : isWsMode ? 'ws' : isInMode ? 'in' : null;
+
+    // Promo config — single source of truth for tier rules + banner content per mode.
+    // Tier matches when meals >= mealMin AND shots >= shotMin. Highest matched tier wins.
+    // Backend gate (Option A): Promo Credits + Promo Meal Minimum on the customer record.
+    // The shots requirement is enforced ON THE MENU PAGE (visual nudge); Stripe billing
+    // honors the credit on any 7-meal order. If shot attach matters at billing time,
+    // see plan to extend Wellness Credit logic.
+    const PROMO_CONFIG = {
+      welcome: {
+        title: 'Havn Club — Welcome Offer',
+        tiers: [
+          { mealMin: 5, shotMin: 0, amount: 20 },
+          { mealMin: 7, shotMin: 0, amount: 40 }
+        ]
+      },
+      ws: {
+        title: 'Havn Club — $25 Credit',
+        tiers: [
+          { mealMin: 7, shotMin: 1, amount: 25 }
+        ]
+      },
+      in: {
+        title: 'Havn Club — Welcome Back · $25',
+        tiers: [
+          { mealMin: 7, shotMin: 0, amount: 25 }
+        ]
+      }
+    };
+
+    // Compute the matched discount for a (meals, shots) combo under the active mode.
+    function computePromoDiscount(meals, shots, mode) {
+      if (!mode) return 0;
+      const cfg = PROMO_CONFIG[mode];
+      if (!cfg) return 0;
+      let max = 0;
+      cfg.tiers.forEach(t => {
+        if (meals >= t.mealMin && shots >= (t.shotMin || 0)) {
+          if (t.amount > max) max = t.amount;
+        }
+      });
+      return max;
+    }
+
+    if (activePromoMode) {
+      // data-welcome reuses the existing CSS hook that gates the banner + price card.
+      // data-promo-mode lets per-mode CSS hooks layer in if needed.
+      document.body.setAttribute('data-welcome', '');
+      document.body.setAttribute('data-promo-mode', activePromoMode);
+      document.title = PROMO_CONFIG[activePromoMode].title;
+
+      const bannerEl = document.getElementById('welcomeBanner');
+      // All modes use the v2 (brand-dark) banner shell — content varies per mode.
+      // Lead with the dollar amount; the qualifier is the small print.
+      const bannerByMode = {
+        welcome: `
+          <div class="v2-label">Welcome Offer · This Week Only</div>
+          <div class="v2-tiers">
+            <div class="v2-tier" data-tier="20">
+              <div class="v2-amount">$20</div>
+              <div class="v2-qualifier">off 5 meals</div>
+            </div>
+            <div class="v2-divider"></div>
+            <div class="v2-tier" data-tier="40">
+              <div class="v2-amount">$40</div>
+              <div class="v2-qualifier">off 7 meals</div>
+            </div>
+          </div>`,
+        ws: `
+          <div class="v2-label">$25 Credit · With Wellness Shots</div>
+          <div class="v2-tiers v2-tiers-single">
+            <div class="v2-tier" data-tier="25">
+              <div class="v2-amount">$25</div>
+              <div class="v2-qualifier">off 7 meals + Wellness Shots</div>
+            </div>
+          </div>`,
+        in: `
+          <div class="v2-label">$25 Credit · Welcome Back</div>
+          <div class="v2-tiers v2-tiers-single">
+            <div class="v2-tier" data-tier="25">
+              <div class="v2-amount">$25</div>
+              <div class="v2-qualifier">off any 7-meal order</div>
+            </div>
+          </div>`
+      };
+      bannerEl.className = 'welcome-banner v2';
+      bannerEl.innerHTML = bannerByMode[activePromoMode];
+    }
+
+    // Back-compat: existing welcome-tier logic reads `isWelcomeMode` directly.
+    // For /ws and /in we route through computePromoDiscount instead.
+    // Keep this aliased so older read paths still work without refactor.
+
+    // Exposed on window for test-harness access (const would be block-scoped).
+    window.order = { special: 0, chicken: 0, chicken_2: 0, beef: 0, seafood: 0, seafood_2: 0, veg: 0, pasta: 0, broth: 0, chia: 0 };
+    const order = window.order;
+    const customizations = { special: '', chicken: '', chicken_2: '', beef: '', seafood: '', seafood_2: '', veg: '', pasta: '', broth: '', chia: '' };
+    // Dietary modification pills per dish (meals only)
+    const dietaryPrefs = {
+      special: new Set(), chicken: new Set(), chicken_2: new Set(), beef: new Set(),
+      seafood: new Set(), seafood_2: new Set(), veg: new Set(), pasta: new Set(),
+      broth: new Set(), chia: new Set()
+    };
+    const mealCategories = new Set(['special', 'chicken', 'chicken_2', 'beef', 'seafood', 'seafood_2', 'veg', 'pasta']);
+    // Low carb / no carb / extra carbs are all mutually exclusive
+    const carbMods = {
+      'low carb':    ['no carb', 'extra carbs'],
+      'no carb':     ['low carb', 'extra carbs'],
+      'extra carbs': ['low carb', 'no carb']
+    };
+
+    // Wellness shots (separate from meal/side order — counted as N bundles)
+    // Exposed on window for test harness access (let would be block-scoped).
+    window.wellnessShots = 0;
+
+    // Map shot key → element id of its card inside the sheet (for tap-to-focus)
+    const sheetCardIds = {
+      immunity: 'sheetCardImmunity',
+      endurance: 'sheetCardEndurance',
+      purify: 'sheetCardPurify',
+      clarity: 'sheetCardClarity'
+    };
+
+    // Delivery window options
+    const deliveryOptions = [
+      { short: 'Sunday Morning', full: 'Sunday Morning (9a–12p)' },
+      { short: 'Sunday Evening', full: 'Sunday Evening (6p–9p)' },
+      { short: 'Monday Morning', full: 'Monday Morning (9a–12p)' }
+    ];
+    // Randomly default to Sunday Morning or Sunday Evening (50/50)
+    let delivery = deliveryOptions[Math.random() < 0.5 ? 0 : 1];
+    let container = { short: 'Glass', full: 'Reusable Glass' };
+    let currentDish = null;
+    let promptVisible = false;
+    
+    // Elements
+    const cartCount = document.getElementById('cartCount');
+    const cartHint = document.getElementById('cartHint');
+    const sendBtn = document.getElementById('sendBtn');
+    const draftSection = document.getElementById('draftSection');
+    const draftBubble = document.getElementById('draftBubble');
+    const draftStatus = document.getElementById('draftStatus');
+    const draftSpacer = document.getElementById('draftSpacer');
+    const cartPrompt = document.getElementById('cartPrompt');
+    const promptText = document.getElementById('promptText');
+    const promptBtn = document.getElementById('promptBtn');
+    
+    // Init steppers
+    document.querySelectorAll('.menu-item').forEach(item => {
+      const key = item.dataset.key;
+      const minus = item.querySelector('.minus');
+      const plus = item.querySelector('.plus');
+
+      // Click on item info (not stepper) opens detail
+      item.querySelector('.item-info').addEventListener('click', (e) => {
+        if (e.target.closest('.stepper')) return;
+        openDetail(key);
+      });
+
+      minus.addEventListener('click', e => {
+        e.stopPropagation();
+        if (order[key] > 0) { order[key]--; syncItem(key); update(); }
+      });
+
+      plus.addEventListener('click', e => {
+        e.stopPropagation();
+        if (order[key] < 12) { order[key]++; syncItem(key); update(); }
+      });
+    });
+
+    // Pill nav — filter meals/sides by category, toggle grid/list layout
+    (function initPillNav() {
+      const pills = document.querySelectorAll('.pill-nav .pill');
+      const mealsList = document.querySelector('.meals-list');
+      const sidesList = document.querySelector('.sides-list');
+      const mealsDivider = document.querySelector('.meals-divider');
+      const sidesDivider = document.querySelector('.sides-divider');
+      const chefHeros = document.querySelectorAll('.menu-item.chef-hero');
+      const wellnessSection = document.querySelector('.wellness-section');
+      const allItems = document.querySelectorAll('.menu-item');
+
+      // Items can declare multiple categories via space-separated values
+      // (e.g. data-category="pasta chicken" — visible under both Pasta and Chicken pills).
+      const itemMatchesCategory = (item, category) => {
+        const cats = (item.dataset.category || '').split(/\s+/).filter(Boolean);
+        return cats.includes(category);
+      };
+
+      function applyFilter(category) {
+        pills.forEach(p => p.classList.toggle('active', p.dataset.category === category));
+
+        const isAll = category === 'all';
+        const isSides = category === 'sides';
+
+        // Layout mode: grid only on All, list mode on every filtered tab
+        [mealsList, sidesList].forEach(list => {
+          if (!list) return;
+          list.classList.toggle('grid-mode', isAll);
+          list.classList.toggle('list-mode', !isAll);
+        });
+
+        // Item visibility (supports multi-category items)
+        allItems.forEach(item => {
+          const matches = isAll || itemMatchesCategory(item, category);
+          item.style.display = matches ? '' : 'none';
+        });
+
+        // Chef-hero tiles — show on All or matching meal-category tab; hide on Sides
+        chefHeros.forEach(hero => {
+          const showHero = isAll || (!isSides && itemMatchesCategory(hero, category));
+          hero.style.display = showHero ? '' : 'none';
+        });
+
+        // Wellness Collection — visible on All and on Sides (it's a side/extra)
+        if (wellnessSection) {
+          wellnessSection.style.display = (isAll || isSides) ? '' : 'none';
+        }
+
+        // Hide a section if nothing in it is visible
+        const mealsHasVisible = isAll || (!isSides);
+        const sidesHasVisible = isAll || isSides;
+        if (mealsDivider) mealsDivider.classList.toggle('hidden', !mealsHasVisible);
+        if (mealsList) mealsList.classList.toggle('hidden', !mealsHasVisible);
+        if (sidesDivider) sidesDivider.classList.toggle('hidden', !sidesHasVisible);
+        if (sidesList) sidesList.classList.toggle('hidden', !sidesHasVisible);
+      }
+
+      pills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          applyFilter(pill.dataset.category);
+          // Re-equalize after layout settles. Sync call clears any stale grid-mode min-heights;
+          // the setTimeout call re-measures once the new mode has painted.
+          equalizeGridCardHeights();
+          setTimeout(equalizeGridCardHeights, 50);
+        });
+      });
+    })();
+
+    // Inject small allergen pills into each card based on the dish's tag data.
+    // Safe tags render as green abbreviations ("GF", "DF").
+    // Allergen tags render as a single red letter ("G" for gluten, "D" for dairy).
+    function renderItemTags() {
+      const SAFE_ABBR = { 'Gluten Free': 'GF', 'Dairy Free': 'DF' };
+      document.querySelectorAll('.menu-item').forEach(item => {
+        const data = (typeof dishes !== 'undefined') && dishes[item.dataset.key];
+        if (!data || !data.tags) return;
+        const cat = item.querySelector('.item-cat');
+        if (!cat) return;
+        // Clear any previously injected pills before re-rendering
+        cat.querySelectorAll('.item-tag').forEach(t => t.remove());
+        data.tags.forEach(tag => {
+          let abbr = null;
+          let cls = null;
+          if (tag.safe) {
+            abbr = SAFE_ABBR[tag.text];
+            cls = 'item-tag safe';
+          } else {
+            // Allergen tag — collapse any "Contains Gluten" / "Dairy (...)" wording to a single letter
+            if (/gluten/i.test(tag.text)) { abbr = 'G'; cls = 'item-tag allergen'; }
+            else if (/dairy/i.test(tag.text)) { abbr = 'D'; cls = 'item-tag allergen'; }
+          }
+          if (!abbr) return;
+          const pill = document.createElement('span');
+          pill.className = cls;
+          pill.textContent = abbr;
+          cat.appendChild(pill);
+        });
+      });
+    }
+    renderItemTags();
+
+    // Equalize all card heights in grid-mode to match the tallest card
+    // (so a long meal name like "Lemon Herb Chicken with Whipped Feta" sets the floor for the rest)
+    function equalizeGridCardHeights() {
+      // Reset every card's min-height first so we measure natural sizes
+      document.querySelectorAll('.menu-list .menu-item').forEach(c => { c.style.minHeight = ''; });
+
+      document.querySelectorAll('.menu-list.grid-mode').forEach(grid => {
+        const cards = Array.from(grid.querySelectorAll('.menu-item'))
+          .filter(c => c.offsetParent !== null); // only visible cards
+        if (cards.length === 0) return;
+        let maxHeight = 0;
+        cards.forEach(c => {
+          const h = c.getBoundingClientRect().height;
+          if (h > maxHeight) maxHeight = h;
+        });
+        cards.forEach(c => { c.style.minHeight = maxHeight + 'px'; });
+      });
+    }
+
+    // Run after fonts settle (text width can shift card height) + on window resize
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(equalizeGridCardHeights);
+    } else {
+      window.addEventListener('load', equalizeGridCardHeights);
+    }
+    let _resizeEqTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(_resizeEqTimer);
+      _resizeEqTimer = setTimeout(equalizeGridCardHeights, 150);
+    });
+
+    // Wellness card stepper (card-level, stops propagation so it doesn't open sheet)
+    document.getElementById('wellnessMinus').addEventListener('click', e => {
+      e.stopPropagation();
+      if (wellnessShots > 0) {
+        wellnessShots--;
+        syncWellness();
+        update();
+      }
+    });
+
+    document.getElementById('wellnessPlus').addEventListener('click', e => {
+      e.stopPropagation();
+      if (wellnessShots < 12) {
+        wellnessShots++;
+        syncWellness();
+        update();
+      }
+    });
+
+    // Wellness sheet stepper (inside popup)
+    document.getElementById('sheetWellnessMinus').addEventListener('click', () => {
+      if (wellnessShots > 0) {
+        wellnessShots--;
+        syncWellness();
+        update();
+      }
+    });
+
+    document.getElementById('sheetWellnessPlus').addEventListener('click', () => {
+      if (wellnessShots < 12) {
+        wellnessShots++;
+        syncWellness();
+        update();
+      }
+    });
+
+    // Open wellness sheet (from card tap or circle tap)
+    function openWellnessSheet(focusShotKey) {
+      const overlay = document.getElementById('wellnessOverlay');
+      overlay.classList.add('visible');
+      // Reset scroll + any prior focus highlight
+      document.querySelectorAll('.wellness-deep-card.focused').forEach(c => c.classList.remove('focused'));
+      const sheetEl = overlay.querySelector('.sheet');
+      sheetEl.scrollTop = 0;
+      // After animation settles, scroll to the focused shot (if any) and pulse
+      if (focusShotKey && sheetCardIds[focusShotKey]) {
+        setTimeout(() => {
+          const cardEl = document.getElementById(sheetCardIds[focusShotKey]);
+          if (cardEl) {
+            cardEl.scrollIntoView({behavior: 'smooth', block: 'start'});
+            cardEl.classList.add('focused');
+          }
+        }, 360);
+      }
+    }
+
+    function closeWellness() {
+      document.getElementById('wellnessOverlay').classList.remove('visible');
+    }
+
+    // Card tap → open sheet
+    document.getElementById('wellnessCard').addEventListener('click', (e) => {
+      // Ignore taps on the stepper
+      if (e.target.closest('.wellness-stepper')) return;
+      // Circle taps open sheet and focus that shot
+      const circle = e.target.closest('.shot-circle');
+      if (circle) {
+        openWellnessSheet(circle.dataset.shot);
+        return;
+      }
+      openWellnessSheet();
+    });
+
+    // Close sheet when tapping the backdrop
+    document.getElementById('wellnessOverlay').addEventListener('click', e => {
+      if (e.target.id === 'wellnessOverlay') closeWellness();
+    });
+
+    // ── Preset bundles ──────────────────────────────────────────
+    // Definitions per category. Composition picks broadest-appeal dish per slot
+    // and is stable across weeks even when the live dish names change.
+    const PRESETS = {
+      basic: {
+        eyebrow: 'Starter',
+        title:   'Basic',
+        blurb:   'A simple week — both chickens, one beef, one seafood, the chef\'s special, and chia pudding.',
+        items:   { special: 1, chicken: 1, chicken_2: 1, beef: 1, seafood: 1, chia: 1 },
+        shots:   0,
+      },
+      standard: {
+        eyebrow: 'The go-to · Most popular',
+        title:   'Standard',
+        blurb:   'The full Havn week: both chickens, both seafood, beef, pasta, the chef\'s special, wellness shots, and chia.',
+        items:   { special: 1, chicken: 1, chicken_2: 1, beef: 1, seafood: 1, seafood_2: 1, pasta: 1, chia: 1 },
+        shots:   1,
+      },
+      signature: {
+        eyebrow: 'The full menu',
+        title:   'Signature',
+        blurb:   'One of every meal on this week\'s menu, both sides, and the wellness shot bundle.',
+        items:   { special: 1, chicken: 1, chicken_2: 1, beef: 1, seafood: 1, seafood_2: 1, pasta: 1, veg: 1, broth: 1, chia: 1 },
+        shots:   1,
+      },
+    };
+
+    // In-flight bundle state — separate from main cart until commit
+    let bundleDraft = null;
+    let bundleShots = 0;
+
+    const SHOT_BUNDLE_PRICE = 25;
+    const SHOT_KEY = '__shots__';  // synthetic key for the shot row in the sheet
+
+    // ── Preset price math + strikethrough rendering for active promo modes ──
+    // Computes each preset's base price + discount, then rewrites the preset
+    // card's price element to show the crossed-out original alongside the
+    // discounted price. Runs once on page load; preset compositions are static.
+    function computePresetBasePrice(preset) {
+      let meals = 0, sides = 0;
+      Object.entries(preset.items || {}).forEach(([id, qty]) => {
+        if (!dishes[id]) return;
+        const isSide = id === 'broth' || id === 'chia';
+        if (isSide) sides += qty;
+        else meals += qty;
+      });
+      const shots = preset.shots || 0;
+      return meals * 25 + sides * 10 + shots * SHOT_BUNDLE_PRICE;
+    }
+
+    function presetMealCount(preset) {
+      let m = 0;
+      Object.entries(preset.items || {}).forEach(([id, qty]) => {
+        if (dishes[id] && id !== 'broth' && id !== 'chia') m += qty;
+      });
+      return m;
+    }
+
+    function renderPresetPromoPricing() {
+      if (!activePromoMode) return;
+      document.querySelectorAll('.preset-card').forEach(card => {
+        const key = card.dataset.preset;
+        const preset = PRESETS[key];
+        if (!preset) return;
+        const base = computePresetBasePrice(preset);
+        const meals = presetMealCount(preset);
+        const shots = preset.shots || 0;
+        const discount = computePromoDiscount(meals, shots, activePromoMode);
+        const priceEl = card.querySelector('.preset-price');
+        if (!priceEl) return;
+        if (discount > 0) {
+          priceEl.innerHTML = `<span class="price-original">$${base}</span><span class="price-discounted">$${base - discount}</span>`;
+        } else {
+          priceEl.textContent = `$${base}`;
+        }
+      });
+    }
+    renderPresetPromoPricing();
+
+    // Static metadata for the synthetic shot row
+    const SHOT_META = {
+      shortName: 'Wellness Shots',
+      cat:       'Wellness',
+      macros:    '4 shots · $25 bundle',
+    };
+
+    function openBundleSheet(which) {
+      const preset = PRESETS[which];
+      if (!preset) return;
+      bundleDraft = { ...preset.items };
+      bundleShots = preset.shots || 0;
+      document.getElementById('bundleEyebrow').textContent = preset.eyebrow;
+      document.getElementById('bundleTitle').textContent = preset.title;
+      document.getElementById('bundleBlurb').textContent = preset.blurb;
+      renderBundleSheet();
+      document.getElementById('bundleOverlay').classList.add('visible');
+    }
+
+    function closeBundleSheet() {
+      document.getElementById('bundleOverlay').classList.remove('visible');
+      bundleDraft = null;
+      bundleShots = 0;
+    }
+
+    function renderBundleSheet() {
+      const body = document.getElementById('bundleBody');
+      body.innerHTML = '';
+
+      // Meal/side rows from current bundle
+      Object.entries(bundleDraft).forEach(([id, qty]) => {
+        if (qty === 0 || !dishes[id]) return;
+        const dish = dishes[id];
+        const isSpecial = id === 'special';
+        const cat = dish.category ? dish.category.charAt(0).toUpperCase() + dish.category.slice(1).replace('_', ' ') : '';
+        const surcharge = isSpecial ? '<span class="surcharge">+$5/meal</span>' : '';
+        const row = document.createElement('div');
+        row.className = 'bundle-item' + (isSpecial ? ' special' : '');
+        row.innerHTML = `
+          <div class="bundle-item-info">
+            <div class="bundle-item-cat"><span>${cat}</span>${surcharge}</div>
+            <div class="bundle-item-name">${dish.shortName || dish.name}</div>
+            <div class="bundle-item-macros">${dish.macros || ''}</div>
+          </div>
+          <div class="stepper">
+            <button class="stepper-btn minus" data-bundle-minus="${id}" ${qty === 0 ? 'disabled' : ''}>−</button>
+            <span class="stepper-qty">${qty}</span>
+            <button class="stepper-btn plus" data-bundle-plus="${id}">+</button>
+          </div>
+        `;
+        body.appendChild(row);
+      });
+
+      // Wellness shots row (synthetic — separate from dish keys)
+      if (bundleShots > 0) {
+        const row = document.createElement('div');
+        row.className = 'bundle-item';
+        row.innerHTML = `
+          <div class="bundle-item-info">
+            <div class="bundle-item-cat"><span>${SHOT_META.cat}</span></div>
+            <div class="bundle-item-name">${SHOT_META.shortName}</div>
+            <div class="bundle-item-macros">${SHOT_META.macros}</div>
+          </div>
+          <div class="stepper">
+            <button class="stepper-btn minus" data-bundle-minus="${SHOT_KEY}">−</button>
+            <span class="stepper-qty">${bundleShots}</span>
+            <button class="stepper-btn plus" data-bundle-plus="${SHOT_KEY}">+</button>
+          </div>
+        `;
+        body.appendChild(row);
+      }
+
+      // Add another item — opens inline picker
+      const addRow = document.createElement('button');
+      addRow.className = 'bundle-add-row';
+      addRow.id = 'bundleAddBtn';
+      addRow.type = 'button';
+      addRow.textContent = '+ Add another item';
+      body.appendChild(addRow);
+
+      const addOpts = document.createElement('div');
+      addOpts.className = 'bundle-add-options';
+      addOpts.id = 'bundleAddOpts';
+      const candidateIds = Object.keys(dishes).filter(id => !bundleDraft[id] || bundleDraft[id] === 0);
+      const candidateRows = candidateIds.map(id => {
+        const d = dishes[id];
+        const cat = d.category ? d.category.charAt(0).toUpperCase() + d.category.slice(1).replace('_', ' ') : '';
+        return `<button class="add-option" data-bundle-add="${id}" type="button">
+          <span><span class="opt-cat">${cat}</span>${d.shortName || d.name}</span>
+          <span class="opt-plus">+</span>
+        </button>`;
+      }).join('');
+      const shotRow = bundleShots === 0 ? `<button class="add-option" data-bundle-add="${SHOT_KEY}" type="button">
+        <span><span class="opt-cat">Wellness</span>${SHOT_META.shortName}</span>
+        <span class="opt-plus">+</span>
+      </button>` : '';
+      addOpts.innerHTML = `<div class="bundle-add-options-title">Add to this pack</div>${candidateRows}${shotRow}`;
+      body.appendChild(addOpts);
+
+      // Wire stepper handlers
+      body.querySelectorAll('[data-bundle-plus]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.dataset.bundlePlus;
+          if (id === SHOT_KEY) bundleShots++;
+          else bundleDraft[id] = (bundleDraft[id] || 0) + 1;
+          renderBundleSheet();
+          updateBundleFoot();
+        });
+      });
+      body.querySelectorAll('[data-bundle-minus]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.dataset.bundleMinus;
+          if (id === SHOT_KEY) {
+            if (bundleShots > 0) bundleShots--;
+          } else {
+            if (bundleDraft[id] > 0) bundleDraft[id]--;
+            if (bundleDraft[id] === 0) delete bundleDraft[id];
+          }
+          renderBundleSheet();
+          updateBundleFoot();
+        });
+      });
+      body.querySelectorAll('[data-bundle-add]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.dataset.bundleAdd;
+          if (id === SHOT_KEY) bundleShots = 1;
+          else bundleDraft[id] = 1;
+          renderBundleSheet();
+          updateBundleFoot();
+        });
+      });
+      document.getElementById('bundleAddBtn').addEventListener('click', () => {
+        document.getElementById('bundleAddOpts').classList.toggle('open');
+      });
+
+      updateBundleFoot();
+    }
+
+    function updateBundleFoot() {
+      let mealCount = 0, sideCount = 0, total = 0;
+      Object.entries(bundleDraft).forEach(([id, qty]) => {
+        const d = dishes[id];
+        if (!d || qty === 0) return;
+        const isSide = id === 'broth' || id === 'chia';
+        if (isSide) {
+          sideCount += qty;
+          total += qty * 10;
+        } else {
+          mealCount += qty;
+          total += qty * 25;
+        }
+      });
+      total += bundleShots * SHOT_BUNDLE_PRICE;
+      const parts = [];
+      if (mealCount) parts.push(`${mealCount} meal${mealCount !== 1 ? 's' : ''}`);
+      if (sideCount) parts.push(`${sideCount} side${sideCount !== 1 ? 's' : ''}`);
+      if (bundleShots) parts.push(`${bundleShots}× shots`);
+      document.getElementById('bundleCount').textContent = parts.join(' · ') || '0 items';
+      document.getElementById('bundleTotal').textContent = '$' + total;
+    }
+
+    // Preset card clicks
+    document.querySelectorAll('.preset-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const which = card.dataset.preset;
+        openBundleSheet(which);
+      });
+    });
+
+    document.getElementById('bundleClose').addEventListener('click', closeBundleSheet);
+    document.getElementById('bundleCancel').addEventListener('click', closeBundleSheet);
+    document.getElementById('bundleOverlay').addEventListener('click', e => {
+      if (e.target.id === 'bundleOverlay') closeBundleSheet();
+    });
+
+    document.getElementById('bundleCommit').addEventListener('click', () => {
+      // Replace main cart with the bundle contents
+      Object.keys(order).forEach(k => { order[k] = 0; });
+      Object.entries(bundleDraft).forEach(([id, qty]) => {
+        if (order.hasOwnProperty(id)) order[id] = qty;
+      });
+      window.wellnessShots = bundleShots;
+      // Resync every item's stepper UI to reflect the new values
+      Object.keys(order).forEach(k => syncItem(k));
+      syncWellness();
+      closeBundleSheet();
+      update();
+      // Scroll to the draft section so customer sees the new subtotal
+      const draft = document.getElementById('draftSection');
+      const content = document.getElementById('content');
+      if (draft && content) {
+        content.scrollTo({ top: draft.offsetTop - 60, behavior: 'smooth' });
+      }
+    });
+
+    function syncItem(key) {
+      const item = document.querySelector(`[data-key="${key}"]`);
+      item.querySelector('.stepper-qty').textContent = order[key];
+      item.querySelector('.minus').disabled = order[key] === 0;
+      item.classList.toggle('selected', order[key] > 0);
+    }
+
+    function syncWellness() {
+      const card = document.getElementById('wellnessCard');
+      const qty = document.getElementById('wellnessQty');
+      const minus = document.getElementById('wellnessMinus');
+      qty.textContent = wellnessShots;
+      minus.disabled = wellnessShots === 0;
+      card.classList.toggle('selected', wellnessShots > 0);
+      // Mirror into sheet stepper
+      const sheetQty = document.getElementById('sheetWellnessQty');
+      const sheetMinus = document.getElementById('sheetWellnessMinus');
+      if (sheetQty) {
+        sheetQty.textContent = wellnessShots;
+        sheetMinus.disabled = wellnessShots === 0;
+      }
+    }
+
+    // ── Promo tier logic — handles /welcome, /ws, /in ──
+    // Back-compat shim — older code paths call computeWelcomeDiscount(meals).
+    function computeWelcomeDiscount(meals, shots = 0) {
+      return computePromoDiscount(meals, shots, activePromoMode);
+    }
+
+    // Build the in-cart nudge text per mode. Drives the inline copy
+    // ("Add 1 more meal to get $25 off") shown under the price card.
+    function buildPromoNudge(meals, shots, mode) {
+      if (!mode) return '';
+      if (mode === 'welcome') {
+        if (meals >= 7) return '';
+        if (meals >= 5) {
+          const n = 7 - meals;
+          return `Add ${n} more meal${n === 1 ? '' : 's'} to get $40 off`;
+        }
+        if (meals >= 4) {
+          const n = 5 - meals;
+          return `Add ${n} more meal${n === 1 ? '' : 's'} to get $20 off`;
+        }
+        return '';
+      }
+      // /ws — shots required
+      if (mode === 'ws') {
+        const need = Math.max(0, 7 - meals);
+        const hasShots = shots >= 1;
+        if (need === 0 && hasShots) return '';
+        if (need === 0 && !hasShots) return 'Add Wellness Shots to unlock $25 off';
+        if (need > 0 && !hasShots) return `Add Wellness Shots + ${need} more meal${need === 1 ? '' : 's'} for $25 off`;
+        return `Add ${need} more meal${need === 1 ? '' : 's'} for $25 off`;
+      }
+      // /in — meal-count only, no shots requirement
+      if (mode === 'in') {
+        const need = Math.max(0, 7 - meals);
+        if (need === 0) return '';
+        return `Add ${need} more meal${need === 1 ? '' : 's'} for $25 off`;
+      }
+      return '';
+    }
+
+    function updateWelcomeUI(meals, sides, shots) {
+      const wp = document.getElementById('welcomePrice');
+      if (!wp) return { subtotal: 0, discount: 0, total: 0 };
+
+      const subtotal = meals * 25 + sides * 10 + shots * 25;
+      const discount = computePromoDiscount(meals, shots, activePromoMode);
+      const total = subtotal - discount;
+      // Every 3 sides = 1 meal equivalent toward the 4-item minimum
+      const mealEquivalents = meals + shots + Math.floor(sides / 3);
+      const minMet = mealEquivalents >= 4;
+
+      // ── Below-minimum message — runs on BOTH the welcome and regular menu.
+      // Shown once the customer has added something (1+ items) but hasn't
+      // hit the 4-item minimum yet. Empty cart (0 items) keeps the card
+      // hidden to avoid noise on the empty state.
+      if (!minMet && mealEquivalents >= 1) {
+        const need = 4 - mealEquivalents;
+        document.getElementById('priceMin').textContent =
+          `Add ${need} more meal${need === 1 ? '' : 's'} to meet the order minimum`;
+        wp.classList.add('visible', 'below-min');
+        wp.classList.remove('has-discount', 'needs-nudge');
+        // Still update tier badge on welcome page so the banner stays in sync
+        if (isWelcomeMode) updateTierBadge(meals);
+        return { subtotal, discount, total };
+      }
+
+      // Not below min and not empty: customers without an active promo see a simple subtotal.
+      // (Promo branches below handle discount/nudge UI for /welcome, /ws, /in.)
+      if (!activePromoMode) {
+        if (mealEquivalents > 0) {
+          document.getElementById('priceSubtotal').textContent = `$${subtotal}`;
+          wp.classList.add('visible');
+          wp.classList.remove('below-min', 'has-discount', 'needs-nudge');
+        } else {
+          wp.classList.remove('visible', 'below-min', 'has-discount', 'needs-nudge');
+        }
+        return { subtotal, discount, total };
+      }
+
+      // ── Promo-mode price card (/welcome, /ws, /in) ──
+      document.getElementById('priceSubtotal').textContent = `$${subtotal}`;
+
+      // Promo-aware nudge — copy is mode-specific
+      const nudgeText = buildPromoNudge(meals, shots, activePromoMode);
+
+      wp.classList.remove('below-min');
+      if (discount > 0) {
+        const labels = {
+          welcome: 'Welcome discount',
+          ws: 'Wellness credit',
+          in: 'Welcome back credit'
+        };
+        document.getElementById('priceDiscountLabel').textContent = labels[activePromoMode] || 'Discount';
+        document.getElementById('priceDiscount').textContent = `–$${discount}`;
+        document.getElementById('priceTotal').textContent = `$${total}`;
+        wp.classList.add('visible', 'has-discount');
+      } else if (minMet) {
+        wp.classList.add('visible');
+        wp.classList.remove('has-discount');
+      } else {
+        wp.classList.remove('visible', 'has-discount');
+      }
+
+      if (nudgeText) {
+        document.getElementById('priceNudge').textContent = nudgeText;
+        wp.classList.add('needs-nudge');
+      } else {
+        wp.classList.remove('needs-nudge');
+      }
+      // Tier badge is welcome-specific (two-tier $20/$40 ladder).
+      // /ws and /in skip it — the banner + nudge already communicate the offer.
+      if (isWelcomeMode) updateTierBadge(meals);
+      return { subtotal, discount, total };
+    }
+
+    // Extracted so both the main welcome-mode branch and the below-min
+    // early-return branch can keep the tier badge + banner state in sync.
+    function updateTierBadge(meals) {
+      const tp = document.getElementById('tierProgress');
+      if (tp) {
+        tp.classList.remove('unlocked');
+        tp.style.display = '';
+        if (meals === 0) {
+          tp.textContent = '$20 off @ 5 · $40 off @ 7';
+        } else if (meals < 5) {
+          const need = 5 - meals;
+          tp.textContent = `+${need} MEAL${need === 1 ? '' : 'S'} → $20 OFF`;
+        } else if (meals === 5) {
+          tp.textContent = '$20 APPLIED · +2 → $40 OFF';
+          tp.classList.add('unlocked');
+        } else if (meals === 6) {
+          tp.textContent = '$20 APPLIED · +1 → $40 OFF';
+          tp.classList.add('unlocked');
+        } else {
+          tp.textContent = '$40 APPLIED · MAX DISCOUNT';
+          tp.classList.add('unlocked');
+        }
+      }
+
+      // Banner tier-unlock feedback (V2 only).
+      const tier20 = document.querySelector('.welcome-banner.v2 .v2-tier[data-tier="20"]');
+      const tier40 = document.querySelector('.welcome-banner.v2 .v2-tier[data-tier="40"]');
+      if (tier20 && tier40) {
+        const setTierState = (el, state) => {
+          if (el.dataset.state === state) return;
+          el.dataset.state = state;
+          el.classList.remove('applied', 'inactive');
+          if (state === 'applied') el.classList.add('applied');
+          else if (state === 'inactive') el.classList.add('inactive');
+        };
+        if (meals >= 7) {
+          setTierState(tier20, 'inactive');
+          setTierState(tier40, 'applied');
+        } else if (meals >= 5) {
+          setTierState(tier20, 'applied');
+          setTierState(tier40, 'inactive');
+        } else {
+          setTierState(tier20, 'neutral');
+          setTierState(tier40, 'neutral');
+        }
+      }
+    }
+
+    function update() {
+      const meals = order.special + order.chicken + order.chicken_2 + order.beef + order.seafood + order.seafood_2 + order.veg + order.pasta;
+      const sides = order.broth + order.chia;
+      const hasBroth = order.broth > 0;
+      const hasChia = order.chia > 0;
+      // 1 wellness bundle = 1 meal equivalent; every 3 sides = 1 meal equivalent (4-item min)
+      const mealEquivalents = meals + wellnessShots + Math.floor(sides / 3);
+      const minMet = mealEquivalents >= 4;
+      // Welcome Offer — refresh banner + price card if we're in welcome mode
+      const welcomePricing = updateWelcomeUI(meals, sides, wellnessShots);
+
+      // Cart count line — only show shots when > 0 so default display stays clean
+      let countText = `${meals} meal${meals !== 1 ? 's' : ''} + ${sides} side${sides !== 1 ? 's' : ''}`;
+      if (wellnessShots > 0) {
+        countText += ` + ${wellnessShots} shot${wellnessShots !== 1 ? 's' : ''}`;
+      }
+      cartCount.textContent = countText;
+
+      if (meals + sides + wellnessShots === 0) {
+        cartHint.textContent = 'Tap + to add items';
+        cartHint.classList.remove('warning');
+        sendBtn.classList.remove('active');
+        cartPrompt.classList.remove('visible');
+        promptVisible = false;
+        draftStatus.textContent = 'Add 4 items to order';
+        draftStatus.classList.add('incomplete');
+      } else if (minMet) {
+        cartHint.textContent = 'Ready to send';
+        cartHint.classList.remove('warning');
+        sendBtn.classList.add('active');
+        draftStatus.textContent = 'Ready to send';
+        draftStatus.classList.remove('incomplete');
+
+        // Always prompt for a wellness shot collection once min is met,
+        // unless the customer has already added one.
+        if (wellnessShots === 0) {
+          showPrompt('Add a wellness shot collection', '+ Add', 'wellness_shots');
+        } else {
+          hidePrompt();
+        }
+      } else {
+        const need = 4 - mealEquivalents;
+        cartHint.textContent = `${need} item${need > 1 ? 's' : ''} to minimum`;
+        cartHint.classList.add('warning');
+        sendBtn.classList.remove('active');
+        draftStatus.textContent = `Add ${need} more item${need > 1 ? 's' : ''}`;
+        draftStatus.classList.add('incomplete');
+        hidePrompt();
+      }
+
+      updateDraft();
+      updateSpacer();
+    }
+    
+    function showPrompt(text, btnText, action) {
+      promptText.textContent = text;
+      promptBtn.textContent = btnText;
+      promptBtn.onclick = () => {
+        if (action === 'wellness_shots') {
+          window.wellnessShots++;
+          syncWellness();
+        } else {
+          order[action]++;
+          syncItem(action);
+        }
+        update();
+      };
+      cartPrompt.classList.add('visible');
+      promptVisible = true;
+      updateSpacer();
+    }
+    
+    function hidePrompt() {
+      cartPrompt.classList.remove('visible');
+      promptVisible = false;
+      updateSpacer();
+    }
+    
+    function updateSpacer() {
+      // Adjust spacer height based on whether prompt is visible
+      if (promptVisible) {
+        draftSpacer.classList.add('with-prompt');
+      } else {
+        draftSpacer.classList.remove('with-prompt');
+      }
+    }
+    
+    function updateDraft() {
+      let lines = [
+        delivery.full,
+        container.full
+      ];
+
+      // Resolve dish short name for drafter text (fallback to full name, then key)
+      const dishLabel = (k) => {
+        const d = dishes[k];
+        return (d && (d.shortName || d.name)) || k;
+      };
+
+      // Add items if any
+      const items = Object.keys(order).filter(k => order[k] > 0);
+      const hasAnyItems = items.length > 0 || wellnessShots > 0;
+      if (hasAnyItems) {
+        lines.push('');
+        items.forEach(k => lines.push(`${order[k]}× ${dishLabel(k)}`));
+        if (wellnessShots > 0) {
+          lines.push(`${wellnessShots}× Wellness Shots`);
+        }
+      }
+
+      // Add notes (dietary pills + free-text) if any
+      const notes = [];
+      Object.keys(order).forEach(k => {
+        if (order[k] <= 0) return;
+        const prefs = [...dietaryPrefs[k]];
+        const freeText = customizations[k].trim();
+        const parts = [...prefs];
+        if (freeText) parts.push(freeText);
+        if (parts.length) notes.push(`${dishLabel(k)}: ${parts.join(', ')}`);
+      });
+
+      if (notes.length) {
+        lines.push('', 'Notes:');
+        notes.forEach(n => lines.push(n));
+      }
+
+      draftBubble.textContent = lines.join('\n');
+    }
+    
+    // Detail Sheet
+    function openDetail(key) {
+      currentDish = key;
+      const d = dishes[key];
+
+      document.getElementById('detailName').textContent = d.name;
+      document.getElementById('detailDesc').textContent = d.desc;
+      document.getElementById('detailMacros').textContent = d.macros;
+
+      const tagsHtml = d.tags.map(t =>
+        `<span class="detail-tag ${t.safe ? 'safe' : 'allergen'}">${t.text}</span>`
+      ).join('');
+      document.getElementById('detailTags').innerHTML = tagsHtml;
+
+      // Modification pills — meals only
+      const modsEl = document.getElementById('detailMods');
+      modsEl.style.display = mealCategories.has(d.category) ? 'block' : 'none';
+      const prefs = dietaryPrefs[key];
+      document.querySelectorAll('.mod-pill').forEach(pill => {
+        pill.classList.toggle('active', prefs.has(pill.dataset.mod));
+      });
+
+      document.getElementById('detailQty').textContent = order[key];
+      document.getElementById('detailMinus').disabled = order[key] === 0;
+
+      const input = document.getElementById('customInput');
+      input.value = customizations[key];
+      input.disabled = false;
+
+      // Auto-scroll input into view when keyboard appears
+      input.addEventListener('focus', function() {
+        setTimeout(() => {
+          this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 300); // Delay to allow keyboard animation
+      });
+
+      document.getElementById('detailOverlay').classList.add('visible');
+    }
+    
+    function closeDetail() {
+      if (currentDish) {
+        customizations[currentDish] = document.getElementById('customInput').value;
+        update();
+      }
+      document.getElementById('detailOverlay').classList.remove('visible');
+      currentDish = null;
+    }
+    
+    document.getElementById('detailOverlay').addEventListener('click', e => {
+      if (e.target.id === 'detailOverlay') closeDetail();
+    });
+    
+    document.getElementById('detailMinus').addEventListener('click', () => {
+      if (currentDish && order[currentDish] > 0) {
+        order[currentDish]--;
+        document.getElementById('detailQty').textContent = order[currentDish];
+        document.getElementById('detailMinus').disabled = order[currentDish] === 0;
+        syncItem(currentDish);
+        update();
+      }
+    });
+    
+    document.getElementById('detailPlus').addEventListener('click', () => {
+      if (currentDish && order[currentDish] < 12) {
+        order[currentDish]++;
+        document.getElementById('detailQty').textContent = order[currentDish];
+        document.getElementById('detailMinus').disabled = false;
+        syncItem(currentDish);
+        update();
+      }
+    });
+
+    // Modification pills — toggle on click; enforce low-carb / no-carb exclusion
+    document.querySelectorAll('.mod-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        if (!currentDish) return;
+        const mod = pill.dataset.mod;
+        const prefs = dietaryPrefs[currentDish];
+        if (prefs.has(mod)) {
+          prefs.delete(mod);
+          pill.classList.remove('active');
+        } else {
+          // Mutually exclusive carb mods — remove any conflicting one(s) first
+          const opposites = carbMods[mod];
+          if (opposites) {
+            opposites.forEach(opp => {
+              if (prefs.has(opp)) {
+                prefs.delete(opp);
+                const oppPill = document.querySelector(`.mod-pill[data-mod="${opp}"]`);
+                if (oppPill) oppPill.classList.remove('active');
+              }
+            });
+          }
+          prefs.add(mod);
+          pill.classList.add('active');
+        }
+        update();
+      });
+    });
+    
+    // Delivery/Container Sheets
+    document.getElementById('deliveryBubble').addEventListener('click', () => {
+      document.getElementById('deliveryOverlay').classList.add('visible');
+    });
+    
+    document.getElementById('containerBubble').addEventListener('click', () => {
+      document.getElementById('containerOverlay').classList.add('visible');
+    });
+    
+    function selectDelivery(el) {
+      const [short, full] = el.dataset.val.split('|');
+      delivery = { short, full };
+      document.getElementById('deliveryVal').textContent = short;
+      document.querySelectorAll('#deliveryOverlay .option-row').forEach(i => i.classList.remove('selected'));
+      el.classList.add('selected');
+      document.getElementById('deliveryOverlay').classList.remove('visible');
+      update();
+    }
+    
+    function selectContainer(el) {
+      const [short, full] = el.dataset.val.split('|');
+      container = { short, full };
+      document.getElementById('containerVal').textContent = short;
+      document.querySelectorAll('#containerOverlay .option-row').forEach(i => i.classList.remove('selected'));
+      el.classList.add('selected');
+      document.getElementById('containerOverlay').classList.remove('visible');
+      update();
+    }
+    
+    document.getElementById('deliveryOverlay').addEventListener('click', e => {
+      if (e.target.id === 'deliveryOverlay') e.target.classList.remove('visible');
+    });
+    
+    document.getElementById('containerOverlay').addEventListener('click', e => {
+      if (e.target.id === 'containerOverlay') e.target.classList.remove('visible');
+    });
+    
+    // Help Sheet
+    document.getElementById('helpBtn').addEventListener('click', () => {
+      document.getElementById('helpOverlay').classList.add('visible');
+    });
+    
+    function closeHelp() {
+      document.getElementById('helpOverlay').classList.remove('visible');
+    }
+    
+    document.getElementById('helpOverlay').addEventListener('click', e => {
+      if (e.target.id === 'helpOverlay') closeHelp();
+    });
+    
+    // Send Button
+    sendBtn.addEventListener('click', () => {
+      // Gate on the same "min met" state update() uses to mark the button active,
+      // so meal equivalents (meals + wellness-shot bundles) all count.
+      if (!sendBtn.classList.contains('active')) return;
+
+      // Fire Meta Pixel conversion event (custom event — separate from Typeform "Lead")
+      if (typeof fbq === 'function') fbq('trackCustom', 'OrderDraftSent');
+
+      // Open Messages app with prefilled text
+      // Works on both iPhone and Android
+      const smsBody = encodeURIComponent(draftBubble.textContent);
+      const phoneNumber = '12245370344';
+
+      // Detect iOS vs Android for proper SMS URL format
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+      const smsUrl = isIOS
+        ? `sms:+${phoneNumber}&body=${smsBody}`
+        : `sms:+${phoneNumber}?body=${smsBody}`;
+
+      window.location.href = smsUrl;
+    });
+
+    // Copy to clipboard functionality
+    const copyLink = document.getElementById('copyLink');
+    copyLink.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(draftBubble.textContent);
+
+        // Visual feedback
+        const originalText = copyLink.textContent;
+        copyLink.textContent = 'Copied!';
+        copyLink.classList.add('copied');
+
+        setTimeout(() => {
+          copyLink.textContent = originalText;
+          copyLink.classList.remove('copied');
+        }, 2000);
+      } catch (err) {
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = draftBubble.textContent;
+        textArea.style.position = 'fixed';
+        textArea.style.opacity = '0';
+        document.body.appendChild(textArea);
+        textArea.select();
+
+        try {
+          document.execCommand('copy');
+          copyLink.textContent = 'Copied!';
+          copyLink.classList.add('copied');
+
+          setTimeout(() => {
+            copyLink.textContent = 'Copy to clipboard';
+            copyLink.classList.remove('copied');
+          }, 2000);
+        } catch (fallbackErr) {
+          console.error('Copy failed:', fallbackErr);
+        }
+
+        document.body.removeChild(textArea);
+      }
+    });
+
+    // Initialize on load: set random delivery default in UI
+    document.getElementById('deliveryVal').textContent = delivery.short;
+    // Mark the matching delivery option as selected in the sheet
+    document.querySelectorAll('#deliveryOverlay .option-row').forEach(row => {
+      const [short] = row.dataset.val.split('|');
+      row.classList.toggle('selected', short === delivery.short);
+    });
+    update();
+  </script>
+</body>
+</html>
