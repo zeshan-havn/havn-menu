@@ -3150,10 +3150,13 @@
     // Multi-promo mode detection — routes /welcome, /ws, /in to different promos.
     // ?welcome / ?ws / ?in query params work too for local dev previewing.
     const _path = window.location.pathname;
+    // Strip the optional weekly cache-bust prefix (/may17/, /may10/, /jun7/, etc.)
+    // before mode detection so /may17/ws is treated the same as /ws.
+    const _pathForMode = _path.replace(/^\/[a-z]{3}\d+\//, '/');
     const _qs = new URLSearchParams(window.location.search);
-    const isWelcomeMode = /^\/welcome(\/|$)/.test(_path) || _qs.has('welcome');
-    const isWsMode = /^\/ws(\/|$)/.test(_path) || _qs.has('ws');
-    const isInMode = /^\/in(\/|$)/.test(_path) || _qs.has('in');
+    const isWelcomeMode = /^\/welcome(\/|$)/.test(_pathForMode) || _qs.has('welcome');
+    const isWsMode = /^\/ws(\/|$)/.test(_pathForMode) || _qs.has('ws');
+    const isInMode = /^\/in(\/|$)/.test(_pathForMode) || _qs.has('in');
     const activePromoMode = isWelcomeMode ? 'welcome' : isWsMode ? 'ws' : isInMode ? 'in' : null;
 
     // Promo config — single source of truth for tier rules + banner content per mode.
