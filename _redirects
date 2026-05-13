@@ -6,27 +6,24 @@
 # preview instead of serving the previous week's cached image. Bump the
 # prefix weekly alongside the menu deploy.
 #
-# Promo variants UNDER the weekly prefix — must come BEFORE /:splat strip
-# so the prefix+mode path routes to index.html (which detects mode from
-# window.location.pathname). Without these, /may17/ws would rewrite to
-# /ws and Netlify wouldn't re-evaluate, returning 404.
-/may17/welcome/*    /index.html  200
-/may17/welcome      /index.html  200
-/may17/ws/*         /index.html  200
-/may17/ws           /index.html  200
-/may17/in/*         /index.html  200
-/may17/in           /index.html  200
-/may10/welcome/*    /index.html  200
-/may10/welcome      /index.html  200
-/may10/ws/*         /index.html  200
-/may10/ws           /index.html  200
-/may10/in/*         /index.html  200
-/may10/in           /index.html  200
+# Promo variants UNDER any weekly prefix — must come BEFORE the /:splat
+# strip rule. Uses Netlify's :week placeholder so this works for any
+# week slug (may17, may24, jun7, etc.) without needing weekly edits.
+#
+# Routes /{week}/welcome, /{week}/ws, /{week}/in to /index.html. The JS
+# in index.html strips the /{week}/ prefix before detecting mode.
+# Without these, /may17/ws would hit /:splat and rewrite to /ws, then
+# Netlify wouldn't re-evaluate and would return 404.
+/:week/welcome/*    /index.html  200
+/:week/welcome      /index.html  200
+/:week/ws/*         /index.html  200
+/:week/ws           /index.html  200
+/:week/in/*         /index.html  200
+/:week/in           /index.html  200
 
-# Strip the weekly prefix off static asset requests — e.g.
-# /may10/menu-preview.jpg is served from /menu-preview.jpg.
-/may17/*    /:splat 200
-/may10/*    /:splat 200
+# Strip the weekly prefix off everything else under /{week}/* — used for
+# static asset cache-bust (e.g. /may17/menu-preview.png → /menu-preview.png).
+/:week/*    /:splat 200
 
 # Promo variants — same index.html, mode detected from window.location.pathname.
 # Each path is routed via Make.com to its own customer cohort:
