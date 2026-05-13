@@ -6,10 +6,25 @@
 # preview instead of serving the previous week's cached image. Bump the
 # prefix weekly alongside the menu deploy.
 #
-# This rule strips the weekly prefix off static asset requests — e.g.
-# /may10/menu-preview.jpg is served from /menu-preview.jpg. Customer-facing
-# page URLs like /may10 or /welcome/may10 fall through to the page rewrites
-# below and are detected in index.html via window.location.pathname.
+# Promo variants UNDER the weekly prefix — must come BEFORE /:splat strip
+# so the prefix+mode path routes to index.html (which detects mode from
+# window.location.pathname). Without these, /may17/ws would rewrite to
+# /ws and Netlify wouldn't re-evaluate, returning 404.
+/may17/welcome/*    /index.html  200
+/may17/welcome      /index.html  200
+/may17/ws/*         /index.html  200
+/may17/ws           /index.html  200
+/may17/in/*         /index.html  200
+/may17/in           /index.html  200
+/may10/welcome/*    /index.html  200
+/may10/welcome      /index.html  200
+/may10/ws/*         /index.html  200
+/may10/ws           /index.html  200
+/may10/in/*         /index.html  200
+/may10/in           /index.html  200
+
+# Strip the weekly prefix off static asset requests — e.g.
+# /may10/menu-preview.jpg is served from /menu-preview.jpg.
 /may17/*    /:splat 200
 /may10/*    /:splat 200
 
