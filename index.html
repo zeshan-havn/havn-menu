@@ -2501,35 +2501,35 @@
             </div>
           </div>
 
-          <!-- Wellness Collection -->
+          <!-- Date Balls Collection -->
           <div class="wellness-section">
-            <div class="wellness-card" id="wellnessCard">
+            <div class="wellness-card menu-item" id="dateBallsCard" data-key="date_balls" data-category="sides">
               <div class="wellness-head">
                 <div class="wellness-head-text">
                   <div class="wellness-title-row">
-                    <span class="wellness-title">Wellness Collection</span>
+                    <span class="wellness-title">Date Balls Collection</span>
                     <span class="new-badge">New</span>
                   </div>
-                  <span class="wellness-subtitle">4 wellness shots · $25 bundle</span>
+                  <span class="wellness-subtitle">4 energy bites - $25 bundle</span>
                 </div>
               </div>
 
               <div class="wellness-body">
                 <div class="shot-circles">
-                  <div class="shot-circle immunity" data-shot="immunity" aria-label="Immunity shot"></div>
-                  <div class="shot-circle endurance" data-shot="endurance" aria-label="Endurance shot"></div>
-                  <div class="shot-circle purify" data-shot="purify" aria-label="Purify shot"></div>
-                  <div class="shot-circle clarity" data-shot="clarity" aria-label="Clarity shot"></div>
+                  <div class="shot-circle" style="background:linear-gradient(135deg,#6B3A2A,#3D1F0F)" aria-label="Almond Cocoa"></div>
+                  <div class="shot-circle" style="background:linear-gradient(135deg,#7DB87A,#3A6B37)" aria-label="Pistachio Rose"></div>
+                  <div class="shot-circle" style="background:linear-gradient(135deg,#C8A45A,#7A5C1E)" aria-label="Peanut Butter Coconut"></div>
+                  <div class="shot-circle" style="background:linear-gradient(135deg,#C4A87C,#8C6D3F)" aria-label="Tahini Sesame"></div>
                 </div>
                 <div class="wellness-stepper">
-                  <button class="stepper-btn minus" id="wellnessMinus" disabled>−</button>
-                  <span class="stepper-qty" id="wellnessQty">0</span>
-                  <button class="stepper-btn plus" id="wellnessPlus">+</button>
+                  <button class="stepper-btn minus" disabled>-</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus">+</button>
                 </div>
               </div>
 
               <div class="wellness-foot">
-                <span class="wellness-foot-text">Tap to see what's in each shot</span>
+                <span class="wellness-foot-text">Almond cocoa, pistachio rose, peanut butter coconut, tahini sesame</span>
                 <span class="wellness-foot-arrow">→</span>
               </div>
             </div>
@@ -2767,6 +2767,80 @@
             </div>
           </div>
 
+          <div class="menu-item" data-key="broth_2" data-category="sides">
+            <div class="item-cat"><span>Broth 2</span></div>
+            <div class="item-info">
+              <h3 class="item-name">Placeholder Dish - TBD</h3>
+              <p class="item-desc">Coming soon.</p>
+              <div class="item-bottom">
+                <div class="item-macros">
+                  <span>$10</span>
+                </div>
+                <div class="stepper">
+                  <button class="stepper-btn minus" disabled>−</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-item" data-key="oats" data-category="sides">
+            <div class="item-cat"><span>Oats</span></div>
+            <div class="item-info">
+              <h3 class="item-name">Classic Overnight Oats</h3>
+              <p class="item-desc">Coming soon.</p>
+              <div class="item-bottom">
+                <div class="item-macros">
+                  <span>$10</span>
+                </div>
+                <div class="stepper">
+                  <button class="stepper-btn minus" disabled>−</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-item" data-key="chia_2" data-category="sides">
+            <div class="item-cat"><span>Chia 2</span></div>
+            <div class="item-info">
+              <h3 class="item-name">Placeholder Dish - TBD</h3>
+              <p class="item-desc">Coming soon.</p>
+              <div class="item-bottom">
+                <div class="item-macros">
+                  <span>$10</span>
+                </div>
+                <div class="stepper">
+                  <button class="stepper-btn minus" disabled>−</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-item" data-key="wellness_shots" data-category="sides">
+            <div class="item-cat"><span>Wellness</span></div>
+            <div class="item-info">
+              <h3 class="item-name">Wellness Shot Bundle</h3>
+              <p class="item-desc">4 wellness shots - immunity, endurance, purify, clarity. Made fresh with whole ingredients, no artificial anything.</p>
+              <div class="item-bottom">
+                <div class="item-macros">
+                  <span>4 shots</span>
+                  <span class="dot"></span>
+                  <span>$25</span>
+                </div>
+                <div class="stepper">
+                  <button class="stepper-btn minus" disabled>−</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
           </div>
           <!-- /sides-list -->
 
@@ -2827,7 +2901,6 @@
               <div class="copy-link" id="copyLink">Copy to clipboard</div>
             </div>
           </div>
-          <div class="cart-deadline">Orders close Thursday evening</div>
         </div>
 
         <!-- Welcome Offer footer clarifier -->
@@ -3142,6 +3215,51 @@
         macros: '377 cal · 24g protein · 15g fat · 13g fiber · 35g carbs',
         tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy (Mascarpone)', safe: false }],
         price: 10
+      },
+      broth_2: {
+        name: 'Placeholder Dish - TBD',
+        shortName: 'Broth 2',
+        category: 'broth_2',
+        desc: 'Coming soon.',
+        macros: '',
+        tags: [],
+        price: 10
+      },
+      oats: {
+        name: 'Classic Overnight Oats',
+        shortName: 'Overnight Oats',
+        category: 'oats',
+        desc: 'Coming soon.',
+        macros: '',
+        tags: [],
+        price: 10
+      },
+      chia_2: {
+        name: 'Placeholder Dish - TBD',
+        shortName: 'Chia 2',
+        category: 'chia_2',
+        desc: 'Coming soon.',
+        macros: '',
+        tags: [],
+        price: 10
+      },
+      wellness_shots: {
+        name: 'Wellness Shot Bundle',
+        shortName: 'Wellness Shots',
+        category: 'wellness_shots',
+        desc: '4 wellness shots - immunity, endurance, purify, and clarity. Made fresh with whole ingredients.',
+        macros: '4 shots · $25 bundle',
+        tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy Free', safe: true }],
+        price: 25
+      },
+      date_balls: {
+        name: 'Date Balls Collection',
+        shortName: 'Date Balls',
+        category: 'date_balls',
+        desc: 'Four handcrafted energy bites: almond cocoa, pistachio rose, peanut butter coconut, and tahini sesame. Made fresh with whole-food ingredients, no refined sugar.',
+        macros: '4 bites · $25 bundle',
+        tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy Free', safe: true }],
+        price: 25
       }
     };
     
@@ -3251,14 +3369,15 @@
     // Keep this aliased so older read paths still work without refactor.
 
     // Exposed on window for test-harness access (const would be block-scoped).
-    window.order = { special: 0, chicken: 0, chicken_2: 0, beef: 0, seafood: 0, seafood_2: 0, veg: 0, pasta: 0, broth: 0, chia: 0 };
+    window.order = { special: 0, chicken: 0, chicken_2: 0, beef: 0, seafood: 0, seafood_2: 0, veg: 0, pasta: 0, broth: 0, broth_2: 0, oats: 0, chia: 0, chia_2: 0, wellness_shots: 0, date_balls: 0 };
     const order = window.order;
-    const customizations = { special: '', chicken: '', chicken_2: '', beef: '', seafood: '', seafood_2: '', veg: '', pasta: '', broth: '', chia: '' };
+    const customizations = { special: '', chicken: '', chicken_2: '', beef: '', seafood: '', seafood_2: '', veg: '', pasta: '', broth: '', broth_2: '', oats: '', chia: '', chia_2: '', wellness_shots: '', date_balls: '' };
     // Dietary modification pills per dish (meals only)
     const dietaryPrefs = {
       special: new Set(), chicken: new Set(), chicken_2: new Set(), beef: new Set(),
       seafood: new Set(), seafood_2: new Set(), veg: new Set(), pasta: new Set(),
-      broth: new Set(), chia: new Set()
+      broth: new Set(), broth_2: new Set(), oats: new Set(), chia: new Set(), chia_2: new Set(),
+      wellness_shots: new Set(), date_balls: new Set()
     };
     const mealCategories = new Set(['special', 'chicken', 'chicken_2', 'beef', 'seafood', 'seafood_2', 'veg', 'pasta']);
     // Low carb / no carb / extra carbs are all mutually exclusive
@@ -3268,9 +3387,13 @@
       'extra carbs': ['low carb', 'no carb']
     };
 
-    // Wellness shots (separate from meal/side order — counted as N bundles)
-    // Exposed on window for test harness access (let would be block-scoped).
-    window.wellnessShots = 0;
+    // Wellness shots are now tracked via order.wellness_shots (like all other slots).
+    // window.wellnessShots kept as a compatibility alias for test harness access.
+    Object.defineProperty(window, 'wellnessShots', {
+      get: () => order.wellness_shots,
+      set: (v) => { order.wellness_shots = v; },
+      configurable: true
+    });
 
     // Map shot key → element id of its card inside the sheet (for tap-to-focus)
     const sheetCardIds = {
@@ -3459,37 +3582,18 @@
       _resizeEqTimer = setTimeout(equalizeGridCardHeights, 150);
     });
 
-    // Wellness card stepper (card-level, stops propagation so it doesn't open sheet)
-    document.getElementById('wellnessMinus').addEventListener('click', e => {
-      e.stopPropagation();
-      if (wellnessShots > 0) {
-        wellnessShots--;
-        syncWellness();
-        update();
-      }
-    });
-
-    document.getElementById('wellnessPlus').addEventListener('click', e => {
-      e.stopPropagation();
-      if (wellnessShots < 12) {
-        wellnessShots++;
-        syncWellness();
-        update();
-      }
-    });
-
-    // Wellness sheet stepper (inside popup)
+    // Wellness sheet stepper (inside popup overlay — card stepper now handled by menu-item loop)
     document.getElementById('sheetWellnessMinus').addEventListener('click', () => {
-      if (wellnessShots > 0) {
-        wellnessShots--;
+      if (order.wellness_shots > 0) {
+        order.wellness_shots--;
         syncWellness();
         update();
       }
     });
 
     document.getElementById('sheetWellnessPlus').addEventListener('click', () => {
-      if (wellnessShots < 12) {
-        wellnessShots++;
+      if (order.wellness_shots < 12) {
+        order.wellness_shots++;
         syncWellness();
         update();
       }
@@ -3519,18 +3623,16 @@
       document.getElementById('wellnessOverlay').classList.remove('visible');
     }
 
-    // Card tap → open sheet
-    document.getElementById('wellnessCard').addEventListener('click', (e) => {
-      // Ignore taps on the stepper
-      if (e.target.closest('.wellness-stepper')) return;
-      // Circle taps open sheet and focus that shot
-      const circle = e.target.closest('.shot-circle');
-      if (circle) {
-        openWellnessSheet(circle.dataset.shot);
-        return;
-      }
-      openWellnessSheet();
-    });
+    // Date Balls card tap → open detail sheet (uses standard menu-item detail flow)
+    // Wellness shots card in Sides section also uses standard menu-item detail flow.
+    // The wellness overlay sheet can still be opened programmatically if needed.
+    const dateBallsCard = document.getElementById('dateBallsCard');
+    if (dateBallsCard) {
+      dateBallsCard.querySelector('.wellness-foot').addEventListener('click', (e) => {
+        if (e.target.closest('.wellness-stepper')) return;
+        openDetail('date_balls');
+      });
+    }
 
     // Close sheet when tapping the backdrop
     document.getElementById('wellnessOverlay').addEventListener('click', e => {
@@ -3575,11 +3677,13 @@
     // Computes each preset's base price + discount, then rewrites the preset
     // card's price element to show the crossed-out original alongside the
     // discounted price. Runs once on page load; preset compositions are static.
+    const SIDE_KEYS = new Set(['broth', 'broth_2', 'oats', 'chia', 'chia_2']);
+
     function computePresetBasePrice(preset) {
       let meals = 0, sides = 0;
       Object.entries(preset.items || {}).forEach(([id, qty]) => {
         if (!dishes[id]) return;
-        const isSide = id === 'broth' || id === 'chia';
+        const isSide = SIDE_KEYS.has(id);
         if (isSide) sides += qty;
         else meals += qty;
       });
@@ -3590,7 +3694,7 @@
     function presetMealCount(preset) {
       let m = 0;
       Object.entries(preset.items || {}).forEach(([id, qty]) => {
-        if (dishes[id] && id !== 'broth' && id !== 'chia') m += qty;
+        if (dishes[id] && !SIDE_KEYS.has(id)) m += qty;
       });
       return m;
     }
@@ -3797,7 +3901,7 @@
       Object.entries(bundleDraft).forEach(([id, qty]) => {
         if (order.hasOwnProperty(id)) order[id] = qty;
       });
-      window.wellnessShots = bundleShots;
+      order.wellness_shots = bundleShots;
       // Resync every item's stepper UI to reflect the new values
       Object.keys(order).forEach(k => syncItem(k));
       syncWellness();
@@ -3819,18 +3923,19 @@
     }
 
     function syncWellness() {
-      const card = document.getElementById('wellnessCard');
-      const qty = document.getElementById('wellnessQty');
-      const minus = document.getElementById('wellnessMinus');
-      qty.textContent = wellnessShots;
-      minus.disabled = wellnessShots === 0;
-      card.classList.toggle('selected', wellnessShots > 0);
+      // Sync the wellness_shots menu-item card (now in the Sides section)
+      const wellnessItem = document.querySelector('[data-key="wellness_shots"]');
+      if (wellnessItem) {
+        wellnessItem.querySelector('.stepper-qty').textContent = order.wellness_shots;
+        wellnessItem.querySelector('.minus').disabled = order.wellness_shots === 0;
+        wellnessItem.classList.toggle('selected', order.wellness_shots > 0);
+      }
       // Mirror into sheet stepper
       const sheetQty = document.getElementById('sheetWellnessQty');
       const sheetMinus = document.getElementById('sheetWellnessMinus');
       if (sheetQty) {
-        sheetQty.textContent = wellnessShots;
-        sheetMinus.disabled = wellnessShots === 0;
+        sheetQty.textContent = order.wellness_shots;
+        sheetMinus.disabled = order.wellness_shots === 0;
       }
     }
 
@@ -3878,11 +3983,12 @@
       const wp = document.getElementById('welcomePrice');
       if (!wp) return { subtotal: 0, discount: 0, total: 0 };
 
-      const subtotal = meals * 25 + sides * 10 + shots * 25;
+      const dateBalls = order.date_balls || 0;
+      const subtotal = meals * 25 + sides * 10 + shots * 25 + dateBalls * 25;
       const discount = computePromoDiscount(meals, shots, activePromoMode);
       const total = subtotal - discount;
-      // Every 3 sides = 1 meal equivalent toward the 4-item minimum
-      const mealEquivalents = meals + shots + Math.floor(sides / 3);
+      // Every 3 sides = 1 meal equivalent; each wellness/date_balls bundle = 1 meal equiv
+      const mealEquivalents = meals + shots + dateBalls + Math.floor(sides / 3);
       const minMet = mealEquivalents >= 4;
 
       // ── Below-minimum message — runs on BOTH the welcome and regular menu.
@@ -3999,23 +4105,24 @@
 
     function update() {
       const meals = order.special + order.chicken + order.chicken_2 + order.beef + order.seafood + order.seafood_2 + order.veg + order.pasta;
-      const sides = order.broth + order.chia;
+      const sides = order.broth + order.broth_2 + order.oats + order.chia + order.chia_2;
       const hasBroth = order.broth > 0;
       const hasChia = order.chia > 0;
-      // 1 wellness bundle = 1 meal equivalent; every 3 sides = 1 meal equivalent (4-item min)
-      const mealEquivalents = meals + wellnessShots + Math.floor(sides / 3);
+      // 1 wellness bundle = 1 meal equiv; 1 date_balls bundle = 1 meal equiv; every 3 sides = 1 meal equiv (4-item min)
+      const mealEquivalents = meals + order.wellness_shots + order.date_balls + Math.floor(sides / 3);
       const minMet = mealEquivalents >= 4;
       // Welcome Offer — refresh banner + price card if we're in welcome mode
-      const welcomePricing = updateWelcomeUI(meals, sides, wellnessShots);
+      const welcomePricing = updateWelcomeUI(meals, sides, order.wellness_shots);
 
-      // Cart count line — only show shots when > 0 so default display stays clean
+      // Cart count line — only show add-ons when > 0 so default display stays clean
       let countText = `${meals} meal${meals !== 1 ? 's' : ''} + ${sides} side${sides !== 1 ? 's' : ''}`;
-      if (wellnessShots > 0) {
-        countText += ` + ${wellnessShots} shot${wellnessShots !== 1 ? 's' : ''}`;
+      const addons = order.wellness_shots + order.date_balls;
+      if (addons > 0) {
+        countText += ` + ${addons} add-on${addons !== 1 ? 's' : ''}`;
       }
       cartCount.textContent = countText;
 
-      if (meals + sides + wellnessShots === 0) {
+      if (meals + sides + order.wellness_shots + order.date_balls === 0) {
         cartHint.textContent = 'Tap + to add items';
         cartHint.classList.remove('warning');
         sendBtn.classList.remove('active');
@@ -4031,8 +4138,8 @@
         draftStatus.classList.remove('incomplete');
 
         // Always prompt for a wellness shot collection once min is met,
-        // unless the customer has already added one.
-        if (wellnessShots === 0) {
+        // unless the customer has already added one (or date balls).
+        if (order.wellness_shots === 0 && order.date_balls === 0) {
           showPrompt('Add a wellness shot collection', '+ Add', 'wellness_shots');
         } else {
           hidePrompt();
@@ -4056,7 +4163,7 @@
       promptBtn.textContent = btnText;
       promptBtn.onclick = () => {
         if (action === 'wellness_shots') {
-          window.wellnessShots++;
+          order.wellness_shots++;
           syncWellness();
         } else {
           order[action]++;
@@ -4098,13 +4205,10 @@
 
       // Add items if any
       const items = Object.keys(order).filter(k => order[k] > 0);
-      const hasAnyItems = items.length > 0 || wellnessShots > 0;
+      const hasAnyItems = items.length > 0;
       if (hasAnyItems) {
         lines.push('');
-        items.forEach(k => lines.push(`${order[k]}× ${dishLabel(k)}`));
-        if (wellnessShots > 0) {
-          lines.push(`${wellnessShots}× Wellness Shots`);
-        }
+        items.forEach(k => lines.push(`${order[k]}x ${dishLabel(k)}`));
       }
 
       // Add notes (dietary pills + free-text) if any
