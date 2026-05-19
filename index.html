@@ -2503,7 +2503,7 @@
 
           <!-- Date Balls Collection -->
           <div class="wellness-section">
-            <div class="wellness-card menu-item" id="dateBallsCard" data-key="date_balls" data-category="sides">
+            <div class="wellness-card" id="dateBallsCard" data-key="date_balls" data-category="sides">
               <div class="wellness-head">
                 <div class="wellness-head-text">
                   <div class="wellness-title-row">
@@ -3631,6 +3631,17 @@
       dateBallsCard.querySelector('.wellness-foot').addEventListener('click', (e) => {
         if (e.target.closest('.wellness-stepper')) return;
         openDetail('date_balls');
+      });
+
+      // Date Balls stepper — dedicated handlers (card uses wellness-card structure,
+      // not .menu-item/.item-info, so the general forEach stepper-init skips it).
+      dateBallsCard.querySelector('.wellness-stepper .minus').addEventListener('click', e => {
+        e.stopPropagation();
+        if (order.date_balls > 0) { order.date_balls--; syncItem('date_balls'); update(); }
+      });
+      dateBallsCard.querySelector('.wellness-stepper .plus').addEventListener('click', e => {
+        e.stopPropagation();
+        if (order.date_balls < 12) { order.date_balls++; syncItem('date_balls'); update(); }
       });
     }
 
