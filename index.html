@@ -3503,8 +3503,9 @@
     const _qs = new URLSearchParams(window.location.search);
     const isWelcomeMode = /^\/welcome(\/|$)/.test(_pathForMode) || _qs.has('welcome');
     const isWsMode = /^\/ws(\/|$)/.test(_pathForMode) || _qs.has('ws');
+    const isDbMode = /^\/db(\/|$)/.test(_pathForMode) || _qs.has('db');
     const isInMode = /^\/in(\/|$)/.test(_pathForMode) || _qs.has('in');
-    const activePromoMode = isWelcomeMode ? 'welcome' : isWsMode ? 'ws' : isInMode ? 'in' : null;
+    const activePromoMode = isWelcomeMode ? 'welcome' : isWsMode ? 'ws' : isDbMode ? 'db' : isInMode ? 'in' : null;
 
     // Promo config — single source of truth for tier rules + banner content per mode.
     // Tier matches when meals >= mealMin AND shots >= shotMin. Highest matched tier wins.
