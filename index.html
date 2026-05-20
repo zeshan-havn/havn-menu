@@ -636,6 +636,8 @@
 
     .menu-list.grid-mode { grid-template-columns: 1fr 1fr; }
     .menu-list.list-mode { grid-template-columns: 1fr; }
+    /* Meals are always single-column so full dish names fit on one line */
+    .meals-list.grid-mode { grid-template-columns: 1fr; }
     .menu-list.hidden,
     .section-divider.hidden { display: none; }
 
@@ -832,12 +834,19 @@
       align-self: flex-end;
     }
 
-    .menu-list.list-mode .item-bottom,
-    .menu-item.chef-hero .item-bottom {
+    /* Broth keeps horizontal bottom in list-mode (4 short macros fit).
+       Breakfast switches to vertical so full 5-macro line has room above the stepper. */
+    .broth-list.list-mode .item-bottom {
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
     }
+
+    /* Dual-format macros: compact in 2-col grids, full when filtered to list-mode (single column). */
+    .item-macros .macros-compact { display: contents; }
+    .item-macros .macros-full { display: none; }
+    .menu-list.list-mode .item-macros .macros-compact { display: none; }
+    .menu-list.list-mode .item-macros .macros-full { display: contents; }
 
     /* Compact macros */
     .item-macros {
@@ -1920,33 +1929,6 @@
       color: rgba(245,241,234,0.3);
     }
 
-    .wellness-foot {
-      margin-top: 7px;
-      padding-top: 7px;
-      border-top: 1px solid rgba(0,0,0,0.04);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      font-size: 10px;
-      color: var(--gray-muted);
-      font-style: italic;
-      letter-spacing: 0.02em;
-    }
-
-    .wellness-foot-arrow {
-      font-style: normal;
-      color: var(--brass-muted);
-      font-size: 11px;
-      line-height: 1;
-      transform: translateY(0);
-      transition: transform 0.2s ease;
-    }
-
-    .wellness-card:active .wellness-foot-arrow {
-      transform: translateX(2px);
-    }
-
     /* ==========================================
        WELLNESS SHOTS SHEET (popup, triggered from card)
     ========================================== */
@@ -2643,7 +2625,7 @@
                       <span class="wellness-title">Date Ball Collection</span>
                       <span class="new-badge">New</span>
                     </div>
-                    <span class="wellness-subtitle">6 handcrafted date balls - $25</span>
+                    <span class="wellness-subtitle">6 handcrafted date balls</span>
                   </div>
                 </div>
 
@@ -2662,10 +2644,6 @@
                     <button class="stepper-btn plus">+</button>
                   </div>
                 </div>
-
-                <div class="wellness-foot">
-                  <span class="wellness-foot-arrow">→</span>
-                </div>
               </div>
             </div>
 
@@ -2677,7 +2655,7 @@
                     <div class="wellness-title-row">
                       <span class="wellness-title">Wellness Shot Collection</span>
                     </div>
-                    <span class="wellness-subtitle">4 functional shots - $25</span>
+                    <span class="wellness-subtitle">4 functional shots</span>
                   </div>
                 </div>
 
@@ -2693,10 +2671,6 @@
                     <span class="stepper-qty" id="wellnessQty">0</span>
                     <button class="stepper-btn plus" id="wellnessPlus">+</button>
                   </div>
-                </div>
-
-                <div class="wellness-foot">
-                  <span class="wellness-foot-arrow">→</span>
                 </div>
               </div>
             </div>
@@ -2720,6 +2694,12 @@
                   <span>615 cal</span>
                   <span class="dot"></span>
                   <span>48g protein</span>
+                  <span class="dot"></span>
+                  <span>21g fat</span>
+                  <span class="dot"></span>
+                  <span>6g fiber</span>
+                  <span class="dot"></span>
+                  <span>39g carbs</span>
                 </div>
                 <div class="stepper">
                   <button class="stepper-btn minus" disabled>−</button>
@@ -2739,6 +2719,12 @@
                   <span>785 cal</span>
                   <span class="dot"></span>
                   <span>59g protein</span>
+                  <span class="dot"></span>
+                  <span>37g fat</span>
+                  <span class="dot"></span>
+                  <span>3g fiber</span>
+                  <span class="dot"></span>
+                  <span>50g carbs</span>
                 </div>
                 <div class="stepper">
                   <button class="stepper-btn minus" disabled>−</button>
@@ -2754,13 +2740,19 @@
           <div class="menu-item" data-key="chicken" data-category="chicken">
             <div class="item-cat"><span>Chicken</span></div>
             <div class="item-info">
-              <h3 class="item-name">Koji-Cured Chicken with Stone-Fruit Gastrique</h3>
+              <h3 class="item-name">Koji Cured Chicken</h3>
               <p class="item-desc">Shio-koji-cured chicken thigh with a stone-fruit gastrique. Wild rice. Roasted golden beets and lacinato kale.</p>
               <div class="item-bottom">
                 <div class="item-macros">
                   <span>670 cal</span>
                   <span class="dot"></span>
                   <span>51g protein</span>
+                  <span class="dot"></span>
+                  <span>23g fat</span>
+                  <span class="dot"></span>
+                  <span>9g fiber</span>
+                  <span class="dot"></span>
+                  <span>66g carbs</span>
                 </div>
                 <div class="stepper">
                   <button class="stepper-btn minus" disabled>−</button>
@@ -2774,13 +2766,19 @@
           <div class="menu-item" data-key="chicken_2" data-category="chicken">
             <div class="item-cat"><span>Chicken</span></div>
             <div class="item-info">
-              <h3 class="item-name">Mediterranean Chickpea Chicken Bowl with Green Tahini</h3>
+              <h3 class="item-name">Mediterranean Chickpea Chicken Bowl</h3>
               <p class="item-desc">Pan-seared chicken breast over a dairy-free green tahini bed. Roasted chickpeas, Brussels sprouts, pickled red onions.</p>
               <div class="item-bottom">
                 <div class="item-macros">
                   <span>593 cal</span>
                   <span class="dot"></span>
                   <span>58g protein</span>
+                  <span class="dot"></span>
+                  <span>25g fat</span>
+                  <span class="dot"></span>
+                  <span>10g fiber</span>
+                  <span class="dot"></span>
+                  <span>34g carbs</span>
                 </div>
                 <div class="stepper">
                   <button class="stepper-btn minus" disabled>−</button>
@@ -2794,13 +2792,19 @@
           <div class="menu-item" data-key="beef" data-category="beef">
             <div class="item-cat"><span>Beef</span></div>
             <div class="item-info">
-              <h3 class="item-name">Coffee-Crusted Bavette Steak with Bone Marrow Butter</h3>
+              <h3 class="item-name">Coffee Crusted Bavette Steak</h3>
               <p class="item-desc">Espresso-and-smoked-paprika-crusted bavette steak with a bone marrow butter. Toasted brown rice. Charred green beans and corn.</p>
               <div class="item-bottom">
                 <div class="item-macros">
                   <span>660 cal</span>
                   <span class="dot"></span>
                   <span>58g protein</span>
+                  <span class="dot"></span>
+                  <span>32g fat</span>
+                  <span class="dot"></span>
+                  <span>5g fiber</span>
+                  <span class="dot"></span>
+                  <span>39g carbs</span>
                 </div>
                 <div class="stepper">
                   <button class="stepper-btn minus" disabled>−</button>
@@ -2821,6 +2825,12 @@
                   <span>570 cal</span>
                   <span class="dot"></span>
                   <span>47g protein</span>
+                  <span class="dot"></span>
+                  <span>36g fat</span>
+                  <span class="dot"></span>
+                  <span>7g fiber</span>
+                  <span class="dot"></span>
+                  <span>15g carbs</span>
                 </div>
                 <div class="stepper">
                   <button class="stepper-btn minus" disabled>−</button>
@@ -2841,6 +2851,12 @@
                   <span>535 cal</span>
                   <span class="dot"></span>
                   <span>46g protein</span>
+                  <span class="dot"></span>
+                  <span>15g fat</span>
+                  <span class="dot"></span>
+                  <span>4g fiber</span>
+                  <span class="dot"></span>
+                  <span>52g carbs</span>
                 </div>
                 <div class="stepper" style="touch-action: manipulation;">
                   <button class="stepper-btn minus" disabled style="touch-action: manipulation;">−</button>
@@ -2854,13 +2870,19 @@
           <div class="menu-item" data-key="veg" data-category="veg">
             <div class="item-cat"><span>Veg</span></div>
             <div class="item-info">
-              <h3 class="item-name">Smoky Tempeh Banh Mi Bowl</h3>
+              <h3 class="item-name">Tempeh Banh Mi Bowl</h3>
               <p class="item-desc">Lemongrass-marinated tempeh over brown jasmine rice with pickled carrots, cucumber ribbons, and fresh cilantro. Tahini-sriracha drizzle.</p>
               <div class="item-bottom">
                 <div class="item-macros">
                   <span>620 cal</span>
                   <span class="dot"></span>
                   <span>41g protein</span>
+                  <span class="dot"></span>
+                  <span>30g fat</span>
+                  <span class="dot"></span>
+                  <span>11g fiber</span>
+                  <span class="dot"></span>
+                  <span>47g carbs</span>
                 </div>
                 <div class="stepper">
                   <button class="stepper-btn minus" disabled>−</button>
@@ -2907,7 +2929,7 @@
             <div class="item-cat"><span>Broth</span></div>
             <div class="item-info">
               <h3 class="item-name">Daily Glow Broth</h3>
-              <p class="item-desc">Clarified lemon ginger bone broth with sea salt, white pepper, and fresh herbs. Designed for daily sipping, warm or chilled.</p>
+              <p class="item-desc">Our lightest bone broth yet. Clarified lemon ginger bone broth with sea salt, white pepper, and fresh herbs.</p>
               <div class="item-bottom">
                 <div class="item-macros">
                   <span>75 cal</span>
@@ -2939,11 +2961,9 @@
             <div class="item-cat"><span>Oats</span></div>
             <div class="item-info">
               <h3 class="item-name">Classic Overnight Oats</h3>
-              <p class="item-desc">Coming soon.</p>
+              <p class="item-desc">High-protein overnight oats with fresh blackberries and blueberries.</p>
               <div class="item-bottom">
-                <div class="item-macros">
-                  <span>$10</span>
-                </div>
+                <div class="item-macros"></div>
                 <div class="stepper">
                   <button class="stepper-btn minus" disabled>−</button>
                   <span class="stepper-qty">0</span>
@@ -2960,9 +2980,22 @@
               <p class="item-desc">A creamy mango chia pudding layered with coconut cream and topped with fresh mango.</p>
               <div class="item-bottom">
                 <div class="item-macros">
-                  <span>436 cal</span>
-                  <span class="dot"></span>
-                  <span>22g protein</span>
+                  <span class="macros-compact">
+                    <span>436 cal</span>
+                    <span class="dot"></span>
+                    <span>22g protein</span>
+                  </span>
+                  <span class="macros-full">
+                    <span>436 cal</span>
+                    <span class="dot"></span>
+                    <span>22g protein</span>
+                    <span class="dot"></span>
+                    <span>26g fat</span>
+                    <span class="dot"></span>
+                    <span>11g fiber</span>
+                    <span class="dot"></span>
+                    <span>30g carbs</span>
+                  </span>
                 </div>
                 <div class="stepper">
                   <button class="stepper-btn minus" disabled>−</button>
@@ -2977,12 +3010,25 @@
             <div class="item-cat"><span>Chia</span></div>
             <div class="item-info">
               <h3 class="item-name">Earl Grey Chia Pudding</h3>
-              <p class="item-desc">Chia pudding steeped in Earl Grey tea with macerated strawberries and house granola.</p>
+              <p class="item-desc">Earl Grey-flavored chia pudding with macerated strawberries and house-made granola.</p>
               <div class="item-bottom">
                 <div class="item-macros">
-                  <span>380 cal</span>
-                  <span class="dot"></span>
-                  <span>18g protein</span>
+                  <span class="macros-compact">
+                    <span>380 cal</span>
+                    <span class="dot"></span>
+                    <span>18g protein</span>
+                  </span>
+                  <span class="macros-full">
+                    <span>380 cal</span>
+                    <span class="dot"></span>
+                    <span>18g protein</span>
+                    <span class="dot"></span>
+                    <span>14g fat</span>
+                    <span class="dot"></span>
+                    <span>11g fiber</span>
+                    <span class="dot"></span>
+                    <span>45g carbs</span>
+                  </span>
                 </div>
                 <div class="stepper">
                   <button class="stepper-btn minus" disabled>−</button>
@@ -3302,7 +3348,7 @@
         price: 25
       },
       chicken: {
-        name: 'Koji-Cured Chicken with Stone-Fruit Gastrique',
+        name: 'Koji Cured Chicken',
         shortName: 'Koji Chicken',
         category: 'chicken',
         desc: 'Chicken thigh cured 24 hours in shio-koji — a traditional Japanese paste of rice fermented with koji culture — for unmatched tenderness and deep umami. Served over wild rice with roasted golden beets and sautéed lacinato kale. Finished with our stone-fruit gastrique, a bright, tangy-sweet French-style sauce made by reducing sherry vinegar, honey, and seasonal stone fruit purée.',
@@ -3311,7 +3357,7 @@
         price: 25
       },
       chicken_2: {
-        name: 'Mediterranean Chickpea Chicken Bowl with Green Tahini',
+        name: 'Mediterranean Chickpea Chicken Bowl',
         shortName: 'Chickpea Chicken Bowl',
         category: 'chicken_2',
         desc: 'Pan-seared chicken breast layered over a bed of our dairy-free green tahini — a vibrant, herb-packed sauce blended with parsley, dill, mint, garlic, lemon, and EVOO. Served with roasted chickpeas, roasted Brussels sprouts, and bright pickled red onions, for a fresh, herbaceous Mediterranean bowl with a tangy finish.',
@@ -3320,7 +3366,7 @@
         price: 25
       },
       beef: {
-        name: 'Coffee-Crusted Bavette Steak with Bone Marrow Butter',
+        name: 'Coffee Crusted Bavette Steak',
         shortName: 'Bavette Steak',
         category: 'beef',
         desc: 'Bavette steak rubbed with an espresso-and-smoked-paprika crust — the espresso deepens the crust\'s bold, savory richness without any sweetness. Seared and sliced, served over toasted brown rice with charred green beans and charred corn. Finished with a dollop of our bone marrow butter, European butter whipped with shallots, garlic, and fresh herbs.',
@@ -3347,7 +3393,7 @@
         price: 25
       },
       veg: {
-        name: 'Smoky Tempeh Banh Mi Bowl',
+        name: 'Tempeh Banh Mi Bowl',
         shortName: 'Tempeh Banh Mi',
         category: 'veg',
         desc: 'Smoky lemongrass-marinated tempeh over brown jasmine rice with quick-pickled carrots, cucumber ribbons, and fresh cilantro. Tahini-sriracha drizzle on the side, for a bright, savory Vietnamese-inspired bowl with a smoky, umami finish.',
@@ -3395,7 +3441,7 @@
         name: 'Classic Overnight Oats',
         shortName: 'Overnight Oats',
         category: 'oats',
-        desc: 'Coming soon.',
+        desc: 'Creamy high-protein overnight oats topped with fresh blackberries and blueberries.',
         macros: '',
         tags: [],
         price: 10
@@ -3404,7 +3450,7 @@
         name: 'Earl Grey Chia Pudding',
         shortName: 'Earl Grey Chia',
         category: 'chia_2',
-        desc: 'Chia pudding steeped in Earl Grey tea for a bright bergamot note, layered with fresh-macerated strawberries and our house almond-coconut granola.',
+        desc: 'Earl Grey-flavored chia pudding with a bright bergamot note, layered with fresh-macerated strawberries and our house-made granola.',
         macros: '380 cal · 18g protein · 14g fat · 11g fiber · 45g carbs',
         tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy Free', safe: true }],
         price: 10
@@ -3748,12 +3794,13 @@
     renderItemTags();
 
     // Equalize all card heights in grid-mode to match the tallest card
-    // (so a long meal name like "Lemon Herb Chicken with Whipped Feta" sets the floor for the rest)
+    // (so a long meal name like "Lemon Herb Chicken with Whipped Feta" sets the floor for the rest).
+    // Meals-list is excluded — it's single-column, so each card should size to its own content.
     function equalizeGridCardHeights() {
       // Reset every card's min-height first so we measure natural sizes
       document.querySelectorAll('.menu-list .menu-item').forEach(c => { c.style.minHeight = ''; });
 
-      document.querySelectorAll('.menu-list.grid-mode').forEach(grid => {
+      document.querySelectorAll('.menu-list.grid-mode:not(.meals-list)').forEach(grid => {
         const cards = Array.from(grid.querySelectorAll('.menu-item'))
           .filter(c => c.offsetParent !== null); // only visible cards
         if (cards.length === 0) return;
@@ -3824,7 +3871,7 @@
     // so the general forEach stepper-init skips them — dedicated handlers below.
     const dateBallsCard = document.getElementById('dateBallsCard');
     if (dateBallsCard) {
-      dateBallsCard.querySelector('.wellness-foot').addEventListener('click', (e) => {
+      dateBallsCard.addEventListener('click', (e) => {
         if (e.target.closest('.wellness-stepper')) return;
         openDetail('date_balls');
       });
@@ -3843,9 +3890,9 @@
     // Wellness Shots collection card — dedicated stepper + tap-to-open-sheet
     const wellnessShotsCard = document.getElementById('wellnessShotsCard');
     if (wellnessShotsCard) {
-      wellnessShotsCard.querySelector('.wellness-foot').addEventListener('click', (e) => {
+      wellnessShotsCard.addEventListener('click', (e) => {
         if (e.target.closest('.wellness-stepper')) return;
-        openWellness();
+        openWellnessSheet();
       });
 
       // Wellness Shots stepper
