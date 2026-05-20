@@ -18,6 +18,8 @@
 /:week/welcome      /index.html  200
 /:week/ws/*         /index.html  200
 /:week/ws           /index.html  200
+/:week/db/*         /index.html  200
+/:week/db           /index.html  200
 /:week/in/*         /index.html  200
 /:week/in           /index.html  200
 
@@ -34,6 +36,8 @@
 /welcome    /index.html 200
 /ws/*       /index.html 200
 /ws         /index.html 200
+/db/*       /index.html 200
+/db         /index.html 200
 /in/*       /index.html 200
 /in         /index.html 200
 
