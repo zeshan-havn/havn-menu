@@ -1294,7 +1294,126 @@
     .sheet-close:active {
       transform: scale(0.9);
     }
-    
+
+    /* ==========================================
+       BELOW-MINIMUM MODAL
+    ========================================== */
+
+    .below-min-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.22s ease, visibility 0.22s ease;
+    }
+
+    .below-min-modal[aria-hidden="false"] {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .below-min-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 22, 18, 0.58);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+    }
+
+    .below-min-card {
+      position: relative;
+      background: var(--green-darkest);
+      border-radius: 18px;
+      padding: 32px 24px 28px;
+      max-width: min(88vw, 360px);
+      width: 100%;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+      transform: translateY(12px) scale(0.97);
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .below-min-modal[aria-hidden="false"] .below-min-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .below-min-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      border: none;
+      font-size: 17px;
+      color: var(--cream-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      touch-action: manipulation;
+      transition: background 0.15s ease;
+    }
+
+    .below-min-close:active {
+      background: rgba(255,255,255,0.15);
+    }
+
+    .below-min-title {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 500;
+      color: var(--cream);
+      margin: 0 0 12px;
+      line-height: 1.15;
+      letter-spacing: 0.01em;
+    }
+
+    .below-min-body {
+      font-family: var(--font-body);
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--cream-muted);
+      margin: 0 0 24px;
+    }
+
+    .below-min-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .below-min-action {
+      width: 100%;
+      padding: 14px 16px;
+      background: transparent;
+      border: 1.5px solid var(--brass);
+      border-radius: 10px;
+      color: var(--brass);
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      touch-action: manipulation;
+      transition: background 0.15s ease, color 0.15s ease;
+      text-align: center;
+      letter-spacing: 0.01em;
+    }
+
+    .below-min-action:active {
+      background: var(--brass);
+      color: var(--green-darkest);
+    }
+
+    /* lock body scroll when modal is open */
+    body.below-min-open {
+      overflow: hidden;
+    }
+
     /* Detail Sheet */
     .detail-content {
       padding: 22px 20px 36px;
@@ -3163,6 +3282,20 @@
       </div>
   </div>
 
+  <!-- Below-Minimum Upsell Modal -->
+  <div id="belowMinModal" class="below-min-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="belowMinTitle">
+    <div class="below-min-backdrop"></div>
+    <div class="below-min-card">
+      <button class="below-min-close" id="belowMinClose" aria-label="Close">&#xD7;</button>
+      <h2 class="below-min-title" id="belowMinTitle">Almost there!</h2>
+      <p class="below-min-body">Orders need a minimum of 4 meals. Sides count as 1/3 of a meal (3 sides = 1 meal), and our Wellness Shots and Date Ball Collections each count as a full meal toward the minimum.</p>
+      <div class="below-min-actions">
+        <button class="below-min-action" id="belowMinAddWellness">+ Add Wellness Shots Collection - $25</button>
+        <button class="below-min-action" id="belowMinAddDateBalls">+ Add Date Ball Collection - $25</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     // Data - Full descriptions for detail sheet
     const dishes = {
@@ -4462,27 +4595,66 @@
       if (e.target.id === 'helpOverlay') closeHelp();
     });
     
-    // Send Button
-    sendBtn.addEventListener('click', () => {
-      // Gate on the same "min met" state update() uses to mark the button active,
-      // so meal equivalents (meals + wellness-shot bundles) all count.
-      if (!sendBtn.classList.contains('active')) return;
+    // ---- Below-Minimum Modal helpers ----
 
+    function showBelowMinModal() {
+      document.getElementById('belowMinModal').setAttribute('aria-hidden', 'false');
+      document.body.classList.add('below-min-open');
+    }
+
+    function hideBelowMinModal() {
+      document.getElementById('belowMinModal').setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('below-min-open');
+    }
+
+    // Shared send flow — called by both the active send-button click
+    // and the "add collection and send" upsell path.
+    function triggerSend() {
+      if (!sendBtn.classList.contains('active')) return; // safety guard
       // Fire Meta Pixel conversion event (custom event — separate from Typeform "Lead")
       if (typeof fbq === 'function') fbq('trackCustom', 'OrderDraftSent');
-
-      // Open Messages app with prefilled text
-      // Works on both iPhone and Android
+      // Open Messages app with prefilled text — works on iPhone and Android
       const smsBody = encodeURIComponent(draftBubble.textContent);
       const phoneNumber = '12245370344';
-
-      // Detect iOS vs Android for proper SMS URL format
       const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
       const smsUrl = isIOS
         ? `sms:+${phoneNumber}&body=${smsBody}`
         : `sms:+${phoneNumber}?body=${smsBody}`;
-
       window.location.href = smsUrl;
+    }
+
+    function addCollectionAndSend(slot) {
+      if (slot === 'wellness_shots') {
+        order.wellness_shots++;
+        syncWellness();
+      } else if (slot === 'date_balls') {
+        order.date_balls++;
+        syncItem('date_balls');
+      }
+      update();           // recompute totals + activate sendBtn
+      hideBelowMinModal();
+      triggerSend();      // auto-open SMS app now that min is met
+    }
+
+    // Wire modal close actions
+    document.getElementById('belowMinClose').addEventListener('click', hideBelowMinModal);
+    document.querySelector('.below-min-backdrop').addEventListener('click', hideBelowMinModal);
+    document.getElementById('belowMinAddWellness').addEventListener('click', () => addCollectionAndSend('wellness_shots'));
+    document.getElementById('belowMinAddDateBalls').addEventListener('click', () => addCollectionAndSend('date_balls'));
+
+    // ---- Send Button ----
+    sendBtn.addEventListener('click', () => {
+      if (!sendBtn.classList.contains('active')) {
+        // Only show the modal when the cart has at least one item.
+        // Completely empty cart stays silent (nothing to suggest adding to).
+        const totalItems = order.special + order.chicken + order.chicken_2 + order.beef +
+          order.seafood + order.seafood_2 + order.veg + order.pasta +
+          order.broth + order.broth_2 + order.oats + order.chia + order.chia_2 +
+          order.wellness_shots + order.date_balls;
+        if (totalItems > 0) showBelowMinModal();
+        return;
+      }
+      triggerSend();
     });
 
     // Copy to clipboard functionality
