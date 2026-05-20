@@ -3595,7 +3595,7 @@
           <div class="v2-tiers v2-tiers-single">
             <div class="v2-tier" data-tier="25">
               <div class="v2-amount">$25</div>
-              <div class="v2-qualifier">off 7 meals + Wellness Shots</div>
+              <div class="v2-qualifier">off 5 meals + Wellness Shots</div>
             </div>
           </div>`,
         db: `
@@ -4263,7 +4263,7 @@
       }
       // /ws — shots required
       if (mode === 'ws') {
-        const need = Math.max(0, 7 - meals);
+        const need = Math.max(0, 5 - meals);
         const hasShots = shots >= 1;
         if (need === 0 && hasShots) return '';
         if (need === 0 && !hasShots) return 'Add Wellness Shots to unlock $25 off';
