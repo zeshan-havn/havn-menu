@@ -2501,41 +2501,6 @@
             </div>
           </div>
 
-          <!-- Date Ball Collection -->
-          <div class="wellness-section">
-            <div class="wellness-card" id="dateBallsCard" data-key="date_balls" data-category="sides">
-              <div class="wellness-head">
-                <div class="wellness-head-text">
-                  <div class="wellness-title-row">
-                    <span class="wellness-title">Date Ball Collection</span>
-                    <span class="new-badge">New</span>
-                  </div>
-                  <span class="wellness-subtitle">5 handcrafted date balls - $25</span>
-                </div>
-              </div>
-
-              <div class="wellness-body">
-                <div class="shot-circles">
-                  <div class="shot-circle" style="background:linear-gradient(135deg,#C4A050,#8C6A1A)" aria-label="Signature (caramel-vanilla-sea salt)"></div>
-                  <div class="shot-circle" style="background:linear-gradient(135deg,#C4A050,#8C6A1A)" aria-label="Signature (caramel-vanilla-sea salt)"></div>
-                  <div class="shot-circle" style="background:linear-gradient(135deg,#3A1F0E,#1A0A04)" aria-label="Dark Chocolate Espresso"></div>
-                  <div class="shot-circle" style="background:linear-gradient(135deg,#3A1F0E,#1A0A04)" aria-label="Dark Chocolate Espresso"></div>
-                  <div class="shot-circle" style="background:linear-gradient(135deg,#F5F1EA,#D8D0C0)" aria-label="Coconut Vanilla"></div>
-                </div>
-                <div class="wellness-stepper">
-                  <button class="stepper-btn minus" disabled>-</button>
-                  <span class="stepper-qty">0</span>
-                  <button class="stepper-btn plus">+</button>
-                </div>
-              </div>
-
-              <div class="wellness-foot">
-                <span class="wellness-foot-text">5 balls per box. Medjool dates + sunflower butter, nut-free. 2× Signature, 2× Dark Chocolate Espresso, 1× Coconut Vanilla.</span>
-                <span class="wellness-foot-arrow">→</span>
-              </div>
-            </div>
-          </div>
-
           <!-- Pill Nav - filter meals by category -->
           <nav class="pill-nav" id="pillNav" aria-label="Menu filter">
             <button class="pill active" data-category="all">All</button>
@@ -2545,6 +2510,7 @@
             <button class="pill" data-category="veg">Veg</button>
             <button class="pill" data-category="pasta">Pasta</button>
             <button class="pill" data-category="sides">Sides</button>
+            <button class="pill" data-category="collections">Collections</button>
           </nav>
 
           <!-- Meals Section -->
@@ -2719,6 +2685,86 @@
           </div>
           <!-- /meals-list -->
 
+          <!-- Collections Section -->
+          <div class="section-divider collections-divider">
+            <div class="section-line"></div>
+            <span class="section-name">Collections</span>
+            <div class="section-line right"></div>
+          </div>
+
+          <div class="collections-list">
+
+            <!-- Date Ball Collection -->
+            <div class="wellness-section">
+              <div class="wellness-card" id="dateBallsCard" data-key="date_balls" data-category="collections">
+                <div class="wellness-head">
+                  <div class="wellness-head-text">
+                    <div class="wellness-title-row">
+                      <span class="wellness-title">Date Ball Collection</span>
+                      <span class="new-badge">New</span>
+                    </div>
+                    <span class="wellness-subtitle">5 handcrafted date balls - $25</span>
+                  </div>
+                </div>
+
+                <div class="wellness-body">
+                  <div class="shot-circles">
+                    <div class="shot-circle" style="background:linear-gradient(135deg,#C4A050,#8C6A1A)" aria-label="Signature (caramel-vanilla-sea salt)"></div>
+                    <div class="shot-circle" style="background:linear-gradient(135deg,#C4A050,#8C6A1A)" aria-label="Signature (caramel-vanilla-sea salt)"></div>
+                    <div class="shot-circle" style="background:linear-gradient(135deg,#3A1F0E,#1A0A04)" aria-label="Dark Chocolate Espresso"></div>
+                    <div class="shot-circle" style="background:linear-gradient(135deg,#3A1F0E,#1A0A04)" aria-label="Dark Chocolate Espresso"></div>
+                    <div class="shot-circle" style="background:linear-gradient(135deg,#F5F1EA,#D8D0C0)" aria-label="Coconut Vanilla"></div>
+                  </div>
+                  <div class="wellness-stepper">
+                    <button class="stepper-btn minus" disabled>-</button>
+                    <span class="stepper-qty">0</span>
+                    <button class="stepper-btn plus">+</button>
+                  </div>
+                </div>
+
+                <div class="wellness-foot">
+                  <span class="wellness-foot-text">5 balls per box. Medjool dates + sunflower butter, nut-free. 2× Signature, 2× Dark Chocolate Espresso, 1× Coconut Vanilla.</span>
+                  <span class="wellness-foot-arrow">→</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Wellness Shots Collection -->
+            <div class="wellness-section">
+              <div class="wellness-card" id="wellnessShotsCard" data-key="wellness_shots" data-category="collections">
+                <div class="wellness-head">
+                  <div class="wellness-head-text">
+                    <div class="wellness-title-row">
+                      <span class="wellness-title">Wellness Shot Collection</span>
+                    </div>
+                    <span class="wellness-subtitle">4 functional shots - $25</span>
+                  </div>
+                </div>
+
+                <div class="wellness-body">
+                  <div class="shot-circles">
+                    <div class="shot-circle immunity" aria-label="Immunity"></div>
+                    <div class="shot-circle endurance" aria-label="Endurance"></div>
+                    <div class="shot-circle purify" aria-label="Purify"></div>
+                    <div class="shot-circle clarity" aria-label="Clarity"></div>
+                  </div>
+                  <div class="wellness-stepper">
+                    <button class="stepper-btn minus" id="wellnessMinus" disabled>-</button>
+                    <span class="stepper-qty" id="wellnessQty">0</span>
+                    <button class="stepper-btn plus" id="wellnessPlus">+</button>
+                  </div>
+                </div>
+
+                <div class="wellness-foot">
+                  <span class="wellness-foot-text">Immunity · Endurance · Purify · Clarity. Made fresh with whole ingredients, no artificial anything.</span>
+                  <span class="wellness-foot-arrow">→</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <!-- /collections-list -->
+
           <!-- Sides Section -->
           <div class="section-divider sides-divider">
             <div class="section-line"></div>
@@ -2812,26 +2858,6 @@
               <div class="item-bottom">
                 <div class="item-macros">
                   <span>$10</span>
-                </div>
-                <div class="stepper">
-                  <button class="stepper-btn minus" disabled>−</button>
-                  <span class="stepper-qty">0</span>
-                  <button class="stepper-btn plus">+</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="menu-item" data-key="wellness_shots" data-category="sides">
-            <div class="item-cat"><span>Wellness</span></div>
-            <div class="item-info">
-              <h3 class="item-name">Wellness Shot Bundle</h3>
-              <p class="item-desc">4 wellness shots - immunity, endurance, purify, clarity. Made fresh with whole ingredients, no artificial anything.</p>
-              <div class="item-bottom">
-                <div class="item-macros">
-                  <span>4 shots</span>
-                  <span class="dot"></span>
-                  <span>$25</span>
                 </div>
                 <div class="stepper">
                   <button class="stepper-btn minus" disabled>−</button>
@@ -3451,15 +3477,16 @@
       });
     });
 
-    // Pill nav — filter meals/sides by category, toggle grid/list layout
+    // Pill nav — filter meals/sides/collections by category, toggle grid/list layout
     (function initPillNav() {
       const pills = document.querySelectorAll('.pill-nav .pill');
       const mealsList = document.querySelector('.meals-list');
       const sidesList = document.querySelector('.sides-list');
+      const collectionsList = document.querySelector('.collections-list');
       const mealsDivider = document.querySelector('.meals-divider');
       const sidesDivider = document.querySelector('.sides-divider');
+      const collectionsDivider = document.querySelector('.collections-divider');
       const chefHeros = document.querySelectorAll('.menu-item.chef-hero');
-      const wellnessSection = document.querySelector('.wellness-section');
       const allItems = document.querySelectorAll('.menu-item');
 
       // Items can declare multiple categories via space-separated values
@@ -3474,6 +3501,7 @@
 
         const isAll = category === 'all';
         const isSides = category === 'sides';
+        const isCollections = category === 'collections';
 
         // Layout mode: grid only on All, list mode on every filtered tab
         [mealsList, sidesList].forEach(list => {
@@ -3488,22 +3516,24 @@
           item.style.display = matches ? '' : 'none';
         });
 
-        // Chef-hero tiles — show on All or matching meal-category tab; hide on Sides
+        // Chef-hero tiles — show on All or matching meal-category tab; hide on Sides + Collections
         chefHeros.forEach(hero => {
-          const showHero = isAll || (!isSides && itemMatchesCategory(hero, category));
+          const showHero = isAll || (!isSides && !isCollections && itemMatchesCategory(hero, category));
           hero.style.display = showHero ? '' : 'none';
         });
 
-        // Wellness Collection — visible on All and on Sides (it's a side/extra)
-        if (wellnessSection) {
-          wellnessSection.style.display = (isAll || isSides) ? '' : 'none';
-        }
+        // Collections section — visible on All and on Collections pill only
+        const collectionsHasVisible = isAll || isCollections;
+        if (collectionsDivider) collectionsDivider.classList.toggle('hidden', !collectionsHasVisible);
+        if (collectionsList) collectionsList.style.display = collectionsHasVisible ? '' : 'none';
 
-        // Hide a section if nothing in it is visible
-        const mealsHasVisible = isAll || (!isSides);
-        const sidesHasVisible = isAll || isSides;
+        // Meals section — visible on All and any non-sides, non-collections tab
+        const mealsHasVisible = isAll || (!isSides && !isCollections);
         if (mealsDivider) mealsDivider.classList.toggle('hidden', !mealsHasVisible);
         if (mealsList) mealsList.classList.toggle('hidden', !mealsHasVisible);
+
+        // Sides section — visible on All and Sides tab only
+        const sidesHasVisible = isAll || isSides;
         if (sidesDivider) sidesDivider.classList.toggle('hidden', !sidesHasVisible);
         if (sidesList) sidesList.classList.toggle('hidden', !sidesHasVisible);
       }
@@ -3625,8 +3655,8 @@
     }
 
     // Date Balls card tap → open detail sheet (uses standard menu-item detail flow)
-    // Wellness shots card in Sides section also uses standard menu-item detail flow.
-    // The wellness overlay sheet can still be opened programmatically if needed.
+    // Both collection cards use wellness-card structure (not .menu-item/.item-info),
+    // so the general forEach stepper-init skips them — dedicated handlers below.
     const dateBallsCard = document.getElementById('dateBallsCard');
     if (dateBallsCard) {
       dateBallsCard.querySelector('.wellness-foot').addEventListener('click', (e) => {
@@ -3634,8 +3664,7 @@
         openDetail('date_balls');
       });
 
-      // Date Balls stepper — dedicated handlers (card uses wellness-card structure,
-      // not .menu-item/.item-info, so the general forEach stepper-init skips it).
+      // Date Balls stepper
       dateBallsCard.querySelector('.wellness-stepper .minus').addEventListener('click', e => {
         e.stopPropagation();
         if (order.date_balls > 0) { order.date_balls--; syncItem('date_balls'); update(); }
@@ -3643,6 +3672,25 @@
       dateBallsCard.querySelector('.wellness-stepper .plus').addEventListener('click', e => {
         e.stopPropagation();
         if (order.date_balls < 12) { order.date_balls++; syncItem('date_balls'); update(); }
+      });
+    }
+
+    // Wellness Shots collection card — dedicated stepper + tap-to-open-sheet
+    const wellnessShotsCard = document.getElementById('wellnessShotsCard');
+    if (wellnessShotsCard) {
+      wellnessShotsCard.querySelector('.wellness-foot').addEventListener('click', (e) => {
+        if (e.target.closest('.wellness-stepper')) return;
+        openWellness();
+      });
+
+      // Wellness Shots stepper
+      wellnessShotsCard.querySelector('.wellness-stepper .minus').addEventListener('click', e => {
+        e.stopPropagation();
+        if (order.wellness_shots > 0) { order.wellness_shots--; syncWellness(); update(); }
+      });
+      wellnessShotsCard.querySelector('.wellness-stepper .plus').addEventListener('click', e => {
+        e.stopPropagation();
+        if (order.wellness_shots < 12) { order.wellness_shots++; syncWellness(); update(); }
       });
     }
 
@@ -3935,12 +3983,12 @@
     }
 
     function syncWellness() {
-      // Sync the wellness_shots menu-item card (now in the Sides section)
-      const wellnessItem = document.querySelector('[data-key="wellness_shots"]');
-      if (wellnessItem) {
-        wellnessItem.querySelector('.stepper-qty').textContent = order.wellness_shots;
-        wellnessItem.querySelector('.minus').disabled = order.wellness_shots === 0;
-        wellnessItem.classList.toggle('selected', order.wellness_shots > 0);
+      // Sync the wellness_shots collections card (wellness-card structure)
+      const wellnessCard = document.getElementById('wellnessShotsCard');
+      if (wellnessCard) {
+        wellnessCard.querySelector('.stepper-qty').textContent = order.wellness_shots;
+        wellnessCard.querySelector('.minus').disabled = order.wellness_shots === 0;
+        wellnessCard.classList.toggle('selected', order.wellness_shots > 0);
       }
       // Mirror into sheet stepper
       const sheetQty = document.getElementById('sheetWellnessQty');
