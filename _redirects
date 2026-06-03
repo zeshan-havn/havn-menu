@@ -22,6 +22,10 @@
 /:week/db           /index.html  200
 /:week/in/*         /index.html  200
 /:week/in           /index.html  200
+# San Diego dish-variant marker (e.g. /jun07/sd, /jun07/sd/ws). SD's links carry
+# /sd so the shared index.html can show San Diego's version of a dish.
+/:week/sd/*         /index.html  200
+/:week/sd           /index.html  200
 
 # Strip the weekly prefix off everything else under /{week}/* — used for
 # static asset cache-bust (e.g. /may17/menu-preview.png → /menu-preview.png).
@@ -40,6 +44,9 @@
 /db         /index.html 200
 /in/*       /index.html 200
 /in         /index.html 200
+# San Diego dish-variant marker (no weekly prefix — used by SD rotation-site shims)
+/sd/*       /index.html 200
+/sd         /index.html 200
 
 # Internal weekly performance review — unguessable path, not linked from anywhere
 /may10-review  /may10-review.html  200

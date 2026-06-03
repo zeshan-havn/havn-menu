@@ -3501,13 +3501,30 @@
     const _path = window.location.pathname;
     // Strip the optional weekly cache-bust prefix (/may17/, /may10/, /jun7/, etc.)
     // before mode detection so /may17/ws is treated the same as /ws.
-    const _pathForMode = _path.replace(/^\/[a-z]{3}\d+\//, '/');
+    let _pathForMode = _path.replace(/^\/[a-z]{3}\d+\//, '/');
     const _qs = new URLSearchParams(window.location.search);
+    // City marker (San Diego): SD's menu links carry a /sd path segment (or the
+    // ?sd query for testing) so this shared page can show SD's version of a dish.
+    // Detect it, then strip /sd so the cohort detection below sees a clean path
+    // (e.g. /sd/ws → /ws, /sd → /).
+    const isSdMenu = /^\/sd(\/|$)/.test(_pathForMode) || _qs.has('sd');
+    if (isSdMenu) _pathForMode = _pathForMode.replace(/^\/sd(?=\/|$)/, '') || '/';
     const isWelcomeMode = /^\/welcome(\/|$)/.test(_pathForMode) || _qs.has('welcome');
     const isWsMode = /^\/ws(\/|$)/.test(_pathForMode) || _qs.has('ws');
     const isDbMode = /^\/db(\/|$)/.test(_pathForMode) || _qs.has('db');
     const isInMode = /^\/in(\/|$)/.test(_pathForMode) || _qs.has('in');
     const activePromoMode = isWelcomeMode ? 'welcome' : isWsMode ? 'ws' : isDbMode ? 'db' : isInMode ? 'in' : null;
+
+    // ── SD-only override · Jun 7 menu (TEMPORARY — remove at next menu build) ──
+    // SD's kitchen makes the DAIRY version of Vodka Pasta (real cream); DC keeps
+    // the dairy-free coconut-milk version. isSdMenu is set from the /sd marker on
+    // SD's menu links (see "City marker" above). This flips BOTH the description
+    // and the allergen tag (Dairy Free → Dairy (Cream), which renders as a red
+    // "D"), so dairy-allergic SD customers aren't told it's safe.
+    if (isSdMenu && dishes.pasta) {
+      dishes.pasta.desc = 'Tender blackened chicken breast layered over luxurious shell pasta and finished with a silky vodka cream sauce made from San Marzano tomatoes and fresh cream, topped with fresh basil for a rich, indulgent plate with a bright, classic Italian-American finish.';
+      dishes.pasta.tags = [{ text: 'Dairy (Cream)', safe: false }, { text: 'Gluten (Pasta)', safe: false }];
+    }
 
     // Promo config — single source of truth for tier rules + banner content per mode.
     // Tier matches when meals >= mealMin AND shots >= shotMin. Highest matched tier wins.
