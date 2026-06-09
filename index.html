@@ -1527,6 +1527,55 @@
       color: var(--brass);
     }
 
+    /* A mod the dish already satisfies (e.g. dairy-free meal → Dairy Free pill).
+       Grayed out + checkmark; tapping it explains instead of adding a note. */
+    .mod-pill.inherent {
+      background: var(--cream-warm);
+      border-color: var(--cream-dark);
+      color: var(--gray-light);
+      cursor: default;
+    }
+
+    .mod-pill.inherent:active {
+      transform: none;
+    }
+
+    .mod-pill.inherent::after {
+      content: '✓';
+      margin-left: 5px;
+      font-size: 10px;
+      color: var(--brass-muted);
+    }
+
+    /* Toast shown when an inherent mod pill is tapped */
+    .mod-toast {
+      position: fixed;
+      left: 50%;
+      bottom: 44px;
+      transform: translate(-50%, 10px);
+      background: var(--green-deep);
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-size: 12.5px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      line-height: 1.4;
+      padding: 11px 18px;
+      border-radius: 22px;
+      box-shadow: 0 6px 20px rgba(10, 22, 18, 0.35);
+      max-width: 86%;
+      text-align: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      z-index: 400;
+    }
+
+    .mod-toast.visible {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
     /* Customization */
     .custom-field {
       margin-bottom: 18px;
@@ -3354,6 +3403,9 @@
     </div>
   </div>
 
+  <!-- Toast for taps on already-satisfied mod pills -->
+  <div class="mod-toast" id="modToast" role="status" aria-live="polite"></div>
+
   <script>
     // Data - Full descriptions for detail sheet
     const dishes = {
@@ -3652,6 +3704,34 @@
       'no carb':     ['low carb', 'extra carbs'],
       'extra carbs': ['low carb', 'no carb']
     };
+
+    // Mods a dish already satisfies — derived from its allergen tags (safe ones
+    // like "Dairy Free" / "Gluten Free"), plus an optional per-dish
+    // `inherentMods: ['low carb']` array for traits tags can't express.
+    // Tags are rewritten every weekly menu build, so this stays accurate with
+    // no extra step; it also tracks the SD pasta tag override automatically.
+    // These pills gray out and tapping them shows a toast instead of adding a
+    // redundant customization the kitchen would have to read.
+    const tagImpliedMods = { 'dairy free': /^dairy free$/i, 'gluten free': /^gluten free$/i };
+    function inherentModsFor(dish) {
+      const inherent = new Set(dish.inherentMods || []);
+      (dish.tags || []).forEach(tag => {
+        if (!tag.safe) return;
+        Object.keys(tagImpliedMods).forEach(mod => {
+          if (tagImpliedMods[mod].test(tag.text)) inherent.add(mod);
+        });
+      });
+      return inherent;
+    }
+
+    let modToastTimer = null;
+    function showModToast(msg) {
+      const toast = document.getElementById('modToast');
+      toast.textContent = msg;
+      toast.classList.add('visible');
+      clearTimeout(modToastTimer);
+      modToastTimer = setTimeout(() => toast.classList.remove('visible'), 2400);
+    }
 
     // Wellness shots are now tracked via order.wellness_shots (like all other slots).
     // window.wellnessShots kept as a compatibility alias for test harness access.
@@ -4570,8 +4650,12 @@
       const modsEl = document.getElementById('detailMods');
       modsEl.style.display = mealCategories.has(d.category) ? 'block' : 'none';
       const prefs = dietaryPrefs[key];
+      const inherent = inherentModsFor(d);
+      // A mod the dish already satisfies should never reach the kitchen as a note
+      inherent.forEach(mod => prefs.delete(mod));
       document.querySelectorAll('.mod-pill').forEach(pill => {
         pill.classList.toggle('active', prefs.has(pill.dataset.mod));
+        pill.classList.toggle('inherent', inherent.has(pill.dataset.mod));
       });
 
       document.getElementById('detailQty').textContent = order[key];
@@ -4629,6 +4713,10 @@
       pill.addEventListener('click', () => {
         if (!currentDish) return;
         const mod = pill.dataset.mod;
+        if (pill.classList.contains('inherent')) {
+          showModToast(`Good news — this meal is already ${mod}.`);
+          return;
+        }
         const prefs = dietaryPrefs[currentDish];
         if (prefs.has(mod)) {
           prefs.delete(mod);
