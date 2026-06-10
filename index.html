@@ -794,21 +794,6 @@
       letter-spacing: 0.16em;
     }
 
-    .menu-item.chef-hero .item-cat .item-surcharge {
-      display: inline-flex;
-      align-items: center;
-      border: 1px solid var(--brass);
-      border-radius: 3px;
-      padding: 2px 7px;
-      font-family: var(--font-body);
-      font-size: 9px;
-      font-weight: 600;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--brass);
-      background: transparent;
-      line-height: 1.2;
-    }
 
     .menu-item.chef-hero .item-name {
       font-size: 22px;
@@ -2366,14 +2351,6 @@
       gap: 6px;
     }
     .bundle-item.special .bundle-item-cat { color: var(--brass); }
-    .bundle-item-cat .surcharge {
-      border: 1px solid var(--brass);
-      padding: 1px 5px;
-      font-size: 8px;
-      letter-spacing: 0.12em;
-      color: var(--brass);
-      border-radius: 3px;
-    }
     .bundle-item-name {
       font-family: var(--font-display);
       font-size: 17px;
@@ -4062,12 +4039,11 @@
         const dish = dishes[id];
         const isSpecial = id === 'special';
         const cat = dish.category ? dish.category.charAt(0).toUpperCase() + dish.category.slice(1).replace('_', ' ') : '';
-        const surcharge = isSpecial ? '<span class="surcharge">+$5/meal</span>' : '';
         const row = document.createElement('div');
         row.className = 'bundle-item' + (isSpecial ? ' special' : '');
         row.innerHTML = `
           <div class="bundle-item-info">
-            <div class="bundle-item-cat"><span>${cat}</span>${surcharge}</div>
+            <div class="bundle-item-cat"><span>${cat}</span></div>
             <div class="bundle-item-name">${dish.shortName || dish.name}</div>
             <div class="bundle-item-macros">${dish.macros || ''}</div>
           </div>
