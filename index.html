@@ -3148,8 +3148,12 @@
                 <span class="option-text">Monday Morning (9a–12p)</span>
                 <span class="option-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
               </div>
-              <!-- Monday Evening + Tuesday Morning option-rows reserved for holiday weeks (Memorial Day 2026 added them).
-                   Re-add the two <div class="option-row"> blocks here to re-enable. -->>
+              <div class="option-row" data-val="Monday Evening|Monday Evening (6p–9p)" onclick="selectDelivery(this)">
+                <span class="option-text">Monday Evening (6p–9p)</span>
+                <span class="option-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+              </div>
+              <!-- Monday Evening enabled for July 4th week. Tuesday Morning option-row still
+                   reserved for holiday weeks — re-add a <div class="option-row"> block here to enable. -->>
             </div>
           </div>
         </div>
@@ -3643,13 +3647,14 @@
     };
 
     // Delivery window options
-    // 'Monday Evening' + 'Tuesday Morning' reserved for holiday weeks
-    // (Memorial Day 2026 used them) — re-add here AND in the .option-row
-    // HTML above to re-enable.
+    // 'Monday Evening' enabled for the July 4th week. 'Tuesday Morning' still
+    // reserved for holiday weeks — re-add here AND in the .option-row HTML
+    // above to enable it.
     const deliveryOptions = [
       { short: 'Sunday Morning', full: 'Sunday Morning (9a–12p)' },
       { short: 'Sunday Evening', full: 'Sunday Evening (6p–9p)' },
-      { short: 'Monday Morning', full: 'Monday Morning (9a–12p)' }
+      { short: 'Monday Morning', full: 'Monday Morning (9a–12p)' },
+      { short: 'Monday Evening', full: 'Monday Evening (6p–9p)' }
     ];
     // Randomly default to Sunday Morning or Sunday Evening (50/50)
     let delivery = deliveryOptions[Math.random() < 0.5 ? 0 : 1];
