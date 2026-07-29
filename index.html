@@ -8,7 +8,7 @@
   <!-- Open Graph / Social Media Preview -->
   <meta property="og:title" content="Havn Club - Weekly Menu">
   <meta property="og:description" content="Premium meal delivery service. Order by Thursday 4pm for Sunday delivery.">
-  <meta property="og:image" content="https://menu.havnclub.com/jul26/menu-preview.png?v=2026-07-26">
+  <meta property="og:image" content="https://menu.havnclub.com/aug02/menu-preview.png?v=2026-08-02">
   <meta property="og:image:width" content="2100">
   <meta property="og:image:height" content="2900">
   <meta property="og:url" content="https://menu.havnclub.com">
@@ -18,7 +18,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Havn Club - Weekly Menu">
   <meta name="twitter:description" content="Premium meal delivery service. Order by Thursday 4pm for Sunday delivery.">
-  <meta name="twitter:image" content="https://menu.havnclub.com/jul26/menu-preview.png?v=2026-07-26">
+  <meta name="twitter:image" content="https://menu.havnclub.com/aug02/menu-preview.png?v=2026-08-02">
 
   <!-- Meta Pixel Code -->
   <script>
@@ -636,10 +636,27 @@
 
     .menu-list.grid-mode { grid-template-columns: 1fr 1fr; }
     .menu-list.list-mode { grid-template-columns: 1fr; }
-    /* Meals are always single-column so full dish names fit on one line */
-    .meals-list.grid-mode { grid-template-columns: 1fr; }
+    /* Meals render 2-up (square cards) like Breakfast. Their 5-value macro row is
+       split into .macros-compact / .macros-full so nothing clips at half width. */
+    /* Salads stay full-width — they are the headline $25 launch item and carry the
+       longest dish descriptions, so they get the whole row. */
+    .salad-list.grid-mode { grid-template-columns: 1fr; }
     .menu-list.hidden,
     .section-divider.hidden { display: none; }
+
+    /* Snacks — the two collection cards go 2-up alongside each other.
+       NOTE: these are .wellness-card, deliberately NOT .menu-item. Adding
+       .menu-item to them null-derefs the stepper init loop (no .item-info)
+       and kills every stepper on the page. Layout only, never that class. */
+    .snacks-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding: 4px 12px 0;
+      align-items: stretch;
+    }
+
+    .snacks-list.list-mode { grid-template-columns: 1fr; }
 
     /* ==========================================
        MENU ITEM — V1 Float card
@@ -689,18 +706,48 @@
       margin-bottom: 6px;
     }
 
+    /* --- Eyebrow + allergen pills: SUBSTRATE-DRIVEN, never per-dish -------------
+       There are exactly two card substrates on this page:
+         LIGHT  — .menu-item on cream (#F0EBE3), incl. .selected
+         DARK   — .menu-item.chef-hero / .menu-item.card-dark on the green gradient
+       Colour is chosen by substrate alone, so a dish keeps the right treatment
+       when it moves slots week to week. Add .card-dark to flip any card to the
+       dark treatment (e.g. if salads ever get a dark hero background).
+       Selection state deliberately does NOT recolour these — a selected light
+       card is still a light card. (It used to, and turned the pills cream-on-
+       cream = invisible.)
+    --------------------------------------------------------------------------- */
+
     .item-cat > span:first-child {
       font-family: var(--font-display);
       font-size: 10px;
       font-weight: 500;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--green-brand);
+      color: var(--green-brand);            /* #1B5E40 on cream — 6.5:1 */
     }
 
-    .menu-item.selected .item-cat > span:first-child { color: var(--green-deep); }
+    /* NEW badge — brass, sits beside the category eyebrow on the salad cards.
+       Deliberately NOT .item-tag: renderItemTags() clears those on every
+       re-render and this must persist. */
+    .item-new {
+      font-family: var(--font-body);
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 1px 6px;
+      border-radius: 8px;
+      height: 13px;
+      display: inline-flex;
+      align-items: center;
+      box-sizing: border-box;
+      white-space: nowrap;
+      color: var(--brass);
+      background: rgba(196, 168, 124, 0.18);
+    }
 
-    /* Small allergen-status pills (e.g. "GF" "DF") — same green as detail sheet, smaller */
+    /* Small allergen-status pills — "GF"/"DF" (safe) and "G"/"D" (contains) */
     .item-tag {
       font-family: var(--font-body);
       font-size: 8px;
@@ -715,19 +762,34 @@
       box-sizing: border-box;
     }
 
+    /* LIGHT substrate — safe = soft green tint, contains = solid green (louder) */
     .item-tag.safe {
-      background: rgba(61, 107, 85, 0.12);
-      color: var(--green-tag);
+      background: rgba(27, 94, 64, 0.10);   /* #1B5E40 @10% over cream — 5.6:1 */
+      color: var(--green-brand);
     }
 
-    .menu-item.chef-hero .item-tag.safe {
-      background: rgba(61, 107, 85, 0.30);
-      color: rgba(190, 222, 200, 1);
+    .item-tag.allergen {
+      background: var(--green-brand);       /* solid #1B5E40 */
+      color: var(--cream);                  /* #F5F1EA — 6.9:1 */
     }
 
-    .menu-item.selected .item-tag.safe {
-      background: rgba(245, 241, 234, 0.18);
-      color: var(--cream);
+    /* DARK substrate — the same two treatments, inverted */
+    .menu-item.chef-hero .item-cat > span:first-child,
+    .menu-item.card-dark .item-cat > span:first-child {
+      color: var(--brass);                  /* #C4A87C on green — 5.2:1 */
+      letter-spacing: 0.16em;
+    }
+
+    .menu-item.chef-hero .item-tag.safe,
+    .menu-item.card-dark .item-tag.safe {
+      background: rgba(245, 241, 234, 0.14);
+      color: var(--cream);                  /* #F5F1EA — 6.9:1 */
+    }
+
+    .menu-item.chef-hero .item-tag.allergen,
+    .menu-item.card-dark .item-tag.allergen {
+      background: var(--cream-dark);        /* solid #E5E0D6 */
+      color: var(--green-darkest);          /* #0A1612 — 14.1:1 */
     }
 
     .item-info {
@@ -773,37 +835,42 @@
        CHEF HERO — full-width dark card (Special)
     ========================================== */
 
-    .menu-item.chef-hero {
+    /* Dark substrate. .chef-hero adds the full-width hero framing on top;
+       .card-dark is the layout-neutral version — drop it on any .menu-item to
+       move that card onto the dark green, and every eyebrow/pill/macro colour
+       above follows automatically. */
+    .menu-item.chef-hero,
+    .menu-item.card-dark {
       background: linear-gradient(135deg, #243D33 0%, #0F1F18 100%);
       border: 1px solid rgba(196, 168, 124, 0.25);
       border-radius: 10px;
-      padding: 12px 12px 10px;
-      margin: 4px 12px 14px;
       box-shadow:
         -3px -3px 14px rgba(255, 210, 180, 0.08),
         3px 3px 14px rgba(196, 168, 124, 0.10),
         0 6px 18px rgba(26, 47, 39, 0.18),
         0 22px 40px rgba(26, 47, 39, 0.14);
+    }
+
+    .menu-item.chef-hero {
+      padding: 12px 12px 10px;
+      margin: 4px 12px 14px;
       min-height: 0;
     }
 
     .menu-item.chef-hero .item-cat { margin-bottom: 6px; }
 
-    .menu-item.chef-hero .item-cat span {
-      color: var(--brass);
-      letter-spacing: 0.16em;
-    }
-
-
-    .menu-item.chef-hero .item-name {
+    .menu-item.chef-hero .item-name,
+    .menu-item.card-dark .item-name {
       font-size: 22px;
       color: var(--cream);
       line-height: 1.18;
       margin-bottom: 4px;
     }
 
-    .menu-item.chef-hero .item-macros { color: var(--cream-muted); }
-    .menu-item.chef-hero .item-macros .dot { background: rgba(196, 168, 124, 0.4); }
+    .menu-item.chef-hero .item-macros,
+    .menu-item.card-dark .item-macros { color: var(--cream-muted); }
+    .menu-item.chef-hero .item-macros .dot,
+    .menu-item.card-dark .item-macros .dot { background: rgba(196, 168, 124, 0.4); }
     
     /* Bottom row: macros + stepper.
        Stacks vertically in grid mode (narrow cards), goes horizontal in list-mode + chef-hero. */
@@ -819,11 +886,29 @@
       align-self: flex-end;
     }
 
-    /* Dual-format macros: compact in 2-col grids, full when filtered to list-mode (single column). */
+    /* Dual-format macros: compact in 2-col grids, full when filtered to list-mode (single column).
+       Only the SALADS lack the split — they are the one full-width tier, so they print all five.
+       Every 2-up card needs it, Chef/Pasta dark squares included: five nowrap values overflow a
+       ~145px card and paint over the neighbour. */
     .item-macros .macros-compact { display: contents; }
     .item-macros .macros-full { display: none; }
     .menu-list.list-mode .item-macros .macros-compact { display: none; }
     .menu-list.list-mode .item-macros .macros-full { display: contents; }
+
+    /* Wide viewports: a 2-up card is now roomy enough for the whole 5-value row
+       (widest measures 265px; at 640px the card gives 279px of content), so the
+       compact form is only a phone concession. Snack cards go back to full size too. */
+    @media (min-width: 640px) {
+      .menu-list.grid-mode .item-macros .macros-compact { display: none; }
+      .menu-list.grid-mode .item-macros .macros-full { display: contents; }
+
+      .snacks-list:not(.list-mode) .wellness-card { padding: 10px 14px 9px; }
+      .snacks-list:not(.list-mode) .wellness-card::before { left: 14px; right: 14px; }
+      .snacks-list:not(.list-mode) .wellness-body { flex-direction: row; align-items: center; }
+      .snacks-list:not(.list-mode) .shot-circles { gap: 7px; flex: 1 1 auto; }
+      .snacks-list:not(.list-mode) .shot-circle { width: 20px; height: 20px; }
+      .snacks-list:not(.list-mode) .wellness-title { font-size: 20px; }
+    }
 
     /* Compact macros */
     .item-macros {
@@ -1772,6 +1857,52 @@
       padding: 16px 14px 4px;
     }
 
+    /* Inside the snacks grid the section wrapper is just a grid cell —
+       the grid owns the gutters, and it must stretch so both cards match height. */
+    .snacks-list .wellness-section {
+      padding: 0;
+      display: flex;
+      min-width: 0;
+    }
+
+    .snacks-list .wellness-card {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      min-width: 0;
+    }
+
+    .snacks-list .wellness-body { margin-top: auto; }
+
+    /* 2-up: circles no longer fit beside the stepper, so stack them and
+       tighten the swatches to the narrower column. */
+    .snacks-list:not(.list-mode) .wellness-card { padding: 10px 11px 9px; }
+
+    .snacks-list:not(.list-mode) .wellness-card::before { left: 11px; right: 11px; }
+
+    .snacks-list:not(.list-mode) .wellness-body {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 8px;
+    }
+
+    /* flex-wrap is the safety net: a collection with more swatches than fit
+       drops to a second row instead of clipping. */
+    .snacks-list:not(.list-mode) .shot-circles { gap: 5px; flex: 0 0 auto; flex-wrap: wrap; }
+
+    .snacks-list:not(.list-mode) .shot-circle { width: 17px; height: 17px; }
+
+    /* iPhone SE / 320px — 6 date-ball swatches at 17px overrun the half-column,
+       so shrink them enough to stay on one row. */
+    @media (max-width: 359px) {
+      .snacks-list:not(.list-mode) .shot-circles { gap: 4px; }
+      .snacks-list:not(.list-mode) .shot-circle { width: 15px; height: 15px; }
+    }
+
+    .snacks-list:not(.list-mode) .wellness-stepper { align-self: flex-end; }
+
+    .snacks-list:not(.list-mode) .wellness-title { font-size: 18px; }
+
     .wellness-card {
       position: relative;
       background: linear-gradient(160deg, #FDFCF8 0%, var(--cream-warm) 100%);
@@ -2549,7 +2680,7 @@
             </div>
             <div class="header-info">
               <span class="header-name">Havn Club</span>
-              <span class="header-meta">Jul 26 – Aug 1</span>
+              <span class="header-meta">Aug 2 – Aug 8</span>
             </div>
           </div>
           <button class="help-btn" id="helpBtn">?</button>
@@ -2603,9 +2734,9 @@
               <button class="preset-card" data-preset="signature" type="button">
                 <span class="preset-eyebrow">Full menu</span>
                 <span class="preset-title">Signature</span>
-                <span class="preset-meta">One of everything</span>
+                <span class="preset-meta">All 10 meals + chia + shots</span>
                 <div class="preset-bottom">
-                  <span class="preset-price">$235</span>
+                  <span class="preset-price">$285</span>
                   <span class="preset-cta">View →</span>
                 </div>
               </button>
@@ -2615,23 +2746,481 @@
           <!-- Pill Nav - filter meals by category -->
           <nav class="pill-nav" id="pillNav" aria-label="Menu filter">
             <button class="pill active" data-category="all">All</button>
-            <button class="pill" data-category="snacks">Snacks</button>
+            <button class="pill" data-category="salad">Salad</button>
             <button class="pill" data-category="chicken">Chicken</button>
             <button class="pill" data-category="beef">Beef</button>
             <button class="pill" data-category="seafood">Seafood</button>
             <button class="pill" data-category="veg">Veg</button>
             <button class="pill" data-category="pasta">Pasta</button>
             <button class="pill" data-category="breakfast">Breakfast</button>
+            <button class="pill" data-category="snacks">Snacks</button>
           </nav>
 
-          <!-- Snacks Section -->
+          <!-- Salad Section -->
+          <div class="section-divider salad-divider">
+            <div class="section-line"></div>
+            <span class="section-name">Salads</span>
+            <div class="section-line right"></div>
+          </div>
+
+          <div class="menu-list salad-list grid-mode">
+
+          <div class="menu-item card-dark" data-key="salad" data-category="salad chicken">
+            <div class="item-cat"><span>Salad</span><span class="item-new">New</span></div>
+            <div class="item-info">
+              <h3 class="item-name">Green Goddess Salad</h3>
+              <p class="item-desc">Diced Lemon Herb Chicken over Shredded Purple Cabbage and Kale with Pickled Red Onion, Cucumber, Roasted Chickpeas, Red Grapes, Toasted Pumpkin Seeds and Dried Apricots, with Tahini Green Goddess on the side</p>
+              <div class="item-bottom">
+                <div class="item-macros">
+                  <span>479 cal</span>
+                  <span class="dot"></span>
+                  <span>45g protein</span>
+                  <span class="dot"></span>
+                  <span>20g fat</span>
+                  <span class="dot"></span>
+                  <span>10g fiber</span>
+                  <span class="dot"></span>
+                  <span>31g carbs</span>
+                </div>
+                <div class="stepper">
+                  <button class="stepper-btn minus" disabled>−</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-item card-dark" data-key="salad_2" data-category="salad chicken">
+            <div class="item-cat"><span>Salad</span><span class="item-new">New</span></div>
+            <div class="item-info">
+              <h3 class="item-name">Harvest Bowl Salad</h3>
+              <p class="item-desc">Diced Lemon Herb Chicken over Apple Cider Slaw and Kale with Roasted Sweet Potato, Shaved Carrot and Celery, Spiced Pickled Apple and Goat Cheese, with Balsamic Vinaigrette on the side</p>
+              <div class="item-bottom">
+                <div class="item-macros">
+                  <span>506 cal</span>
+                  <span class="dot"></span>
+                  <span>42g protein</span>
+                  <span class="dot"></span>
+                  <span>25g fat</span>
+                  <span class="dot"></span>
+                  <span>9g fiber</span>
+                  <span class="dot"></span>
+                  <span>28g carbs</span>
+                </div>
+                <div class="stepper">
+                  <button class="stepper-btn minus" disabled>−</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          </div>
+          <!-- /salad-list -->
+
+          <!-- Meals Section -->
+          <div class="section-divider meals-divider">
+            <div class="section-line"></div>
+            <span class="section-name">Meals</span>
+            <div class="section-line right"></div>
+          </div>
+
+          <div class="menu-list heroes-list grid-mode">
+
+          <div class="menu-item card-dark" data-key="special" data-category="chicken">
+            <div class="item-cat"><span>Special</span></div>
+            <div class="item-info">
+              <h3 class="item-name">Tuscan Chicken</h3>
+              <div class="item-bottom">
+                <div class="item-macros">
+                  <span class="macros-compact">
+                    <span>791 cal</span>
+                    <span class="dot"></span>
+                    <span>56g protein</span>
+                  </span>
+                  <span class="macros-full">
+                    <span>791 cal</span>
+                    <span class="dot"></span>
+                    <span>56g protein</span>
+                    <span class="dot"></span>
+                    <span>38g fat</span>
+                    <span class="dot"></span>
+                    <span>4g fiber</span>
+                    <span class="dot"></span>
+                    <span>58g carbs</span>
+                  </span>
+                </div>
+                <div class="stepper">
+                  <button class="stepper-btn minus" disabled>−</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-item card-dark" data-key="pasta" data-category="pasta beef">
+            <div class="item-cat"><span>Pasta</span></div>
+            <div class="item-info">
+              <h3 class="item-name">Beef Bolognese</h3>
+              <div class="item-bottom">
+                <div class="item-macros">
+                  <span class="macros-compact">
+                    <span>609 cal</span>
+                    <span class="dot"></span>
+                    <span>48g protein</span>
+                  </span>
+                  <span class="macros-full">
+                    <span>609 cal</span>
+                    <span class="dot"></span>
+                    <span>48g protein</span>
+                    <span class="dot"></span>
+                    <span>27g fat</span>
+                    <span class="dot"></span>
+                    <span>5g fiber</span>
+                    <span class="dot"></span>
+                    <span>43g carbs</span>
+                  </span>
+                </div>
+                <div class="stepper">
+                  <button class="stepper-btn minus" disabled>−</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          </div>
+          <!-- /heroes-list -->
+
+          <div class="menu-list meals-list grid-mode">
+
+          <div class="menu-item" data-key="chicken" data-category="chicken">
+            <div class="item-cat"><span>Chicken</span></div>
+            <div class="item-info">
+              <h3 class="item-name">Chicken Tikka</h3>
+              <p class="item-desc">Tikka Marinated Chicken Thighs with a Tikka Masala Sauce and Roasted Cauliflower and Eggplant over Cardamom Basmati</p>
+              <div class="item-bottom">
+                <div class="item-macros">
+                  <span class="macros-compact">
+                    <span>706 cal</span>
+                    <span class="dot"></span>
+                    <span>58g protein</span>
+                  </span>
+                  <span class="macros-full">
+                    <span>706 cal</span>
+                    <span class="dot"></span>
+                    <span>58g protein</span>
+                    <span class="dot"></span>
+                    <span>30g fat</span>
+                    <span class="dot"></span>
+                    <span>7g fiber</span>
+                    <span class="dot"></span>
+                    <span>52g carbs</span>
+                  </span>
+                </div>
+                <div class="stepper">
+                  <button class="stepper-btn minus" disabled>−</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-item" data-key="chicken_2" data-category="chicken">
+            <div class="item-cat"><span>Chicken</span></div>
+            <div class="item-info">
+              <h3 class="item-name">Mediterranean Chickpea Chicken Bowl</h3>
+              <p class="item-desc">Pan-seared chicken breast over a dairy-free green tahini bed. Roasted chickpeas, broccoli, pickled red onions.</p>
+              <div class="item-bottom">
+                <div class="item-macros">
+                  <span class="macros-compact">
+                    <span>579 cal</span>
+                    <span class="dot"></span>
+                    <span>57g protein</span>
+                  </span>
+                  <span class="macros-full">
+                    <span>579 cal</span>
+                    <span class="dot"></span>
+                    <span>57g protein</span>
+                    <span class="dot"></span>
+                    <span>24g fat</span>
+                    <span class="dot"></span>
+                    <span>12g fiber</span>
+                    <span class="dot"></span>
+                    <span>28g carbs</span>
+                  </span>
+                </div>
+                <div class="stepper">
+                  <button class="stepper-btn minus" disabled>−</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-item" data-key="beef" data-category="beef">
+            <div class="item-cat"><span>Beef</span></div>
+            <div class="item-info">
+              <h3 class="item-name">Rosemary Thyme Steak</h3>
+              <p class="item-desc">Rosemary Thyme Steak with a Savory Steakhouse Reduction and Roasted Garlic Potatoes and Cremini Mushrooms and Blistered Green Beans</p>
+              <div class="item-bottom">
+                <div class="item-macros">
+                  <span class="macros-compact">
+                    <span>733 cal</span>
+                    <span class="dot"></span>
+                    <span>65g protein</span>
+                  </span>
+                  <span class="macros-full">
+                    <span>733 cal</span>
+                    <span class="dot"></span>
+                    <span>65g protein</span>
+                    <span class="dot"></span>
+                    <span>31g fat</span>
+                    <span class="dot"></span>
+                    <span>7g fiber</span>
+                    <span class="dot"></span>
+                    <span>44g carbs</span>
+                  </span>
+                </div>
+                <div class="stepper">
+                  <button class="stepper-btn minus" disabled>−</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-item" data-key="seafood" data-category="seafood">
+            <div class="item-cat"><span>Seafood</span></div>
+            <div class="item-info">
+              <h3 class="item-name">Blood Orange Salmon</h3>
+              <p class="item-desc">Seared Salmon with a Blood Orange Glaze and Roasted Beets over Roasted Sweet Potatoes</p>
+              <div class="item-bottom">
+                <div class="item-macros">
+                  <span class="macros-compact">
+                    <span>672 cal</span>
+                    <span class="dot"></span>
+                    <span>52g protein</span>
+                  </span>
+                  <span class="macros-full">
+                    <span>672 cal</span>
+                    <span class="dot"></span>
+                    <span>52g protein</span>
+                    <span class="dot"></span>
+                    <span>28g fat</span>
+                    <span class="dot"></span>
+                    <span>7g fiber</span>
+                    <span class="dot"></span>
+                    <span>47g carbs</span>
+                  </span>
+                </div>
+                <div class="stepper">
+                  <button class="stepper-btn minus" disabled>−</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-item" data-key="seafood_2" data-category="seafood">
+            <div class="item-cat"><span>Seafood</span></div>
+            <div class="item-info">
+              <h3 class="item-name">Honey Chipotle Shrimp</h3>
+              <p class="item-desc">Honey Chipotle Shrimp with a Tahini Green Goddess Dressing and Charred Corn and Charred Broccoli over Cilantro Lime Rice</p>
+              <div class="item-bottom">
+                <div class="item-macros">
+                  <span class="macros-compact">
+                    <span>699 cal</span>
+                    <span class="dot"></span>
+                    <span>56g protein</span>
+                  </span>
+                  <span class="macros-full">
+                    <span>699 cal</span>
+                    <span class="dot"></span>
+                    <span>56g protein</span>
+                    <span class="dot"></span>
+                    <span>24g fat</span>
+                    <span class="dot"></span>
+                    <span>8g fiber</span>
+                    <span class="dot"></span>
+                    <span>73g carbs</span>
+                  </span>
+                </div>
+                <div class="stepper" style="touch-action: manipulation;">
+                  <button class="stepper-btn minus" disabled style="touch-action: manipulation;">−</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus" style="touch-action: manipulation;">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-item" data-key="veg" data-category="veg">
+            <div class="item-cat"><span>Veg</span></div>
+            <div class="item-info">
+              <h3 class="item-name">Thai Coconut Curry Bowl</h3>
+              <p class="item-desc">Marinated tofu with a thai coconut curry sauce and roasted bell peppers and broccoli and shredded cabbage over jasmine rice</p>
+              <div class="item-bottom">
+                <div class="item-macros">
+                  <span class="macros-compact">
+                    <span>683 cal</span>
+                    <span class="dot"></span>
+                    <span>46g protein</span>
+                  </span>
+                  <span class="macros-full">
+                    <span>683 cal</span>
+                    <span class="dot"></span>
+                    <span>46g protein</span>
+                    <span class="dot"></span>
+                    <span>32g fat</span>
+                    <span class="dot"></span>
+                    <span>9g fiber</span>
+                    <span class="dot"></span>
+                    <span>47g carbs</span>
+                  </span>
+                </div>
+                <div class="stepper">
+                  <button class="stepper-btn minus" disabled>−</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          </div>
+          <!-- /meals-list -->
+
+          <!-- Broth Section removed for summer (seasonal — may return in fall) -->
+
+          <!-- Breakfast Section -->
+          <div class="section-divider breakfast-divider">
+            <div class="section-line"></div>
+            <span class="section-name">Breakfast</span>
+            <div class="section-line right"></div>
+          </div>
+
+          <div class="menu-list breakfast-list grid-mode">
+
+          <div class="menu-item" data-key="oats" data-category="breakfast">
+            <div class="item-cat"><span>Oats</span></div>
+            <div class="item-info">
+              <h3 class="item-name">Chocolate Overnight Oats</h3>
+              <p class="item-desc">Creamy chocolate overnight oats finished with fresh raspberries.</p>
+              <div class="item-bottom">
+                <div class="item-macros">
+                  <span class="macros-compact">
+                    <span>305 cal</span>
+                    <span class="dot"></span>
+                    <span>20g protein</span>
+                  </span>
+                  <span class="macros-full">
+                    <span>305 cal</span>
+                    <span class="dot"></span>
+                    <span>20g protein</span>
+                    <span class="dot"></span>
+                    <span>9g fat</span>
+                    <span class="dot"></span>
+                    <span>15g fiber</span>
+                    <span class="dot"></span>
+                    <span>36g carbs</span>
+                  </span>
+                </div>
+                <div class="stepper">
+                  <button class="stepper-btn minus" disabled>−</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-item" data-key="chia" data-category="breakfast">
+            <div class="item-cat"><span>Chia</span></div>
+            <div class="item-info">
+              <h3 class="item-name">Mango Chia Pudding</h3>
+              <p class="item-desc">A creamy mango chia pudding layered with coconut cream and topped with fresh mango.</p>
+              <div class="item-bottom">
+                <div class="item-macros">
+                  <span class="macros-compact">
+                    <span>353 cal</span>
+                    <span class="dot"></span>
+                    <span>5g protein</span>
+                  </span>
+                  <span class="macros-full">
+                    <span>353 cal</span>
+                    <span class="dot"></span>
+                    <span>5g protein</span>
+                    <span class="dot"></span>
+                    <span>24g fat</span>
+                    <span class="dot"></span>
+                    <span>3g fiber</span>
+                    <span class="dot"></span>
+                    <span>31g carbs</span>
+                  </span>
+                </div>
+                <div class="stepper">
+                  <button class="stepper-btn minus" disabled>−</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-item" data-key="chia_2" data-category="breakfast">
+            <div class="item-cat"><span>Chia</span></div>
+            <div class="item-info">
+              <h3 class="item-name">Tiramisu Chia Pudding</h3>
+              <p class="item-desc">Tiramisu chia pudding with a sweet tiramisu style cream topped with a light cocoa dusting</p>
+              <div class="item-bottom">
+                <div class="item-macros">
+                  <span class="macros-compact">
+                    <span>320 cal</span>
+                    <span class="dot"></span>
+                    <span>27g protein</span>
+                  </span>
+                  <span class="macros-full">
+                    <span>320 cal</span>
+                    <span class="dot"></span>
+                    <span>27g protein</span>
+                    <span class="dot"></span>
+                    <span>11g fat</span>
+                    <span class="dot"></span>
+                    <span>10g fiber</span>
+                    <span class="dot"></span>
+                    <span>29g carbs</span>
+                  </span>
+                </div>
+                <div class="stepper">
+                  <button class="stepper-btn minus" disabled>−</button>
+                  <span class="stepper-qty">0</span>
+                  <button class="stepper-btn plus">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          </div>
+          <!-- /breakfast-list -->
+
+          <!-- Snacks Section — demoted below Meals + Breakfast (Aug 2 2026);
+               snacks are familiar now, the Salad launch owns the top of the page. -->
           <div class="section-divider snacks-divider">
             <div class="section-line"></div>
             <span class="section-name">Snacks</span>
             <div class="section-line right"></div>
           </div>
 
-          <div class="snacks-list">
+          <div class="snacks-list grid-mode">
 
             <!-- Date Ball Collection -->
             <div class="wellness-section">
@@ -2640,7 +3229,6 @@
                   <div class="wellness-head-text">
                     <div class="wellness-title-row">
                       <span class="wellness-title">Date Ball Collection</span>
-                      <span class="new-badge">New</span>
                     </div>
                     <span class="wellness-subtitle">6 handcrafted date balls</span>
                   </div>
@@ -2694,337 +3282,6 @@
 
           </div>
           <!-- /snacks-list -->
-
-          <!-- Meals Section -->
-          <div class="section-divider meals-divider">
-            <div class="section-line"></div>
-            <span class="section-name">Meals</span>
-            <div class="section-line right"></div>
-          </div>
-
-                    <div class="menu-item chef-hero" data-key="special" data-category="chicken">
-            <div class="item-cat"><span>Special</span></div>
-            <div class="item-info">
-              <h3 class="item-name">Beef Bourguignon</h3>
-              <div class="item-bottom">
-                <div class="item-macros">
-                  <span>630 cal</span>
-                  <span class="dot"></span>
-                  <span>49g protein</span>
-                  <span class="dot"></span>
-                  <span>21g fat</span>
-                  <span class="dot"></span>
-                  <span>7g fiber</span>
-                  <span class="dot"></span>
-                  <span>41g carbs</span>
-                </div>
-                <div class="stepper">
-                  <button class="stepper-btn minus" disabled>−</button>
-                  <span class="stepper-qty">0</span>
-                  <button class="stepper-btn plus">+</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="menu-item chef-hero" data-key="pasta" data-category="pasta beef">
-            <div class="item-cat"><span>Pasta</span></div>
-            <div class="item-info">
-              <h3 class="item-name">Vodka Pasta</h3>
-              <div class="item-bottom">
-                <div class="item-macros">
-                  <span>699 cal</span>
-                  <span class="dot"></span>
-                  <span>55g protein</span>
-                  <span class="dot"></span>
-                  <span>31g fat</span>
-                  <span class="dot"></span>
-                  <span>4g fiber</span>
-                  <span class="dot"></span>
-                  <span>49g carbs</span>
-                </div>
-                <div class="stepper">
-                  <button class="stepper-btn minus" disabled>−</button>
-                  <span class="stepper-qty">0</span>
-                  <button class="stepper-btn plus">+</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="menu-list meals-list grid-mode">
-
-          <div class="menu-item" data-key="chicken" data-category="chicken">
-            <div class="item-cat"><span>Chicken</span></div>
-            <div class="item-info">
-              <h3 class="item-name">Peri Peri Chicken</h3>
-              <p class="item-desc">Charred Chicken with a Peri Peri Glaze and Fire Charred Sweet Corn and Roasted Cauliflower over Coconut Rice</p>
-              <div class="item-bottom">
-                <div class="item-macros">
-                  <span>751 cal</span>
-                  <span class="dot"></span>
-                  <span>53g protein</span>
-                  <span class="dot"></span>
-                  <span>31g fat</span>
-                  <span class="dot"></span>
-                  <span>6g fiber</span>
-                  <span class="dot"></span>
-                  <span>66g carbs</span>
-                </div>
-                <div class="stepper">
-                  <button class="stepper-btn minus" disabled>−</button>
-                  <span class="stepper-qty">0</span>
-                  <button class="stepper-btn plus">+</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="menu-item" data-key="chicken_2" data-category="chicken">
-            <div class="item-cat"><span>Chicken</span></div>
-            <div class="item-info">
-              <h3 class="item-name">Lemon Herb Feta Chicken</h3>
-              <p class="item-desc">Lemon Herb Chicken with a Ruby Whipped Feta and Roasted Sweet Potato and Lacinato Kale with a House Pickled Vegetable Medley</p>
-              <div class="item-bottom">
-                <div class="item-macros">
-                  <span>675 cal</span>
-                  <span class="dot"></span>
-                  <span>66g protein</span>
-                  <span class="dot"></span>
-                  <span>31g fat</span>
-                  <span class="dot"></span>
-                  <span>7g fiber</span>
-                  <span class="dot"></span>
-                  <span>33g carbs</span>
-                </div>
-                <div class="stepper">
-                  <button class="stepper-btn minus" disabled>−</button>
-                  <span class="stepper-qty">0</span>
-                  <button class="stepper-btn plus">+</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="menu-item" data-key="beef" data-category="beef">
-            <div class="item-cat"><span>Beef</span></div>
-            <div class="item-info">
-              <h3 class="item-name">Carne Asada Steak</h3>
-              <p class="item-desc">Carne Asada Steak with a Creamy Peruvian Aji Verde and Roasted Sweet Plantains and Pickled Red Onions over Cilantro Lime Rice</p>
-              <div class="item-bottom">
-                <div class="item-macros">
-                  <span>714 cal</span>
-                  <span class="dot"></span>
-                  <span>54g protein</span>
-                  <span class="dot"></span>
-                  <span>22g fat</span>
-                  <span class="dot"></span>
-                  <span>3g fiber</span>
-                  <span class="dot"></span>
-                  <span>72g carbs</span>
-                </div>
-                <div class="stepper">
-                  <button class="stepper-btn minus" disabled>−</button>
-                  <span class="stepper-qty">0</span>
-                  <button class="stepper-btn plus">+</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="menu-item" data-key="seafood" data-category="seafood">
-            <div class="item-cat"><span>Seafood</span></div>
-            <div class="item-info">
-              <h3 class="item-name">Pomegranate Salmon</h3>
-              <p class="item-desc">Pomegranate Salmon with a Whipped Pomegranate Sauce and Roasted Zucchini over Saffron Cauliflower Rice</p>
-              <div class="item-bottom">
-                <div class="item-macros">
-                  <span>677 cal</span>
-                  <span class="dot"></span>
-                  <span>49g protein</span>
-                  <span class="dot"></span>
-                  <span>43g fat</span>
-                  <span class="dot"></span>
-                  <span>5g fiber</span>
-                  <span class="dot"></span>
-                  <span>24g carbs</span>
-                </div>
-                <div class="stepper">
-                  <button class="stepper-btn minus" disabled>−</button>
-                  <span class="stepper-qty">0</span>
-                  <button class="stepper-btn plus">+</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="menu-item" data-key="seafood_2" data-category="seafood">
-            <div class="item-cat"><span>Seafood</span></div>
-            <div class="item-info">
-              <h3 class="item-name">Spicy Tuna</h3>
-              <p class="item-desc">Crispy Albacore Tuna Cakes with a Spicy Yuzu Mayo and Miso Glazed Carrots and Pickled Cucumbers over Seasoned Sushi Rice</p>
-              <div class="item-bottom">
-                <div class="item-macros">
-                  <span>738 cal</span>
-                  <span class="dot"></span>
-                  <span>51g protein</span>
-                  <span class="dot"></span>
-                  <span>29g fat</span>
-                  <span class="dot"></span>
-                  <span>5g fiber</span>
-                  <span class="dot"></span>
-                  <span>71g carbs</span>
-                </div>
-                <div class="stepper" style="touch-action: manipulation;">
-                  <button class="stepper-btn minus" disabled style="touch-action: manipulation;">−</button>
-                  <span class="stepper-qty">0</span>
-                  <button class="stepper-btn plus" style="touch-action: manipulation;">+</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="menu-item" data-key="veg" data-category="veg">
-            <div class="item-cat"><span>Veg</span></div>
-            <div class="item-info">
-              <h3 class="item-name">Korean Seared Tofu</h3>
-              <p class="item-desc">Crispy Seared Tofu with a Gochujang Glaze and Charred Broccoli and Roasted Cremini Mushrooms over Basmati Rice</p>
-              <div class="item-bottom">
-                <div class="item-macros">
-                  <span>667 cal</span>
-                  <span class="dot"></span>
-                  <span>50g protein</span>
-                  <span class="dot"></span>
-                  <span>22g fat</span>
-                  <span class="dot"></span>
-                  <span>10g fiber</span>
-                  <span class="dot"></span>
-                  <span>71g carbs</span>
-                </div>
-                <div class="stepper">
-                  <button class="stepper-btn minus" disabled>−</button>
-                  <span class="stepper-qty">0</span>
-                  <button class="stepper-btn plus">+</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          </div>
-          <!-- /meals-list -->
-
-          <!-- Broth Section removed for summer (seasonal — may return in fall) -->
-
-          <!-- Breakfast Section -->
-          <div class="section-divider breakfast-divider">
-            <div class="section-line"></div>
-            <span class="section-name">Breakfast</span>
-            <div class="section-line right"></div>
-          </div>
-
-          <div class="menu-list breakfast-list grid-mode">
-
-          <div class="menu-item" data-key="oats" data-category="breakfast">
-            <div class="item-cat"><span>Oats</span></div>
-            <div class="item-info">
-              <h3 class="item-name">Classic Overnight Oats</h3>
-              <p class="item-desc">Premium rolled oats in organic milk, lightly sweetened with maple and vanilla.</p>
-              <div class="item-bottom">
-                <div class="item-macros">
-                  <span class="macros-compact">
-                    <span>440 cal</span>
-                    <span class="dot"></span>
-                    <span>26g protein</span>
-                  </span>
-                  <span class="macros-full">
-                    <span>440 cal</span>
-                    <span class="dot"></span>
-                    <span>26g protein</span>
-                    <span class="dot"></span>
-                    <span>11g fat</span>
-                    <span class="dot"></span>
-                    <span>18g fiber</span>
-                    <span class="dot"></span>
-                    <span>49g carbs</span>
-                  </span>
-                </div>
-                <div class="stepper">
-                  <button class="stepper-btn minus" disabled>−</button>
-                  <span class="stepper-qty">0</span>
-                  <button class="stepper-btn plus">+</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="menu-item" data-key="chia" data-category="breakfast">
-            <div class="item-cat"><span>Chia</span></div>
-            <div class="item-info">
-              <h3 class="item-name">Vanilla Chia Pudding</h3>
-              <p class="item-desc">Vanilla chia pudding with house granola and fresh blueberries.</p>
-              <div class="item-bottom">
-                <div class="item-macros">
-                  <span class="macros-compact">
-                    <span>483 cal</span>
-                    <span class="dot"></span>
-                    <span>27g protein</span>
-                  </span>
-                  <span class="macros-full">
-                    <span>483 cal</span>
-                    <span class="dot"></span>
-                    <span>27g protein</span>
-                    <span class="dot"></span>
-                    <span>19g fat</span>
-                    <span class="dot"></span>
-                    <span>16g fiber</span>
-                    <span class="dot"></span>
-                    <span>52g carbs</span>
-                  </span>
-                </div>
-                <div class="stepper">
-                  <button class="stepper-btn minus" disabled>−</button>
-                  <span class="stepper-qty">0</span>
-                  <button class="stepper-btn plus">+</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="menu-item" data-key="chia_2" data-category="breakfast">
-            <div class="item-cat"><span>Chia</span></div>
-            <div class="item-info">
-              <h3 class="item-name">Strawberry Chia Pudding</h3>
-              <p class="item-desc">Strawberry chia pudding with house granola and fresh strawberries.</p>
-              <div class="item-bottom">
-                <div class="item-macros">
-                  <span class="macros-compact">
-                    <span>430 cal</span>
-                    <span class="dot"></span>
-                    <span>30g protein</span>
-                  </span>
-                  <span class="macros-full">
-                    <span>430 cal</span>
-                    <span class="dot"></span>
-                    <span>30g protein</span>
-                    <span class="dot"></span>
-                    <span>17g fat</span>
-                    <span class="dot"></span>
-                    <span>12g fiber</span>
-                    <span class="dot"></span>
-                    <span>40g carbs</span>
-                  </span>
-                </div>
-                <div class="stepper">
-                  <button class="stepper-btn minus" disabled>−</button>
-                  <span class="stepper-qty">0</span>
-                  <button class="stepper-btn plus">+</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          </div>
-          <!-- /breakfast-list -->
 
 
           <!-- Draft Section - Always visible -->
@@ -3327,124 +3584,146 @@
   <script>
     // Data - Full descriptions for detail sheet
     const dishes = {
+      salad: {
+        name: 'Green Goddess Salad',
+        shortName: 'Green Goddess Salad',
+        category: 'salad',
+        proteinCategory: 'chicken',
+        desc: 'Diced lemon herb chicken over a shredded purple cabbage and kale base with pickled red onion, cucumber and roasted chickpeas, finished with red grapes, toasted pumpkin seeds and dried apricots, served with tahini green goddess dressing on the side for a bright, crunchy cold plate at 45 g of protein.',
+        macros: '479 cal · 45g protein · 20g fat · 10g fiber · 31g carbs',
+        tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy Free', safe: true }],
+        inherentMods: ['high protein'],
+        price: 25
+      },
+      salad_2: {
+        name: 'Harvest Bowl Salad',
+        shortName: 'Harvest Bowl Salad',
+        category: 'salad_2',
+        proteinCategory: 'chicken',
+        desc: 'Diced lemon herb chicken over apple cider cabbage slaw and shredded kale with roasted sweet potato, shaved carrot and celery, spiced pickled apple, goat cheese and toasted pumpkin seeds, served with balsamic vinaigrette on the side for a bright autumn plate at 42 g of protein.',
+        macros: '506 cal · 42g protein · 25g fat · 9g fiber · 28g carbs',
+        tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy (Goat Cheese)', safe: false }],
+        inherentMods: ['high protein'],
+        price: 25
+      },
       special: {
-        name: 'Beef Bourguignon',
-        shortName: 'Beef Bourguignon',
+        name: 'Tuscan Chicken',
+        shortName: 'Tuscan Chicken',
         category: 'special',
-        proteinCategory: 'beef',
-        desc: 'Slow braised beef chuck with a red wine reduction, cremini mushrooms, and pearl onions, served over whipped Yukon Gold purée with roasted carrots for a rich, rustic French stew with a deeply savory finish.',
-        macros: '630 cal · 49g protein · 21g fat · 7g fiber · 41g carbs',
-        tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy (Potato Purée)', safe: false }],
+        proteinCategory: 'chicken',
+        desc: 'Tuscan style chicken thigh finished with a creamy sun dried tomato sauce, roasted zucchini, and cremini mushrooms over basmati rice for a rich, savory plate with a warm, Italian finish.',
+        macros: '791 cal · 56g protein · 38g fat · 4g fiber · 58g carbs',
+        tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy (Cream)', safe: false }],
         inherentMods: [],
         price: 25
       },
       chicken: {
-        name: 'Peri Peri Chicken',
-        shortName: 'Peri Peri Chicken',
+        name: 'Chicken Tikka',
+        shortName: 'Chicken Tikka',
         category: 'chicken',
         proteinCategory: 'chicken',
-        desc: 'Charred chicken marinated in peri peri and finished with a spicy peri peri glaze and a cooling coconut yogurt drizzle, served with fire charred sweet corn and roasted cauliflower over coconut rice for a bold, Portuguese inspired plate with a bright, spiced finish.',
-        macros: '751 cal · 53g protein · 31g fat · 6g fiber · 66g carbs',
-        tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy Free', safe: true }],
+        desc: 'Tikka marinated chicken thighs simmered with a rich tikka masala sauce and served with roasted cauliflower and eggplant over cardamom basmati rice for a warm, aromatic Indian inspired plate with a gently spiced finish.',
+        macros: '706 cal · 58g protein · 30g fat · 7g fiber · 52g carbs',
+        tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy (Yogurt)', safe: false }],
         inherentMods: [],
         price: 25
       },
       chicken_2: {
-        name: 'Lemon Herb Feta Chicken',
-        shortName: 'Lemon Herb Feta Chicken',
+        name: 'Mediterranean Chickpea Chicken Bowl',
+        shortName: 'Mediterranean Chickpea Chicken Bowl',
         category: 'chicken_2',
         proteinCategory: 'chicken',
-        desc: 'Lemon herb chicken breast with a ruby whipped feta and roasted sweet potato and lacinato kale with a house pickled vegetable medley and dried cranberries for a bright, herb forward plate with a creamy, beet tinted finish.',
-        macros: '675 cal · 66g protein · 31g fat · 7g fiber · 33g carbs',
-        tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy (Feta)', safe: false }],
+        desc: 'Pan-seared chicken breast layered over a bed of our dairy-free green tahini — a vibrant, herb-packed sauce blended with parsley, dill, mint, garlic, lemon, and EVOO. Served with roasted chickpeas, roasted broccoli, and bright pickled red onions, for a fresh, herbaceous Mediterranean bowl with a tangy finish.',
+        macros: '579 cal · 57g protein · 24g fat · 12g fiber · 28g carbs',
+        tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy Free', safe: true }],
         inherentMods: [],
         price: 25
       },
       beef: {
-        name: 'Carne Asada Steak',
-        shortName: 'Carne Asada Steak',
+        name: 'Rosemary Thyme Steak',
+        shortName: 'Rosemary Thyme Steak',
         category: 'beef',
         proteinCategory: 'beef',
-        desc: 'Citrus and garlic marinated flank steak chargrilled and sliced, finished with a creamy Peruvian aji verde, served with roasted sweet plantains and pickled red onions over cilantro lime rice for a bold, Latin inspired plate with a bright, herbaceous finish.',
-        macros: '714 cal · 54g protein · 22g fat · 3g fiber · 72g carbs',
+        desc: 'Rosemary and thyme crusted top sirloin finished with a savory steakhouse reduction and served with roasted garlic potatoes, cremini mushrooms and blistered green beans for a hearty, classic steakhouse plate with a deeply savory finish.',
+        macros: '733 cal · 65g protein · 31g fat · 7g fiber · 44g carbs',
         tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy Free', safe: true }],
         inherentMods: [],
         price: 25
       },
       seafood: {
-        name: 'Pomegranate Salmon',
-        shortName: 'Pomegranate Salmon',
+        name: 'Blood Orange Salmon',
+        shortName: 'Blood Orange Salmon',
         category: 'seafood',
         proteinCategory: 'seafood',
-        desc: 'Salmon marinated in pomegranate molasses, sumac, and Aleppo pepper, then gently roasted, served over saffron cauliflower rice with roasted zucchini and finished with a whipped pomegranate sauce for a bright, tart sweet seafood plate with a complex, Middle Eastern finish.',
-        macros: '677 cal · 49g protein · 43g fat · 5g fiber · 24g carbs',
+        desc: 'Seared salmon finished with a bright blood orange glaze, served with roasted beets over roasted sweet potatoes for a light, citrus forward plate with a vibrant, refreshing finish.',
+        macros: '672 cal · 52g protein · 28g fat · 7g fiber · 47g carbs',
         tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy Free', safe: true }],
         inherentMods: [],
         price: 25
       },
       seafood_2: {
-        name: 'Spicy Tuna',
-        shortName: 'Spicy Tuna',
+        name: 'Honey Chipotle Shrimp',
+        shortName: 'Honey Chipotle Shrimp',
         category: 'seafood_2',
         proteinCategory: 'seafood',
-        desc: 'Crispy albacore tuna cakes finished with a spicy yuzu mayo, served with miso glazed carrots and pickled cucumbers over seasoned sushi rice for a bold, Japanese inspired bowl with a bright, umami finish.',
-        macros: '738 cal · 51g protein · 29g fat · 5g fiber · 71g carbs',
-        tags: [{ text: 'Gluten (Breadcrumbs)', safe: false }, { text: 'Dairy Free', safe: true }],
+        desc: 'Honey chipotle marinated shrimp seared and finished with a creamy tahini green goddess dressing, served with charred corn and charred broccoli over bright cilantro lime rice for a smoky, sweet heat plate with a fresh, herbaceous finish.',
+        macros: '699 cal · 56g protein · 24g fat · 8g fiber · 73g carbs',
+        tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy Free', safe: true }],
         inherentMods: [],
         price: 25
       },
       veg: {
-        name: 'Korean Seared Tofu',
-        shortName: 'Korean Seared Tofu',
+        name: 'Thai Coconut Curry Bowl',
+        shortName: 'Thai Coconut Curry Bowl',
         category: 'veg',
         proteinCategory: 'vegetarian',
-        desc: 'Extra firm tofu seared crispy and finished with a sweet spicy gochujang glaze, served with charred broccoli and roasted cremini mushrooms over basmati rice for a bold, Korean inspired plate with a fiery, umami finish.',
-        macros: '667 cal · 50g protein · 22g fat · 10g fiber · 71g carbs',
+        desc: 'Marinated tofu with a thai coconut curry sauce and roasted bell peppers and broccoli and shredded cabbage over jasmine rice for a rich, fragrant bowl with a creamy coconut finish.',
+        macros: '683 cal · 46g protein · 32g fat · 9g fiber · 47g carbs',
         tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy Free', safe: true }],
         inherentMods: [],
         price: 25
       },
       pasta: {
-        name: 'Vodka Pasta',
-        shortName: 'Vodka Pasta',
+        name: 'Beef Bolognese',
+        shortName: 'Beef Bolognese',
         category: 'pasta',
-        proteinCategory: 'chicken',
-        desc: 'Tender blackened chicken breast layered over luxurious shell pasta and finished with a silky dairy free vodka cream sauce made from San Marzano tomatoes and coconut milk for a rich, indulgent plate with a bright, classic Italian American finish.',
-        macros: '699 cal · 55g protein · 31g fat · 4g fiber · 49g carbs',
+        proteinCategory: 'beef',
+        desc: 'Slow simmered beef bolognese with a rich tomato sofrito over pappardelle for a hearty, classic Italian plate with a deep, comforting finish.',
+        macros: '609 cal · 48g protein · 27g fat · 5g fiber · 43g carbs',
         tags: [{ text: 'Gluten (Pasta)', safe: false }, { text: 'Dairy Free', safe: true }],
         inherentMods: [],
         price: 25
       },
       oats: {
-        name: 'Classic Overnight Oats',
-        shortName: 'Classic Overnight Oats',
+        name: 'Chocolate Overnight Oats',
+        shortName: 'Chocolate Overnight Oats',
         category: 'oats',
         proteinCategory: 'oats',
-        desc: 'Premium rolled oats in organic milk, lightly sweetened with maple and vanilla.',
-        macros: '440 cal · 26g protein · 11g fat · 18g fiber · 49g carbs',
+        desc: 'Creamy chocolate overnight oats finished with fresh raspberries.',
+        macros: '305 cal · 20g protein · 9g fat · 15g fiber · 36g carbs',
         tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy (Milk)', safe: false }],
         inherentMods: [],
         price: 10
       },
       chia: {
-        name: 'Vanilla Chia Pudding',
-        shortName: 'Vanilla Chia Pudding',
+        name: 'Mango Chia Pudding',
+        shortName: 'Mango Chia Pudding',
         category: 'chia',
         proteinCategory: 'chia',
-        desc: 'Vanilla chia pudding with house granola and fresh blueberries.',
-        macros: '483 cal · 27g protein · 19g fat · 16g fiber · 52g carbs',
-        tags: [{ text: 'Gluten (Granola)', safe: false }, { text: 'Dairy (Yogurt)', safe: false }],
+        desc: 'A creamy mango chia pudding layered with coconut cream and topped with fresh mango.',
+        macros: '353 cal · 5g protein · 24g fat · 3g fiber · 31g carbs',
+        tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy (Mascarpone)', safe: false }],
         inherentMods: [],
         price: 10
       },
       chia_2: {
-        name: 'Strawberry Chia Pudding',
-        shortName: 'Strawberry Chia Pudding',
+        name: 'Tiramisu Chia Pudding',
+        shortName: 'Tiramisu Chia Pudding',
         category: 'chia_2',
         proteinCategory: 'chia_2',
-        desc: 'Strawberry chia pudding with house granola and fresh strawberries.',
-        macros: '430 cal · 30g protein · 17g fat · 12g fiber · 40g carbs',
-        tags: [{ text: 'Gluten (Granola)', safe: false }, { text: 'Dairy (Yogurt)', safe: false }],
+        desc: 'Creamy vanilla chia pudding layered with a lightly sweet tiramisu style cream, finished with a light cocoa dusting for a rich, dessert inspired treat.',
+        macros: '320 cal · 27g protein · 11g fat · 10g fiber · 29g carbs',
+        tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy (Yogurt)', safe: false }],
         inherentMods: [],
         price: 10
       }
@@ -3584,17 +3863,18 @@
     // Keep this aliased so older read paths still work without refactor.
 
     // Exposed on window for test-harness access (const would be block-scoped).
-    window.order = { special: 0, chicken: 0, chicken_2: 0, beef: 0, seafood: 0, seafood_2: 0, veg: 0, pasta: 0, oats: 0, chia: 0, chia_2: 0, wellness_shots: 0, date_balls: 0 };
+    window.order = { special: 0, chicken: 0, chicken_2: 0, beef: 0, seafood: 0, seafood_2: 0, veg: 0, pasta: 0, salad: 0, salad_2: 0, oats: 0, chia: 0, chia_2: 0, wellness_shots: 0, date_balls: 0 };
     const order = window.order;
-    const customizations = { special: '', chicken: '', chicken_2: '', beef: '', seafood: '', seafood_2: '', veg: '', pasta: '', oats: '', chia: '', chia_2: '', wellness_shots: '', date_balls: '' };
+    const customizations = { special: '', chicken: '', chicken_2: '', beef: '', seafood: '', seafood_2: '', veg: '', pasta: '', salad: '', salad_2: '', oats: '', chia: '', chia_2: '', wellness_shots: '', date_balls: '' };
     // Dietary modification pills per dish (meals only)
     const dietaryPrefs = {
       special: new Set(), chicken: new Set(), chicken_2: new Set(), beef: new Set(),
       seafood: new Set(), seafood_2: new Set(), veg: new Set(), pasta: new Set(),
+      salad: new Set(), salad_2: new Set(),
       oats: new Set(), chia: new Set(), chia_2: new Set(),
       wellness_shots: new Set(), date_balls: new Set()
     };
-    const mealCategories = new Set(['special', 'chicken', 'chicken_2', 'beef', 'seafood', 'seafood_2', 'veg', 'pasta']);
+    const mealCategories = new Set(['special', 'chicken', 'chicken_2', 'beef', 'seafood', 'seafood_2', 'veg', 'pasta', 'salad', 'salad_2']);
     // Low carb / no carb / extra carbs are all mutually exclusive
     const carbMods = {
       'low carb':    ['no carb', 'extra carbs'],
@@ -3699,12 +3979,17 @@
     (function initPillNav() {
       const pills = document.querySelectorAll('.pill-nav .pill');
       const mealsList = document.querySelector('.meals-list');
+      const saladList = document.querySelector('.salad-list');
       const snacksList = document.querySelector('.snacks-list');
       const breakfastList = document.querySelector('.breakfast-list');
       const mealsDivider = document.querySelector('.meals-divider');
+      const saladDivider = document.querySelector('.salad-divider');
       const snacksDivider = document.querySelector('.snacks-divider');
       const breakfastDivider = document.querySelector('.breakfast-divider');
-      const chefHeros = document.querySelectorAll('.menu-item.chef-hero');
+      // Chef + Pasta now live in .heroes-list as 2-up dark cards (they used to be
+      // full-width .chef-hero tiles). Select them by container, not by the old class.
+      const heroesList = document.querySelector('.heroes-list');
+      const chefHeros = heroesList ? heroesList.querySelectorAll('.menu-item') : [];
       const allItems = document.querySelectorAll('.menu-item');
 
       // Items can declare multiple categories via space-separated values
@@ -3714,6 +3999,13 @@
         return cats.includes(category);
       };
 
+      // Does a section list contain at least one card matching this pill?
+      // Used so a section's divider + grid hide when the filter empties it
+      // (e.g. Meals must not show an empty grid under the Salad pill).
+      const listHasMatch = (list, category) =>
+        !!list && Array.from(list.querySelectorAll('.menu-item'))
+          .some(item => itemMatchesCategory(item, category));
+
       function applyFilter(category) {
         pills.forEach(p => p.classList.toggle('active', p.dataset.category === category));
 
@@ -3722,8 +4014,11 @@
         const isBreakfast = category === 'breakfast';
         const isMealFilter = !isAll && !isSnacks && !isBreakfast;
 
-        // Layout mode: grid only on All, list mode on every filtered tab
-        [mealsList, breakfastList].forEach(list => {
+        // Layout mode: grid only on All, list mode on every filtered tab.
+        // snacksList joins the loop so the two collection cards go full-width on
+        // the Snacks tab like every other section. It is NOT a .menu-list — its
+        // grid rules live under .snacks-list — and it must never carry .menu-item.
+        [mealsList, saladList, heroesList, breakfastList, snacksList].forEach(list => {
           if (!list) return;
           list.classList.toggle('grid-mode', isAll);
           list.classList.toggle('list-mode', !isAll);
@@ -3746,10 +4041,22 @@
         if (snacksDivider) snacksDivider.classList.toggle('hidden', !snacksHasVisible);
         if (snacksList) snacksList.style.display = snacksHasVisible ? '' : 'none';
 
-        // Meals section — visible on All and any meal-type tab
-        const mealsHasVisible = isAll || isMealFilter;
+        // Salad section — visible on All, the Salad pill, and any meal pill a salad
+        // also carries (salads are data-category="salad chicken", so Chicken shows them).
+        const saladHasVisible = isAll || listHasMatch(saladList, category);
+        if (saladDivider) saladDivider.classList.toggle('hidden', !saladHasVisible);
+        if (saladList) saladList.classList.toggle('hidden', !saladHasVisible);
+
+        // Meals section — the divider covers BOTH grids, but each grid hides on its
+        // own match. Sharing one flag left the empty grid in the layout as a 4px strip
+        // (e.g. Seafood matches only .meals-list, so .heroes-list must go).
+        const heroHasMatch = Array.from(chefHeros).some(h => itemMatchesCategory(h, category));
+        const heroesHasVisible = isAll || (isMealFilter && heroHasMatch);
+        const mealsGridHasVisible = isAll || (isMealFilter && listHasMatch(mealsList, category));
+        const mealsHasVisible = heroesHasVisible || mealsGridHasVisible;
         if (mealsDivider) mealsDivider.classList.toggle('hidden', !mealsHasVisible);
-        if (mealsList) mealsList.classList.toggle('hidden', !mealsHasVisible);
+        if (mealsList) mealsList.classList.toggle('hidden', !mealsGridHasVisible);
+        if (heroesList) heroesList.classList.toggle('hidden', !heroesHasVisible);
 
         // Breakfast section — visible on All and Breakfast tab only
         const breakfastHasVisible = isAll || isBreakfast;
@@ -3803,12 +4110,14 @@
 
     // Equalize all card heights in grid-mode to match the tallest card
     // (so a long meal name like "Lemon Herb Chicken with Whipped Feta" sets the floor for the rest).
-    // Meals-list is excluded — it's single-column, so each card should size to its own content.
     function equalizeGridCardHeights() {
       // Reset every card's min-height first so we measure natural sizes
       document.querySelectorAll('.menu-list .menu-item').forEach(c => { c.style.minHeight = ''; });
 
-      document.querySelectorAll('.menu-list.grid-mode:not(.meals-list)').forEach(grid => {
+      // salad-list is single-column, so each salad card sizes to its own content.
+      // meals-list IS equalized now that it renders 2-up.
+      // (snacks-list needs no JS — its cards stretch to the grid row height.)
+      document.querySelectorAll('.menu-list.grid-mode:not(.salad-list)').forEach(grid => {
         const cards = Array.from(grid.querySelectorAll('.menu-item'))
           .filter(c => c.offsetParent !== null); // only visible cards
         if (cards.length === 0) return;
@@ -3926,22 +4235,22 @@
       basic: {
         eyebrow: 'Starter',
         title:   'Basic',
-        blurb:   'A simple week — both chickens, one beef, one seafood, the chef\'s special, and chia pudding.',
-        items:   { special: 1, chicken: 1, chicken_2: 1, beef: 1, seafood: 1, chia: 1 },
+        blurb:   'A simple week — one chicken, one beef, one seafood, a salad, the chef\'s special, and chia pudding.',
+        items:   { special: 1, chicken: 1, beef: 1, seafood: 1, salad: 1, chia: 1 },
         shots:   0,
       },
       standard: {
         eyebrow: 'The go-to · Most popular',
         title:   'Standard',
-        blurb:   'The full Havn week: both chickens, both seafood, beef, pasta, the chef\'s special, wellness shots, and chia.',
-        items:   { special: 1, chicken: 1, chicken_2: 1, beef: 1, seafood: 1, seafood_2: 1, pasta: 1, chia: 1 },
+        blurb:   'The full Havn week: chicken, beef, seafood, pasta, both salads, the chef\'s special, wellness shots, and chia.',
+        items:   { special: 1, chicken: 1, beef: 1, seafood: 1, pasta: 1, salad: 1, salad_2: 1, chia: 1 },
         shots:   1,
       },
       signature: {
         eyebrow: 'The full menu',
         title:   'Signature',
         blurb:   'One of every meal on this week\'s menu, a chia pudding, and the wellness shot bundle.',
-        items:   { special: 1, chicken: 1, chicken_2: 1, beef: 1, seafood: 1, seafood_2: 1, pasta: 1, veg: 1, chia: 1 },
+        items:   { special: 1, chicken: 1, chicken_2: 1, beef: 1, seafood: 1, seafood_2: 1, pasta: 1, veg: 1, salad: 1, salad_2: 1, chia: 1 },
         shots:   1,
       },
     };
@@ -3958,6 +4267,10 @@
     // card's price element to show the crossed-out original alongside the
     // discounted price. Runs once on page load; preset compositions are static.
     const SIDE_KEYS = new Set(['oats', 'chia', 'chia_2']);
+    // Collection add-ons live in `dishes` (for openDetail + the SMS draft label) but are
+    // NOT pickable inside a preset bundle — shots have their own synthetic SHOT_KEY row,
+    // and bundleCommit overwrites order.wellness_shots from bundleShots.
+    const ADDON_KEYS = new Set(['wellness_shots', 'date_balls']);
 
     function computePresetBasePrice(preset) {
       let meals = 0, sides = 0;
@@ -4082,7 +4395,9 @@
       const addOpts = document.createElement('div');
       addOpts.className = 'bundle-add-options';
       addOpts.id = 'bundleAddOpts';
-      const candidateIds = Object.keys(dishes).filter(id => !bundleDraft[id] || bundleDraft[id] === 0);
+      const candidateIds = Object.keys(dishes)
+        .filter(id => !ADDON_KEYS.has(id))
+        .filter(id => !bundleDraft[id] || bundleDraft[id] === 0);
       const candidateRows = candidateIds.map(id => {
         const d = dishes[id];
         const cat = d.category ? d.category.charAt(0).toUpperCase() + d.category.slice(1).replace('_', ' ') : '';
@@ -4393,7 +4708,9 @@
     }
 
     function update() {
-      const meals = order.special + order.chicken + order.chicken_2 + order.beef + order.seafood + order.seafood_2 + order.veg + order.pasta;
+      // Salads are $25 MEALS — they must be in this sum or they never count toward
+      // the 4-meal-equivalent minimum, the subtotal, or any promo tier.
+      const meals = order.special + order.chicken + order.chicken_2 + order.beef + order.seafood + order.seafood_2 + order.veg + order.pasta + order.salad + order.salad_2;
       const sides = order.oats + order.chia + order.chia_2;
       const hasChia = order.chia > 0;
       // 1 wellness bundle = 1 meal equiv; 1 date_balls bundle = 1 meal equiv; every 3 sides = 1 meal equiv (4-item min)
@@ -4730,6 +5047,7 @@
         // Completely empty cart stays silent (nothing to suggest adding to).
         const totalItems = order.special + order.chicken + order.chicken_2 + order.beef +
           order.seafood + order.seafood_2 + order.veg + order.pasta +
+          order.salad + order.salad_2 +
           order.oats + order.chia + order.chia_2 +
           order.wellness_shots + order.date_balls;
         if (totalItems > 0) showBelowMinModal();
