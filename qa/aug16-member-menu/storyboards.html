@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aug 16 member menu storyboards</title>
+<style>
+:root{--forest:#0a1612;--cream:#f5f1ea;--brass:#a89060;--ink:#1c1c1a}*{box-sizing:border-box}body{margin:0;padding:28px;background:var(--cream);color:var(--ink);font:14px/1.45 system-ui,sans-serif}main{max-width:1120px;margin:auto}h1,h2{font-family:Georgia,serif;font-weight:400}.frames{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:44px}.frame{min-height:250px;padding:14px;border:1px solid #cec2b0;border-radius:14px;background:#fffdf8}.frame>b{display:block;color:var(--brass);font-size:10px;letter-spacing:.13em;text-transform:uppercase}.phone{margin:13px 0;padding:14px;border-radius:12px;background:var(--forest);color:var(--cream);min-height:145px}.meal{height:54px;margin:9px 0;border-radius:7px;background:linear-gradient(115deg,#826f50,#b78e5c 45%,#264333)}.sheet{background:#f0ebe3;color:var(--forest);border:1px solid var(--brass);padding:10px;border-radius:8px}ul{padding-left:17px}@media(max-width:850px){.frames{grid-template-columns:1fr 1fr}}@media(max-width:520px){body{padding:16px}.frames{grid-template-columns:1fr}}
+</style></head><body><main>
+<h1>Current-customer weekly menu</h1><p>Behavior-first frames. Art direction is shown only enough to lock hierarchy.</p>
+
+<h2>M01 · Browse this week's food</h2><div class="frames">
+<article class="frame"><b>1 · Arrival</b><div class="phone">HAVN CLUB <span style="float:right">AUG 16–22</span><br><br><big>This week,<br><i>cooked for you.</i></big></div><ul><li>Member ordering language</li><li>No offer/opt-in</li></ul></article>
+<article class="frame"><b>2 · Visual menu</b><div class="phone"><div class="meal"></div><b>Ruby Goddess Salad</b><br><small>513 cal · 47g protein</small></div><ul><li>Real local image</li><li>Tap for record</li></ul></article>
+<article class="frame"><b>3 · Filter</b><div class="phone">ALL · SALAD · CHICKEN<br><br><div class="meal"></div><b>Filtered cards</b></div><ul><li>Selection state remains</li></ul></article>
+<article class="frame"><b>4 · Continue</b><div class="phone">2 meals<br><br><button>Review order</button></div><ul><li>Dock does not cover cards</li></ul></article>
+</div>
+
+<h2>M02 · Inspect and customize</h2><div class="frames">
+<article class="frame"><b>1 · Card</b><div class="phone"><div class="meal"></div><b>Ruby Goddess Salad</b><br><button>View details</button></div><ul><li>Originating control retains focus target</li></ul></article>
+<article class="frame"><b>2 · Native dialog</b><div class="sheet"><b>Ruby Goddess Salad</b><p>513 · 47P · 23F · 12 fiber · 30 carbs</p><p>GF · DF</p></div><ul><li>Top layer, never clipped</li><li>Focus trapped</li></ul></article>
+<article class="frame"><b>3 · Make it yours</b><div class="sheet">[ Low carb ]<br><br><textarea rows="2">dressing on the side</textarea><br>− 1 +</div><ul><li>One authoritative cart</li></ul></article>
+<article class="frame"><b>4 · Return</b><div class="phone"><div class="meal"></div><b>Ruby Goddess Salad · 1</b></div><ul><li>Escape closes</li><li>Focus returns to card</li></ul></article>
+</div>
+
+<h2>M03 · Review the real SMS order</h2><div class="frames">
+<article class="frame"><b>1 · Minimum</b><div class="phone">4 meals<br><small>Ready to send</small></div><ul><li>Four equivalents required</li></ul></article>
+<article class="frame"><b>2 · Choices</b><div class="sheet">Delivery: Monday AM<br>Containers: Glass</div><ul><li>Member controls the fulfillment request</li></ul></article>
+<article class="frame"><b>3 · Draft</b><div class="sheet">Monday Morning (8am-12pm)<br>Glass Containers<br><br>1x Beef Bourguignon<br>…</div><ul><li>Visible text equals outgoing text</li></ul></article>
+<article class="frame"><b>4 · Messages</b><div class="phone">To: Havn Club<br><br><button>Send in Messages</button></div><ul><li>Real SMS intent</li><li>No web checkout mutation</li></ul></article>
+</div>
+</main></body></html>
