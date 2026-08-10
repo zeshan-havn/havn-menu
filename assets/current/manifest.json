@@ -1,0 +1,74 @@
+{
+  "schema": 1,
+  "week": {
+    "start": "2026-08-16",
+    "end": "2026-08-22"
+  },
+  "menu_source": {
+    "path": "CulinaryOps/Aug 16th Menu File/finalized-menu.json",
+    "sha256": "a379a77bec675ff104cf7f346da80c50b7f5193072f990f804707b5546e44e79"
+  },
+  "transform": "sips -Z 900 -s format jpeg -s formatOptions 82",
+  "items": {
+    "special": {
+      "source": "CulinaryOps/Aug 16th Menu File/meal-images/cheat-beef-bourguignon.png",
+      "source_sha256": "234e34335b4bf839399665fba7ee328018e99ad02ef0b87b8e1ed3db501c2bb1",
+      "output": "assets/current/special.jpg",
+      "output_sha256": "be6f542425ae76f58a0681c2b53137f2b1550af053e7b0fba8136c7532466ad7"
+    },
+    "chicken": {
+      "source": "CulinaryOps/Aug 16th Menu File/meal-images/chicken-butter-chicken.png",
+      "source_sha256": "1787360f497f888c2934b3921e5933d738e83817057c19d2903a7c7f19393e97",
+      "output": "assets/current/chicken.jpg",
+      "output_sha256": "62ba1065f711234d6a5fb9eba07442283186bf23f2ea0d497867f72d5ffd4321"
+    },
+    "chicken_2": {
+      "source": "CulinaryOps/Aug 16th Menu File/meal-images/chicken_2-basil-pesto-chicken.png",
+      "source_sha256": "07d757eb7c3f172518ae8a9d687ba9588fe260d51b9f6a5439625d3c8ef0be70",
+      "output": "assets/current/chicken_2.jpg",
+      "output_sha256": "dc7449356224e41034e5af312dc37f8626d428b39e568ffd295febd666660f07"
+    },
+    "beef": {
+      "source": "CulinaryOps/Aug 16th Menu File/meal-images/beef-braised-short-rib.png",
+      "source_sha256": "47ed7e08cc3f034fb1a1fb74ef6ae751132c73c7c6d0015219cd3cf7fe25d83e",
+      "output": "assets/current/beef.jpg",
+      "output_sha256": "7e6627a1f482e9d9d580a4724c6f444b944b11833998a6d703a084311df92eda"
+    },
+    "seafood": {
+      "source": "CulinaryOps/Aug 16th Menu File/meal-images/seafood-pomegranate-salmon.png",
+      "source_sha256": "5ae8ba8605b0327cc9d0572039e905a149fc68fd13430b2e40740adcee1ed337",
+      "output": "assets/current/seafood.jpg",
+      "output_sha256": "9b80ab5d511aeb02bd111510a74d1042ea43d23df619296eed208893256da65a"
+    },
+    "seafood_2": {
+      "source": "CulinaryOps/Aug 16th Menu File/meal-images/seafood_2-garlic-butter-shrimp.png",
+      "source_sha256": "3905edb5b948e4fb2405556fc19ecb27b0f8312c83a5cc133e38509a6c5a0337",
+      "output": "assets/current/seafood_2.jpg",
+      "output_sha256": "828a35b916916bed882d49f202adc155fac4fcc55900903b22c08c8020525562"
+    },
+    "veg": {
+      "source": "CulinaryOps/Aug 16th Menu File/meal-images/vegetarian-thai-coconut-curry-bowl.png",
+      "source_sha256": "81df0744c398dbba90df2f89a20387e3f3184435977605fed4da29ba66495857",
+      "output": "assets/current/veg.jpg",
+      "output_sha256": "678dfc80357f4cc730a56a3d041e7453f19ed86f513b4c9d892cd268292c67fd"
+    },
+    "pasta": {
+      "source": "CulinaryOps/Aug 16th Menu File/meal-images/pasta-beef-bolognese.png",
+      "source_sha256": "42edc682bb81313aa3c2655c50363c33641744a275040005754100c5b3a4b216",
+      "output": "assets/current/pasta.jpg",
+      "output_sha256": "2fe32aede8b10605821413c8fae8946fee2d72770ac151637e66119c06ecd6e0"
+    },
+    "salad": {
+      "source": "CulinaryOps/Aug 16th Menu File/meal-images/salad-green-goddess-salad.png",
+      "source_sha256": "6f074fbe9f142a1c4848d538ba513937619438756b8d2bd410345f46f0fc92f7",
+      "output": "assets/current/salad.jpg",
+      "output_sha256": "748645ddba7e44b814712d2c7fa66343b226c5fa4357011317c8e4b2b7e172dc"
+    },
+    "salad_2": {
+      "source": "CulinaryOps/Aug 16th Menu File/meal-images/salad_2-ruby-goddess-salad.png",
+      "source_sha256": "9b9e19ea2c05927d97bbd1c48cfad447d22f41ce65b8f8c051cadbb07faf648a",
+      "output": "assets/current/salad_2.jpg",
+      "output_sha256": "3b9ad78b1668fd8688540385a92d91aa78dca97377dbe55de86597630b517aff"
+    }
+  }
+}

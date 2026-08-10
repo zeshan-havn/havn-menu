@@ -28,6 +28,7 @@ The preserved production file is `rollback/aug16-production/index.html`.
 | M04 | Member composes an order | Quantities update the real shared order object, totals, minimum state, and visible draft. |
 | M05 | Member reviews/sends | Delivery, container, selected items, and notes appear in the SMS body to Havn's production number; send is gated until four meal equivalents. |
 | M06 | Operator needs immediate rollback | The pre-rebuild Aug 16 page can replace the root index with one local copy command and no data migration. |
+| M07 | Member opens any secondary surface | Detail, delivery, container, wellness, bundle, help, and below-minimum surfaces all use the browser top layer, retain focus, close on Escape, and return focus to their trigger. |
 
 ## Capability catalog
 
@@ -45,6 +46,7 @@ The preserved production file is `rollback/aug16-production/index.html`.
 - M-C12: Keep the production SMS number `+1 224 537 0344`; do not add intake/lead registration to the member order send.
 - M-C13: Require no build-time credentials and contain no credential-shaped literals.
 - M-C14: Preserve the pre-rebuild file under `rollback/aug16-production/`.
+- M-C15: Pin all ten image outputs to a checked SHA-256 manifest and document the two-file release digest required for future generated-menu runs.
 
 ## Scripted scenarios
 
@@ -56,7 +58,8 @@ The deterministic browser replay lives in `qa/aug16-member-menu/menu-scenarios.m
 2. Assert the header says `Aug 16 – Aug 22` and does not display prospect/location copy.
 3. Assert 15 orderable items and the exact expected names.
 4. Assert 10 meal images are complete with non-zero natural dimensions.
-5. Assert document width does not exceed viewport width.
+5. Assert every local image byte-for-byte matches its checked manifest digest.
+6. Assert document width does not exceed viewport width.
 
 ### MENU-02 — detail dialog and customization
 
@@ -72,7 +75,7 @@ The deterministic browser replay lives in `qa/aug16-member-menu/menu-scenarios.m
 2. Add Beef Bourguignon, Butter Chicken, Pomegranate Salmon, and Ruby Goddess Salad.
 3. Assert the order state has four meal equivalents and Send is enabled.
 4. Select Monday morning and reusable glass.
-5. Assert the draft contains the four exact item lines, `Monday Morning (8am-12pm)`, and `Glass Containers`.
+5. Assert the draft contains the four exact item lines, `Monday Morning (9a–12p)`, and `Reusable Glass`.
 6. Intercept the send action; assert the decoded `sms:` body equals the visible authoritative draft and targets `+12245370344`.
 
 ### MENU-04 — side-equivalent gate
@@ -86,6 +89,13 @@ The deterministic browser replay lives in `qa/aug16-member-menu/menu-scenarios.m
 1. Replay inventory checks at 320px, 768px, and 1440px.
 2. Assert no horizontal overflow, broken image, uncaught exception, or failed local asset request.
 3. Scan tracked web assets for private keys, bearer tokens, and credential-shaped assignments.
+
+### MENU-06 — complete overlay matrix
+
+1. Open Help, Basic preset, Wellness Shots, and the below-minimum prompt from their real controls.
+2. Assert each is a native modal dialog and focus moves inside.
+3. Press Escape and assert each closes through its normal state-saving path.
+4. Assert focus returns to the exact originating control and all seven overlay elements are native dialogs.
 
 ## Simplicity lock
 
