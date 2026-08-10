@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>Havn Club - Weekly Menu</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%230A1612'/%3E%3Cpath d='M15 17h7v12h20V17h7v30h-7V35H22v12h-7z' fill='%23C4A87C'/%3E%3C/svg%3E">
 
   <!-- Open Graph / Social Media Preview -->
   <meta property="og:title" content="Havn Club - Weekly Menu">
@@ -2665,6 +2666,468 @@
     .preset-card.featured .preset-price .price-discounted {
       color: var(--brass);
     }
+
+    /* ==========================================
+       MEMBER MENU · PREMIUM VISUAL SYSTEM V2
+
+       This layer deliberately leaves the proven cart/SMS mechanics intact.
+       It changes hierarchy, imagery and the sheet primitive only.
+    ========================================== */
+
+    :root {
+      --layer-base: 1;
+      --layer-header: 20;
+      --layer-dock: 30;
+      --layer-toast: 40;
+      --shadow-card: 0 18px 46px rgba(10, 22, 18, 0.10);
+    }
+
+    .header { z-index: var(--layer-header); }
+    .cart-bar { z-index: var(--layer-dock); }
+    .mod-toast { z-index: var(--layer-toast); }
+
+    .content {
+      background:
+        radial-gradient(circle at 12% 4%, rgba(196,168,124,.12), transparent 25rem),
+        var(--cream);
+      scrollbar-gutter: stable;
+    }
+
+    .member-masthead {
+      position: relative;
+      isolation: isolate;
+      min-height: 330px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(260px, .95fr);
+      align-items: stretch;
+      color: var(--cream);
+      background:
+        radial-gradient(circle at 18% 20%, rgba(45,74,62,.72), transparent 38%),
+        linear-gradient(135deg, #0a1612 0%, #10271f 62%, #0a1612 100%);
+      border-bottom: 1px solid rgba(196,168,124,.42);
+    }
+
+    body[data-welcome] .member-masthead { display: none; }
+
+    .member-masthead::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      opacity: .16;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.32'/%3E%3C/svg%3E");
+    }
+
+    .member-masthead-copy {
+      position: relative;
+      z-index: 2;
+      align-self: center;
+      padding: clamp(38px, 6vw, 82px) clamp(22px, 6vw, 86px);
+      max-width: 720px;
+    }
+
+    .member-kicker {
+      margin: 0 0 18px;
+      color: var(--brass);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+    }
+
+    .member-masthead h1 {
+      margin: 0;
+      color: var(--cream);
+      font-family: var(--font-display);
+      font-size: clamp(48px, 6vw, 78px);
+      font-weight: 400;
+      line-height: .86;
+      letter-spacing: -.035em;
+    }
+
+    .member-masthead h1 em {
+      color: var(--brass);
+      font-weight: 300;
+    }
+
+    .member-lede {
+      max-width: 500px;
+      margin: 24px 0 0;
+      color: rgba(245,241,234,.76);
+      font-size: clamp(13px, 1.4vw, 16px);
+      line-height: 1.65;
+    }
+
+    .member-facts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px 22px;
+      margin-top: 25px;
+      color: rgba(245,241,234,.68);
+      font-size: 10px;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .member-facts b { color: var(--cream); font-family: var(--font-display); font-size: 15px; font-weight: 500; }
+
+    .member-food-triptych {
+      position: relative;
+      min-height: 330px;
+      overflow: hidden;
+    }
+
+    .member-food-triptych::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, #10271f 0%, transparent 36%), linear-gradient(0deg, rgba(10,22,18,.38), transparent 45%);
+      pointer-events: none;
+    }
+
+    .member-food-triptych img {
+      position: absolute;
+      width: 43%;
+      height: 88%;
+      top: 9%;
+      object-fit: cover;
+      border: 1px solid rgba(245,241,234,.28);
+      border-radius: 54% 54% 18px 18px;
+      box-shadow: 0 20px 50px rgba(0,0,0,.35);
+    }
+
+    .member-food-triptych img:nth-child(1) { left: 2%; transform: rotate(-7deg) translateY(10%); }
+    .member-food-triptych img:nth-child(2) { left: 30%; z-index: 2; }
+    .member-food-triptych img:nth-child(3) { left: 60%; transform: rotate(7deg) translateY(9%); }
+
+    .order-bar,
+    .presets-section,
+    .pill-nav,
+    .section-divider,
+    .menu-list,
+    .wellness-section,
+    .draft-section,
+    .welcome-footer-note {
+      width: min(100% - 28px, 1240px);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .order-bar {
+      margin-top: 18px;
+      padding: 13px 4px 11px;
+      border-bottom-color: rgba(168,144,96,.32);
+    }
+
+    .order-bar-title {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-style: italic;
+      color: var(--cream-muted);
+    }
+
+    .presets-section { padding: 19px 0 8px; }
+    .pill-nav { margin-top: 8px; padding-left: 0; padding-right: 0; }
+
+    .pill {
+      min-height: 42px;
+      border-color: rgba(168,144,96,.34);
+      background: rgba(255,255,255,.28);
+    }
+
+    .pill:focus-visible,
+    .preset-card:focus-visible,
+    .item-info:focus-visible,
+    .wellness-card:focus-visible,
+    button:focus-visible,
+    textarea:focus-visible {
+      outline: 3px solid #d1af72;
+      outline-offset: 3px;
+    }
+
+    .section-divider { margin-top: 30px; margin-bottom: 11px; }
+    .section-name { color: var(--brass-muted); letter-spacing: .24em; }
+
+    .menu-list.grid-mode {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      padding: 0;
+    }
+
+    .salad-list.grid-mode { grid-template-columns: 1fr; }
+    .breakfast-list.grid-mode { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .breakfast-list.grid-mode .menu-item:last-child:nth-child(odd) { grid-column: 1 / -1; }
+
+    .menu-item {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      min-height: 286px;
+      padding: 0;
+      overflow: hidden;
+      border: 1px solid rgba(168,144,96,.26);
+      border-radius: 18px;
+      background: rgba(255,253,248,.84);
+      box-shadow: var(--shadow-card);
+      transform: translateZ(0);
+      transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+    }
+
+    .menu-item.card-dark {
+      background: var(--green-deep);
+      border-color: rgba(196,168,124,.42);
+    }
+
+    .menu-item.selected {
+      border-color: var(--brass);
+      box-shadow: 0 0 0 2px rgba(196,168,124,.24), 0 22px 54px rgba(10,22,18,.16);
+    }
+
+    .item-art {
+      position: relative;
+      order: -2;
+      aspect-ratio: 1.34 / 1;
+      overflow: hidden;
+      background: var(--green-darkest);
+    }
+
+    .item-art::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 52%, rgba(10,22,18,.36));
+      pointer-events: none;
+    }
+
+    .item-art img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: 50% 48%;
+      transition: transform .55s cubic-bezier(.2,.75,.2,1);
+    }
+
+    @media (hover:hover) {
+      .menu-item:hover { transform: translateY(-3px); border-color: rgba(168,144,96,.58); }
+      .menu-item:hover .item-art img { transform: scale(1.035); }
+    }
+
+    .menu-item .item-cat {
+      position: absolute;
+      top: 11px;
+      left: 11px;
+      right: 11px;
+      z-index: var(--layer-base);
+      width: fit-content;
+      max-width: calc(100% - 22px);
+      padding: 6px 9px;
+      border: 1px solid rgba(245,241,234,.36);
+      border-radius: 999px;
+      color: var(--cream);
+      background: rgba(10,22,18,.72);
+      backdrop-filter: blur(9px);
+      -webkit-backdrop-filter: blur(9px);
+    }
+
+    .menu-item .item-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      padding: 15px 14px 13px;
+      cursor: pointer;
+      border-radius: 0 0 17px 17px;
+    }
+
+    .menu-item .item-name {
+      font-size: clamp(20px, 2.1vw, 27px);
+      line-height: 1.02;
+      letter-spacing: -.012em;
+    }
+
+    .menu-item .item-desc {
+      margin-top: 8px;
+      color: var(--gray-warm);
+      font-size: 11px;
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+    }
+
+    .item-detail-button,
+    .collection-detail-button {
+      width: fit-content;
+      min-height: 30px;
+      margin-top: 10px;
+      padding: 0;
+      border: 0;
+      border-bottom: 1px solid rgba(168,144,96,.48);
+      border-radius: 0;
+      color: var(--brass-muted);
+      background: transparent;
+      font: 600 9px/1 var(--font-body);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .card-dark .item-detail-button { color: var(--brass); }
+    .collection-detail-button { margin: 4px 14px 2px; }
+
+    .card-dark .item-desc { color: rgba(245,241,234,.65); }
+    .menu-item .item-bottom { margin-top: auto; padding-top: 14px; align-items: end; gap: 7px; }
+    .menu-item .item-macros { font-size: 9px; line-height: 1.45; }
+    .menu-item .stepper { flex-shrink: 0; box-shadow: 0 4px 14px rgba(10,22,18,.12); }
+    .menu-item .stepper-btn { width: 36px; height: 36px; }
+    .menu-item .stepper-qty { min-width: 32px; }
+
+    .salad-list .menu-item { min-height: 0; }
+    .salad-list .item-art { aspect-ratio: 1.7 / 1; }
+
+    .breakfast-list .menu-item { min-height: 180px; }
+    .breakfast-list .item-cat { position: static; margin: 12px 12px 0; color: var(--brass-muted); background: transparent; border-color: rgba(168,144,96,.28); backdrop-filter: none; }
+
+    .snacks-list { gap: 12px; }
+    .wellness-card {
+      border-radius: 18px;
+      border: 1px solid rgba(168,144,96,.32);
+      box-shadow: var(--shadow-card);
+    }
+
+    /* Browser-native top-layer dialogs replace the hand-rolled overlay stack. */
+    dialog.sheet-overlay {
+      width: 100vw;
+      max-width: none;
+      height: 100dvh;
+      max-height: none;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      color: var(--charcoal);
+      background: rgba(10,22,18,.56);
+    }
+
+    dialog.sheet-overlay:not([open]) { display: none; }
+    dialog.sheet-overlay[open] { display: block; }
+    dialog.sheet-overlay::backdrop { background: transparent; }
+    dialog.sheet-overlay .sheet { max-height: min(86dvh, 760px); }
+
+    .option-row {
+      width: 100%;
+      min-height: 52px;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      font: inherit;
+      text-align: left;
+    }
+
+    dialog.below-min-modal {
+      width: 100vw;
+      max-width: none;
+      height: 100dvh;
+      max-height: none;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      color: var(--cream);
+      background: transparent;
+    }
+
+    dialog.below-min-modal:not([open]) { display: none; }
+    dialog.below-min-modal[open] { display: flex; opacity: 1; visibility: visible; }
+    dialog.below-min-modal::backdrop { background: rgba(10,22,18,.58); backdrop-filter: blur(2px); }
+    dialog.below-min-modal .below-min-backdrop { background: transparent; }
+    dialog.below-min-modal .below-min-card { transform: translateY(0) scale(1); }
+
+    @media (min-width: 760px) {
+      .menu-list.grid-mode { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+      .salad-list.grid-mode,
+      .heroes-list.grid-mode { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .breakfast-list.grid-mode { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .breakfast-list.grid-mode .menu-item:last-child:nth-child(odd) { grid-column: auto; }
+      .menu-item { min-height: 360px; }
+      .salad-list .item-art { aspect-ratio: 1.45 / 1; }
+      .menu-item .item-info { padding: 19px; }
+      .menu-item .item-desc { font-size: 12px; -webkit-line-clamp: 3; }
+      .presets-row { gap: 14px; }
+      .preset-card { padding: 16px; }
+
+      dialog.sheet-overlay .sheet {
+        left: 50%;
+        right: auto;
+        width: min(620px, calc(100vw - 40px));
+        border-radius: 22px 22px 0 0;
+        transform: translate(-50%, 100%);
+      }
+      dialog.sheet-overlay.visible .sheet { transform: translate(-50%, 0); }
+    }
+
+    @media (max-width: 759px) {
+      .member-masthead {
+        min-height: 360px;
+        display: block;
+      }
+      .member-masthead-copy { padding: 25px 22px 12px; }
+      .member-kicker { margin-bottom: 12px; }
+      .member-masthead h1 { font-size: clamp(44px, 13vw, 56px); }
+      .member-lede { max-width: 350px; margin-top: 14px; font-size: 12.5px; line-height: 1.45; }
+      .member-facts { margin-top: 12px; gap: 6px 14px; }
+      .member-food-triptych {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -9px;
+        min-height: 126px;
+      }
+      .member-food-triptych::after { background: linear-gradient(180deg, #10271f 0%, transparent 38%), linear-gradient(0deg, rgba(10,22,18,.34), transparent); }
+      .member-food-triptych img { height: 118px; top: 6px; border-radius: 50% 50% 12px 12px; }
+      .order-bar,
+      .presets-section,
+      .pill-nav,
+      .section-divider,
+      .menu-list,
+      .wellness-section,
+      .draft-section,
+      .welcome-footer-note { width: calc(100% - 24px); }
+      .menu-item { min-height: 286px; }
+      .menu-item .item-name { font-size: clamp(18px, 5.6vw, 22px); }
+      .menu-item .item-desc { display: none; }
+      .salad-list .menu-item .item-desc { display: -webkit-box; }
+      .salad-list .menu-item .item-name { font-size: 27px; }
+      .salad-list .menu-item .item-info { padding: 16px; }
+      .menu-item .item-bottom { display: block; }
+      .menu-item .stepper { width: fit-content; margin: 12px 0 0 auto; }
+      .salad-list .item-bottom { display: flex; }
+      .salad-list .stepper { margin-top: 0; }
+    }
+
+    @media (max-width: 340px) {
+      .member-masthead { min-height: 350px; }
+      .member-kicker { font-size: 9px; letter-spacing: .18em; }
+      .member-facts { font-size: 8px; }
+      .menu-list.grid-mode { gap: 9px; }
+      .menu-item { min-height: 268px; border-radius: 15px; }
+      .menu-item .item-info { padding: 12px 10px; }
+      .menu-item .item-cat { top: 8px; left: 8px; right: 8px; padding: 5px 7px; }
+      .menu-item .item-name { font-size: 18px; }
+      .menu-item .stepper-btn { width: 34px; height: 34px; }
+      .menu-item .stepper-qty { min-width: 28px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .menu-item,
+      .item-art img,
+      .sheet,
+      .sheet-overlay { transition-duration: .01ms !important; }
+    }
   </style>
 </head>
 <body>
@@ -2693,6 +3156,26 @@
 
         <!-- Content - Scrollable, includes order bar -->
         <div class="content" id="content">
+
+          <!-- Current-customer masthead. This is intentionally an ordering
+               welcome, not the acquisition lander's prospect offer/opt-in. -->
+          <section class="member-masthead" aria-labelledby="memberMenuTitle">
+            <div class="member-masthead-copy">
+              <p class="member-kicker">Your weekly menu · Aug 16–22</p>
+              <h1 id="memberMenuTitle">This week,<br><em>cooked for you.</em></h1>
+              <p class="member-lede">Choose what sounds good. We’ll turn it into a text you can review before sending to the concierge.</p>
+              <div class="member-facts" aria-label="Menu facts">
+                <span><b>10</b> meals</span>
+                <span><b>3</b> sides</span>
+                <span><b>2</b> collections</span>
+              </div>
+            </div>
+            <div class="member-food-triptych" aria-hidden="true">
+              <img src="assets/current/special.jpg" alt="" width="654" height="900">
+              <img src="assets/current/salad_2.jpg" alt="" width="720" height="900">
+              <img src="assets/current/seafood.jpg" alt="" width="654" height="900">
+            </div>
+          </section>
           
           <!-- Order Bar - Scrolls with content -->
           <div class="order-bar">
@@ -3230,9 +3713,11 @@
                     <div class="wellness-title-row">
                       <span class="wellness-title">Date Ball Collection</span>
                     </div>
-                    <span class="wellness-subtitle">6 handcrafted date balls</span>
+                    <span class="wellness-subtitle">5 handcrafted date balls</span>
                   </div>
                 </div>
+
+                <button class="collection-detail-button" type="button" data-testid="menu-detail-trigger-date_balls" aria-label="View Date Ball Collection details">View details</button>
 
                 <div class="wellness-body">
                   <div class="shot-circles">
@@ -3240,7 +3725,6 @@
                     <div class="shot-circle" style="background:linear-gradient(135deg,#C4A050,#8C6A1A)" aria-label="Signature (caramel-vanilla-sea salt)"></div>
                     <div class="shot-circle" style="background:linear-gradient(135deg,#3A1F0E,#1A0A04)" aria-label="Dark Chocolate Espresso"></div>
                     <div class="shot-circle" style="background:linear-gradient(135deg,#3A1F0E,#1A0A04)" aria-label="Dark Chocolate Espresso"></div>
-                    <div class="shot-circle" style="background:linear-gradient(135deg,#F5F1EA,#D8D0C0)" aria-label="Coconut Vanilla"></div>
                     <div class="shot-circle" style="background:linear-gradient(135deg,#F5F1EA,#D8D0C0)" aria-label="Coconut Vanilla"></div>
                   </div>
                   <div class="wellness-stepper">
@@ -3263,6 +3747,8 @@
                     <span class="wellness-subtitle">4 functional shots</span>
                   </div>
                 </div>
+
+                <button class="collection-detail-button" type="button" data-testid="menu-detail-trigger-wellness_shots" aria-label="View Wellness Shot Collection details">View details</button>
 
                 <div class="wellness-body">
                   <div class="shot-circles">
@@ -3348,7 +3834,7 @@
         </div>
 
         <!-- Detail Sheet -->
-        <div class="sheet-overlay" id="detailOverlay">
+        <dialog class="sheet-overlay" id="detailOverlay" aria-labelledby="detailName">
           <div class="sheet">
             <div class="sheet-handle"></div>
             <button class="sheet-close" onclick="closeDetail()">×</button>
@@ -3385,52 +3871,52 @@
               </div>
             </div>
           </div>
-        </div>
+        </dialog>
         
         <!-- Delivery Sheet -->
-        <div class="sheet-overlay" id="deliveryOverlay">
+        <dialog class="sheet-overlay" id="deliveryOverlay" aria-labelledby="deliveryTitle">
           <div class="sheet">
             <div class="sheet-handle"></div>
             <div class="options-content">
-              <h3 class="options-title">Delivery Window</h3>
-              <div class="option-row" data-val="Sunday Morning|Sunday Morning (9a–12p)" onclick="selectDelivery(this)">
+              <h3 class="options-title" id="deliveryTitle">Delivery Window</h3>
+              <button type="button" class="option-row" data-val="Sunday Morning|Sunday Morning (9a–12p)" onclick="selectDelivery(this)">
                 <span class="option-text">Sunday Morning (9a–12p)</span>
                 <span class="option-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
-              </div>
-              <div class="option-row" data-val="Sunday Evening|Sunday Evening (6p–9p)" onclick="selectDelivery(this)">
+              </button>
+              <button type="button" class="option-row" data-val="Sunday Evening|Sunday Evening (6p–9p)" onclick="selectDelivery(this)">
                 <span class="option-text">Sunday Evening (6p–9p)</span>
                 <span class="option-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
-              </div>
-              <div class="option-row" data-val="Monday Morning|Monday Morning (9a–12p)" onclick="selectDelivery(this)">
+              </button>
+              <button type="button" class="option-row" data-val="Monday Morning|Monday Morning (9a–12p)" onclick="selectDelivery(this)">
                 <span class="option-text">Monday Morning (9a–12p)</span>
                 <span class="option-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
-              </div>
+              </button>
               <!-- Monday Evening / Tuesday Morning reserved for holiday weeks only (e.g. July 4th).
-                   Re-add a <div class="option-row"> block here to enable a holiday window. -->>
+                   Re-add an option button here to enable a holiday window. -->
             </div>
           </div>
-        </div>
+        </dialog>
         
         <!-- Container Sheet -->
-        <div class="sheet-overlay" id="containerOverlay">
+        <dialog class="sheet-overlay" id="containerOverlay" aria-labelledby="containerTitle">
           <div class="sheet">
             <div class="sheet-handle"></div>
             <div class="options-content">
-              <h3 class="options-title">Container Type</h3>
-              <div class="option-row selected" data-val="Glass|Reusable Glass" onclick="selectContainer(this)">
+              <h3 class="options-title" id="containerTitle">Container Type</h3>
+              <button type="button" class="option-row selected" data-val="Glass|Reusable Glass" onclick="selectContainer(this)">
                 <span class="option-text">Reusable Glass</span>
                 <span class="option-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
-              </div>
-              <div class="option-row" data-val="Plastic|BPA-Free Plastic" onclick="selectContainer(this)">
+              </button>
+              <button type="button" class="option-row" data-val="Plastic|BPA-Free Plastic" onclick="selectContainer(this)">
                 <span class="option-text">BPA-Free Plastic</span>
                 <span class="option-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
-              </div>
+              </button>
             </div>
           </div>
-        </div>
+        </dialog>
         
         <!-- Wellness Shots Sheet -->
-        <div class="sheet-overlay" id="wellnessOverlay">
+        <dialog class="sheet-overlay" id="wellnessOverlay" aria-label="Wellness collection details">
           <div class="sheet wellness-sheet">
             <div class="sheet-handle"></div>
             <button class="sheet-close" onclick="closeWellness()">×</button>
@@ -3507,10 +3993,10 @@
               </div>
             </div>
           </div>
-        </div>
+        </dialog>
 
         <!-- Bundle Sheet — opens when a preset card is tapped -->
-        <div class="sheet-overlay" id="bundleOverlay">
+        <dialog class="sheet-overlay" id="bundleOverlay" aria-labelledby="bundleTitle">
           <div class="sheet">
             <div class="sheet-handle"></div>
             <button class="sheet-close" id="bundleClose">×</button>
@@ -3531,14 +4017,14 @@
               </div>
             </div>
           </div>
-        </div>
+        </dialog>
 
         <!-- Help Sheet -->
-        <div class="sheet-overlay" id="helpOverlay">
+        <dialog class="sheet-overlay" id="helpOverlay" aria-labelledby="helpTitle">
           <div class="sheet">
             <div class="sheet-handle"></div>
             <div class="help-content">
-              <h3 class="help-title">How It Works</h3>
+              <h3 class="help-title" id="helpTitle">How It Works</h3>
               <div class="help-steps">
                 <div class="help-step">
                   <span class="help-num">1</span>
@@ -3560,12 +4046,12 @@
               <button class="help-done" onclick="closeHelp()">Got it</button>
             </div>
           </div>
-        </div>
+        </dialog>
       </div>
   </div>
 
   <!-- Below-Minimum Upsell Modal -->
-  <div id="belowMinModal" class="below-min-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="belowMinTitle">
+  <dialog id="belowMinModal" class="below-min-modal" aria-labelledby="belowMinTitle">
     <div class="below-min-backdrop"></div>
     <div class="below-min-card">
       <button class="below-min-close" id="belowMinClose" aria-label="Close">&#xD7;</button>
@@ -3576,7 +4062,7 @@
         <button class="below-min-action" id="belowMinAddDateBalls">+ Add Date Ball Collection - $25</button>
       </div>
     </div>
-  </div>
+  </dialog>
 
   <!-- Toast for taps on already-satisfied mod pills -->
   <div class="mod-toast" id="modToast" role="status" aria-live="polite"></div>
@@ -3749,6 +4235,22 @@
         inherentMods: [],
         price: 10
       }
+    };
+
+    // Local, credential-free photography. Slot-based names deliberately match
+    // the weekly generator's stable data keys, so the cart and future data patch
+    // contract stay untouched.
+    const CURRENT_MENU_IMAGES = {
+      special: 'assets/current/special.jpg',
+      chicken: 'assets/current/chicken.jpg',
+      chicken_2: 'assets/current/chicken_2.jpg',
+      beef: 'assets/current/beef.jpg',
+      seafood: 'assets/current/seafood.jpg',
+      seafood_2: 'assets/current/seafood_2.jpg',
+      veg: 'assets/current/veg.jpg',
+      pasta: 'assets/current/pasta.jpg',
+      salad: 'assets/current/salad.jpg',
+      salad_2: 'assets/current/salad_2.jpg'
     };
     
     // Welcome-mode detection — triggered when the page is served from /welcome/*
@@ -3973,6 +4475,95 @@
     const cartPrompt = document.getElementById('cartPrompt');
     const promptText = document.getElementById('promptText');
     const promptBtn = document.getElementById('promptBtn');
+
+    sendBtn.dataset.testid = 'send-order';
+    draftBubble.dataset.testid = 'order-draft';
+    cartCount.dataset.testid = 'cart-count';
+    document.getElementById('deliveryBubble').dataset.testid = 'delivery-trigger';
+    document.getElementById('containerBubble').dataset.testid = 'container-trigger';
+
+    // Native <dialog> owns the top layer, focus trap and Escape semantics.
+    // The helpers retain the existing sheet animation and return focus to the
+    // exact control that opened the dialog.
+    const dialogReturnFocus = new WeakMap();
+    const dialogCloseTimers = new WeakMap();
+
+    function openNativeDialog(dialog, returnFocus = document.activeElement) {
+      clearTimeout(dialogCloseTimers.get(dialog));
+      // Make the sheet renderable before showModal performs its autofocus
+      // step. The legacy animation class otherwise left it visibility:hidden
+      // at that exact moment and Chrome correctly returned focus to <body>.
+      dialog.classList.add('visible');
+      if (!dialog.open) {
+        if (returnFocus instanceof HTMLElement) dialogReturnFocus.set(dialog, returnFocus);
+        dialog.showModal();
+      }
+      const first = dialog.querySelector('[autofocus], button:not([disabled]), textarea:not([disabled]), [tabindex="0"]');
+      const focusFirst = () => {
+        if (first && !dialog.contains(document.activeElement)) first.focus({ preventScroll: true });
+      };
+      focusFirst();
+      requestAnimationFrame(focusFirst);
+    }
+
+    function closeNativeDialog(dialog) {
+      if (!dialog.open) return;
+      dialog.classList.remove('visible');
+      const finish = () => {
+        if (!dialog.open) return;
+        dialog.close();
+        const target = dialogReturnFocus.get(dialog);
+        if (target && target.isConnected) target.focus({ preventScroll: true });
+      };
+      const timer = setTimeout(finish, matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 260);
+      dialogCloseTimers.set(dialog, timer);
+    }
+
+    function mountMenuPhotography() {
+      document.querySelectorAll('.menu-item[data-key]').forEach((item, index) => {
+        const key = item.dataset.key;
+        const path = CURRENT_MENU_IMAGES[key];
+        const info = item.querySelector('.item-info');
+        if (!info) return;
+
+        item.dataset.testid = `menu-item-${key}`;
+
+        const detailsButton = document.createElement('button');
+        detailsButton.type = 'button';
+        detailsButton.className = 'item-detail-button';
+        detailsButton.textContent = 'View details';
+        detailsButton.dataset.testid = `menu-detail-trigger-${key}`;
+        detailsButton.setAttribute('aria-label', `View ${dishes[key]?.name || key} details`);
+        info.insertBefore(detailsButton, info.querySelector('.item-bottom'));
+
+        const minus = item.querySelector('.minus');
+        const plus = item.querySelector('.plus');
+        if (minus) {
+          minus.dataset.testid = `menu-minus-${key}`;
+          minus.setAttribute('aria-label', `Remove one ${dishes[key]?.name || key}`);
+        }
+        if (plus) {
+          plus.dataset.testid = `menu-plus-${key}`;
+          plus.setAttribute('aria-label', `Add one ${dishes[key]?.name || key}`);
+        }
+
+        if (!path) return;
+        const art = document.createElement('div');
+        art.className = 'item-art';
+        const img = document.createElement('img');
+        img.src = path;
+        img.alt = dishes[key]?.name || '';
+        img.width = 720;
+        img.height = 900;
+        img.decoding = 'async';
+        img.loading = index < 2 ? 'eager' : 'lazy';
+        if (index < 2) img.fetchPriority = 'high';
+        art.appendChild(img);
+        item.insertBefore(art, info);
+      });
+    }
+
+    mountMenuPhotography();
     
     // Init steppers
     document.querySelectorAll('.menu-item').forEach(item => {
@@ -3980,9 +4571,13 @@
       const minus = item.querySelector('.minus');
       const plus = item.querySelector('.plus');
 
-      // Click on item info (not stepper) opens detail
-      item.querySelector('.item-info').addEventListener('click', (e) => {
+      // The card remains an ample pointer target; its real button supplies clean
+      // keyboard semantics without wrapping the nested quantity buttons.
+      const itemInfo = item.querySelector('.item-info');
+      const detailButton = itemInfo.querySelector('.item-detail-button');
+      itemInfo.addEventListener('click', (e) => {
         if (e.target.closest('.stepper')) return;
+        detailButton.focus({ preventScroll: true });
         openDetail(key);
       });
 
@@ -4184,7 +4779,7 @@
     // Open wellness sheet (from card tap or circle tap)
     function openWellnessSheet(focusShotKey) {
       const overlay = document.getElementById('wellnessOverlay');
-      overlay.classList.add('visible');
+      openNativeDialog(overlay);
       // Reset scroll + any prior focus highlight
       document.querySelectorAll('.wellness-deep-card.focused').forEach(c => c.classList.remove('focused'));
       const sheetEl = overlay.querySelector('.sheet');
@@ -4202,7 +4797,7 @@
     }
 
     function closeWellness() {
-      document.getElementById('wellnessOverlay').classList.remove('visible');
+      closeNativeDialog(document.getElementById('wellnessOverlay'));
     }
 
     // Date Balls card tap → open detail sheet (uses standard menu-item detail flow)
@@ -4210,8 +4805,10 @@
     // so the general forEach stepper-init skips them — dedicated handlers below.
     const dateBallsCard = document.getElementById('dateBallsCard');
     if (dateBallsCard) {
+      const detailButton = dateBallsCard.querySelector('.collection-detail-button');
       dateBallsCard.addEventListener('click', (e) => {
         if (e.target.closest('.wellness-stepper')) return;
+        detailButton.focus({ preventScroll: true });
         openDetail('date_balls');
       });
 
@@ -4229,8 +4826,10 @@
     // Wellness Shots collection card — dedicated stepper + tap-to-open-sheet
     const wellnessShotsCard = document.getElementById('wellnessShotsCard');
     if (wellnessShotsCard) {
+      const detailButton = wellnessShotsCard.querySelector('.collection-detail-button');
       wellnessShotsCard.addEventListener('click', (e) => {
         if (e.target.closest('.wellness-stepper')) return;
+        detailButton.focus({ preventScroll: true });
         openWellnessSheet();
       });
 
@@ -4351,11 +4950,11 @@
       document.getElementById('bundleTitle').textContent = preset.title;
       document.getElementById('bundleBlurb').textContent = preset.blurb;
       renderBundleSheet();
-      document.getElementById('bundleOverlay').classList.add('visible');
+      openNativeDialog(document.getElementById('bundleOverlay'));
     }
 
     function closeBundleSheet() {
-      document.getElementById('bundleOverlay').classList.remove('visible');
+      closeNativeDialog(document.getElementById('bundleOverlay'));
       bundleDraft = null;
       bundleShots = 0;
     }
@@ -4897,7 +5496,7 @@
         }, 300); // Delay to allow keyboard animation
       });
 
-      document.getElementById('detailOverlay').classList.add('visible');
+      openNativeDialog(document.getElementById('detailOverlay'));
     }
     
     function closeDetail() {
@@ -4905,7 +5504,7 @@
         customizations[currentDish] = document.getElementById('customInput').value;
         update();
       }
-      document.getElementById('detailOverlay').classList.remove('visible');
+      closeNativeDialog(document.getElementById('detailOverlay'));
       currentDish = null;
     }
     
@@ -4966,13 +5565,20 @@
     });
     
     // Delivery/Container Sheets
-    document.getElementById('deliveryBubble').addEventListener('click', () => {
-      document.getElementById('deliveryOverlay').classList.add('visible');
-    });
-    
-    document.getElementById('containerBubble').addEventListener('click', () => {
-      document.getElementById('containerOverlay').classList.add('visible');
-    });
+    function wireDialogTrigger(trigger, dialog) {
+      trigger.tabIndex = 0;
+      trigger.setAttribute('role', 'button');
+      trigger.setAttribute('aria-haspopup', 'dialog');
+      trigger.addEventListener('click', () => openNativeDialog(dialog, trigger));
+      trigger.addEventListener('keydown', (e) => {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        e.preventDefault();
+        openNativeDialog(dialog, trigger);
+      });
+    }
+
+    wireDialogTrigger(document.getElementById('deliveryBubble'), document.getElementById('deliveryOverlay'));
+    wireDialogTrigger(document.getElementById('containerBubble'), document.getElementById('containerOverlay'));
     
     function selectDelivery(el) {
       const [short, full] = el.dataset.val.split('|');
@@ -4980,7 +5586,7 @@
       document.getElementById('deliveryVal').textContent = short;
       document.querySelectorAll('#deliveryOverlay .option-row').forEach(i => i.classList.remove('selected'));
       el.classList.add('selected');
-      document.getElementById('deliveryOverlay').classList.remove('visible');
+      closeNativeDialog(document.getElementById('deliveryOverlay'));
       update();
     }
     
@@ -4990,25 +5596,25 @@
       document.getElementById('containerVal').textContent = short;
       document.querySelectorAll('#containerOverlay .option-row').forEach(i => i.classList.remove('selected'));
       el.classList.add('selected');
-      document.getElementById('containerOverlay').classList.remove('visible');
+      closeNativeDialog(document.getElementById('containerOverlay'));
       update();
     }
     
     document.getElementById('deliveryOverlay').addEventListener('click', e => {
-      if (e.target.id === 'deliveryOverlay') e.target.classList.remove('visible');
+      if (e.target.id === 'deliveryOverlay') closeNativeDialog(e.target);
     });
     
     document.getElementById('containerOverlay').addEventListener('click', e => {
-      if (e.target.id === 'containerOverlay') e.target.classList.remove('visible');
+      if (e.target.id === 'containerOverlay') closeNativeDialog(e.target);
     });
     
     // Help Sheet
     document.getElementById('helpBtn').addEventListener('click', () => {
-      document.getElementById('helpOverlay').classList.add('visible');
+      openNativeDialog(document.getElementById('helpOverlay'), document.getElementById('helpBtn'));
     });
     
     function closeHelp() {
-      document.getElementById('helpOverlay').classList.remove('visible');
+      closeNativeDialog(document.getElementById('helpOverlay'));
     }
     
     document.getElementById('helpOverlay').addEventListener('click', e => {
@@ -5018,12 +5624,12 @@
     // ---- Below-Minimum Modal helpers ----
 
     function showBelowMinModal() {
-      document.getElementById('belowMinModal').setAttribute('aria-hidden', 'false');
+      openNativeDialog(document.getElementById('belowMinModal'), sendBtn);
       document.body.classList.add('below-min-open');
     }
 
     function hideBelowMinModal() {
-      document.getElementById('belowMinModal').setAttribute('aria-hidden', 'true');
+      closeNativeDialog(document.getElementById('belowMinModal'));
       document.body.classList.remove('below-min-open');
     }
 
@@ -5040,6 +5646,9 @@
       const smsUrl = isIOS
         ? `sms:+${phoneNumber}&body=${smsBody}`
         : `sms:+${phoneNumber}?body=${smsBody}`;
+      // Read-back receipt for deterministic browser acceptance. This mirrors the
+      // exact URL handed to the operating system; it causes no network request.
+      sendBtn.dataset.smsHref = smsUrl;
       window.location.href = smsUrl;
     }
 
@@ -5117,6 +5726,23 @@
 
         document.body.removeChild(textArea);
       }
+    });
+
+    // Escape is intercepted so each dialog takes its normal close path (saving
+    // notes where applicable) before the native top layer is dismissed.
+    [
+      ['detailOverlay', closeDetail],
+      ['deliveryOverlay', () => closeNativeDialog(document.getElementById('deliveryOverlay'))],
+      ['containerOverlay', () => closeNativeDialog(document.getElementById('containerOverlay'))],
+      ['wellnessOverlay', closeWellness],
+      ['bundleOverlay', closeBundleSheet],
+      ['helpOverlay', closeHelp],
+      ['belowMinModal', hideBelowMinModal]
+    ].forEach(([id, closer]) => {
+      document.getElementById(id).addEventListener('cancel', (event) => {
+        event.preventDefault();
+        closer();
+      });
     });
 
     // Initialize on load: set random delivery default in UI
