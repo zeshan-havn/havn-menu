@@ -375,7 +375,11 @@ body.active-menu .m-intro { padding-top: 88px; }
   z-index: 55;
   padding: 7px;
   border-radius: 22px;
-  background: rgba(10, 22, 18, 0.86);
+  /* The dock is the same deep forest field as the landing page, with its
+     subtle green depth retained against the menu's cream background. */
+  background:
+    radial-gradient(140% 170% at 100% -70%, rgba(27, 94, 64, 0.36), transparent 58%),
+    linear-gradient(118deg, var(--forest) 0%, var(--forest-2) 62%, var(--forest) 100%);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(196, 168, 124, 0.3);
