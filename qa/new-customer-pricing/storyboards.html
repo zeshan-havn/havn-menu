@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>New-customer pricing storyboards</title>
+<style>
+:root{--forest:#0a1612;--cream:#f5f1ea;--brass:#a89060;--ink:#1c1c1a;--paper:#fffdf8}*{box-sizing:border-box}body{margin:0;padding:28px;background:var(--cream);color:var(--ink);font:14px/1.45 system-ui,sans-serif}main{max-width:1120px;margin:auto}h1,h2{font-family:Georgia,serif;font-weight:400}.frames{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:44px}.frame{min-height:250px;padding:14px;border:1px solid #cec2b0;border-radius:14px;background:var(--paper)}.frame>b{display:block;color:var(--brass);font-size:10px;letter-spacing:.13em;text-transform:uppercase}.screen{margin:13px 0;padding:14px;border-radius:12px;background:var(--forest);color:var(--cream);min-height:145px}.price{margin:8px 0;padding:9px;border:1px solid rgba(196,168,124,.5);border-radius:8px}.quiet{color:#c9c2b8;font-size:11px}.sheet{background:#f0ebe3;color:var(--forest);border:1px solid var(--brass);padding:10px;border-radius:8px}ul{padding-left:17px}@media(max-width:850px){.frames{grid-template-columns:1fr 1fr}}@media(max-width:520px){body{padding:16px}.frames{grid-template-columns:1fr}}
+</style></head><body><main>
+<h1>Public pricing, member reassurance</h1><p>Behavior-first frames. The Aug 16 food-led design remains unchanged; these frames lock only the pricing hierarchy.</p>
+
+<h2>P01 · Understand the public price</h2><div class="frames">
+<article class="frame"><b>1 · Scan</b><div class="screen">BUILD YOUR ORDER<div class="price">$28 entrées · $25 salads<br>$10 sides · $25 collections</div></div><ul><li>No universal meal price</li><li>All slot families visible</li></ul></article>
+<article class="frame"><b>2 · Reassurance</b><div class="screen"><p class="quiet">Existing members keep legacy pricing when ordering from their saved number.</p></div><ul><li>Subtle, not promotional</li><li>No exposed legacy amount</li></ul></article>
+<article class="frame"><b>3 · Collections</b><div class="screen">DATE BALL COLLECTION<br><small>5 handcrafted date balls · $25</small><br><br>WELLNESS SHOTS<br><small>4 functional shots · $25</small></div><ul><li>Visible card prices match metadata</li></ul></article>
+<article class="frame"><b>4 · Detail</b><div class="sheet">Ruby Goddess Salad<br><b>$25</b></div><ul><li>Generated slot price</li><li>No member eligibility logic</li></ul></article>
+</div>
+
+<h2>P02 · Build a trustworthy subtotal</h2><div class="frames">
+<article class="frame"><b>1 · Mix</b><div class="screen">Entrée $28<br>Salad $25<br>Side $10<br>Shots $25<br>Date Balls $25</div><ul><li>One generated unit-price map</li></ul></article>
+<article class="frame"><b>2 · Review</b><div class="sheet">Subtotal <b style="float:right">$113</b></div><ul><li>Every selected slot included once</li></ul></article>
+<article class="frame"><b>3 · Minimum</b><div class="screen">4 meal equivalents<br><small>Ready to send</small></div><ul><li>Eligibility is independent of dollars</li></ul></article>
+<article class="frame"><b>4 · SMS</b><div class="screen">1x Beef Bourguignon<br>1x Ruby Goddess Salad<br>…</div><ul><li>No client-authored charge</li><li>Server confirms actual billing</li></ul></article>
+</div>
+
+<h2>P03 · Presets and promos stay coherent</h2><div class="frames">
+<article class="frame"><b>1 · Presets</b><div class="screen">Basic $147<br>Standard $225<br>Signature $309</div><ul><li>Computed, not hand-entered</li></ul></article>
+<article class="frame"><b>2 · Bundle sheet</b><div class="sheet">7 meals · 1 side · 1 shots <b style="float:right">$225</b></div><ul><li>Same resolver as card</li></ul></article>
+<article class="frame"><b>3 · Welcome</b><div class="sheet">Subtotal $140<br>Welcome discount −$20<br><b>Your total $120</b></div><ul><li>Offer amount unchanged</li></ul></article>
+<article class="frame"><b>4 · Welcome back</b><div class="screen">4 meals<br><small>Add 1 more meal for $25 off</small></div><ul><li>Threshold comes from promo config</li></ul></article>
+</div>
+</main></body></html>
