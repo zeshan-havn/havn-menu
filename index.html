@@ -2775,115 +2775,6 @@
       scrollbar-gutter: stable;
     }
 
-    .member-masthead {
-      position: relative;
-      isolation: isolate;
-      min-height: 330px;
-      overflow: hidden;
-      display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(260px, .95fr);
-      align-items: stretch;
-      color: var(--cream);
-      background:
-        radial-gradient(circle at 18% 20%, rgba(45,74,62,.72), transparent 38%),
-        linear-gradient(135deg, #0a1612 0%, #10271f 62%, #0a1612 100%);
-      border-bottom: 1px solid rgba(196,168,124,.42);
-    }
-
-    body[data-welcome] .member-masthead { display: none; }
-
-    .member-masthead::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      opacity: .16;
-      pointer-events: none;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.32'/%3E%3C/svg%3E");
-    }
-
-    .member-masthead-copy {
-      position: relative;
-      z-index: 2;
-      align-self: center;
-      padding: clamp(38px, 6vw, 82px) clamp(22px, 6vw, 86px);
-      max-width: 720px;
-    }
-
-    .member-kicker {
-      margin: 0 0 18px;
-      color: var(--brass);
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: .24em;
-      text-transform: uppercase;
-    }
-
-    .member-masthead h1 {
-      margin: 0;
-      color: var(--cream);
-      font-family: var(--font-display);
-      font-size: clamp(48px, 6vw, 78px);
-      font-weight: 400;
-      line-height: .86;
-      letter-spacing: -.035em;
-    }
-
-    .member-masthead h1 em {
-      color: var(--brass);
-      font-weight: 300;
-    }
-
-    .member-lede {
-      max-width: 500px;
-      margin: 24px 0 0;
-      color: rgba(245,241,234,.76);
-      font-size: clamp(13px, 1.4vw, 16px);
-      line-height: 1.65;
-    }
-
-    .member-facts {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 9px 22px;
-      margin-top: 25px;
-      color: rgba(245,241,234,.68);
-      font-size: 10px;
-      letter-spacing: .13em;
-      text-transform: uppercase;
-    }
-
-    .member-facts b { color: var(--cream); font-family: var(--font-display); font-size: 15px; font-weight: 500; }
-
-    .member-food-triptych {
-      position: relative;
-      min-height: 330px;
-      overflow: hidden;
-    }
-
-    .member-food-triptych::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, #10271f 0%, transparent 36%), linear-gradient(0deg, rgba(10,22,18,.38), transparent 45%);
-      pointer-events: none;
-    }
-
-    .member-food-triptych img {
-      position: absolute;
-      width: 43%;
-      height: 88%;
-      top: 9%;
-      object-fit: cover;
-      border: 1px solid rgba(245,241,234,.28);
-      border-radius: 54% 54% 18px 18px;
-      box-shadow: 0 20px 50px rgba(0,0,0,.35);
-    }
-
-    .member-food-triptych img:nth-child(1) { left: 2%; transform: rotate(-7deg) translateY(10%); }
-    .member-food-triptych img:nth-child(2) { left: 30%; z-index: 2; }
-    .member-food-triptych img:nth-child(3) { left: 60%; transform: rotate(7deg) translateY(9%); }
-
     .order-bar,
     .presets-section,
     .pill-nav,
@@ -3153,24 +3044,6 @@
     }
 
     @media (max-width: 759px) {
-      .member-masthead {
-        min-height: 360px;
-        display: block;
-      }
-      .member-masthead-copy { padding: 25px 22px 12px; }
-      .member-kicker { margin-bottom: 12px; }
-      .member-masthead h1 { font-size: clamp(44px, 13vw, 56px); }
-      .member-lede { max-width: 350px; margin-top: 14px; font-size: 12.5px; line-height: 1.45; }
-      .member-facts { margin-top: 12px; gap: 6px 14px; }
-      .member-food-triptych {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: -9px;
-        min-height: 126px;
-      }
-      .member-food-triptych::after { background: linear-gradient(180deg, #10271f 0%, transparent 38%), linear-gradient(0deg, rgba(10,22,18,.34), transparent); }
-      .member-food-triptych img { height: 118px; top: 6px; border-radius: 50% 50% 12px 12px; }
       .order-bar { align-items: flex-start; }
       .order-bar-title { flex: 0 0 100%; }
       .order-bar-pricing { justify-content: flex-start; text-align: left; }
@@ -3196,9 +3069,6 @@
     }
 
     @media (max-width: 340px) {
-      .member-masthead { min-height: 350px; }
-      .member-kicker { font-size: 9px; letter-spacing: .18em; }
-      .member-facts { font-size: 8px; }
       .menu-list.grid-mode { gap: 9px; }
       .menu-item { min-height: 268px; border-radius: 15px; }
       .menu-item .item-info { padding: 12px 10px; }
@@ -3206,6 +3076,187 @@
       .menu-item .item-name { font-size: 18px; }
       .menu-item .stepper-btn { width: 34px; height: 34px; }
       .menu-item .stepper-qty { min-width: 28px; }
+    }
+
+    /* ==========================================
+       LANDING-SHELF REPLICA · MEMBER FOUNDATION
+       The visual source is the acquisition lander's "This week" shelf:
+       cream editorial surface, brass rule, white photographic cards,
+       Cormorant dish names, and a compact calorie/protein line. Member-only
+       controls are layered into that language instead of changing the cart.
+    ========================================== */
+    .content { background: var(--cream); }
+
+    .order-bar,
+    .pill-nav,
+    .section-divider,
+    .menu-list,
+    .wellness-section,
+    .draft-section,
+    .welcome-footer-note {
+      width: min(100% - 28px, 1240px);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .order-bar {
+      margin-top: 16px;
+      padding: 13px 4px 14px;
+      border-top: 1px solid rgba(168,144,96,.22);
+      border-bottom: 1px solid rgba(168,144,96,.22);
+    }
+
+    .order-bar-title { color: var(--brass-muted); }
+    .pill-nav { margin-top: 16px; }
+
+    .member-menu-grid.grid-mode {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      padding: 0;
+      margin-top: 18px;
+    }
+
+    .member-menu-grid .menu-item,
+    .member-menu-grid .menu-item.card-dark {
+      min-height: 0;
+      overflow: hidden;
+      border: 0;
+      border-radius: 16px;
+      color: var(--charcoal);
+      background: #fff;
+      box-shadow: 0 16px 32px rgba(28, 28, 26, .16);
+    }
+
+    .member-menu-grid .menu-item.selected,
+    .member-menu-grid .menu-item.card-dark.selected {
+      box-shadow: 0 0 0 2px var(--brass), 0 16px 32px rgba(28, 28, 26, .18);
+    }
+
+    .member-menu-grid .item-art,
+    .member-menu-grid .salad-list .item-art {
+      aspect-ratio: 1.397 / 1;
+      background: var(--green-darkest);
+    }
+
+    .member-menu-grid .item-art::after { display: none; }
+    .member-menu-grid .item-cat { display: none; }
+
+    .member-menu-grid .item-info {
+      min-height: 176px;
+      padding: 11px 14px 13px;
+      border-radius: 0 0 16px 16px;
+    }
+
+    .member-menu-grid .item-name,
+    .member-menu-grid .menu-item.card-dark .item-name {
+      margin: 0;
+      color: var(--charcoal);
+      font-family: var(--font-display);
+      font-size: clamp(18px, 2vw, 23px);
+      font-weight: 600;
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .member-menu-grid .item-desc { display: none !important; }
+
+    .member-menu-grid .item-detail-button,
+    .member-menu-grid .card-dark .item-detail-button {
+      order: 3;
+      margin-top: 8px;
+      color: var(--brass-muted);
+    }
+
+    .member-menu-grid .item-bottom {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 0;
+      padding-top: 7px;
+    }
+
+    .member-menu-grid .item-macros,
+    .member-menu-grid .menu-item.card-dark .item-macros {
+      gap: 5px;
+      color: var(--brass-muted);
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      line-height: 1.35;
+      text-transform: uppercase;
+    }
+
+    .member-menu-grid .item-macros .macros-compact { display: contents; }
+    .member-menu-grid .item-macros .macros-full { display: none; }
+    .member-menu-grid .item-macros > span:nth-child(n+4) { display: none; }
+
+    .member-menu-grid .item-macros .dot,
+    .member-menu-grid .menu-item.card-dark .item-macros .dot {
+      width: 2px;
+      height: 2px;
+      background: rgba(168,144,96,.5);
+    }
+
+    .member-menu-grid .stepper,
+    .member-menu-grid .menu-item.card-dark .stepper {
+      align-self: stretch;
+      width: 100%;
+      margin: 0;
+      border-color: rgba(168,144,96,.28);
+      border-radius: 10px;
+      background: var(--cream);
+      box-shadow: none;
+    }
+
+    .member-menu-grid .stepper-btn,
+    .member-menu-grid .menu-item.card-dark .stepper-btn {
+      flex: 1;
+      width: auto;
+      height: 36px;
+      color: var(--green-darkest);
+    }
+
+    .member-menu-grid .stepper-qty,
+    .member-menu-grid .menu-item.card-dark .stepper-qty {
+      min-width: 34px;
+      color: var(--charcoal);
+      text-align: center;
+    }
+
+    @media (min-width: 760px) {
+      .member-menu-grid.grid-mode { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+      .member-menu-grid .item-info { min-height: 188px; }
+    }
+
+    @media (min-width: 1100px) {
+      .member-menu-grid.grid-mode { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 20px; }
+    }
+
+    @media (max-width: 759px) {
+      .order-bar,
+      .pill-nav,
+      .section-divider,
+      .menu-list,
+      .wellness-section,
+      .draft-section,
+      .welcome-footer-note { width: calc(100% - 24px); }
+
+      .member-menu-grid .item-info { min-height: 170px; padding: 11px 12px 12px; }
+      .member-menu-grid .item-name,
+      .member-menu-grid .menu-item.card-dark .item-name { font-size: clamp(17px, 5vw, 20px); }
+    }
+
+    @media (max-width: 340px) {
+      .member-menu-grid.grid-mode { gap: 9px; }
+      .member-menu-grid .menu-item { border-radius: 14px; }
+      .member-menu-grid .item-info { min-height: 166px; padding: 10px; }
+      .member-menu-grid .item-name,
+      .member-menu-grid .menu-item.card-dark .item-name { font-size: 17px; }
+      .member-menu-grid .item-macros { font-size: 8.4px; letter-spacing: .03em; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -3217,7 +3268,7 @@
   </style>
 </head>
 <body>
-  <div class="app">
+  <div class="app" id="root">
         <!-- Header - Fixed -->
         <header class="header">
           <div class="header-left">
@@ -3243,70 +3294,11 @@
         <!-- Content - Scrollable, includes order bar -->
         <div class="content" id="content">
 
-          <!-- Current-customer masthead. This is intentionally an ordering
-               welcome, not the acquisition lander's prospect offer/opt-in. -->
-          <section class="member-masthead" aria-labelledby="memberMenuTitle">
-            <div class="member-masthead-copy">
-              <p class="member-kicker">Your weekly menu · Aug 16–22</p>
-              <h1 id="memberMenuTitle">This week,<br><em>cooked for you.</em></h1>
-              <p class="member-lede">Choose what sounds good. We’ll turn it into a text you can review before sending to the concierge.</p>
-              <div class="member-facts" aria-label="Menu facts">
-                <span><b>10</b> meals</span>
-                <span><b>3</b> sides</span>
-                <span><b>2</b> collections</span>
-              </div>
-            </div>
-            <div class="member-food-triptych" aria-hidden="true">
-              <img src="assets/current/special.jpg" alt="" width="654" height="900">
-              <img src="assets/current/salad_2.jpg" alt="" width="720" height="900">
-              <img src="assets/current/seafood.jpg" alt="" width="654" height="900">
-            </div>
-          </section>
-          
           <!-- Order Bar - Scrolls with content -->
           <div class="order-bar">
             <span class="order-bar-title">Build your order</span>
             <div class="order-bar-pricing" data-testid="pricing-summary" aria-label="New-customer menu prices">Loading pricing…</div>
             <p class="legacy-pricing-note" data-testid="legacy-pricing-note">Existing members keep legacy pricing when ordering from their saved number.</p>
-          </div>
-
-          <!-- Preset Bundles -->
-          <div class="presets-section">
-            <div class="presets-eyebrow">
-              <div class="eyebrow-line"></div>
-              <span class="eyebrow-text">Start with a preset</span>
-              <div class="eyebrow-line right"></div>
-            </div>
-            <div class="presets-row">
-              <button class="preset-card" data-preset="basic" type="button">
-                <span class="preset-eyebrow">Starter</span>
-                <span class="preset-title">Basic</span>
-                <span class="preset-meta">5 meals + chia</span>
-                <div class="preset-bottom">
-                  <span class="preset-price">—</span>
-                  <span class="preset-cta">View →</span>
-                </div>
-              </button>
-              <button class="preset-card featured" data-preset="standard" type="button">
-                <span class="preset-tag">Most popular</span>
-                <span class="preset-eyebrow">The go-to</span>
-                <span class="preset-title">Standard</span>
-                <span class="preset-meta">7 meals + chia + shots</span>
-                <div class="preset-bottom">
-                  <span class="preset-price">—</span>
-                  <span class="preset-cta">View →</span>
-                </div>
-              </button>
-              <button class="preset-card" data-preset="signature" type="button">
-                <span class="preset-eyebrow">Full menu</span>
-                <span class="preset-title">Signature</span>
-                <span class="preset-meta">All 10 meals + chia + shots</span>
-                <div class="preset-bottom">
-                  <span class="preset-price">—</span>
-                  <span class="preset-cta">View →</span>
-                </div>
-              </button>
-            </div>
           </div>
 
           <!-- Pill Nav - filter meals by category -->
@@ -3804,11 +3796,11 @@
 
                 <div class="wellness-body">
                   <div class="shot-circles">
-                    <div class="shot-circle" style="background:linear-gradient(135deg,#C4A050,#8C6A1A)" aria-label="Signature (caramel-vanilla-sea salt)"></div>
-                    <div class="shot-circle" style="background:linear-gradient(135deg,#C4A050,#8C6A1A)" aria-label="Signature (caramel-vanilla-sea salt)"></div>
-                    <div class="shot-circle" style="background:linear-gradient(135deg,#3A1F0E,#1A0A04)" aria-label="Dark Chocolate Espresso"></div>
-                    <div class="shot-circle" style="background:linear-gradient(135deg,#3A1F0E,#1A0A04)" aria-label="Dark Chocolate Espresso"></div>
-                    <div class="shot-circle" style="background:linear-gradient(135deg,#F5F1EA,#D8D0C0)" aria-label="Coconut Vanilla"></div>
+                    <div class="shot-circle" role="img" style="background:linear-gradient(135deg,#C4A050,#8C6A1A)" aria-label="Signature (caramel-vanilla-sea salt)"></div>
+                    <div class="shot-circle" role="img" style="background:linear-gradient(135deg,#C4A050,#8C6A1A)" aria-label="Signature (caramel-vanilla-sea salt)"></div>
+                    <div class="shot-circle" role="img" style="background:linear-gradient(135deg,#3A1F0E,#1A0A04)" aria-label="Dark Chocolate Espresso"></div>
+                    <div class="shot-circle" role="img" style="background:linear-gradient(135deg,#3A1F0E,#1A0A04)" aria-label="Dark Chocolate Espresso"></div>
+                    <div class="shot-circle" role="img" style="background:linear-gradient(135deg,#F5F1EA,#D8D0C0)" aria-label="Coconut Vanilla"></div>
                   </div>
                   <div class="wellness-stepper">
                     <button class="stepper-btn minus" disabled>-</button>
@@ -3835,10 +3827,10 @@
 
                 <div class="wellness-body">
                   <div class="shot-circles">
-                    <div class="shot-circle immunity" aria-label="Immunity"></div>
-                    <div class="shot-circle endurance" aria-label="Endurance"></div>
-                    <div class="shot-circle purify" aria-label="Purify"></div>
-                    <div class="shot-circle clarity" aria-label="Clarity"></div>
+                    <div class="shot-circle immunity" role="img" aria-label="Immunity"></div>
+                    <div class="shot-circle endurance" role="img" aria-label="Endurance"></div>
+                    <div class="shot-circle purify" role="img" aria-label="Purify"></div>
+                    <div class="shot-circle clarity" role="img" aria-label="Clarity"></div>
                   </div>
                   <div class="wellness-stepper">
                     <button class="stepper-btn minus" id="wellnessMinus" disabled>-</button>
@@ -4687,6 +4679,33 @@
     }
 
     mountMenuPhotography();
+
+    // The acquisition lander presents the ten weekly dishes as one continuous
+    // editorial shelf. Keep the generated source groups intact above, then
+    // combine them at runtime so the member page gets that same reading order
+    // without creating a second copy of any orderable item or cart state.
+    function mountLandingReplicaCatalog() {
+      const saladList = document.querySelector('.salad-list');
+      const heroesList = document.querySelector('.heroes-list');
+      const mealsList = document.querySelector('.meals-list');
+      if (!saladList || !heroesList || !mealsList) return;
+
+      const catalog = document.createElement('div');
+      catalog.className = 'menu-list meals-list member-menu-grid grid-mode';
+      catalog.dataset.testid = 'member-menu-grid';
+      [...saladList.children, ...heroesList.children, ...mealsList.children]
+        .forEach(item => catalog.appendChild(item));
+
+      const saladDivider = document.querySelector('.salad-divider');
+      saladDivider.parentNode.insertBefore(catalog, saladDivider);
+      saladDivider.remove();
+      document.querySelector('.meals-divider')?.remove();
+      saladList.remove();
+      heroesList.remove();
+      mealsList.remove();
+    }
+
+    mountLandingReplicaCatalog();
     
     // Init steppers
     document.querySelectorAll('.menu-item').forEach(item => {

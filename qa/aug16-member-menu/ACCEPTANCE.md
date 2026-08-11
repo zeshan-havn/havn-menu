@@ -6,6 +6,28 @@ This is the weekly ordering surface for existing Havn members. It borrows the ac
 
 The existing cart, minimum-order rules, delivery/container choices, dietary notes, and real SMS order draft remain the business behavior.
 
+## Zeshan feedback — verbatim, 2026-08-11
+
+> 1. Get rid of the hero section. It's unnecessary.
+> 2. Get rid of the presets for the rest of the menu. Use the exact same format as the menu section of the landing page.
+>
+> Let's look at that and then that can be the foundation. Once that's ready, open it in the internal browser. Let me take a look and then Will move on to the next change
+
+> I'm trying to:
+> 1. Scrape your version of the menu page
+> 2. Rebuild it as a replica of the menu section of the landing page
+> 3. Make the necessary tweaks to make it work as the menu page for post-sign-up customers
+
+> Again there's a hero section on top. I just told you to remove all hero sections
+
+### Foundation gate
+
+- Every hero or editorial intro block is absent; the page begins with the functional order controls.
+- Preset cards are absent.
+- The ten weekly dishes read as one continuous catalog using the live landing shelf's cream surface, brass rule, white photo cards, Cormorant names, and compact calorie/protein line.
+- Member-only adaptations are limited to category filters, details, quantity controls, pricing context, and the existing order draft.
+- Mobile keeps two weekly dish cards per row.
+
 ## Baseline teardown
 
 The Aug 16 production page already has correct weekly data and a mature order drafter, but the main browsing surface is mostly text-only:
@@ -22,7 +44,7 @@ The preserved production file is `rollback/aug16-production/index.html`.
 
 | Journey | Screen / affordance | Authoritative outcome |
 | --- | --- | --- |
-| M01 | Member opens this week's menu | Sees Aug 16–22, current-customer ordering language, and real Aug 16 food photography without an offer or opt-in prompt. |
+| M01 | Member opens this week's menu | Lands directly on the landing-shelf-style weekly catalog for Aug 16–22, with no hero, preset, offer, or opt-in prompt. |
 | M02 | Member browses/filter cards | All 10 meals, 3 sides, and 2 collections remain discoverable; filters never lose selected quantities. |
 | M03 | Member opens a dish | A native top-layer dialog shows description, 5 macros, dietary status, modifications, note field, and quantity; focus stays in the dialog and Escape returns it to the card. |
 | M04 | Member composes an order | Quantities update the real shared order object, totals, minimum state, and visible draft. |
@@ -47,6 +69,8 @@ The preserved production file is `rollback/aug16-production/index.html`.
 - M-C13: Require no build-time credentials and contain no credential-shaped literals.
 - M-C14: Preserve the pre-rebuild file under `rollback/aug16-production/`.
 - M-C15: Pin all ten image outputs to a checked SHA-256 manifest and document the two-file release digest required for future generated-menu runs.
+- M-C16: Remove every hero/editorial intro block and every visible preset card.
+- M-C17: Present the ten meal cards as one landing-shelf-style catalog, with two cards per row on mobile.
 
 ## Scripted scenarios
 
@@ -60,6 +84,7 @@ The deterministic browser replay lives in `qa/aug16-member-menu/menu-scenarios.m
 4. Assert 10 meal images are complete with non-zero natural dimensions.
 5. Assert every local image byte-for-byte matches its checked manifest digest.
 6. Assert document width does not exceed viewport width.
+7. Assert the member hero and preset cards are absent, and the unified weekly catalog contains exactly 10 dishes.
 
 ### MENU-02 — detail dialog and customization
 
@@ -92,11 +117,11 @@ The deterministic browser replay lives in `qa/aug16-member-menu/menu-scenarios.m
 
 ### MENU-06 — complete overlay matrix
 
-1. Open Help, Basic preset, Wellness Shots, and the below-minimum prompt from their real controls.
+1. Open Help, Wellness Shots, and the below-minimum prompt from their real controls.
 2. Assert each is a native modal dialog and focus moves inside.
 3. Press Escape and assert each closes through its normal state-saving path.
 4. Assert focus returns to the exact originating control and all seven overlay elements are native dialogs.
 
 ## Simplicity lock
 
-The rebuild keeps the current DOM keys, `dishes` object, order object, preset compositions, and SMS functions. It adds an editorial visual layer, local photography, stable test IDs, and native dialog behavior. It does not introduce a framework, backend, account state, localStorage, or a second cart.
+The rebuild keeps the current DOM keys, `dishes` object, order object, dormant preset compositions, and SMS functions. It adds an editorial visual layer, local photography, stable test IDs, and native dialog behavior. It does not introduce a framework, backend, account state, localStorage, or a second cart.

@@ -129,9 +129,14 @@ await scenario('MENU-01', 'inventory, current-customer copy, and photography', a
 
   const visible = await page.locator('body').innerText();
   assert.match(visible, /Aug 16\s*[–-]\s*Aug 22/);
+  assert.doesNotMatch(visible, /Ten new dishes|The highest standard, no compromises|Choose what sounds good/);
   assert.doesNotMatch(visible, /Welcome Offer|text me future menus|opt(?:s|ed)? you in/i);
   assert.doesNotMatch(visible, /San Diego|Southern California|SoCal|Washington DC|\bDMV\b/);
   assert.match(visible, /5 handcrafted date balls/);
+  assert.equal(await page.locator('.member-masthead').count(), 0);
+  assert.equal(await page.locator('.member-shelf-head').count(), 0);
+  assert.equal(await page.locator('.preset-card').count(), 0);
+  assert.equal(await page.locator('[data-testid="member-menu-grid"] .menu-item').count(), 10);
 
   const geometry = await page.evaluate(() => ({
     viewport: document.documentElement.clientWidth,
@@ -264,7 +269,6 @@ await scenario('MENU-06', 'every remaining overlay uses the native top layer', a
   const { context, page, consoleErrors } = await fresh();
   const cases = [
     { trigger: '#helpBtn', dialog: 'helpOverlay', returnId: 'helpBtn' },
-    { trigger: '.preset-card[data-preset="basic"]', dialog: 'bundleOverlay', returnPreset: 'basic' },
     { trigger: '[data-testid="menu-detail-trigger-wellness_shots"]', dialog: 'wellnessOverlay', returnTestId: 'menu-detail-trigger-wellness_shots' }
   ];
 
