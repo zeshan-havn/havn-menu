@@ -318,6 +318,27 @@ for (const rel of webFiles) {
   credentialPatterns.forEach((pattern) => assert.doesNotMatch(text, pattern, `credential-shaped literal in ${rel}`));
 }
 
+const indexHtml = readFileSync(join(repo, 'index.html'), 'utf8');
+assert.doesNotMatch(indexHtml, /https:\/\/fonts\.(?:googleapis|gstatic)\.com/i, 'menu fonts must be first-party');
+const expectedFontPaths = [
+  '/assets/fonts/cormorant-latin-300-italic.woff2',
+  '/assets/fonts/cormorant-latin-300-normal.woff2',
+  '/assets/fonts/cormorant-latin-400-italic.woff2',
+  '/assets/fonts/cormorant-latin-400-normal.woff2',
+  '/assets/fonts/cormorant-latin-500-italic.woff2',
+  '/assets/fonts/cormorant-latin-500-normal.woff2',
+  '/assets/fonts/cormorant-latin-600-italic.woff2',
+  '/assets/fonts/cormorant-latin-600-normal.woff2',
+  '/assets/fonts/dm-sans-latin-variable.woff2'
+];
+const referencedFontPaths = [...indexHtml.matchAll(/url\(['"]?(\/assets\/fonts\/[^'"\)]+)['"]?\)/g)]
+  .map((match) => match[1]);
+assert.deepEqual([...new Set(referencedFontPaths)].sort(), expectedFontPaths);
+for (const fontPath of expectedFontPaths) {
+  const bytes = readFileSync(join(repo, fontPath.slice(1)));
+  assert.equal(bytes.subarray(0, 4).toString('ascii'), 'wOF2', `${fontPath} is not a WOFF2 font`);
+}
+
 await browser.close();
 report.summary = {
   pass: report.scenarios.filter((s) => s.verdict === 'PASS').length,
