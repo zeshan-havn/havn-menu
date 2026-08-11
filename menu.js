@@ -20,7 +20,7 @@
      names) lives in menu-data.overrides.json and survives every run. */
   var SECTIONS = [
     {
-      label: "Chef picks & beef — $28",
+      label: "Chef picks & beef — $25",
       items: [
         {
           id: "cheat", name: "Beef Bourguignon", tag: "Chef special", img: "assets/current/special.jpg",
@@ -37,7 +37,7 @@
       ]
     },
     {
-      label: "Chicken & pasta — $28",
+      label: "Chicken & pasta — $25",
       items: [
         {
           id: "pasta", name: "Beef Bolognese", tag: "Pasta", img: "assets/current/pasta.jpg",
@@ -60,7 +60,7 @@
       ]
     },
     {
-      label: "Seafood — $28",
+      label: "Seafood — $25",
       items: [
         {
           id: "seafood", name: "Pomegranate Salmon", tag: "Seafood", img: "assets/current/seafood.jpg",
@@ -77,7 +77,7 @@
       ]
     },
     {
-      label: "Salads — $25 · vegetarian — $28",
+      label: "Salads & vegetarian — $25",
       items: [
         {
           id: "salad_2", name: "Ruby Goddess Salad", tag: "Salad", img: "assets/current/salad_2.jpg",
@@ -177,16 +177,6 @@
     dateLabel.textContent = delivery.toLocaleDateString("en-US", {
       weekday: "long", month: "long", day: "numeric"
     });
-  })();
-
-  /* ── the welcome-offer ribbon ─────────────────────────────────
-     This is a customer promise, not a loading indicator. Keep the saved
-     amounts visible even if a device delays or stops animation. */
-  (function () {
-    var nums = [document.getElementById("m-rb-0"), document.getElementById("m-rb-1")];
-    if (!nums[0] || !nums[1]) return;
-    var TARGETS = [20, 40];
-    nums.forEach(function (n, i) { n.textContent = TARGETS[i]; });
   })();
 
   /* ── render menu ────────────────────────────────────────────── */
@@ -300,7 +290,7 @@
       subtotal += n * priceForSlot(id);
     });
     var equivalents = meals + sides / 3 + addons;
-    var discount = meals >= 7 ? 40 : meals >= 5 ? 20 : 0;
+    var discount = 0;
     return { meals: meals, sides: sides, addons: addons, subtotal: subtotal, equivalents: equivalents, discount: discount };
   }
 
@@ -550,12 +540,8 @@
       if (!ready) {
         var needMeals = Math.ceil(4 - c.equivalents - 1e-9);
         hint = " · add " + needMeals + " more";
-      } else if (c.meals < 5) {
-        hint = " · $20 off at 5 meals";
-      } else if (c.meals < 7) {
-        hint = " · $40 off at 7";
       }
-      barTotal.textContent = money(c.subtotal - c.discount) + (c.discount ? " after offer" : "") + hint;
+      barTotal.textContent = money(c.subtotal) + hint;
       bar.classList.toggle("m-bar-ready", ready);
     }
     renderSheet(c);
