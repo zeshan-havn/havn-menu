@@ -179,16 +179,6 @@
     });
   })();
 
-  /* ── the welcome-offer ribbon ─────────────────────────────────
-     This is a customer promise, not a loading indicator. Keep the saved
-     amounts visible even if a device delays or stops animation. */
-  (function () {
-    var nums = [document.getElementById("m-rb-0"), document.getElementById("m-rb-1")];
-    if (!nums[0] || !nums[1]) return;
-    var TARGETS = [20, 40];
-    nums.forEach(function (n, i) { n.textContent = TARGETS[i]; });
-  })();
-
   /* ── render menu ────────────────────────────────────────────── */
   var mount = document.getElementById("m-menu");
 
@@ -299,9 +289,10 @@
       else meals += n;
       subtotal += n * priceForSlot(id);
     });
+    var wellnessShots = qty.wellness_shots || 0;
     var equivalents = meals + sides / 3 + addons;
-    var discount = meals >= 7 ? 40 : meals >= 5 ? 20 : 0;
-    return { meals: meals, sides: sides, addons: addons, subtotal: subtotal, equivalents: equivalents, discount: discount };
+    var discount = meals >= 5 && wellnessShots >= 1 ? 25 : 0;
+    return { meals: meals, sides: sides, addons: addons, wellnessShots: wellnessShots, subtotal: subtotal, equivalents: equivalents, discount: discount };
   }
 
   function setQty(id, n) {
@@ -550,12 +541,16 @@
       if (!ready) {
         var needMeals = Math.ceil(4 - c.equivalents - 1e-9);
         hint = " · add " + needMeals + " more";
-      } else if (c.meals < 5) {
-        hint = " · $20 off at 5 meals";
-      } else if (c.meals < 7) {
-        hint = " · $40 off at 7";
+      } else if (c.discount) {
+        hint = "";
+      } else if (c.wellnessShots < 1 && c.meals < 5) {
+        hint = " · add Wellness Shots + " + (5 - c.meals) + " more for $25 off";
+      } else if (c.wellnessShots < 1) {
+        hint = " · add Wellness Shots for $25 off";
+      } else {
+        hint = " · add " + (5 - c.meals) + " more for $25 off";
       }
-      barTotal.textContent = money(c.subtotal - c.discount) + (c.discount ? " after offer" : "") + hint;
+      barTotal.textContent = money(c.subtotal - c.discount) + (c.discount ? " after Wellness credit" : "") + hint;
       bar.classList.toggle("m-bar-ready", ready);
     }
     renderSheet(c);
@@ -648,6 +643,7 @@
     rItems.textContent = bits.length ? bits.join(" · ") : "0 meals";
     rSub.textContent = money(c.subtotal);
     rOfferRow.hidden = !c.discount;
+    document.getElementById("m-r-offer-label").textContent = "Wellness credit";
     rOffer.innerHTML = "&ndash;" + money(c.discount);
     rTotal.textContent = money(Math.max(0, c.subtotal - c.discount));
 

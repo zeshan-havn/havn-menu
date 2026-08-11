@@ -76,6 +76,15 @@
   100% { transform: translateX(440%) skewX(-18deg); }
 }
 .m-ribbon-amts { display: flex; align-items: baseline; gap: 14px; }
+.m-ribbon-amts-single { gap: 0; }
+.m-ribbon-kicker {
+  margin: 0 0 4px;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(46, 34, 16, .92);
+}
 .m-ribbon-amt {
   font-family: var(--serif);
   font-weight: 600;
