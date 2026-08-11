@@ -79,12 +79,15 @@ The deterministic browser replay lives in `qa/new-customer-pricing/pricing-scena
 2. Open each preset and assert its bundle total matches its card.
 3. Add one regular meal and one salad in the sheet and assert each adds `$28` and `$25` respectively.
 
-### PRICE-04 — welcome and returning-customer promos
+### PRICE-04 — all stable promo variants
 
-1. In `?welcome` mode, assert five regular meals subtotal to `$140`, discount by `$20`, and total `$120`.
-2. Assert promo preset strikethroughs are computed from the new bases.
-3. In `?in` mode, assert four meals say `Add 1 more meal for $25 off`.
-4. Add the fifth meal and assert the existing `$25` credit unlocks.
+1. Assert `/welcome`, `/ws`, `/db`, and `/in` plus their weekly-prefixed forms remain routed to the shared page.
+2. In `?welcome` mode, assert five regular meals subtotal to `$140`, discount by `$20`, and total `$120`.
+3. Assert promo preset strikethroughs are computed from the new bases.
+4. In `?ws` mode, assert five meals require the Wellness Shots Collection, then unlock the existing `$25` credit when it is added.
+5. In `?db` mode, assert five meals require the Date Ball Collection, then unlock the existing `$25` credit when it is added.
+6. In `?in` mode, assert four meals say `Add 1 more meal for $25 off`.
+7. Add the fifth meal and assert the existing `$25` credit unlocks.
 
 ### PRICE-05 — minimum logic is price-independent
 

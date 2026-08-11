@@ -10,7 +10,7 @@
 # strip rule. Uses Netlify's :week placeholder so this works for any
 # week slug (may17, may24, jun7, etc.) without needing weekly edits.
 #
-# Routes /{week}/welcome, /{week}/ws, /{week}/in to /index.html. The JS
+# Routes /{week}/welcome, /{week}/ws, /{week}/db, /{week}/in to /index.html. The JS
 # in index.html strips the /{week}/ prefix before detecting mode.
 # Without these, /may17/ws would hit /:splat and rewrite to /ws, then
 # Netlify wouldn't re-evaluate and would return 404.
@@ -34,8 +34,9 @@
 # Promo variants — same index.html, mode detected from window.location.pathname.
 # Each path is routed via Make.com to its own customer cohort:
 #   /welcome  → first-time customers (current $20-at-5 / $40-at-7 welcome offer)
-#   /ws       → first + second timers ($25 with Wellness Shots + 7 meals)
-#   /in       → inactive / win-back ($25 with Wellness Shots + 7 meals)
+#   /ws       → wellness-credit cohort ($25 with Wellness Shots + 5 meals)
+#   /db       → date-ball-credit cohort ($25 with Date Ball Collection + 5 meals)
+#   /in       → inactive / win-back ($25 on any 5-meal order)
 /welcome/*  /index.html 200
 /welcome    /index.html 200
 /ws/*       /index.html 200

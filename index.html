@@ -4310,8 +4310,8 @@
     
     // Welcome-mode detection — triggered when the page is served from /welcome/*
     // (Netlify _redirects routes /welcome and /welcome/{token} to this index.html)
-    // Multi-promo mode detection — routes /welcome, /ws, /in to different promos.
-    // ?welcome / ?ws / ?in query params work too for local dev previewing.
+    // Multi-promo mode detection — routes /welcome, /ws, /db, /in to different promos.
+    // ?welcome / ?ws / ?db / ?in query params work too for local dev previewing.
     const _path = window.location.pathname;
     // Strip the optional weekly cache-bust prefix (/may17/, /may10/, /jun7/, etc.)
     // before mode detection so /may17/ws is treated the same as /ws.
@@ -4438,7 +4438,7 @@
     }
 
     // Back-compat: existing welcome-tier logic reads `isWelcomeMode` directly.
-    // For /ws and /in we route through computePromoDiscount instead.
+    // For /ws, /db, and /in we route through computePromoDiscount instead.
     // Keep this aliased so older read paths still work without refactor.
 
     // Exposed on window for test-harness access (const would be block-scoped).
@@ -5204,7 +5204,7 @@
       }
     }
 
-    // ── Promo tier logic — handles /welcome, /ws, /in ──
+    // ── Promo tier logic — handles /welcome, /ws, /db, /in ──
     // Back-compat shim — older code paths call computeWelcomeDiscount(meals).
     function computeWelcomeDiscount(meals, shots = 0) {
       return computePromoDiscount(meals, shots, activePromoMode, order.date_balls || 0);
@@ -5284,7 +5284,7 @@
       }
 
       // Not below min and not empty: customers without an active promo see a simple subtotal.
-      // (Promo branches below handle discount/nudge UI for /welcome, /ws, /in.)
+      // (Promo branches below handle discount/nudge UI for /welcome, /ws, /db, /in.)
       if (!activePromoMode) {
         if (mealEquivalents > 0) {
           document.getElementById('priceSubtotal').textContent = `$${subtotal}`;
@@ -5296,7 +5296,7 @@
         return { subtotal, discount, total };
       }
 
-      // ── Promo-mode price card (/welcome, /ws, /in) ──
+      // ── Promo-mode price card (/welcome, /ws, /db, /in) ──
       document.getElementById('priceSubtotal').textContent = `$${subtotal}`;
 
       // Promo-aware nudge — copy is mode-specific
@@ -5328,7 +5328,7 @@
         wp.classList.remove('needs-nudge');
       }
       // Tier badge is welcome-specific (two-tier $20/$40 ladder).
-      // /ws and /in skip it — the banner + nudge already communicate the offer.
+      // /ws, /db, and /in skip it — the banner + nudge already communicate the offer.
       if (isWelcomeMode) updateTierBadge(meals);
       return { subtotal, discount, total };
     }

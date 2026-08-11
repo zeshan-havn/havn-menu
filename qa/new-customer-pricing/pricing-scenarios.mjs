@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
-import { existsSync, readdirSync, statSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 
 const url = process.env.MENU_URL || 'http://127.0.0.1:4622';
@@ -146,7 +146,15 @@ await scenario('PRICE-03', 'preset cards and bundle sheets share the resolver', 
   return expected;
 });
 
-await scenario('PRICE-04', 'welcome and returning-customer promos use configured tiers', async () => {
+await scenario('PRICE-04', 'all stable promo variants use configured tiers', async () => {
+  const redirects = readFileSync(new URL('../../_redirects', import.meta.url), 'utf8');
+  for (const route of [
+    '/welcome', '/ws', '/db', '/in',
+    '/:week/welcome', '/:week/ws', '/:week/db', '/:week/in'
+  ]) {
+    assert.match(redirects, new RegExp(`^${route.replaceAll('/', '\\/').replace(':', '\\:')}(?:/\\*)?\\s+/index\\.html\\s+200$`, 'm'));
+  }
+
   const welcome = await fresh('?welcome');
   for (const key of ['special', 'chicken', 'chicken_2', 'beef', 'seafood']) await clickPlus(welcome.page, key);
   assert.equal(await welcome.page.locator('#priceSubtotal').innerText(), '$140');
@@ -163,6 +171,28 @@ await scenario('PRICE-04', 'welcome and returning-customer promos use configured
   assert.deepEqual(welcome.consoleErrors, []);
   await welcome.context.close();
 
+  const wellness = await fresh('?ws');
+  for (const key of ['special', 'chicken', 'chicken_2', 'beef', 'seafood']) await clickPlus(wellness.page, key);
+  assert.match(await wellness.page.locator('#welcomeBanner').innerText(), /\$25 credit · with wellness shots/i);
+  assert.equal(await wellness.page.locator('#priceNudge').innerText(), 'Add Wellness Shots to unlock $25 off');
+  await clickPlus(wellness.page, 'wellness_shots');
+  assert.equal(await wellness.page.locator('#priceSubtotal').innerText(), '$165');
+  assert.equal(await wellness.page.locator('#priceDiscount').innerText(), '–$25');
+  assert.equal(await wellness.page.locator('#priceTotal').innerText(), '$140');
+  assert.deepEqual(wellness.consoleErrors, []);
+  await wellness.context.close();
+
+  const dateBall = await fresh('?db');
+  for (const key of ['special', 'chicken', 'chicken_2', 'beef', 'seafood']) await clickPlus(dateBall.page, key);
+  assert.match(await dateBall.page.locator('#welcomeBanner').innerText(), /\$25 credit · with date ball collection/i);
+  assert.equal(await dateBall.page.locator('#priceNudge').innerText(), 'Add the Date Ball Collection to unlock $25 off');
+  await clickPlus(dateBall.page, 'date_balls');
+  assert.equal(await dateBall.page.locator('#priceSubtotal').innerText(), '$165');
+  assert.equal(await dateBall.page.locator('#priceDiscount').innerText(), '–$25');
+  assert.equal(await dateBall.page.locator('#priceTotal').innerText(), '$140');
+  assert.deepEqual(dateBall.consoleErrors, []);
+  await dateBall.context.close();
+
   const returning = await fresh('?in');
   for (const key of ['special', 'chicken', 'chicken_2', 'beef']) await clickPlus(returning.page, key);
   assert.equal(await returning.page.locator('#priceNudge').innerText(), 'Add 1 more meal for $25 off');
@@ -172,7 +202,12 @@ await scenario('PRICE-04', 'welcome and returning-customer promos use configured
   assert.equal(await returning.page.locator('#priceTotal').innerText(), '$115');
   assert.deepEqual(returning.consoleErrors, []);
   await returning.context.close();
-  return { welcome: { subtotal: 140, discount: 20 }, returning: { threshold: 5, discount: 25 } };
+  return {
+    welcome: { subtotal: 140, discount: 20 },
+    wellness: { mealThreshold: 5, collectionRequired: true, discount: 25 },
+    dateBall: { mealThreshold: 5, collectionRequired: true, discount: 25 },
+    returning: { threshold: 5, discount: 25 }
+  };
 });
 
 await scenario('PRICE-05', 'minimum logic remains price-independent', async () => {
