@@ -6,16 +6,16 @@
   "use strict";
 
   var SLOT_PRICES = Object.freeze({
-    cheat: 28,
-    pasta: 28,
-    chicken: 28,
-    chicken_2: 28,
-    beef: 28,
-    seafood: 28,
-    seafood_2: 28,
+    cheat: 25,
+    pasta: 25,
+    chicken: 25,
+    chicken_2: 25,
+    beef: 25,
+    seafood: 25,
+    seafood_2: 25,
     salad: 25,
     salad_2: 25,
-    vegetarian: 28,
+    vegetarian: 25,
     oats: 10,
     chia: 10,
     chia_2: 10,
@@ -37,4 +37,3 @@
 
   root.HAVN_PRICING = Object.freeze({ priceForSlot: priceForSlot });
 })(window);
-
