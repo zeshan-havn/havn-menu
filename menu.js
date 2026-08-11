@@ -20,7 +20,7 @@
      names) lives in menu-data.overrides.json and survives every run. */
   var SECTIONS = [
     {
-      label: "Chef picks & beef — $28",
+      label: "Chef picks & beef — $25",
       items: [
         {
           id: "cheat", name: "Beef Bourguignon", tag: "Chef special", img: "assets/current/special.jpg",
@@ -37,7 +37,7 @@
       ]
     },
     {
-      label: "Chicken & pasta — $28",
+      label: "Chicken & pasta — $25",
       items: [
         {
           id: "pasta", name: "Beef Bolognese", tag: "Pasta", img: "assets/current/pasta.jpg",
@@ -60,7 +60,7 @@
       ]
     },
     {
-      label: "Seafood — $28",
+      label: "Seafood — $25",
       items: [
         {
           id: "seafood", name: "Pomegranate Salmon", tag: "Seafood", img: "assets/current/seafood.jpg",
@@ -77,7 +77,7 @@
       ]
     },
     {
-      label: "Salads — $25 · vegetarian — $28",
+      label: "Salads & vegetarian — $25",
       items: [
         {
           id: "salad_2", name: "Ruby Goddess Salad", tag: "Salad", img: "assets/current/salad_2.jpg",
@@ -289,10 +289,10 @@
       else meals += n;
       subtotal += n * priceForSlot(id);
     });
-    var wellnessShots = qty.wellness_shots || 0;
+    var dateBalls = qty.date_balls || 0;
     var equivalents = meals + sides / 3 + addons;
-    var discount = meals >= 5 && wellnessShots >= 1 ? 25 : 0;
-    return { meals: meals, sides: sides, addons: addons, wellnessShots: wellnessShots, subtotal: subtotal, equivalents: equivalents, discount: discount };
+    var discount = meals >= 5 && dateBalls >= 1 ? 25 : 0;
+    return { meals: meals, sides: sides, addons: addons, dateBalls: dateBalls, subtotal: subtotal, equivalents: equivalents, discount: discount };
   }
 
   function setQty(id, n) {
@@ -543,14 +543,14 @@
         hint = " · add " + needMeals + " more";
       } else if (c.discount) {
         hint = "";
-      } else if (c.wellnessShots < 1 && c.meals < 5) {
-        hint = " · add Wellness Shots + " + (5 - c.meals) + " more for $25 off";
-      } else if (c.wellnessShots < 1) {
-        hint = " · add Wellness Shots for $25 off";
+      } else if (c.dateBalls < 1 && c.meals < 5) {
+        hint = " · add the Date Ball Collection + " + (5 - c.meals) + " more for $25 off";
+      } else if (c.dateBalls < 1) {
+        hint = " · add the Date Ball Collection for $25 off";
       } else {
         hint = " · add " + (5 - c.meals) + " more for $25 off";
       }
-      barTotal.textContent = money(c.subtotal - c.discount) + (c.discount ? " after Wellness credit" : "") + hint;
+      barTotal.textContent = money(c.subtotal - c.discount) + (c.discount ? " after Date Ball credit" : "") + hint;
       bar.classList.toggle("m-bar-ready", ready);
     }
     renderSheet(c);
@@ -643,7 +643,7 @@
     rItems.textContent = bits.length ? bits.join(" · ") : "0 meals";
     rSub.textContent = money(c.subtotal);
     rOfferRow.hidden = !c.discount;
-    document.getElementById("m-r-offer-label").textContent = "Wellness credit";
+    document.getElementById("m-r-offer-label").textContent = "Date Ball credit";
     rOffer.innerHTML = "&ndash;" + money(c.discount);
     rTotal.textContent = money(Math.max(0, c.subtotal - c.discount));
 
