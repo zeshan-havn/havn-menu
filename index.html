@@ -531,8 +531,10 @@
       background: var(--green-dark);
       padding: 8px 16px;
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
+      gap: 5px 14px;
     }
     
     .order-bar-title {
@@ -549,6 +551,8 @@
       display: flex;
       align-items: center;
       gap: 6px;
+      text-align: right;
+      line-height: 1.4;
     }
 
     .order-bar-pricing .dot {
@@ -556,6 +560,16 @@
       height: 3px;
       background: var(--cream-muted);
       border-radius: 50%;
+    }
+
+    .legacy-pricing-note {
+      flex: 0 0 100%;
+      margin: 0;
+      color: rgba(240, 235, 227, 0.62);
+      font-size: 9px;
+      font-weight: 300;
+      line-height: 1.35;
+      text-align: right;
     }
     
     /* Section Divider */
@@ -3089,6 +3103,10 @@
       }
       .member-food-triptych::after { background: linear-gradient(180deg, #10271f 0%, transparent 38%), linear-gradient(0deg, rgba(10,22,18,.34), transparent); }
       .member-food-triptych img { height: 118px; top: 6px; border-radius: 50% 50% 12px 12px; }
+      .order-bar { align-items: flex-start; }
+      .order-bar-title { flex: 0 0 100%; }
+      .order-bar-pricing { justify-content: flex-start; text-align: left; }
+      .legacy-pricing-note { text-align: left; }
       .order-bar,
       .presets-section,
       .pill-nav,
@@ -3180,11 +3198,8 @@
           <!-- Order Bar - Scrolls with content -->
           <div class="order-bar">
             <span class="order-bar-title">Build your order</span>
-            <div class="order-bar-pricing">
-              <span>$25/meal</span>
-              <span class="dot"></span>
-              <span>$10/side</span>
-            </div>
+            <div class="order-bar-pricing" data-testid="pricing-summary" aria-label="New-customer menu prices">Loading pricing…</div>
+            <p class="legacy-pricing-note" data-testid="legacy-pricing-note">Existing members keep legacy pricing when ordering from their saved number.</p>
           </div>
 
           <!-- Preset Bundles -->
@@ -3200,7 +3215,7 @@
                 <span class="preset-title">Basic</span>
                 <span class="preset-meta">5 meals + chia</span>
                 <div class="preset-bottom">
-                  <span class="preset-price">$135</span>
+                  <span class="preset-price">—</span>
                   <span class="preset-cta">View →</span>
                 </div>
               </button>
@@ -3210,7 +3225,7 @@
                 <span class="preset-title">Standard</span>
                 <span class="preset-meta">7 meals + chia + shots</span>
                 <div class="preset-bottom">
-                  <span class="preset-price">$210</span>
+                  <span class="preset-price">—</span>
                   <span class="preset-cta">View →</span>
                 </div>
               </button>
@@ -3219,7 +3234,7 @@
                 <span class="preset-title">Signature</span>
                 <span class="preset-meta">All 10 meals + chia + shots</span>
                 <div class="preset-bottom">
-                  <span class="preset-price">$285</span>
+                  <span class="preset-price">—</span>
                   <span class="preset-cta">View →</span>
                 </div>
               </button>
@@ -4058,8 +4073,8 @@
       <h2 class="below-min-title" id="belowMinTitle">Almost there!</h2>
       <p class="below-min-body">Orders need a minimum of 4 meals. Sides count as 1/3 of a meal (3 sides = 1 meal), and our Wellness Shots and Date Ball Collections each count as a full meal toward the minimum.</p>
       <div class="below-min-actions">
-        <button class="below-min-action" id="belowMinAddWellness">+ Add Wellness Shots Collection - $25</button>
-        <button class="below-min-action" id="belowMinAddDateBalls">+ Add Date Ball Collection - $25</button>
+        <button class="below-min-action" id="belowMinAddWellness">+ Add Wellness Shots Collection</button>
+        <button class="below-min-action" id="belowMinAddDateBalls">+ Add Date Ball Collection</button>
       </div>
     </div>
   </dialog>
@@ -4101,7 +4116,7 @@
         macros: '630 cal · 49g protein · 21g fat · 7g fiber · 41g carbs',
         tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy (Potato Purée)', safe: false }],
         inherentMods: [],
-        price: 25
+        price: 28
       },
       chicken: {
         name: 'Butter Chicken',
@@ -4112,7 +4127,7 @@
         macros: '707 cal · 58g protein · 36g fat · 6g fiber · 43g carbs',
         tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy (Cream)', safe: false }],
         inherentMods: [],
-        price: 25
+        price: 28
       },
       chicken_2: {
         name: 'Basil Pesto Chicken',
@@ -4123,7 +4138,7 @@
         macros: '608 cal · 62g protein · 24g fat · 10g fiber · 35g carbs',
         tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy Free', safe: true }],
         inherentMods: [],
-        price: 25
+        price: 28
       },
       beef: {
         name: 'Braised Short Rib',
@@ -4134,7 +4149,7 @@
         macros: '617 cal · 61g protein · 24g fat · 8g fiber · 40g carbs',
         tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy Free', safe: true }],
         inherentMods: [],
-        price: 25
+        price: 28
       },
       seafood: {
         name: 'Pomegranate Salmon',
@@ -4145,7 +4160,7 @@
         macros: '677 cal · 49g protein · 43g fat · 5g fiber · 24g carbs',
         tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy Free', safe: true }],
         inherentMods: [],
-        price: 25
+        price: 28
       },
       seafood_2: {
         name: 'Garlic Butter Shrimp',
@@ -4156,7 +4171,7 @@
         macros: '558 cal · 53g protein · 23g fat · 5g fiber · 36g carbs',
         tags: [{ text: 'Gluten (Orzo)', safe: false }, { text: 'Dairy (Butter)', safe: false }],
         inherentMods: [],
-        price: 25
+        price: 28
       },
       veg: {
         name: 'Thai Coconut Curry Bowl',
@@ -4167,7 +4182,7 @@
         macros: '683 cal · 46g protein · 32g fat · 9g fiber · 47g carbs',
         tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy Free', safe: true }],
         inherentMods: [],
-        price: 25
+        price: 28
       },
       pasta: {
         name: 'Beef Bolognese',
@@ -4178,7 +4193,7 @@
         macros: '609 cal · 48g protein · 27g fat · 5g fiber · 43g carbs',
         tags: [{ text: 'Gluten (Pasta)', safe: false }, { text: 'Dairy Free', safe: true }],
         inherentMods: [],
-        price: 25
+        price: 28
       },
       oats: {
         name: 'Strawberry Overnight Oats',
@@ -4222,7 +4237,7 @@
         macros: '0 cal · 0g protein · 0g fat · 0g carbs',
         tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy Free', safe: true }],
         inherentMods: [],
-        price: 10
+        price: 25
       },
       date_balls: {
         name: 'Date Ball Collection',
@@ -4233,9 +4248,49 @@
         macros: '0 cal · 0g protein · 0g fat · 0g carbs',
         tags: [{ text: 'Gluten Free', safe: true }, { text: 'Dairy Free', safe: true }],
         inherentMods: [],
-        price: 10
+        price: 25
       }
     };
+
+    // Display-only pricing comes from generator-emitted slot metadata. The
+    // concierge/billing server still owns membership eligibility and charges.
+    function unitPriceForSlot(slot) {
+      const price = dishes[slot]?.price;
+      if (!Number.isInteger(price) || price < 0) {
+        throw new Error(`Missing or invalid generated price for menu slot: ${slot}`);
+      }
+      return price;
+    }
+
+    function subtotalForQuantities(quantities) {
+      return Object.entries(quantities || {}).reduce((subtotal, [slot, quantity]) => {
+        if (!quantity) return subtotal;
+        if (!Number.isInteger(quantity) || quantity < 0) {
+          throw new Error(`Invalid quantity for menu slot ${slot}: ${quantity}`);
+        }
+        return subtotal + quantity * unitPriceForSlot(slot);
+      }, 0);
+    }
+
+    function renderPublicPricing() {
+      document.querySelector('[data-testid="pricing-summary"]').textContent = [
+        `$${unitPriceForSlot('special')} entrées`,
+        `$${unitPriceForSlot('salad')} salads`,
+        `$${unitPriceForSlot('chia')} sides`,
+        `$${unitPriceForSlot('wellness_shots')} collections`
+      ].join(' · ');
+      document.querySelector('#dateBallsCard .wellness-subtitle').textContent =
+        `5 handcrafted date balls · $${unitPriceForSlot('date_balls')}`;
+      document.querySelector('#wellnessShotsCard .wellness-subtitle').textContent =
+        `4 functional shots · $${unitPriceForSlot('wellness_shots')}`;
+      document.getElementById('belowMinAddWellness').textContent =
+        `+ Add Wellness Shots Collection - $${unitPriceForSlot('wellness_shots')}`;
+      document.getElementById('belowMinAddDateBalls').textContent =
+        `+ Add Date Ball Collection - $${unitPriceForSlot('date_balls')}`;
+    }
+
+    window.unitPriceForSlot = unitPriceForSlot;
+    renderPublicPricing();
 
     // Local, credential-free photography. Slot-based names deliberately match
     // the weekly generator's stable data keys, so the cart and future data patch
@@ -4880,7 +4935,6 @@
     let bundleDraft = null;
     let bundleShots = 0;
 
-    const SHOT_BUNDLE_PRICE = 25;
     const SHOT_KEY = '__shots__';  // synthetic key for the shot row in the sheet
 
     // ── Preset price math + strikethrough rendering for active promo modes ──
@@ -4894,15 +4948,11 @@
     const ADDON_KEYS = new Set(['wellness_shots', 'date_balls']);
 
     function computePresetBasePrice(preset) {
-      let meals = 0, sides = 0;
-      Object.entries(preset.items || {}).forEach(([id, qty]) => {
-        if (!dishes[id]) return;
-        const isSide = SIDE_KEYS.has(id);
-        if (isSide) sides += qty;
-        else meals += qty;
+      return subtotalForQuantities({
+        ...(preset.items || {}),
+        wellness_shots: preset.shots || 0,
+        date_balls: preset.date_balls || 0
       });
-      const shots = preset.shots || 0;
-      return meals * 25 + sides * 10 + shots * SHOT_BUNDLE_PRICE;
     }
 
     function presetMealCount(preset) {
@@ -4914,7 +4964,6 @@
     }
 
     function renderPresetPromoPricing() {
-      if (!activePromoMode) return;
       document.querySelectorAll('.preset-card').forEach(card => {
         const key = card.dataset.preset;
         const preset = PRESETS[key];
@@ -4938,7 +4987,7 @@
     const SHOT_META = {
       shortName: 'Wellness Shots',
       cat:       'Wellness',
-      macros:    '4 shots · $25 bundle',
+      macros:    `4 shots · $${unitPriceForSlot('wellness_shots')} bundle`,
     };
 
     function openBundleSheet(which) {
@@ -5074,20 +5123,21 @@
     }
 
     function updateBundleFoot() {
-      let mealCount = 0, sideCount = 0, total = 0;
+      let mealCount = 0, sideCount = 0;
       Object.entries(bundleDraft).forEach(([id, qty]) => {
         const d = dishes[id];
         if (!d || qty === 0) return;
         const isSide = SIDE_KEYS.has(id);
         if (isSide) {
           sideCount += qty;
-          total += qty * 10;
         } else {
           mealCount += qty;
-          total += qty * 25;
         }
       });
-      total += bundleShots * SHOT_BUNDLE_PRICE;
+      const total = subtotalForQuantities({
+        ...bundleDraft,
+        wellness_shots: bundleShots
+      });
       const parts = [];
       if (mealCount) parts.push(`${mealCount} meal${mealCount !== 1 ? 's' : ''}`);
       if (sideCount) parts.push(`${sideCount} side${sideCount !== 1 ? 's' : ''}`);
@@ -5178,7 +5228,8 @@
       }
       // /ws — shots required
       if (mode === 'ws') {
-        const need = Math.max(0, 5 - meals);
+        const tier = PROMO_CONFIG.ws.tiers[0];
+        const need = Math.max(0, tier.mealMin - meals);
         const hasShots = shots >= 1;
         if (need === 0 && hasShots) return '';
         if (need === 0 && !hasShots) return 'Add Wellness Shots to unlock $25 off';
@@ -5187,7 +5238,8 @@
       }
       // /db — date ball collection required (mirrors /ws but for second-timer cohort)
       if (mode === 'db') {
-        const need = Math.max(0, 5 - meals);
+        const tier = PROMO_CONFIG.db.tiers[0];
+        const need = Math.max(0, tier.mealMin - meals);
         const hasDateBalls = dateBalls >= 1;
         if (need === 0 && hasDateBalls) return '';
         if (need === 0 && !hasDateBalls) return 'Add the Date Ball Collection to unlock $25 off';
@@ -5196,7 +5248,8 @@
       }
       // /in — meal-count only, no shots requirement
       if (mode === 'in') {
-        const need = Math.max(0, 7 - meals);
+        const tier = PROMO_CONFIG.in.tiers[0];
+        const need = Math.max(0, tier.mealMin - meals);
         if (need === 0) return '';
         return `Add ${need} more meal${need === 1 ? '' : 's'} for $25 off`;
       }
@@ -5208,7 +5261,7 @@
       if (!wp) return { subtotal: 0, discount: 0, total: 0 };
 
       const dateBalls = order.date_balls || 0;
-      const subtotal = meals * 25 + sides * 10 + shots * 25 + dateBalls * 25;
+      const subtotal = subtotalForQuantities(order);
       const discount = computePromoDiscount(meals, shots, activePromoMode, dateBalls);
       const total = subtotal - discount;
       // Every 3 sides = 1 meal equivalent; each wellness/date_balls bundle = 1 meal equiv
@@ -5329,8 +5382,8 @@
     }
 
     function update() {
-      // Salads are $25 MEALS — they must be in this sum or they never count toward
-      // the 4-meal-equivalent minimum, the subtotal, or any promo tier.
+      // Salads are meals for the minimum and promo tier even though their public
+      // unit price differs from regular entrees.
       const meals = order.special + order.chicken + order.chicken_2 + order.beef + order.seafood + order.seafood_2 + order.veg + order.pasta + order.salad + order.salad_2;
       const sides = order.oats + order.chia + order.chia_2;
       const hasChia = order.chia > 0;
