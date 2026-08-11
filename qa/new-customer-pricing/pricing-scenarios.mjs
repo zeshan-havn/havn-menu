@@ -135,8 +135,10 @@ await scenario('PRICE-03', 'preset cards and bundle sheets share the resolver', 
   }
 
   await page.locator('.preset-card[data-preset="basic"]').click();
+  await page.locator('#bundleAddBtn').click();
   await page.locator('[data-bundle-add="chicken_2"]').click();
   assert.equal((await page.locator('#bundleTotal').innerText()).trim(), '$175');
+  await page.locator('#bundleAddBtn').click();
   await page.locator('[data-bundle-add="salad_2"]').click();
   assert.equal((await page.locator('#bundleTotal').innerText()).trim(), '$200');
   assert.deepEqual(consoleErrors, []);
@@ -150,10 +152,14 @@ await scenario('PRICE-04', 'welcome and returning-customer promos use configured
   assert.equal(await welcome.page.locator('#priceSubtotal').innerText(), '$140');
   assert.equal(await welcome.page.locator('#priceDiscount').innerText(), '–$20');
   assert.equal(await welcome.page.locator('#priceTotal').innerText(), '$120');
-  assert.deepEqual(
-    await welcome.page.locator('.preset-price').allInnerTexts(),
-    ['$147 $127', '$225 $185', '$309 $269']
-  );
+  assert.deepEqual(await welcome.page.locator('.preset-price').evaluateAll((nodes) => nodes.map((node) => ({
+    original: node.querySelector('.price-original')?.textContent,
+    discounted: node.querySelector('.price-discounted')?.textContent
+  }))), [
+    { original: '$147', discounted: '$127' },
+    { original: '$225', discounted: '$185' },
+    { original: '$309', discounted: '$269' }
+  ]);
   assert.deepEqual(welcome.consoleErrors, []);
   await welcome.context.close();
 
