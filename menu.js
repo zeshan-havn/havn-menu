@@ -11,6 +11,8 @@
 
   var priceForSlot = window.HAVN_PRICING && window.HAVN_PRICING.priceForSlot;
   if (!priceForSlot) throw new Error("Havn acquisition pricing did not load");
+  var MODE = window.HAVN_MENU_MODE || "active";
+  var mealPrice = MODE === "welcome" ? 28 : 25;
 
   /* ── BEGIN GENERATED: SECTIONS ───────────────────────────────────
      Written by scripts/sync_design_lab_menu.py from the weekly menu
@@ -20,16 +22,16 @@
      names) lives in menu-data.overrides.json and survives every run. */
   var SECTIONS = [
     {
-      label: "Chef picks & beef — $28",
+      label: "Chef picks & beef — $" + mealPrice,
       items: [
         {
-          id: "cheat", name: "Beef Bourguignon", tag: "Chef special", img: "assets/current/special.jpg",
+          id: "cheat", name: "Beef Bourguignon", tag: "Chef special", img: "/assets/current/special.jpg",
           desc: "Slow braised beef chuck with a red wine reduction and cremini mushrooms and pearl onions over whipped Yukon Gold purée.",
           cal: 630, protein: 49, fat: 21, fiber: 7, carbs: 41,
           diet: [["Dairy (potato purée)", "allergen"], ["Gluten free", "safe"]]
         },
         {
-          id: "beef", name: "Braised Short Rib", tag: "Beef", img: "assets/current/beef.jpg",
+          id: "beef", name: "Braised Short Rib", tag: "Beef", img: "/assets/current/beef.jpg",
           desc: "Braised short rib with a balsamic reduction and roasted mushrooms and roasted pearl onions over wild rice.",
           cal: 617, protein: 61, fat: 24, fiber: 8, carbs: 40,
           diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
@@ -37,22 +39,22 @@
       ]
     },
     {
-      label: "Chicken & pasta — $28",
+      label: "Chicken & pasta — $" + mealPrice,
       items: [
         {
-          id: "pasta", name: "Beef Bolognese", tag: "Pasta", img: "assets/current/pasta.jpg",
+          id: "pasta", name: "Beef Bolognese", tag: "Pasta", img: "/assets/current/pasta.jpg",
           desc: "Beef bolognese with a rich tomato sofrito over pappardelle.",
           cal: 609, protein: 48, fat: 27, fiber: 5, carbs: 43,
           diet: [["Dairy free", "safe"], ["Gluten (pasta)", "allergen"]]
         },
         {
-          id: "chicken", name: "Butter Chicken", tag: "Chicken", img: "assets/current/chicken.jpg",
+          id: "chicken", name: "Butter Chicken", tag: "Chicken", img: "/assets/current/chicken.jpg",
           desc: "Butter chicken with a creamy tikka masala sauce and roasted cauliflower and roasted eggplant over cardamom basmati rice.",
           cal: 707, protein: 58, fat: 36, fiber: 6, carbs: 43,
           diet: [["Dairy (cream)", "allergen"], ["Gluten free", "safe"]]
         },
         {
-          id: "chicken_2", name: "Basil Pesto Chicken", tag: "Chicken", img: "assets/current/chicken_2.jpg",
+          id: "chicken_2", name: "Basil Pesto Chicken", tag: "Chicken", img: "/assets/current/chicken_2.jpg",
           desc: "Blackened chicken breast over a basil pesto hummus with charred broccoli and roasted sweet potato and pickled red onions.",
           cal: 608, protein: 62, fat: 24, fiber: 10, carbs: 35,
           diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
@@ -60,16 +62,16 @@
       ]
     },
     {
-      label: "Seafood — $28",
+      label: "Seafood — $" + mealPrice,
       items: [
         {
-          id: "seafood", name: "Pomegranate Salmon", tag: "Seafood", img: "assets/current/seafood.jpg",
+          id: "seafood", name: "Pomegranate Salmon", tag: "Seafood", img: "/assets/current/seafood.jpg",
           desc: "Pomegranate salmon with a whipped pomegranate sauce and roasted zucchini over saffron cauliflower rice.",
           cal: 677, protein: 49, fat: 43, fiber: 5, carbs: 24,
           diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
         },
         {
-          id: "seafood_2", name: "Garlic Butter Shrimp", tag: "Seafood", img: "assets/current/seafood_2.jpg",
+          id: "seafood_2", name: "Garlic Butter Shrimp", tag: "Seafood", img: "/assets/current/seafood_2.jpg",
           desc: "Garlic herb shrimp with a lemon garlic butter and roasted cauliflower and zucchini over orzo.",
           cal: 558, protein: 53, fat: 23, fiber: 5, carbs: 36,
           diet: [["Dairy (butter)", "allergen"], ["Gluten (orzo)", "allergen"]]
@@ -77,22 +79,22 @@
       ]
     },
     {
-      label: "Salads — $25 · vegetarian — $28",
+      label: "Salads & vegetarian — $25",
       items: [
         {
-          id: "salad_2", name: "Ruby Goddess Salad", tag: "Salad", img: "assets/current/salad_2.jpg",
+          id: "salad_2", name: "Ruby Goddess Salad", tag: "Salad", img: "/assets/current/salad_2.jpg",
           desc: "Diced lemon herb chicken over purple cabbage and kale with roasted chickpeas, pickled red onion, watermelon radish, blueberries, pomegranate arils and pumpkin seeds, with ruby beet tahini on the side.",
           cal: 513, protein: 47, fat: 23, fiber: 12, carbs: 30,
           diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
         },
         {
-          id: "salad", name: "Green Goddess Salad", tag: "Salad", img: "assets/current/salad.jpg",
+          id: "salad", name: "Green Goddess Salad", tag: "Salad", img: "/assets/current/salad.jpg",
           desc: "Diced lemon herb chicken over shredded purple cabbage and kale with pickled red onion, cucumber, roasted chickpeas, red grapes, toasted pumpkin seeds and dried apricots, with tahini green goddess on the side.",
           cal: 479, protein: 45, fat: 20, fiber: 10, carbs: 31,
           diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
         },
         {
-          id: "vegetarian", name: "Thai Coconut Curry Bowl", tag: "Vegetarian", img: "assets/current/veg.jpg",
+          id: "vegetarian", name: "Thai Coconut Curry Bowl", tag: "Vegetarian", img: "/assets/current/veg.jpg",
           desc: "Marinated tofu with a thai coconut curry sauce and roasted bell peppers and broccoli and shredded cabbage over jasmine rice.",
           cal: 683, protein: 46, fat: 32, fiber: 9, carbs: 47,
           diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
@@ -166,6 +168,62 @@
 
   var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  var PROMO_LABELS = {
+    welcome: "Welcome offer",
+    ws: "Wellness credit",
+    db: "Date Ball credit",
+    in: "Welcome back credit"
+  };
+
+  function discountFor(meals, wellnessShots, dateBalls) {
+    if (MODE === "welcome") return meals >= 7 ? 40 : meals >= 5 ? 20 : 0;
+    if (MODE === "ws") return meals >= 5 && wellnessShots >= 1 ? 25 : 0;
+    if (MODE === "db") return meals >= 5 && dateBalls >= 1 ? 25 : 0;
+    if (MODE === "in") return meals >= 5 ? 25 : 0;
+    return 0;
+  }
+
+  function promoHint(c) {
+    if (MODE === "active" || c.discount) return "";
+    if (MODE === "welcome") {
+      return c.meals < 5 ? " · $20 off at 5 meals" : " · $40 off at 7";
+    }
+    if (MODE === "ws") {
+      if (c.wellnessShots < 1 && c.meals < 5) return " · add Wellness Shots + " + (5 - c.meals) + " more for $25 off";
+      return c.wellnessShots < 1 ? " · add Wellness Shots for $25 off" : " · add " + (5 - c.meals) + " more for $25 off";
+    }
+    if (MODE === "db") {
+      if (c.dateBalls < 1 && c.meals < 5) return " · add Date Ball Collection + " + (5 - c.meals) + " more for $25 off";
+      return c.dateBalls < 1 ? " · add Date Ball Collection for $25 off" : " · add " + (5 - c.meals) + " more for $25 off";
+    }
+    return " · $25 off at 5 meals";
+  }
+
+  /* The same page is safely reused for all member cohorts. Only the
+     path-selected offer and the active-member header treatment vary. */
+  (function configureModePresentation() {
+    var body = document.body;
+    var ribbon = document.querySelector(".m-ribbon");
+    if (window.HAVN_MENU_CITY === "SD") {
+      var cityLabel = document.querySelector(".topbar-city");
+      if (cityLabel) cityLabel.textContent = "SoCal";
+    }
+    if (MODE === "active") {
+      body.classList.add("active-menu");
+      return;
+    }
+    if (!ribbon || MODE === "welcome") return;
+    var isWellness = MODE === "ws";
+    var isDateBall = MODE === "db";
+    var title = isWellness ? "Wellness Shots" : isDateBall ? "Date Ball Collection" : "Welcome Back";
+    var qualifier = isWellness ? "5 meals + Wellness Shots" : isDateBall ? "5 meals + Date Ball Collection" : "on 5 meals";
+    ribbon.setAttribute("aria-label", "25 dollar credit " + qualifier + ", applied automatically");
+    ribbon.innerHTML = '<span class="m-ribbon-sheen" aria-hidden="true"></span>' +
+      '<p class="m-ribbon-kicker">$25 Credit &middot; ' + title + '</p>' +
+      '<div class="m-ribbon-amts m-ribbon-amts-single"><span class="m-ribbon-amt">$<b>25</b> off <i>' + qualifier + '</i></span></div>' +
+      '<p class="m-ribbon-note">Applied automatically</p>';
+  })();
+
   /* The label always identifies the Sunday delivery the menu is for. */
   (function () {
     var dateLabel = document.getElementById("m-menu-date");
@@ -183,6 +241,7 @@
      This is a customer promise, not a loading indicator. Keep the saved
      amounts visible even if a device delays or stops animation. */
   (function () {
+    if (MODE !== "welcome") return;
     var nums = [document.getElementById("m-rb-0"), document.getElementById("m-rb-1")];
     if (!nums[0] || !nums[1]) return;
     var TARGETS = [20, 40];
@@ -299,9 +358,11 @@
       else meals += n;
       subtotal += n * priceForSlot(id);
     });
+    var wellnessShots = qty.wellness_shots || 0;
+    var dateBalls = qty.date_balls || 0;
     var equivalents = meals + sides / 3 + addons;
-    var discount = meals >= 7 ? 40 : meals >= 5 ? 20 : 0;
-    return { meals: meals, sides: sides, addons: addons, subtotal: subtotal, equivalents: equivalents, discount: discount };
+    var discount = discountFor(meals, wellnessShots, dateBalls);
+    return { meals: meals, sides: sides, addons: addons, wellnessShots: wellnessShots, dateBalls: dateBalls, subtotal: subtotal, equivalents: equivalents, discount: discount };
   }
 
   function setQty(id, n) {
@@ -550,12 +611,10 @@
       if (!ready) {
         var needMeals = Math.ceil(4 - c.equivalents - 1e-9);
         hint = " · add " + needMeals + " more";
-      } else if (c.meals < 5) {
-        hint = " · $20 off at 5 meals";
-      } else if (c.meals < 7) {
-        hint = " · $40 off at 7";
+      } else {
+        hint = promoHint(c);
       }
-      barTotal.textContent = money(c.subtotal - c.discount) + (c.discount ? " after offer" : "") + hint;
+      barTotal.textContent = money(c.subtotal - c.discount) + (c.discount ? " after " + PROMO_LABELS[MODE] : "") + hint;
       bar.classList.toggle("m-bar-ready", ready);
     }
     renderSheet(c);
@@ -568,6 +627,7 @@
   var rItems = document.getElementById("m-r-items");
   var rSub = document.getElementById("m-r-sub");
   var rOfferRow = document.getElementById("m-r-offer-row");
+  var rOfferLabel = document.getElementById("m-r-offer-label");
   var rOffer = document.getElementById("m-r-offer");
   var rTotal = document.getElementById("m-r-total");
   var gate = document.getElementById("m-gate");
@@ -648,6 +708,7 @@
     rItems.textContent = bits.length ? bits.join(" · ") : "0 meals";
     rSub.textContent = money(c.subtotal);
     rOfferRow.hidden = !c.discount;
+    if (rOfferLabel && PROMO_LABELS[MODE]) rOfferLabel.textContent = PROMO_LABELS[MODE];
     rOffer.innerHTML = "&ndash;" + money(c.discount);
     rTotal.textContent = money(Math.max(0, c.subtotal - c.discount));
 

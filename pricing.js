@@ -5,17 +5,41 @@
 (function (root) {
   "use strict";
 
+  /* Every customer URL serves this one screen. Keep the cohort determination
+     path-based so Netlify rewrites cannot accidentally turn a member into a
+     welcome customer. The dated weekly aliases have their prefix removed. */
+  function menuMode() {
+    var parts = (root.location.pathname || "/").split("/").filter(Boolean);
+    var isSdRoute = parts.indexOf("sd") !== -1;
+    if (/^aug\d+$/i.test(parts[0] || "")) parts.shift();
+    /* SoCal uses an optional city segment in some weekly campaign links. */
+    if (parts[0] === "sd" || parts[0] === "dc") parts.shift();
+    var first = parts[0] || "";
+    var qs = new URLSearchParams(root.location.search || "");
+    root.HAVN_MENU_CITY = (isSdRoute || qs.has("sd")) ? "SD" : "DC";
+    if (qs.has("welcome")) return "welcome";
+    if (qs.has("ws")) return "ws";
+    if (qs.has("db")) return "db";
+    if (qs.has("in")) return "in";
+    if (first === "welcome" || first === "ws" || first === "db" || first === "in") return first;
+    return "active";
+  }
+
+  var mode = menuMode();
+  root.HAVN_MENU_MODE = mode;
+  var memberMealPrice = mode === "welcome" ? 28 : 25;
+
   var SLOT_PRICES = Object.freeze({
-    cheat: 28,
-    pasta: 28,
-    chicken: 28,
-    chicken_2: 28,
-    beef: 28,
-    seafood: 28,
-    seafood_2: 28,
+    cheat: memberMealPrice,
+    pasta: memberMealPrice,
+    chicken: memberMealPrice,
+    chicken_2: memberMealPrice,
+    beef: memberMealPrice,
+    seafood: memberMealPrice,
+    seafood_2: memberMealPrice,
     salad: 25,
     salad_2: 25,
-    vegetarian: 28,
+    vegetarian: 25,
     oats: 10,
     chia: 10,
     chia_2: 10,
@@ -37,4 +61,3 @@
 
   root.HAVN_PRICING = Object.freeze({ priceForSlot: priceForSlot });
 })(window);
-

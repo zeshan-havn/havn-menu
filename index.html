@@ -6,16 +6,16 @@
 <title>Havn Club — This week's menu</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%230A1612'/%3E%3Ccircle cx='16' cy='16' r='11.5' fill='none' stroke='%23C4A87C' stroke-width='1.4'/%3E%3Ctext x='16' y='21.5' text-anchor='middle' font-family='Georgia,serif' font-style='italic' font-size='15' fill='%23C4A87C'%3EH%3C/text%3E%3C/svg%3E">
 <style>
-@font-face{font-family:'Cormorant Garamond';src:url('assets/fonts/cormorant-latin-400-normal.woff2') format('woff2');font-style:normal;font-weight:400;font-display:swap}
-@font-face{font-family:'Cormorant Garamond';src:url('assets/fonts/cormorant-latin-500-normal.woff2') format('woff2');font-style:normal;font-weight:500;font-display:swap}
-@font-face{font-family:'Cormorant Garamond';src:url('assets/fonts/cormorant-latin-600-normal.woff2') format('woff2');font-style:normal;font-weight:600;font-display:swap}
-@font-face{font-family:'Cormorant Garamond';src:url('assets/fonts/cormorant-latin-400-italic.woff2') format('woff2');font-style:italic;font-weight:400;font-display:swap}
-@font-face{font-family:'Cormorant Garamond';src:url('assets/fonts/cormorant-latin-500-italic.woff2') format('woff2');font-style:italic;font-weight:500;font-display:swap}
-@font-face{font-family:'Cormorant Garamond';src:url('assets/fonts/cormorant-latin-600-italic.woff2') format('woff2');font-style:italic;font-weight:600;font-display:swap}
-@font-face{font-family:'DM Sans';src:url('assets/fonts/dm-sans-latin-variable.woff2') format('woff2');font-style:normal;font-weight:100 900;font-display:swap}
+@font-face{font-family:'Cormorant Garamond';src:url('/assets/fonts/cormorant-latin-400-normal.woff2') format('woff2');font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:'Cormorant Garamond';src:url('/assets/fonts/cormorant-latin-500-normal.woff2') format('woff2');font-style:normal;font-weight:500;font-display:swap}
+@font-face{font-family:'Cormorant Garamond';src:url('/assets/fonts/cormorant-latin-600-normal.woff2') format('woff2');font-style:normal;font-weight:600;font-display:swap}
+@font-face{font-family:'Cormorant Garamond';src:url('/assets/fonts/cormorant-latin-400-italic.woff2') format('woff2');font-style:italic;font-weight:400;font-display:swap}
+@font-face{font-family:'Cormorant Garamond';src:url('/assets/fonts/cormorant-latin-500-italic.woff2') format('woff2');font-style:italic;font-weight:500;font-display:swap}
+@font-face{font-family:'Cormorant Garamond';src:url('/assets/fonts/cormorant-latin-600-italic.woff2') format('woff2');font-style:italic;font-weight:600;font-display:swap}
+@font-face{font-family:'DM Sans';src:url('/assets/fonts/dm-sans-latin-variable.woff2') format('woff2');font-style:normal;font-weight:100 900;font-display:swap}
 </style>
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="menu.css">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/menu.css">
 </head>
 <body class="menu-page">
 <div id="root">
@@ -181,7 +181,7 @@
 
   <ul class="m-receipt">
     <li><span id="m-r-items">0 meals</span><i></i><span id="m-r-sub">$0</span></li>
-    <li class="m-r-offer" id="m-r-offer-row" hidden><span>Welcome offer</span><i></i><span id="m-r-offer">&ndash;$0</span></li>
+    <li class="m-r-offer" id="m-r-offer-row" hidden><span id="m-r-offer-label">Welcome offer</span><i></i><span id="m-r-offer">&ndash;$0</span></li>
     <li class="m-r-total"><span>Estimated total</span><i></i><span id="m-r-total">$0</span></li>
   </ul>
   <p class="m-gate" id="m-gate" hidden></p>
@@ -200,10 +200,10 @@
   <a class="m-sheet-skip" href="sms:" data-skip-direct>Skip</a>
 </section>
 
-<script src="config.js"></script>
-<script src="intake.js"></script>
-<script src="pricing.js"></script>
-<script src="menu.js"></script>
+<script src="/config.js"></script>
+<script src="/intake.js"></script>
+<script src="/pricing.js"></script>
+<script src="/menu.js"></script>
 </div>
 </body>
 </html>
