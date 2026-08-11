@@ -2,9 +2,11 @@
 
 ## Product boundary
 
-This is the weekly ordering surface for existing Havn members. It borrows the acquisition lander's premium art direction—forest, cream, brass, Cormorant display type, real food photography, and calm editorial rhythm—but it does not inherit prospect signup, SMS-list opt-in, or welcome-offer framing.
+> You duplicated the wrong page for the foundation. Here is the page https://havnclub.com/dmv/menu (this is for dc, We can work on that as the foundation and then you can convert it to the SoCal one version later when we finalize).
 
-The existing cart, minimum-order rules, delivery/container choices, dietary notes, and real SMS order draft remain the business behavior.
+The local review surface duplicates the live DC menu page as-is: the DC · MD · VA header, welcome ribbon, exact menu-card hierarchy, draft sheet, and floating dock. This is the visual and interaction foundation for later iteration; it is not yet a production conversion to the member-menu routes.
+
+It uses the current Aug 16 menu data, local current meal images, and first-party Cormorant/DM Sans files. This branch is local-only: do not push or deploy it before design review.
 
 ## Baseline teardown
 

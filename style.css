@@ -1,0 +1,1869 @@
+/* ═══════════════════════════════════════════════════════════════
+   HAVN · "A week, in messages" — design-lab experiment
+   The conversation IS the page: Havn opens with the how-it-works
+   story, ghost replies carry the rest. Forest field, cream paper,
+   brass foil. Mobile-first at 402 × 874; sanity at 320.
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  --forest: #0A1612;
+  --forest-2: #0E1F19;
+  --forest-3: #16281F;
+  --cream: #F5F1EA;
+  --cream-2: #EFE9DF;
+  --paper: #FBF8F1;
+  --brass: #C4A87C;
+  --brass-2: #A89060;
+  --brass-ink: #7A6540;
+  --charcoal: #1C1C1A;
+  --ink-soft: #5C5A55;
+  --cream-dim: rgba(245, 241, 234, 0.62);
+  --hairline-dark: rgba(196, 168, 124, 0.28);
+  --hairline-light: #DCD5C9;
+  --blue: #4E95FF;
+  --blue-deep: #2570EA;
+  --blue-ghost: #A9CDFF;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+  --ease-out: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-spring: cubic-bezier(0.34, 1.45, 0.44, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* THE DECK. The page itself never scrolls — sections are slides on a
+   transformed rail inside a fixed box. This is what makes a slide
+   exactly the visible screen: `100svh` sections were sized to the
+   small viewport (Safari's toolbar OUT) while the visitor scrolls
+   with it collapsed, so every section was ~160px shorter than the
+   screen and could never look snapped. --vh is measured from the
+   visual viewport in JS; with no page scroll the browser chrome
+   never changes state, so it is measured once and stays honest. */
+/* SCOPED to the deck page. style.css is shared with menu.html, which
+   is an ordinary scrolling document — an unscoped `overflow: hidden`
+   here clamps the menu to one screen and buries the whole menu below
+   the fold. */
+html.deck, html.deck body {
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+body {
+  background: var(--forest);
+  color: var(--cream);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+#deck {
+  position: fixed;
+  inset: 0;
+  height: var(--vh, 100svh);
+  overflow: hidden;
+  z-index: 1;
+}
+
+#rail {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+
+/* slides stack down the rail; JS sets --i per slide */
+.slide {
+  position: absolute;
+  left: 0; right: 0;
+  top: 0;
+  height: var(--vh, 100svh);
+  transform: translate3d(0, calc(var(--i, 0) * var(--vh, 100svh)), 0);
+}
+
+/* the tail card is a SHEET over the offer slide, not a slide of its
+   own: it stops short so the offer label stays visible behind it */
+.sheet {
+  position: absolute;
+  left: 0; right: 0;
+  top: 0;
+  /* exactly the area it will occupy at rest, so its contents are sized
+     to what the visitor actually sees under the offer label */
+  height: calc(var(--vh, 100svh) - var(--sheet-rest, 132px));
+  z-index: 5;
+  will-change: transform;
+  transform: translate3d(0, var(--vh, 100svh), 0); /* parked off-screen */
+}
+
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+
+/* page column — designed for phones, politely centered elsewhere */
+#root { display: block; }
+.act, .ticker, .foot { width: 100%; }
+body > #root > * { max-width: 480px; margin-left: auto; margin-right: auto; }
+#root > .grain { max-width: none; }
+
+/* ── film grain over everything ─────────────────────────────── */
+.grain {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.32;
+  mix-blend-mode: soft-light;
+  /* the -50%/200% box blended 2.4 viewports of noise (7.6 Mpx at
+     DPR 3) and was re-rasterised whenever anything under it moved.
+     The tile is uniform, so a 1:1 fixed box is pixel-identical —
+     and on its own compositor layer Safari blends a static texture
+     on the GPU instead of repainting it. */
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  contain: layout paint style;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+}
+
+/* anything scrolled out of view stops animating — 30 bobbing shelf
+   cards and the ticker were burning compositor time behind the
+   conversation */
+.parked, .parked * { animation-play-state: paused !important; }
+
+/* ── top bar ────────────────────────────────────────────────── */
+.topbar {
+  position: fixed;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 100%; max-width: 480px;
+  z-index: 50;
+  display: flex; align-items: center; gap: 9px;
+  padding: 14px 20px;
+  transition: background 0.4s ease, backdrop-filter 0.4s ease;
+}
+.topbar.solid {
+  background: rgba(10, 22, 18, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.topbar-mark {
+  display: flex; align-items: center; justify-content: center;
+  width: 27px; height: 27px;
+  border: 1px solid var(--brass);
+  border-radius: 50%;
+  font-family: var(--serif); font-style: italic;
+  color: var(--brass); font-size: 15px;
+}
+.topbar-name { font-weight: 700; font-size: 15px; letter-spacing: 0.01em; }
+.topbar-city {
+  margin-left: auto;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--brass);
+}
+
+/* ── shared act scaffolding ─────────────────────────────────── */
+.act { position: relative; padding: 92px 22px; }
+
+.act-label {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  margin-bottom: 40px;
+  white-space: nowrap;
+}
+.act-label::after { content: ""; flex: 1; height: 1px; }
+
+/* reveal primitive */
+.rev {
+  opacity: 0;
+  transform: translateY(26px);
+  filter: blur(5px);
+  transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out), filter 0.9s var(--ease-out);
+}
+.rev.on { opacity: 1; transform: none; filter: none; }
+
+/* ═══════════ ACT I · HERO — the conveyor scene ═══════════
+   Pinned: the wrap gives the scene its scroll span; the hero
+   holds the screen while the belt drifts and the spec rows
+   draw themselves in. */
+/* sections are 100vh steps: the stepper (main.js) moves exactly one
+   section per gesture — no scrub spans anywhere */
+.hero {
+  position: relative;
+  height: 100%;
+  display: flex; flex-direction: column;
+  justify-content: flex-start;
+  padding: 104px 0 58px;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 90% at 85% -10%, rgba(196, 168, 124, 0.14), transparent 55%),
+    radial-gradient(140% 100% at 0% 110%, rgba(27, 94, 64, 0.35), transparent 60%),
+    var(--forest);
+}
+
+.hero-eyebrow {
+  margin: 0 22px 16px;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.26em; text-transform: uppercase;
+  color: var(--brass);
+  animation: rise 1.2s var(--ease-out) 0.15s both;
+}
+
+.hero-title { margin: 0 22px; font-weight: 500; }
+.hero-word {
+  display: block;
+  font-family: var(--serif);
+  font-size: clamp(66px, 24vw, 98px);
+  line-height: 0.88;
+  letter-spacing: -0.03em;
+  color: var(--cream);
+  animation: blurIn 1.6s var(--ease-out) 0.25s both;
+}
+.hero-line {
+  display: block;
+  font-family: var(--serif);
+  font-size: clamp(27px, 9.2vw, 38px);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  color: var(--brass);
+  margin-top: 10px;
+  animation: blurIn 1.6s var(--ease-out) 0.55s both;
+}
+
+/* the conveyor — cream cards riding a slow belt through the dark.
+   Whole cards enter and leave; nothing fades, nothing is clipped
+   mid-name. Scroll throws velocity into the drift. */
+.hero-belt {
+  width: 100%;
+  overflow: hidden;
+  margin-top: auto;
+  padding: 16px 0 18px;
+  perspective: 900px;
+  animation: rise 1.2s var(--ease-out) 0.75s both;
+}
+.hero-belt-track {
+  display: flex;
+  gap: 12px;
+  width: max-content;
+  will-change: transform;
+  transform-style: preserve-3d;
+  padding-left: 6px;
+}
+.bcard {
+  width: 148px;
+  flex-shrink: 0;
+  border-radius: 15px;
+  overflow: hidden;
+  background: var(--paper);
+  box-shadow: 0 22px 34px rgba(0, 0, 0, 0.42);
+}
+.bcard-v0 { transform: translateY(2px) rotate(-2.2deg) rotateY(6deg); }
+.bcard-v1 { transform: translateY(14px) rotate(1.8deg) rotateY(-5deg); box-shadow: 0 26px 40px rgba(0, 0, 0, 0.46); }
+.bcard-v2 { transform: translateY(6px) rotate(-0.8deg) rotateY(4deg); }
+.bcard-v3 { transform: translateY(17px) rotate(2.4deg) rotateY(-6deg); box-shadow: 0 28px 42px rgba(0, 0, 0, 0.48); }
+.bcard-v4 { transform: translateY(9px) rotate(-1.6deg) rotateY(5deg); }
+.bcard-photo { width: 100%; height: 100px; background-size: cover; background-position: 50%; }
+.bcard-body { display: flex; flex-direction: column; gap: 2px; padding: 8px 11px 10px; }
+.bcard-tag {
+  letter-spacing: 0.1em; text-transform: uppercase;
+  font-weight: 700; color: var(--brass-ink); font-size: 9px; line-height: 12px;
+}
+.bcard-name {
+  font-family: var(--serif); font-weight: 600;
+  color: var(--charcoal); font-size: 15.5px; line-height: 17px;
+}
+
+/* the house facts as a spec sheet — the whole stack is visible
+   from the start as a gradient (top solid, fading toward the
+   bottom); each row solidifies in turn as the scene plays, and
+   scrolling accelerates the ink. */
+.hero-spec {
+  display: flex; flex-direction: column; gap: 13px;
+  margin: 16px 22px auto;
+}
+.spec-row {
+  display: flex; align-items: center; gap: 12px;
+}
+.spec-row span {
+  flex-shrink: 0;
+  font-size: 11.5px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--cream);
+}
+.spec-row i {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--brass), rgba(196, 168, 124, 0.25));
+}
+
+.hero-cue {
+  position: absolute;
+  bottom: 26px; left: 22px;
+  display: flex; align-items: center; gap: 10px;
+  animation: rise 1.2s var(--ease-out) 1.5s both;
+}
+.hero-cue-line {
+  width: 44px; height: 1px;
+  background: var(--brass);
+  transform-origin: left;
+  animation: cueStretch 2.4s var(--ease-out) infinite;
+}
+.hero-cue-text {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--cream-dim);
+}
+
+@keyframes blurIn {
+  from { opacity: 0; filter: blur(22px); transform: translateY(14px); }
+  to { opacity: 1; filter: blur(0); transform: none; }
+}
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes dotPulse {
+  0%, 60%, 100% { opacity: 0.35; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(-3px); }
+}
+@keyframes cueStretch {
+  0%, 100% { transform: scaleX(0.45); opacity: 0.5; }
+  50% { transform: scaleX(1); opacity: 1; }
+}
+
+/* ═══════════ ACT II · THE CONVERSATION ═══════════
+   One pinned scene. The stamp sits at the top; the thread
+   assembles beneath it and scrolls inside its own window —
+   like a phone — while the page holds. */
+/* exactly one screen: the fence holds the page at this pin while
+   the conversation plays; the stepper steps in and out of it */
+.convo-scene {
+  position: relative;
+  height: 100%;
+  display: flex; flex-direction: column;
+  justify-content: flex-start;
+  /* the CTA dock sits UNDER the whole thread, never over it: the scene
+     reserves the dock's real measured height (--dock-space, set in JS
+     from its box + safe-area offset) so the thread window's BOX ends
+     above it. The old 96px guess inside the scroller was smaller than
+     the dock actually is, so replies slid underneath it. */
+  padding: 84px 22px var(--dock-space, 112px);
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--forest) 0%, var(--forest-2) 60%, var(--forest-2) 100%);
+}
+
+/* messages used to be guillotined mid-word at the window's top edge,
+   which reads as a rendering fault. iMessage dissolves content under
+   its nav bar; this is the same fade, painted (not masked, which
+   would promote the scroller and repaint it every frame). */
+.convo-scene::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; top: 0;
+  height: 124px;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(180deg,
+    var(--forest) 0%, var(--forest) 66%, rgba(10, 22, 18, 0) 100%);
+}
+
+.scene-stamp {
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--cream-dim);
+  text-align: center;
+  margin-bottom: 18px;
+  flex-shrink: 0;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+}
+.scene-stamp.on { opacity: 1; transform: none; }
+
+/* the phone window: fixed height, thread scrolls inside it.
+   (No overscroll-behavior:contain here on purpose — once the thread
+   overflows, contain would trap gestures inside the window and the
+   visitor could never scroll on to the next section.) */
+.thread-window {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  contain: paint;
+  padding-bottom: 8px; /* the scene reserves the dock's space now */
+  /* we own this scroller's position; WebKit's scroll anchoring fights
+     the follower whenever a row grows (photos decoding) */
+  overflow-anchor: none;
+}
+.thread-window::-webkit-scrollbar { display: none; }
+/* the fence's receipt for a swallowed swipe — a short give against
+   the gesture, then a spring back (see holdTick in main.js) */
+.thread-window {
+  transition: transform 0.26s var(--ease-spring);
+}
+.thread-window.nudge {
+  transform: translateY(-9px);
+  transition: transform 0.11s cubic-bezier(0.3, 0, 0.2, 1);
+}
+/* iMessage anchoring: short threads sit at the BOTTOM of the window
+   (the spacer soaks up the empty space above); new messages push
+   older ones up */
+.thread-spacer { flex: 1 0 0; }
+.thread-window > .thread, .thread-window > .replies,
+.thread-window > .convo-coda, .thread-window > .thread-hold { flex-shrink: 0; }
+.thread-hold { height: 0; }
+
+.thread { display: flex; flex-direction: column; }
+
+/* A message arrival is compositor-only.
+   The row takes its FINAL height the instant it is inserted — the
+   old grid-template-rows 0fr→1fr animated LAYOUT inside a scroller,
+   reflowing the whole thread (and every open message) 60× per
+   arrival, while the bubble's padding+margin snapped 27px in one
+   frame. Layout and compositor desynced; that was the "popping".
+   The push the eye reads as the thread growing is now the follower
+   gliding the window down — which is what a real phone does. */
+.tmsg {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+/* A row that has not arrived yet occupies NOTHING. Un-mounted rows
+   used to sit in the flow at full height while invisible, so the
+   thread anchored to the bottom of RESERVED space and the visible
+   bubbles floated near the top of an empty screen. main.js mounts a
+   row (one layout pass) at the moment it reveals. */
+.tmsg:not(.mounted), .convo-coda:not(.mounted) { display: none; }
+
+.bubble {
+  opacity: 0;
+  transform: translateY(14px) scale(0.94);
+  transform-origin: 0 100%;  /* grows out of the sender's corner */
+  /* background/colour are in the transition so the typing pill can
+     CROSS-FADE into the message bubble it becomes — the box itself
+     grows in one layout pass (never animated: that was the jank) */
+  transition: opacity 0.34s var(--ease-out), transform 0.52s var(--ease-spring),
+              background-color 0.24s ease, color 0.24s ease, border-color 0.24s ease;
+  font-size: 17.5px;
+  line-height: 25px;
+  border-radius: 22px;
+  /* final box from the start — nothing about the box may snap */
+  padding: 14px 17px;
+  margin-bottom: 14px;
+}
+.tmsg.show .bubble { opacity: 1; transform: none; }
+/* promoted only while it is actually arriving */
+.tmsg.arriving .bubble { will-change: opacity, transform; }
+
+.bubble.in {
+  align-self: flex-start;
+  width: fit-content;
+  max-width: 88%;
+  background: var(--cream);
+  color: var(--charcoal);
+  border-bottom-left-radius: 6px;
+}
+
+/* typing — three live dots in a quiet bubble */
+.tmsg.t-row .bubble { transition-duration: 0.26s; }
+.bubble.t-typing {
+  display: inline-flex; gap: 5px; align-items: center;
+  width: fit-content;
+  padding: 15px 17px;
+  background: var(--forest-3);
+  border: 1px solid rgba(245, 241, 234, 0.08);
+}
+.bubble.t-typing i {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--cream-dim);
+  animation: dotPulse 1.3s ease-in-out infinite;
+}
+.bubble.t-typing i:nth-child(2) { animation-delay: 0.18s; }
+.bubble.t-typing i:nth-child(3) { animation-delay: 0.36s; }
+
+/* media messages: the visual cards Havn sends.
+   No filter here — drop-shadow rasterises the card's alpha mask
+   into its own render surface and redoes it whenever anything
+   inside moves (the food strip drifts forever, the receipt slides,
+   the SVG draws). The shadow lives on .vc as a box-shadow instead:
+   same silhouette, a shape the compositor already knows. */
+.bubble.media {
+  align-self: flex-start;
+  width: fit-content;
+  max-width: 100%;
+  padding: 0;
+  background: transparent;
+}
+
+/* the in-thread CTA is a bare <a>, not a .bubble — give it the
+   same arrival so it doesn't pop */
+.tmsg > .t-cta {
+  opacity: 0;
+  transform: translateY(14px) scale(0.94);
+  transform-origin: 0 100%;
+  transition: opacity 0.34s var(--ease-out), transform 0.52s var(--ease-spring);
+}
+.tmsg.show > .t-cta { opacity: 1; transform: none; }
+.tmsg.show > .t-cta:active { transform: scale(0.96); }
+
+.vc {
+  background: var(--paper);
+  color: var(--charcoal);
+  border-radius: 20px 20px 20px 6px;
+  overflow: hidden;
+  width: min(86vw, 348px);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.38);
+}
+
+.v-head {
+  font-size: 9.5px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ink-soft);
+  text-align: center;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed var(--hairline-light);
+  margin-bottom: 12px;
+}
+
+/* ── visual · the weekly rhythm draws itself ── */
+.v-week { padding: 18px 10px 12px; }
+.v-week svg { display: block; width: 100%; height: auto; }
+.rl-path {
+  fill: none;
+  stroke: var(--brass);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1.9s cubic-bezier(0.4, 0, 0.2, 1) 0.15s;
+}
+.land .rl-path { stroke-dashoffset: 0; }
+.rl-dot { fill: var(--brass); opacity: 0; transition: opacity 0.4s ease; }
+.rl-day {
+  font-family: var(--serif); font-weight: 600; font-size: 17px;
+  fill: var(--charcoal);
+  opacity: 0; transition: opacity 0.5s ease;
+}
+.rl-sub {
+  font-family: var(--sans); font-weight: 700; font-size: 8.5px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  fill: var(--brass-ink);
+  opacity: 0; transition: opacity 0.5s ease;
+}
+.land .d1 { opacity: 1; transition-delay: 0.5s; }
+.land .d2 { opacity: 1; transition-delay: 1.0s; }
+.land .d3 { opacity: 1; transition-delay: 1.5s; }
+.rl-dot.d1 { transition-delay: 0.45s; }
+.rl-dot.d2 { transition-delay: 0.95s; }
+.rl-dot.d3 { transition-delay: 1.45s; }
+.v-week-foot {
+  text-align: right;
+  font-family: var(--serif);
+  font-size: 14.5px;
+  color: var(--brass-ink);
+  padding: 2px 8px 4px;
+  opacity: 0; transform: translateY(6px);
+  transition: opacity 0.6s var(--ease-out) 2s, transform 0.6s var(--ease-out) 2s;
+}
+.land .v-week-foot { opacity: 1; transform: none; }
+
+/* ── visual · the honest receipt PRINTS out of a message ──
+   Header bubble carries the slot; the paper pushes out of it
+   one line at a time. */
+/* the receipt is two shaped pieces, so it shadows per piece
+   (.v-print-paper already carries its own) */
+.v-print {
+  width: min(78vw, 296px);
+  background: transparent;
+  border-radius: 0;
+  overflow: visible;
+  box-shadow: none;
+}
+.v-print-head {
+  position: relative;
+  z-index: 2;
+  background: var(--paper);
+  border-radius: 20px 20px 20px 6px;
+  padding: 13px 15px 12px;
+  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.34);
+}
+.v-print-brand {
+  font-size: 9.5px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ink-soft);
+  text-align: center;
+  margin-bottom: 10px;
+}
+.v-print-slot {
+  position: relative;
+  width: 84%;
+  margin: 0 auto;
+  height: 10px;
+  border-radius: 6px;
+  background: linear-gradient(180deg, #1D3129, #0C1A15);
+  border: 1px solid rgba(196, 168, 124, 0.45);
+}
+/* inset, so it reads as a machined printer slot. Full-bleed at 6% it
+   was a heavy black bar across the header and scanned as a stray
+   scrollbar rather than as part of the object. */
+.v-print-slot i {
+  position: absolute;
+  left: 14%; right: 14%; top: 50%;
+  height: 2px;
+  transform: translateY(-50%);
+  background: #050B09;
+  border-radius: 1px;
+  box-shadow: 0 1px 0 rgba(196, 168, 124, 0.22);
+}
+.v-print-slot.pulse::after {
+  content: "";
+  position: absolute; inset: -2px;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(196, 168, 124, 0.65);
+  animation: slotPulse 0.4s ease-out both;
+}
+@keyframes slotPulse { from { opacity: 1; } to { opacity: 0; } }
+
+.v-print-window {
+  position: relative;
+  overflow: hidden;
+  width: calc(100% - 22px);
+  margin: -6px auto 0;
+  padding-top: 6px;
+}
+.v-print-paper {
+  position: relative;
+  background: var(--paper);
+  color: var(--charcoal);
+  padding: 12px 14px 20px;
+  transform: translateY(-97%);
+  transition: transform 0.45s var(--ease-out);
+  will-change: transform;
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.4);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 7px),
+    95% 100%, 90% calc(100% - 7px), 85% 100%, 80% calc(100% - 7px),
+    75% 100%, 70% calc(100% - 7px), 65% 100%, 60% calc(100% - 7px),
+    55% 100%, 50% calc(100% - 7px), 45% 100%, 40% calc(100% - 7px),
+    35% 100%, 30% calc(100% - 7px), 25% 100%, 20% calc(100% - 7px),
+    15% 100%, 10% calc(100% - 7px), 5% 100%, 0 calc(100% - 7px));
+}
+.v-print-paper [data-l] {
+  opacity: 0;
+  transform: translateY(5px);
+  transition: opacity 0.35s var(--ease-out), transform 0.35s var(--ease-out);
+}
+.v-print-paper [data-l].printed { opacity: 1; transform: none; }
+
+.v-print-price { display: flex; align-items: baseline; gap: 10px; }
+.v-print-price b {
+  font-family: var(--serif); font-weight: 500;
+  font-size: 52px; line-height: 0.9; letter-spacing: -0.03em;
+}
+.v-print-price i {
+  font-family: var(--serif); font-style: italic;
+  font-size: 14.5px; line-height: 1.2;
+  color: var(--brass-ink);
+}
+.v-print-lines { list-style: none; margin-top: 9px; }
+.v-print-lines li {
+  display: flex; align-items: baseline; gap: 8px;
+  padding: 6px 0;
+  font-size: 12.5px;
+}
+.v-print-lines li span { color: var(--ink-soft); }
+.v-print-lines li i { flex: 1; border-bottom: 1px dotted var(--hairline-light); }
+.v-print-lines li b { font-family: var(--serif); font-weight: 600; font-size: 18px; color: #1B5E40; }
+.v-print-foot {
+  margin-top: 8px;
+  padding-top: 9px;
+  border-top: 1px dashed var(--hairline-light);
+  text-align: center;
+  font-size: 9.5px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-soft);
+}
+/* struck AFTER the total, across the dashed foot — at top:30% it
+   landed straight on the Delivery "$0" and multiply-blended the
+   figure into mud */
+.v-print-stamp {
+  position: absolute;
+  /* the only real whitespace on the paper: right of the $25 headline.
+     top:30% put it on the Delivery "$0"; the foot line is no better
+     (it buried "you pay only after you confirm"). */
+  right: 10px; top: 12px; bottom: auto;
+  font-family: var(--serif); font-weight: 600;
+  font-size: 12.5px; line-height: 1.05;
+  text-align: center; text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #B0443A;
+  border: 2px solid #B0443A;
+  border-radius: 7px;
+  padding: 6px 8px;
+  mix-blend-mode: multiply;
+  opacity: 0;
+  transform: rotate(-9deg) scale(2.1);
+  transition: opacity 0.25s ease-out, transform 0.3s cubic-bezier(0.2, 1.6, 0.4, 1);
+}
+.v-print-stamp.stamped { opacity: 0.85; transform: rotate(-9deg) scale(1); }
+
+/* ── visual · the food strip drifts past ── */
+.v-food { display: block; }
+.v-food-strip { overflow: hidden; }
+.v-food-track {
+  display: flex;
+  width: max-content;
+  animation: foodDrift 26s linear infinite;
+}
+.v-food-track span {
+  width: 118px; height: 94px;
+  flex-shrink: 0;
+  background-size: cover;
+  background-position: 50%;
+}
+@keyframes foodDrift { to { transform: translateX(-50%); } }
+.v-food-chips {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 7px;
+  padding: 11px 13px 0;
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: #2D4A3E;
+  opacity: 0; transform: translateY(6px);
+  transition: opacity 0.55s var(--ease-out) 0.35s, transform 0.55s var(--ease-out) 0.35s;
+}
+.land .v-food-chips { opacity: 1; transform: none; }
+.v-food-chips i { color: var(--brass); font-style: normal; font-size: 9px; }
+.v-food-more {
+  padding: 8px 13px 13px;
+  font-size: 13px; font-weight: 700;
+  color: #1B5E40;
+  opacity: 0;
+  transition: opacity 0.55s var(--ease-out) 0.7s;
+}
+.land .v-food-more { opacity: 1; }
+
+/* ── visual · delivery windows ── */
+.v-win { padding: 15px 16px 14px; }
+.v-win-row {
+  display: flex; align-items: baseline; gap: 9px;
+  padding: 8px 0;
+  opacity: 0; transform: translateX(-10px);
+  transition: opacity 0.45s var(--ease-out), transform 0.45s var(--ease-out);
+}
+.land .v-win-row { opacity: 1; transform: none; }
+.land .v-win-row:nth-of-type(1) { transition-delay: 0.2s; }
+.land .v-win-row:nth-of-type(2) { transition-delay: 0.4s; }
+.land .v-win-row:nth-of-type(3) { transition-delay: 0.6s; }
+.v-win-row + .v-win-row { border-top: 1px dashed var(--hairline-light); }
+.v-win-row b { font-family: var(--serif); font-weight: 600; font-size: 21px; }
+.v-win-row span {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--brass-ink);
+}
+.v-win-row i { flex: 1; border-bottom: 1px dotted var(--hairline-light); }
+.v-win-row em {
+  font-style: normal;
+  display: flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: var(--brass);
+  color: var(--forest);
+  font-size: 11px; font-weight: 700;
+  align-self: center;
+  transform: scale(0);
+  transition: transform 0.4s var(--ease-spring) 0.95s;
+}
+.land .v-win-row em { transform: scale(1); }
+.v-win-foot {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--hairline-light);
+  text-align: center;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.13em; text-transform: uppercase;
+  color: var(--ink-soft);
+  opacity: 0;
+  transition: opacity 0.5s var(--ease-out) 1.15s;
+}
+.land .v-win-foot { opacity: 1; }
+
+/* ── visual · the fine print strikes itself out ── */
+.v-fine { padding: 16px 16px 18px; }
+.v-fine-line {
+  padding: 7px 0;
+  font-size: 15.5px;
+  color: var(--ink-soft);
+  width: fit-content;
+  position: relative;
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-out), color 0.4s ease;
+}
+.land .v-fine-line { opacity: 1; }
+.land .v-fine-line:nth-of-type(1) { transition-delay: 0.15s; }
+.land .v-fine-line:nth-of-type(2) { transition-delay: 0.35s; }
+.land .v-fine-line:nth-of-type(3) { transition-delay: 0.55s; }
+.v-fine-line span { position: relative; }
+.v-fine-line span::after {
+  content: "";
+  position: absolute;
+  left: -2px; right: 100%;
+  top: 54%;
+  height: 1.5px;
+  background: #B0443A;
+  transition: right 0.35s var(--ease-out);
+}
+.land .v-fine-line:nth-of-type(1) span::after { right: -2px; transition-delay: 0.75s; }
+.land .v-fine-line:nth-of-type(2) span::after { right: -2px; transition-delay: 0.95s; }
+.land .v-fine-line:nth-of-type(3) span::after { right: -2px; transition-delay: 1.15s; }
+.land .v-fine-line.struck { color: rgba(92, 90, 85, 0.55); }
+.v-fine-keep {
+  margin-top: 12px;
+  font-family: var(--serif); font-weight: 600;
+  font-size: 21px; line-height: 1.15;
+  color: var(--charcoal);
+  opacity: 0; transform: translateY(8px);
+  transition: opacity 0.6s var(--ease-out) 1.5s, transform 0.6s var(--ease-out) 1.5s;
+}
+.land .v-fine-keep { opacity: 1; transform: none; }
+.v-fine-keep em { color: var(--brass-ink); }
+
+/* ── visual · the concierge contact card ── */
+.v-card {
+  display: flex; align-items: center; gap: 13px;
+  padding: 15px 17px;
+}
+.v-card-ava {
+  display: flex; align-items: center; justify-content: center;
+  width: 46px; height: 46px;
+  flex-shrink: 0;
+  border: 1.5px solid var(--brass);
+  border-radius: 50%;
+  font-family: var(--serif); font-style: italic;
+  font-size: 24px;
+  color: var(--brass-ink);
+  transform: scale(0.4);
+  opacity: 0;
+  transition: opacity 0.4s ease 0.15s, transform 0.5s var(--ease-spring) 0.15s;
+}
+.land .v-card-ava { opacity: 1; transform: scale(1); }
+.v-card-meta { display: flex; flex-direction: column; gap: 2px; }
+.v-card-meta b { font-size: 15px; font-weight: 700; }
+.v-card-meta span { font-size: 11.5px; color: var(--ink-soft); }
+.v-card-meta b, .v-card-meta span {
+  opacity: 0; transform: translateX(-6px);
+  transition: opacity 0.45s var(--ease-out) 0.4s, transform 0.45s var(--ease-out) 0.4s;
+}
+.land .v-card-meta b, .land .v-card-meta span { opacity: 1; transform: none; }
+
+/* ── the visitor's side: ghost replies → sent bubbles ── */
+.replies { display: flex; flex-direction: column; align-items: flex-end; }
+.replies[hidden] { display: none; }
+
+.replies-label {
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--cream-dim);
+  margin: 2px 2px 8px;
+  opacity: 0; transform: translateY(8px);
+  transition: opacity 0.6s var(--ease-out) 0.05s, transform 0.6s var(--ease-out) 0.05s;
+}
+.replies.live .replies-label { opacity: 1; transform: none; }
+.replies-label.gone { opacity: 0; transition-delay: 0s; transition-duration: 0.25s; }
+
+.r-row {
+  display: grid;
+  grid-template-rows: 1fr;
+  justify-items: end;
+  width: 100%;
+  transition: opacity 0.26s ease;
+}
+.r-clip {
+  overflow: hidden;
+  min-height: 0;
+  display: flex; justify-content: flex-end;
+  max-width: 100%;
+}
+/* the unchosen drafts FADE and keep their space until the rack is
+   torn down in one pass. Collapsing each row to 0fr animated the
+   thread downward for 340ms — the tapped reply visibly sank before
+   the answer arrived, which is the one direction it must never go. */
+.r-row.gone { opacity: 0; pointer-events: none; }
+/* the unchosen drafts vanish before their rows finish collapsing —
+   a squeezed dashed border otherwise reads as a stray line under
+   the sent bubble */
+.r-row.gone .ghost {
+  opacity: 0;
+  border-color: transparent;
+  transition: opacity 0.1s ease, border-color 0.1s ease;
+}
+
+.r-row .ghost {
+  text-align: left;
+  max-width: 82%;
+  margin-bottom: 7px;
+  padding: 9px 13px;
+  font-size: 15px;
+  line-height: 20px;
+  border-radius: 18px 18px 5px 18px;
+  border: 1.5px dashed rgba(120, 170, 255, 0.55);
+  background: rgba(61, 139, 255, 0.08);
+  color: var(--blue-ghost);
+  opacity: 0;
+  transform: translateY(12px) scale(0.95);
+  transition: opacity 0.5s var(--ease-out), transform 0.55s var(--ease-spring),
+    background 0.35s ease, border-color 0.35s ease, color 0.35s ease;
+}
+.replies.live .ghost { opacity: 1; transform: none; }
+.r-row .ghost:focus-visible { outline: 2px solid var(--blue-ghost); outline-offset: 3px; }
+.r-row .ghost:disabled { cursor: default; }
+.r-row .ghost.sent {
+  border-style: solid;
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--blue) 0%, var(--blue-deep) 100%);
+  color: #fff;
+  font-weight: 600;
+  opacity: 1;
+  transform: none;
+  box-shadow: 0 10px 26px rgba(37, 112, 234, 0.3);
+}
+
+/* a ghost row adopted into the thread keeps message spacing —
+   the extra top margin is the "separation" before each new
+   exchange begins */
+.r-row.inthread { margin-top: 18px; margin-bottom: 4px; }
+.r-row.inthread .ghost { margin-bottom: 10px; }
+
+/* the in-thread conversion button the concierge drops */
+.t-cta {
+  align-self: flex-start;
+  width: fit-content;
+  display: inline-flex; align-items: center;
+  min-height: 52px;
+  margin-bottom: 14px;
+  padding: 14px 24px;
+  border-radius: 20px 20px 20px 6px;
+  background: linear-gradient(135deg, var(--brass) 0%, #B29260 100%);
+  color: var(--forest);
+  font-weight: 700; font-size: 15.5px;
+  box-shadow: 0 12px 30px rgba(196, 168, 124, 0.3);
+  transition: transform 0.3s var(--ease-spring);
+}
+.t-cta:active { transform: scale(0.96); }
+
+.convo-coda {
+  margin: 16px 0 30px;
+  text-align: center;
+  font-family: var(--serif);
+  font-size: 21px;
+  color: var(--brass);
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.9s var(--ease-out) 0.3s, transform 0.9s var(--ease-out) 0.3s;
+}
+.convo-coda.show { opacity: 1; transform: none; }
+
+/* ═══════════ ACT III · THE WELCOME OFFER — coupon scene ═══════════
+   100svh of scene + 75svh of runway for the shelf card to pull over
+   the pinned coupon (one stepper step lands the shelf).
+   svh, NOT vh: every scene is sized in svh, and on iOS vh is the
+   LARGE viewport — mixing them put the shelf pin ~80px past the end
+   of the coupon scene, so the pins felt slippery on a phone and
+   nowhere else. */
+.offer-scene {
+  position: relative;
+  height: 100%;
+  display: flex; flex-direction: column;
+  justify-content: center;
+  padding: 84px 22px 26px;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 80% at 100% 0%, rgba(196, 168, 124, 0.12), transparent 55%),
+    var(--forest);
+}
+.offer-label { color: var(--brass); }
+.offer-label::after { background: var(--hairline-dark); }
+
+.coupon-stage {
+  perspective: 1100px;
+  margin: 6px 0 0;
+}
+.coupon {
+  width: min(86vw, 346px);
+  aspect-ratio: 1.586;
+  margin: 0 auto;
+  will-change: transform;
+  transform: rotateX(26deg) rotateY(-26deg) scale(0.94);
+}
+.coupon-float {
+  position: relative;
+  width: 100%; height: 100%;
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: 16px 18px;
+  background:
+    radial-gradient(130% 170% at 18% -25%, rgba(255, 255, 255, 0.38), transparent 45%),
+    linear-gradient(118deg, #9A7F4E 0%, #C4A87C 22%, #EBD9B4 40%, #B29260 58%, #CBB084 76%, #9A7F4E 100%);
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(58, 44, 20, 0.4);
+  color: #2E2210;
+}
+.coupon-float.float { animation: couponFloat 5s ease-in-out infinite; }
+@keyframes couponFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+/* the light sweep across the metal — translateX % is relative to
+   the strip's own 34% width: -130% parks it off-left, +430%
+   clears the right edge */
+.coupon-shine {
+  position: absolute;
+  top: -20%; bottom: -20%;
+  left: 0;
+  width: 34%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.55) 50%, transparent);
+  transform: translateX(-130%) skewX(-18deg);
+  will-change: transform;
+  pointer-events: none;
+}
+
+.coupon-top {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+}
+.coupon-top .coupon-brand { font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 15px; letter-spacing: 0.02em; text-transform: none; }
+.coupon-top i { font-style: normal; font-size: 9px; opacity: 0.7; }
+.coupon-top .coupon-kind { margin-left: auto; }
+
+.coupon-amounts {
+  display: flex; align-items: center; justify-content: center; gap: 16px;
+}
+.coupon-amt { display: flex; flex-direction: column; align-items: center; gap: 1px; }
+.coupon-amt b {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(34px, 10.5vw, 42px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+.coupon-amt b span { display: inline-block; min-width: 1.12em; text-align: left; }
+.coupon-amt b i {
+  font-style: italic;
+  font-size: 0.52em;
+  font-weight: 500;
+  margin-left: 3px;
+  letter-spacing: 0;
+}
+.coupon-amt em { font-family: var(--serif); font-size: 13.5px; }
+.coupon-amt.landed b { animation: amtLand 0.45s var(--ease-spring) both; }
+@keyframes amtLand {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.07); }
+  100% { transform: scale(1); }
+}
+.coupon-div { width: 1px; align-self: stretch; margin: 4px 0; background: rgba(46, 34, 16, 0.35); }
+
+.coupon-bottom {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 10px;
+  font-size: 9.5px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+}
+
+/* The offer's WORDS are just there. Only the gold card performs —
+   there is reading to do while the counters roll, and staging the copy
+   in behind them left the page half-empty on arrival. The standing
+   copy line under the coupon was cut in the Aug-3 copy pass, so the
+   CTAs carry the gap the line used to hold. */
+.offer-ctas {
+  display: flex; flex-direction: column; gap: 8px;
+  margin-top: 34px;
+}
+
+.cta-slim {
+  display: flex; flex-direction: column; align-items: center; gap: 1px;
+  padding: 9px 16px;
+  min-height: 48px;
+  justify-content: center;
+  border-radius: 14px;
+  text-align: center;
+  transition: transform 0.3s var(--ease-spring);
+}
+.cta-slim:active { transform: scale(0.97); }
+.cta-slim.primary {
+  background: linear-gradient(135deg, var(--brass) 0%, #B29260 100%);
+  box-shadow: 0 10px 28px rgba(196, 168, 124, 0.25);
+}
+.cta-slim.ghost { border: 1px solid rgba(245, 241, 234, 0.32); }
+.cta-slim-kicker {
+  font-size: 9.5px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+}
+.cta-slim.primary .cta-slim-kicker { color: rgba(10, 22, 18, 0.6); }
+.cta-slim.ghost .cta-slim-kicker { color: var(--brass); }
+.cta-slim-title { font-weight: 700; font-size: 15.5px; }
+.cta-slim.primary .cta-slim-title { color: var(--forest); }
+.cta-slim.ghost .cta-slim-title { color: var(--cream); }
+
+/* ═══════════ ACT IV · THIS WEEK — the tail card ═══════════
+   A cream card that rises over the pinned coupon (the offer
+   wrap's last stretch is its runway), then carries the shelf
+   and the footer. */
+.shelf {
+  /* .sheet owns position/size; this is just the card's own surface.
+     It is one screen tall and rides UP from below to SHEET_REST,
+     stopping short so the offer label stays visible above it. */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--cream);
+  color: var(--charcoal);
+  border-radius: 26px 26px 0 0;
+  box-shadow: 0 -18px 44px rgba(6, 12, 10, 0.4);
+  overflow: hidden;
+  padding-top: 34px;
+}
+
+.shelf-head { padding: 0 22px 6px; }
+.shelf-label {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--brass-ink);
+  white-space: nowrap;
+  margin-bottom: 14px;
+}
+.shelf-label i { flex: 1; height: 1px; background: var(--hairline-light); }
+.shelf-big {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(32px, 10.4vw, 42px);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  color: var(--charcoal);
+}
+.shelf-big em { color: var(--brass-ink); }
+
+/* a real scroller: swipe through the meals, or let it drift */
+.shelf-row {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+.shelf-row::-webkit-scrollbar { display: none; }
+.shelf-track {
+  display: flex; gap: 15px;
+  width: max-content;
+  padding: 18px 0 30px;
+}
+.shelf-card {
+  display: block;
+  width: 204px;
+  flex-shrink: 0;
+  background: #fff;
+  color: var(--charcoal);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 16px 32px rgba(28, 28, 26, 0.18);
+  animation: shelfFloat 6s ease-in-out var(--bob, 0s) infinite alternate;
+}
+@keyframes shelfFloat {
+  from { transform: rotate(var(--tilt, 0deg)) translateY(var(--dy, 0px)); }
+  to { transform: rotate(var(--tilt, 0deg)) translateY(calc(var(--dy, 0px) - 9px)); }
+}
+.shelf-card span {
+  display: block;
+  height: 146px;
+  background-size: cover;
+  background-position: 50%;
+}
+.shelf-card b {
+  display: block;
+  padding: 11px 14px 3px;
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.1;
+}
+.shelf-card i {
+  display: block;
+  padding: 0 14px 13px;
+  font-style: normal;
+  font-size: 9.5px; font-weight: 700;
+  letter-spacing: 0.13em; text-transform: uppercase;
+  color: var(--brass-ink);
+  white-space: nowrap;
+}
+
+.shelf-band {
+  display: flex; flex-direction: column; align-items: flex-start;
+  padding: 4px 22px 72px;
+}
+.shelf-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 50px;
+  padding: 12px 24px;
+  border-radius: 16px;
+  background: var(--forest);
+  color: var(--cream);
+  font-weight: 700; font-size: 15px;
+  box-shadow: 0 12px 28px rgba(10, 22, 18, 0.28);
+}
+
+/* ═══════════ DOCK ═══════════ */
+.dock {
+  position: fixed;
+  left: 50%;
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  transform: translate(-50%, 90px);
+  width: calc(100% - 28px);
+  max-width: 452px;
+  z-index: 55;
+  display: flex; gap: 7px;
+  padding: 7px;
+  border-radius: 22px;
+  background: rgba(10, 22, 18, 0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(196, 168, 124, 0.3);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.4);
+  transition: transform 0.6s var(--ease-out), opacity 0.4s ease;
+  opacity: 0;
+}
+.dock.show { transform: translate(-50%, 0); opacity: 1; }
+
+.dock-btn {
+  flex: 1;
+  display: flex; align-items: center; justify-content: center;
+  min-height: 46px;
+  border-radius: 16px;
+  font-weight: 700;
+  font-size: 13.5px;
+  text-align: center;
+}
+.dock-primary { background: var(--brass); color: var(--forest); }
+.dock-ghost { color: var(--cream); border: 1px solid rgba(245, 241, 234, 0.25); }
+
+/* ═══════════ small screens ═══════════ */
+@media (max-width: 350px) {
+  .act { padding-left: 16px; padding-right: 16px; }
+  .hero-eyebrow, .hero-title, .hero-spec { margin-left: 16px; margin-right: 16px; }
+  .bubble { font-size: 15.5px; line-height: 22px; }
+  .r-row .ghost { font-size: 14.5px; line-height: 20px; padding: 12px 15px; }
+  .bcard { width: 128px; }
+  .bcard-photo { height: 88px; }
+  .spec-row span { font-size: 10px; }
+  .v-print-price b { font-size: 44px; }
+  .v-fine-line { font-size: 14px; }
+  .v-fine-keep { font-size: 18px; }
+  .v-win-row b { font-size: 18px; }
+  .coupon-amounts { gap: 10px; }
+  .coupon-amt em { font-size: 12px; }
+}
+
+/* Short phones keep the full hero composition inside the fixed deck. The
+   conveyor must not be the flex item that silently absorbs missing height:
+   transformed cards then paint outside its overflow clip. Compact the same
+   composition, reserve the notice's measured height, and remove the redundant
+   cue only while that first-visit notice is already teaching the bottom edge. */
+@media (max-width: 480px) and (max-height: 700px) {
+  .hero { padding-top: 72px; padding-bottom: 34px; }
+  body.has-notice .hero { padding-bottom: calc(var(--notice-space, 0px) + 14px); }
+
+  .hero-eyebrow {
+    margin-bottom: 7px;
+    font-size: 9.5px;
+    line-height: 12px;
+  }
+  .hero-word { font-size: clamp(54px, 19vw, 70px); line-height: 0.86; }
+  .hero-line { font-size: clamp(23px, 8vw, 31px); margin-top: 4px; }
+
+  .hero-belt {
+    flex-shrink: 0;
+    padding-top: 7px;
+    padding-bottom: 13px;
+  }
+  .bcard { width: 122px; border-radius: 13px; }
+  .bcard-photo { height: 72px; }
+  .bcard-body { gap: 1px; padding: 6px 9px 8px; }
+  .bcard-tag { font-size: 8px; line-height: 10px; }
+  .bcard-name { font-size: 13.5px; line-height: 15px; }
+  .bcard-v0 { transform: translateY(1px) rotate(-2.2deg) rotateY(6deg); }
+  .bcard-v1 { transform: translateY(8px) rotate(1.8deg) rotateY(-5deg); }
+  .bcard-v2 { transform: translateY(4px) rotate(-0.8deg) rotateY(4deg); }
+  .bcard-v3 { transform: translateY(10px) rotate(2.4deg) rotateY(-6deg); }
+  .bcard-v4 { transform: translateY(6px) rotate(-1.6deg) rotateY(5deg); }
+
+  .hero-spec { gap: 8px; margin-top: 9px; }
+  .spec-row span { font-size: 9.5px; line-height: 12px; }
+  body.has-notice .hero-cue { display: none; }
+  .hero-cue { bottom: 18px; }
+}
+
+/* Most short phones have enough room to stay close to the approved hero
+   scale. Keep the stronger compaction above for the 320 x 568 extreme. */
+@media (min-width: 360px) and (max-width: 480px) and (min-height: 620px) and (max-height: 700px) {
+  .hero { padding-top: 84px; }
+  .hero-eyebrow { margin-bottom: 12px; font-size: 10.5px; line-height: 13px; }
+  .hero-word { font-size: clamp(78px, 22vw, 88px); line-height: 0.88; }
+  .hero-line { font-size: clamp(27px, 8.8vw, 35px); margin-top: 7px; }
+
+  .hero-belt { padding-top: 8px; padding-bottom: 19px; }
+  .bcard { width: 140px; border-radius: 14px; }
+  .bcard-photo { height: 88px; }
+  .bcard-body { gap: 2px; padding: 7px 10px 9px; }
+  .bcard-tag { font-size: 8.5px; line-height: 11px; }
+  .bcard-name { font-size: 14.5px; line-height: 16px; }
+  .bcard-v0 { transform: translateY(2px) rotate(-2.2deg) rotateY(6deg); }
+  .bcard-v1 { transform: translateY(11px) rotate(1.8deg) rotateY(-5deg); }
+  .bcard-v2 { transform: translateY(5px) rotate(-0.8deg) rotateY(4deg); }
+  .bcard-v3 { transform: translateY(13px) rotate(2.4deg) rotateY(-6deg); }
+  .bcard-v4 { transform: translateY(8px) rotate(-1.6deg) rotateY(5deg); }
+
+  .hero-spec { gap: 10px; margin-top: 12px; }
+  .spec-row span { font-size: 10.5px; line-height: 13px; }
+}
+
+/* ═══════════ reduced motion ═══════════ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001s !important;
+    transition-delay: 0s !important;
+  }
+  /* the deck degrades to a plain scrolling document: no fixed box, no
+     rail transform, no sheet — every act is just a section in order */
+  html, body { height: auto; overflow: visible; }
+  #deck { position: static; height: auto; overflow: visible; }
+  #rail { position: static; transform: none !important; }
+  .slide, .sheet {
+    position: static;
+    transform: none !important;
+    height: auto;
+  }
+  .hero, .convo-scene, .offer-scene { position: static; height: auto; min-height: 0; }
+  .convo-scene { padding-bottom: 40px; }
+  .thread-window { overflow: visible; padding-bottom: 20px; }
+  .bcard { transform: none; }
+  .spec-row { opacity: 1 !important; transform: none !important; }
+  .rev, .bubble, .convo-coda, .scene-stamp, .offer-ctas, .tmsg > .t-cta { opacity: 1 !important; transform: none !important; filter: none !important; }
+  /* reduced motion renders the whole thread as final frames — never
+     let the mount gate hide a row that will not be revealed */
+  .tmsg { display: flex !important; }
+  .convo-coda { display: block !important; }
+  .convo-scene::before { display: none; }
+  .thread-window { transform: none !important; }
+  .replies .ghost { opacity: 1; transform: none; }
+  .coupon { transform: none !important; }
+  .v-print-paper { transform: none !important; }
+  .v-print-paper [data-l] { opacity: 1 !important; transform: none !important; }
+  .v-print-stamp { opacity: 0.85 !important; transform: rotate(-9deg) scale(1) !important; }
+}
+
+/* ── lead-form fallback ───────────────────────────────────────────
+   Built by intake.js, only for a device that cannot open an SMS
+   composer (in practice, desktop). It is injected rather than written
+   into the markup so it adds nothing to the designed page until it is
+   needed. Every rule is scoped under .lead-form — style.css is shared
+   with menu.html and an unscoped rule here has broken that page before. */
+.lead-form {
+  position: fixed; inset: 0; z-index: 90;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+  background: rgba(10, 22, 18, 0.62);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+}
+.lead-form[hidden] { display: none; }
+.lead-form-card {
+  position: relative;
+  width: 100%; max-width: 360px;
+  padding: 26px 22px 22px;
+  border-radius: 18px;
+  background: var(--cream);
+  box-shadow: 0 24px 60px rgba(10, 22, 18, 0.4);
+}
+.lead-form-x {
+  position: absolute; top: 8px; right: 8px;
+  width: 44px; height: 44px;
+  font-size: 22px; line-height: 1;
+  color: var(--warm-2, #8A8680); background: none; border: 0; cursor: pointer;
+}
+.lead-form-title {
+  font-family: var(--serif); font-size: 27px; line-height: 1.1;
+  color: var(--charcoal, #1C1C1A);
+}
+.lead-form-blurb {
+  margin-top: 5px; font-size: 14px; line-height: 20px;
+  color: var(--warm-1, #5C5A55);
+}
+.lead-form label {
+  display: block; margin: 15px 0 5px;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--brass-ink, #7A6540);
+}
+.lead-form input {
+  width: 100%; min-height: 44px; padding: 10px 12px;
+  font: inherit; font-size: 16px;          /* 16px stops iOS zooming on focus */
+  color: var(--charcoal, #1C1C1A);
+  background: #fff;
+  border: 1px solid rgba(28, 28, 26, 0.16); border-radius: 10px;
+}
+.lead-form input:focus-visible { outline: 2px solid var(--brass, #C4A87C); outline-offset: 1px; }
+/* honeypot: off-screen rather than display:none — a bot that skips
+   hidden inputs will still happily fill one it can find */
+.lead-form-hp {
+  position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden;
+}
+.lead-form-go {
+  width: 100%; min-height: 48px; margin-top: 18px;
+  font: inherit; font-size: 15px; font-weight: 600;
+  color: var(--forest, #0A1612); background: var(--brass, #C4A87C);
+  border: 0; border-radius: 12px; cursor: pointer;
+}
+.lead-form-go[disabled] { opacity: 0.55; cursor: default; }
+.lead-form-msg {
+  margin-top: 10px; min-height: 18px;
+  font-size: 13px; line-height: 18px; text-align: center;
+  color: var(--warm-1, #5C5A55);
+}
+/* The trigger mounts onto the offer slide (forest) on the deck and into
+   .m-skip (cream) on the menu page. Small brass on cream fails WCAG —
+   invariant 7 — so --brass-ink is the DEFAULT and the dark deck opts up. */
+.lead-form-trigger {
+  display: block; width: 100%; margin-top: 12px; padding: 10px;
+  font: inherit; font-size: 13px;
+  color: var(--brass-ink, #7A6540); text-decoration: underline;
+  background: none; border: 0; cursor: pointer;
+}
+html.deck .lead-form-trigger { color: var(--brass, #C4A87C); }
+
+/* ═══════════════════════════════════════════════════════════════
+   ▓▓▓ MOCKUP · COMPLIANCE LAYER ▓▓▓
+   Everything below is proposed, not shipped. Kept in one block so it
+   reads as a single reviewable diff. Type is deliberately quiet —
+   these lines have to be legible and present, not loud.
+   Contrast checked against the surface each one sits on (invariant 7).
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── 1 · the opt-in disclosure, under the SMS CTA ───────────────── */
+.consent-note {
+  margin-top: 12px;
+  font-size: 10.5px;
+  line-height: 15px;
+  letter-spacing: 0.005em;
+  color: rgba(245, 241, 234, 0.72);   /* 7.1:1 on --forest */
+  text-align: left;
+  text-wrap: pretty;
+}
+.consent-note b { font-weight: 700; color: var(--cream); }
+.consent-note a {
+  color: var(--brass);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  white-space: nowrap;
+}
+
+/* change 4's .offer-terms rule removed with the block (Aug 10) */
+
+/* ── 2 · the dock grows a fine-print line ───────────────────────── */
+.dock { flex-direction: column; gap: 0; }   /* was: row, gap 7px */
+.dock-row { display: flex; gap: 7px; }
+.dock-fine {
+  padding: 7px 6px 2px;
+  font-size: 9.5px;
+  line-height: 13px;
+  text-align: center;
+  color: rgba(245, 241, 234, 0.6);
+}
+.dock-fine a {
+  color: var(--brass);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* change 5's .shelf-fine rule removed with the allergen line (Aug 10) */
+
+/* ── the shelf gets a bottom so the footer has somewhere to live ── */
+.shelf-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  scrollbar-width: none;
+}
+.shelf-scroll::-webkit-scrollbar { display: none; }
+/* The sheet is a FULL screen tall but rests --sheet-rest px down, so its
+   last --sheet-rest px sit below the fold. Without this padding the
+   scroller sizes itself to the sheet (622px) rather than to what is
+   actually on screen (433px), reports nothing to scroll, and the footer
+   is permanently invisible — present in the DOM, unreachable on a phone.
+   Caught only by measuring scrollHeight against clientHeight. */
+.shelf-scroll { padding-bottom: var(--sheet-rest, 189px); }
+/* the card float animation overflows its box; without this the vertical
+   scroller reports a few stray px of horizontal scroll on every card */
+.shelf-track { padding-bottom: 22px; }
+.shelf-band { padding-bottom: 30px; }
+
+/* ── 3 · the footer, at the foot of the shelf ───────────────────── */
+/* Tightened on Zeshan's call, Aug 10 — same content, smaller footprint,
+   so the shelf gives it less room and the dishes keep more. Type is at the
+   floor I'm willing to go to: 10px links / 9.5px body still clear
+   4.5:1 on cream, and the links keep a 24px tap height via padding
+   rather than by growing the text. */
+.lp-footer {
+  width: 100%;
+  margin-top: 16px;
+  padding-top: 13px;
+  border-top: 1px solid var(--hairline-light);
+}
+.lp-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 14px;
+  margin-bottom: 7px;
+}
+.lp-footer-links a {
+  display: inline-block;
+  padding: 3px 0;                     /* tap height without bigger type */
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--brass-ink);            /* brass on cream fails WCAG — ink does not */
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.lp-footer-c {
+  margin-top: 5px;
+  font-size: 9px;
+  color: #8A8680;
+}
+
+/* ── 6 · CPRA notice at collection ──────────────────────────────── */
+.privacy-notice {
+  position: fixed;
+  /* BOTTOM, not top: anchored under the topbar it covered the hero
+     eyebrow — the first line of brand copy on a paid-traffic lander.
+     Down here it collides with nothing but the dock, and the dock is
+     given measured clearance below. */
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  left: 12px; right: 12px;
+  z-index: 60;
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 8px 8px 8px 13px;
+  border-radius: 13px;
+  background: rgba(10, 22, 18, 0.9);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(196, 168, 124, 0.26);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.34);
+  transition: opacity 0.4s ease, transform 0.4s var(--ease-out);
+}
+.privacy-notice[hidden] { display: none; }
+.privacy-notice.out {
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+}
+
+/* while the notice is up, the dock steps above it. --notice-space is
+   measured in compliance.js — a hardcoded value silently overlaps the
+   moment the notice wraps to a third line. */
+body.has-notice .dock {
+  bottom: calc(16px + var(--notice-space, 0px) + env(safe-area-inset-bottom, 0px));
+}
+
+/* the "Scroll" cue is the ONLY thing that teaches this deck how to move —
+   the notice must not sit on top of it */
+body.has-notice .hero-cue {
+  bottom: calc(26px + var(--notice-space, 0px));
+}
+.privacy-notice p {
+  flex: 1;
+  font-size: 9.5px;
+  line-height: 13.5px;
+  color: rgba(245, 241, 234, 0.78);
+  text-wrap: pretty;
+}
+.privacy-notice a {
+  color: var(--brass);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  white-space: nowrap;
+}
+/* Was a 32px bare "×". Zeshan asked for it to be obviously easy to get
+   rid of, so it is now a labelled 44px-tall pill — the accessibility
+   floor for a touch target, and it reads as the way out instead of as
+   decoration. */
+.privacy-notice-x {
+  flex-shrink: 0;
+  align-self: center;
+  min-height: 44px;
+  padding: 0 15px;
+  border-radius: 10px;
+  font: inherit;
+  font-size: 11.5px; font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--forest);
+  background: var(--brass);
+  border: 0; cursor: pointer;
+  white-space: nowrap;
+}
+.privacy-notice-x:active { transform: scale(0.97); }
+
+/* ── 3b · the legal sheet ───────────────────────────────────────── */
+.legal-backdrop {
+  position: fixed; inset: 0; z-index: 95;
+  background: rgba(6, 12, 10, 0.6);
+  -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+}
+.legal-backdrop[hidden] { display: none; }
+
+.legal-sheet {
+  position: fixed;
+  top: auto; left: 0; right: 0; bottom: 0;
+  z-index: 96;
+  width: 100%;
+  max-width: none;
+  max-height: 88%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  color: var(--charcoal);
+  border-radius: 22px 22px 0 0;
+  box-shadow: 0 -18px 44px rgba(6, 12, 10, 0.42);
+  transform: translateY(100%);
+  transition: transform 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.legal-sheet[hidden] { display: none; }
+.legal-sheet:not([open]) { display: none; }
+.legal-sheet.open { transform: translateY(0); }
+dialog.legal-sheet::backdrop {
+  background: rgba(6, 12, 10, 0.6);
+  -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+}
+
+.legal-grip {
+  flex-shrink: 0;
+  width: 38px; height: 4px;
+  margin: 9px auto 0;
+  border-radius: 3px;
+  background: rgba(28, 28, 26, 0.18);
+}
+.legal-close {
+  position: absolute; top: 6px; right: 6px;
+  width: 44px; height: 44px;
+  font-size: 23px; line-height: 1;
+  color: #8A8680;
+  background: none; border: 0; cursor: pointer;
+}
+.legal-body {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  padding: 16px 22px calc(34px + env(safe-area-inset-bottom, 0px));
+}
+.legal-eyebrow {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--brass-ink);
+  white-space: nowrap;
+}
+.legal-eyebrow i { flex: 1; height: 1px; background: var(--hairline-light); }
+.legal-title {
+  margin: 10px 0 4px;
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 33px;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+.legal-title em { color: var(--brass-ink); }
+.legal-body h3 {
+  margin: 24px 0 7px;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--brass-ink);
+}
+.legal-body p, .legal-body li {
+  font-size: 12.5px;
+  line-height: 19px;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+.legal-body p + p { margin-top: 9px; }
+.legal-body b { color: var(--charcoal); font-weight: 600; }
+.legal-body ul { margin: 8px 0 0 16px; }
+.legal-body li { margin-bottom: 5px; }
+.legal-body a {
+  color: var(--brass-ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.legal-more { margin-top: 11px !important; font-weight: 600; }
+.legal-c {
+  margin-top: 26px !important;
+  padding-top: 14px;
+  border-top: 1px solid var(--hairline-light);
+  font-size: 10.5px !important;
+  color: #8A8680 !important;
+}
+
+/* ── 7 (REVISED) · the desktop QR modal ─────────────────────────
+   Replaces the lead-form consent block, which is gone along with the
+   form itself. Cream card on the forest scrim, same idiom as the old
+   modal so the page's vocabulary doesn't change. */
+.qr-modal {
+  position: fixed; inset: 0; z-index: 90;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+  background: rgba(10, 22, 18, 0.66);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+}
+.qr-modal[hidden] { display: none; }
+.qr-card {
+  position: relative;
+  width: 100%; max-width: 344px;
+  padding: 26px 24px 22px;
+  border-radius: 18px;
+  background: var(--cream);
+  color: var(--charcoal);
+  box-shadow: 0 24px 60px rgba(10, 22, 18, 0.42);
+  text-align: center;
+}
+.qr-close {
+  position: absolute; top: 6px; right: 6px;
+  width: 44px; height: 44px;
+  font-size: 23px; line-height: 1;
+  color: #8A8680;
+  background: none; border: 0; cursor: pointer;
+}
+.qr-eyebrow {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--brass-ink);
+}
+.qr-title {
+  margin-top: 6px;
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+}
+.qr-code {
+  display: flex; justify-content: center;
+  margin: 18px auto 4px;
+  padding: 10px;
+  width: 200px;
+  border-radius: 12px;
+  background: var(--paper);
+  border: 1px solid var(--hairline-light);
+}
+.qr-code img { display: block; width: 100%; height: auto; }
+/* numbered because the order genuinely matters — the scan is not the
+   finish line, the send is */
+.qr-steps {
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: qr;
+  text-align: left;
+  display: flex; flex-direction: column; gap: 9px;
+}
+.qr-steps li {
+  counter-increment: qr;
+  position: relative;
+  padding-left: 27px;
+  font-size: 12.5px;
+  line-height: 17px;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+.qr-steps li::before {
+  content: counter(qr);
+  position: absolute; left: 0; top: 0;
+  display: flex; align-items: center; justify-content: center;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--forest);
+  color: var(--brass);
+  font-size: 10px; font-weight: 700;
+}
+.qr-steps b { color: var(--charcoal); font-weight: 700; }
+.qr-or {
+  margin-top: 15px;
+  padding-top: 13px;
+  border-top: 1px solid var(--hairline-light);
+  font-size: 12.5px;
+  color: var(--ink-soft);
+}
+.qr-or b { color: var(--charcoal); font-weight: 700; white-space: nowrap; }
+.qr-fine {
+  margin-top: 11px;
+  font-size: 9.5px;
+  line-height: 13.5px;
+  color: #8A8680;
+  text-align: left;
+  text-wrap: pretty;
+}
+.qr-fine b { color: var(--ink-soft); font-weight: 700; }
+.qr-fine a {
+  color: var(--brass-ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  white-space: nowrap;
+}
+.qr-close:focus-visible {
+  outline: 2px solid var(--brass-2);
+  outline-offset: 2px;
+  border-radius: 10px;
+}
+
+/* the sheet takes focus on open (it has to — it's a dialog), so give the
+   ring the brand's colour instead of the browser's default blue */
+.legal-close:focus-visible,
+.privacy-notice-x:focus-visible {
+  outline: 2px solid var(--brass-2);
+  outline-offset: 2px;
+  border-radius: 10px;
+}
+.legal-body a:focus-visible,
+.lp-footer a:focus-visible,
+.consent-note a:focus-visible,
+.dock-fine a:focus-visible {
+  outline: 2px solid var(--brass-2);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* the QR area holds its size while the code is being prepared, so the
+   modal does not jump when the encoder resolves */
+.qr-code { min-height: 200px; align-items: center; }
+.qr-code svg { display: block; width: 100%; height: auto; }
+.qr-wait {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
