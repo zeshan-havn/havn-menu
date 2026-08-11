@@ -20,7 +20,7 @@
      names) lives in menu-data.overrides.json and survives every run. */
   var SECTIONS = [
     {
-      label: "Chef picks & beef — $28",
+      label: "Chef picks & beef — $20",
       items: [
         {
           id: "cheat", name: "Beef Bourguignon", tag: "Chef special", img: "assets/current/special.jpg",
@@ -37,7 +37,7 @@
       ]
     },
     {
-      label: "Chicken & pasta — $28",
+      label: "Chicken & pasta — $20",
       items: [
         {
           id: "pasta", name: "Beef Bolognese", tag: "Pasta", img: "assets/current/pasta.jpg",
@@ -60,7 +60,7 @@
       ]
     },
     {
-      label: "Seafood — $28",
+      label: "Seafood — $20",
       items: [
         {
           id: "seafood", name: "Pomegranate Salmon", tag: "Seafood", img: "assets/current/seafood.jpg",
@@ -77,7 +77,7 @@
       ]
     },
     {
-      label: "Salads — $25 · vegetarian — $28",
+      label: "Salads & vegetarian — $20",
       items: [
         {
           id: "salad_2", name: "Ruby Goddess Salad", tag: "Salad", img: "assets/current/salad_2.jpg",
