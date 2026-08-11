@@ -1,0 +1,1134 @@
+/* ═══════════════════════════════════════════════════════════════
+   HAVN · This week's menu — same field, working surface.
+   Cream paper, specimen cards, brass steppers, the draft-text sheet.
+   ═══════════════════════════════════════════════════════════════ */
+
+.menu-page { background: var(--cream); }
+
+.topbar-back {
+  font-size: 18px;
+  color: var(--cream);
+  margin-right: 2px;
+  padding: 2px 6px 2px 0;
+}
+
+/* ── masthead ───────────────────────────────────────────────── */
+.m-head {
+  padding: 96px 22px 34px;
+  background:
+    radial-gradient(130% 90% at 100% -20%, rgba(196, 168, 124, 0.16), transparent 55%),
+    var(--forest);
+  color: var(--cream);
+}
+/* the masthead's brass label was cut in the Aug-3 copy pass — it said
+   "This week's menu", which the intro block already says a screen
+   below. The 96px section padding carries the title on its own. */
+.m-head-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(52px, 17vw, 68px);
+  line-height: 0.96;
+  letter-spacing: -0.025em;
+}
+.m-head-title em { color: var(--brass); }
+.m-head-sub {
+  margin-top: 16px;
+  font-size: clamp(10.5px, 3.35vw, 15px); line-height: 22px;
+  color: var(--cream-dim);
+  white-space: nowrap;
+}
+
+/* the welcome offer rides a brass ribbon — the coupon card's metal,
+   pressed flat, with a recurring holographic sheen and a slow float */
+.m-ribbon {
+  position: relative;
+  overflow: hidden;
+  margin-top: 24px;
+  padding: 15px 18px 13px;
+  border-radius: 15px;
+  background:
+    radial-gradient(130% 170% at 18% -25%, rgba(255, 255, 255, 0.38), transparent 45%),
+    linear-gradient(118deg, #9A7F4E 0%, #C4A87C 22%, #EBD9B4 40%, #B29260 58%, #CBB084 76%, #9A7F4E 100%);
+  box-shadow:
+    0 16px 34px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(58, 44, 20, 0.4);
+  color: #2E2210;
+  animation: ribbonFloat 5s ease-in-out infinite;
+}
+@keyframes ribbonFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+.m-ribbon-sheen {
+  position: absolute;
+  top: -30%; bottom: -30%;
+  left: 0;
+  width: 34%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.5) 50%, transparent);
+  transform: translateX(-140%) skewX(-18deg);
+  animation: ribbonSheen 4.6s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes ribbonSheen {
+  0% { transform: translateX(-140%) skewX(-18deg); }
+  38% { transform: translateX(440%) skewX(-18deg); }
+  100% { transform: translateX(440%) skewX(-18deg); }
+}
+.m-ribbon-amts { display: flex; align-items: baseline; gap: 14px; }
+.m-ribbon-amt {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 24px;
+  letter-spacing: -0.02em;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+.m-ribbon-amt b { font-weight: 600; display: inline-block; min-width: 0.95em; text-align: right; }
+.m-ribbon-amt i { font-style: italic; font-weight: 500; font-size: 14px; margin-left: 1px; }
+.m-ribbon-div { width: 1px; align-self: stretch; background: rgba(46, 34, 16, 0.35); }
+.m-ribbon-note {
+  margin-top: 7px;
+  font-size: 9.5px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(46, 34, 16, 0.92);
+  white-space: nowrap;
+}
+
+/* ── the hand-drawn brass rule ──────────────────────────────────
+   One motif, two places: it opens the menu body and it divides
+   the dish card. Drawn, not ruled — the line wavers. */
+.m-rule {
+  display: block;
+  width: 100%;
+  height: 9px;
+  overflow: visible;
+}
+.m-rule path {
+  fill: none;
+  stroke: var(--brass-2);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+/* ── the opening line of the menu body ──────────────────────────
+   Cream field. The masthead gives the invitation; this gives the
+   instruction — same device (serif + brass italic), a third the
+   size, so the two read as call and echo. */
+.m-intro { padding: 42px 22px 6px; }
+.m-intro-label {
+  display: flex; align-items: center; gap: 9px;
+  font-size: 10.5px; font-weight: 700;
+  letter-spacing: 0.24em; text-transform: uppercase;
+  color: #1B5E40;
+}
+.m-intro-label i {
+  flex-shrink: 0;
+  width: 5px; height: 5px;
+  background: var(--brass-2);
+  transform: rotate(45deg);
+}
+.m-intro-title {
+  margin-top: 15px;
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(31px, 9.6vw, 39px);
+  line-height: 1.0;
+  letter-spacing: -0.022em;
+  color: var(--charcoal);
+}
+.m-intro-title em { font-style: italic; color: var(--brass-ink); }
+.m-intro .m-rule { margin-top: 20px; opacity: 0.85; }
+
+/* ── menu sections ──────────────────────────────────────────── */
+#m-menu { padding: 10px 18px 8px; }
+
+.m-sec { padding-top: 30px; }
+.m-sec-label {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: #2D4A3E;
+  white-space: nowrap;
+}
+.m-sec-label::after { content: ""; flex: 1; height: 1px; background: var(--hairline-light); }
+
+.m-back-top-wrap { display: flex; justify-content: center; padding: 42px 22px 118px; }
+.m-back-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--brass-ink);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.m-back-top span { font-size: 17px; line-height: 1; }
+.m-back-top:focus-visible { outline: 2px solid var(--brass-2); outline-offset: 4px; }
+
+.m-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  padding-top: 16px;
+}
+
+.m-card {
+  position: relative;
+  background: #fff;
+  padding: 7px 7px 10px;
+  box-shadow: 0 10px 26px rgba(28, 28, 26, 0.1);
+  display: flex; flex-direction: column;
+  transition: box-shadow 0.3s ease, outline-color 0.3s ease;
+  outline: 2px solid transparent;
+  outline-offset: -1px;
+}
+.m-card.m-picked { outline-color: var(--brass); box-shadow: 0 12px 30px rgba(196, 168, 124, 0.3); }
+.m-card:focus-visible { outline-color: var(--brass); }
+
+.m-card-img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3.4;
+  background-size: cover;
+  background-position: 50%;
+}
+.m-card-tag {
+  margin-top: 9px;
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--brass-ink);
+  padding: 0 3px;
+}
+.m-card-name {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 17.5px;
+  line-height: 20px;
+  color: var(--charcoal);
+  padding: 2px 3px 0;
+}
+.m-card-macros {
+  font-size: 11px; line-height: 15px;
+  color: var(--ink-soft);
+  padding: 3px 3px 10px;
+}
+
+.m-stepper { margin-top: auto; padding: 0 3px; }
+.m-add {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  width: 100%;
+  min-height: 38px;
+  border: 1px solid var(--brass-2);
+  border-radius: 11px;
+  font-weight: 700; font-size: 13px;
+  color: var(--charcoal);
+  transition: background 0.25s ease;
+}
+.m-add i { font-style: normal; color: var(--brass-ink); font-size: 15px; }
+.m-add:active { background: rgba(196, 168, 124, 0.15); }
+
+.m-counter {
+  display: flex; align-items: center; justify-content: space-between;
+  min-height: 38px;
+  border-radius: 11px;
+  background: var(--forest);
+}
+.m-counter[hidden] { display: none; }
+.m-add[hidden] { display: none; }
+.m-counter button {
+  width: 44px; min-height: 38px;
+  color: var(--brass);
+  font-size: 18px; font-weight: 600;
+}
+.m-qty { color: var(--cream); font-size: 15px; }
+
+/* breakfast: imageless text cards with a brass keyline */
+.m-card-side { padding: 14px 12px 10px; border-top: 2px solid var(--brass); }
+.m-card-side .m-card-tag { margin-top: 0; }
+
+/* ── drawer sections: breakfast/sides + collections fold away ── */
+.m-sec-toggle {
+  display: flex; align-items: center; gap: 12px;
+  width: 100%;
+  padding: 4px 0;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: #2D4A3E;
+  white-space: nowrap;
+  text-align: left;
+}
+.m-sec-toggle:focus-visible { outline: 2px solid var(--brass-2); outline-offset: 3px; }
+.m-sec-rule { flex: 1; height: 1px; background: var(--hairline-light); }
+.m-sec-chev {
+  flex-shrink: 0;
+  font-style: normal;
+  font-size: 17px; line-height: 8px;
+  color: var(--brass-2);
+  transform: translateY(-3px);
+  transition: transform 0.35s var(--ease-out);
+}
+.m-sec.open .m-sec-chev { transform: translateY(2px) rotate(180deg); }
+
+.m-drawer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.5s var(--ease-out);
+}
+.m-drawer-in { min-height: 0; overflow: hidden; }
+.m-sec.open .m-drawer { grid-template-rows: 1fr; }
+.m-sec.open .m-drawer-in { overflow: visible; }
+
+/* ── the collections: highlight pieces in a brass frame ─────────
+   Imageless by design; the shimmer says "this one is special". */
+.m-grid-collections { grid-template-columns: 1fr; }
+.m-card-collection {
+  padding: 16px 16px 14px;
+  background:
+    linear-gradient(#FFFDF9, #FFFDF9) padding-box,
+    linear-gradient(118deg, #9A7F4E 0%, #EBD9B4 35%, #B29260 60%, #9A7F4E 100%) border-box;
+  border: 1.5px solid transparent;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(168, 144, 96, 0.28);
+}
+.m-card-collection .m-card-tag { margin-top: 0; color: var(--brass-ink); }
+.m-card-collection .m-card-name { font-size: 21px; line-height: 24px; padding-top: 4px; }
+.m-card-list {
+  padding: 6px 3px 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 15px; line-height: 21px;
+  color: #2D4A3E;
+}
+.m-card-collection .m-card-macros { padding-top: 4px; }
+.m-card-collection.m-picked { outline-offset: 2px; }
+
+/* shimmer sweep — the brass "look at me" for clickable highlights */
+.m-shimmer { position: relative; overflow: hidden; }
+.m-shimmer::after {
+  content: "";
+  position: absolute;
+  top: -30%; bottom: -30%;
+  left: 0;
+  width: 44%;
+  transform: translateX(-140%) skewX(-18deg);
+  background: linear-gradient(100deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(196, 168, 124, 0.12) 35%,
+    rgba(255, 255, 255, 0.35) 50%,
+    rgba(196, 168, 124, 0.12) 65%,
+    rgba(255, 255, 255, 0) 100%);
+  animation: mShine 4.2s ease-in-out infinite;
+  animation-delay: var(--shimmer-delay, 0s);
+  pointer-events: none;
+}
+@keyframes mShine {
+  0% { transform: translateX(-140%) skewX(-18deg); }
+  34% { transform: translateX(360%) skewX(-18deg); }
+  100% { transform: translateX(360%) skewX(-18deg); }
+}
+
+/* ── skip strip ─────────────────────────────────────────────── */
+.m-skip {
+  padding: 44px 22px 30px;
+  text-align: center;
+}
+.m-skip-line {
+  font-family: var(--serif);
+  font-size: 24px;
+  color: var(--charcoal);
+  margin-bottom: 16px;
+}
+.m-skip-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 50px;
+  padding: 12px 22px;
+  border: 1px solid var(--charcoal);
+  border-radius: 15px;
+  font-weight: 700; font-size: 14px;
+  color: var(--charcoal);
+}
+.m-skip-note { margin-top: 12px; font-size: 12px; color: var(--ink-soft); }
+
+.m-endpad { height: 110px; }
+
+/* ── floating dock: build/skip → the order state machine ────── */
+.m-bar {
+  position: fixed;
+  left: 50%; bottom: 16px;
+  transform: translateX(-50%);
+  width: calc(100% - 28px);
+  max-width: 452px;
+  z-index: 55;
+  padding: 7px;
+  border-radius: 22px;
+  background: rgba(10, 22, 18, 0.86);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(196, 168, 124, 0.3);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.4);
+}
+
+/* zero state: Build owns ~60%, Skip rides along at ~40% */
+.m-bar-zero { display: flex; gap: 7px; }
+.m-bar-zero[hidden], .m-bar-live-row[hidden] { display: none; }
+.m-bar-build {
+  flex: 3 1 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  min-height: 52px;
+  padding: 8px 14px;
+  border-radius: 16px;
+  background: var(--brass);
+  color: var(--forest);
+}
+.m-bar-build-title { font-weight: 700; font-size: 15px; }
+.m-bar-build-sub {
+  font-size: clamp(8px, 2.65vw, 11px); font-weight: 600;
+  white-space: nowrap;
+  color: rgba(10, 22, 18, 0.88);
+}
+.m-bar-build-sub[hidden] { display: none; }
+.m-bar-skip {
+  flex: 2 1 0;
+  display: flex; align-items: center; justify-content: center;
+  min-height: 52px;
+  border-radius: 16px;
+  border: 1px solid rgba(245, 241, 234, 0.25);
+  color: var(--cream);
+  font-weight: 600; font-size: 12.5px;
+  text-align: center;
+  line-height: 16px;
+}
+
+/* live state: summary + Review + Skip. There is deliberately NO send
+   here — you review first (delivery window, containers) and send from
+   the review sheet. */
+.m-bar-live-row { display: flex; align-items: center; gap: 8px; padding-left: 9px; }
+.m-bar-info { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+.m-bar-count { font-weight: 700; font-size: 13px; color: var(--cream); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.m-bar-total { font-size: 10.5px; color: var(--brass); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.m-bar-review {
+  flex-shrink: 0;
+  min-height: 46px;
+  padding: 0 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(245, 241, 234, 0.3);
+  color: var(--cream);
+  font-weight: 700; font-size: 12.5px;
+}
+/* skip stays a quiet escape next to Review, not the wide button it is
+   in the empty state */
+.m-bar-live-row .m-bar-skip {
+  flex: 0 0 auto;
+  min-height: 46px;
+  padding: 0 12px;
+  font-size: 11px; line-height: 13.5px;
+}
+/* at the four-meal minimum Review becomes the primary action */
+.m-bar-ready .m-bar-review {
+  background: var(--brass);
+  border-color: var(--brass);
+  color: var(--forest);
+}
+
+/* ── draft sheet ────────────────────────────────────────────── */
+.m-sheet-backdrop {
+  position: fixed; inset: 0;
+  z-index: 70;
+  background: rgba(6, 12, 10, 0.6);
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.m-sheet-backdrop.open { opacity: 1; }
+
+/* These surfaces have authored display rules, so the browser's built-in
+   [hidden] styling is not strong enough on every engine. Keep closed sheets
+   out of layout and the accessibility tree until JavaScript opens them. */
+.m-sheet-backdrop[hidden],
+.m-sheet[hidden],
+.m-detail[hidden] { display: none; }
+
+.m-sheet {
+  position: fixed;
+  left: 50%; bottom: 0;
+  transform: translate(-50%, 104%);
+  width: 100%; max-width: 480px;
+  /* dvh, NOT svh: svh is the SMALL viewport (Safari's toolbar out) —
+     on a phone that is ~160px shorter than the screen actually showing,
+     so the sheet was capped well below the available height and its
+     content had to scroll inside. Body scroll is locked while a sheet
+     is open, so the chrome cannot move and dvh stays stable. */
+  max-height: 88dvh;
+  overflow-y: auto;
+  z-index: 71;
+  background: var(--forest);
+  border-radius: 26px 26px 0 0;
+  border-top: 1px solid rgba(196, 168, 124, 0.4);
+  padding: 14px 22px 30px;
+  transition: transform 0.45s var(--ease-out);
+  color: var(--cream);
+}
+.m-sheet.open { transform: translate(-50%, 0); }
+
+.m-sheet-grip {
+  width: 40px; height: 4px;
+  border-radius: 2px;
+  background: rgba(245, 241, 234, 0.25);
+  margin: 0 auto 6px;
+}
+.m-sheet-close {
+  position: absolute;
+  top: 14px; right: 16px;
+  width: 32px; height: 32px;
+  border-radius: 16px;
+  background: rgba(245, 241, 234, 0.1);
+  color: var(--cream);
+  font-size: 18px;
+}
+.m-sheet-label {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--brass);
+  margin: 10px 0 16px;
+}
+
+.m-compose {
+  background: #F7F7F8;
+  border-radius: 18px;
+  padding: 13px 15px;
+}
+.m-compose-to { font-size: 12px; color: #8A8A8E; padding-bottom: 10px; border-bottom: 1px solid #E4E4E7; }
+.m-compose-to b { color: #171717; }
+.m-compose-bubble {
+  /* the preview is the real composed message, blank lines and all */
+  white-space: pre-wrap;
+  margin: 12px 0 4px auto;
+  width: fit-content;
+  max-width: 92%;
+  background: #0B84FF;
+  color: #fff;
+  border-radius: 17px 17px 5px 17px;
+  padding: 10px 14px;
+  font-size: 15px; line-height: 21px;
+}
+.m-compose-empty { color: rgba(255, 255, 255, 0.75); font-style: italic; }
+.m-compose-hint { font-size: 11px; line-height: 15px; color: #8A8A8E; padding-top: 8px; }
+
+.m-pick { margin-top: 18px; }
+.m-pick-label {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--cream-dim);
+  margin-bottom: 8px;
+}
+.m-pick-row { display: flex; gap: 7px; flex-wrap: wrap; }
+.m-chip {
+  display: flex; flex-direction: column; align-items: center; gap: 1px;
+  min-height: 44px;
+  padding: 7px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(245, 241, 234, 0.25);
+  color: var(--cream);
+  font-weight: 700; font-size: 13.5px;
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+.m-chip i { font-style: normal; font-weight: 500; font-size: 10px; color: var(--cream-dim); }
+.m-chip.on { border-color: var(--brass); background: rgba(196, 168, 124, 0.14); }
+.m-chip.on i { color: var(--brass); }
+
+.m-receipt { list-style: none; margin-top: 22px; }
+.m-receipt li {
+  display: flex; align-items: baseline; gap: 10px;
+  padding: 9px 0;
+  font-size: 14px;
+}
+.m-receipt li + li { border-top: 1px solid rgba(245, 241, 234, 0.07); }
+.m-receipt li[hidden] { display: none; }
+.m-receipt span:first-child { color: var(--cream-dim); }
+.m-receipt i { flex: 1; border-bottom: 1px dotted rgba(196, 168, 124, 0.35); }
+.m-receipt span:last-child { font-weight: 700; }
+.m-r-offer span:last-child { color: var(--brass); }
+.m-r-total { font-size: 16px; }
+.m-r-total span:first-child { color: var(--cream); }
+.m-r-total span:last-child { font-family: var(--serif); font-size: 22px; }
+
+.m-gate {
+  margin-top: 12px;
+  padding: 11px 14px;
+  border-radius: 12px;
+  border: 1px dashed rgba(196, 168, 124, 0.55);
+  font-size: 13px; line-height: 19px;
+  color: var(--cream);
+}
+.m-gate b { color: var(--brass); }
+
+.m-pay-note {
+  margin-top: 12px;
+  font-family: var(--serif); font-style: italic;
+  font-size: 15px;
+  color: var(--cream-dim);
+  text-align: center;
+}
+
+.m-send {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 56px;
+  margin-top: 14px;
+  border-radius: 17px;
+  background: linear-gradient(135deg, var(--brass) 0%, #B29260 100%);
+  color: var(--forest);
+  font-weight: 700; font-size: 16px;
+  box-shadow: 0 12px 30px rgba(196, 168, 124, 0.25);
+  transition: opacity 0.3s ease;
+}
+.m-send.m-send-off { opacity: 0.35; pointer-events: auto; cursor: default; }
+
+.m-sheet-skip {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 46px;
+  margin-top: 9px;
+  border-radius: 15px;
+  border: 1px solid rgba(245, 241, 234, 0.25);
+  color: var(--cream);
+  font-weight: 600; font-size: 13.5px;
+}
+
+/* ═══ DISH DETAIL — THE CARD OF RECORD ═══════════════════════════
+   One dish, one paper card, whole on the screen. The photograph is
+   a mounted print (contained, never cropped — the dish is shown as
+   it was shot, fork and all), the numbers are set in a specimen
+   band, and the quantity lives on a forest footer that anchors the
+   card the way the dock anchors the page. */
+.m-card { cursor: pointer; }
+
+.m-detail {
+  position: fixed;
+  left: 50%; bottom: 0;
+  transform: translate(-50%, 104%);
+  width: 100%; max-width: 480px;
+  max-height: 94dvh;  /* see .m-sheet — svh under-sizes on iOS */
+  display: flex; flex-direction: column;
+  overflow: hidden;
+  z-index: 72;
+  background:
+    radial-gradient(120% 74% at 50% 0%, #FFFDF8 0%, var(--paper) 62%),
+    var(--paper);
+  color: var(--charcoal);
+  border-radius: 30px 30px 0 0;
+  border-top: 1px solid rgba(196, 168, 124, 0.55);
+  box-shadow: 0 -26px 64px rgba(10, 22, 18, 0.42);
+  transition: transform 0.5s var(--ease-out);
+}
+.m-detail.open { transform: translate(-50%, 0); }
+
+/* paper tooth — the sheet sits above the page-wide grain layer,
+   so it carries its own */
+.m-detail-grain {
+  position: absolute; inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  opacity: 0.3;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.34'/%3E%3C/svg%3E");
+}
+
+.m-detail .m-sheet-grip {
+  margin: 11px auto 0;
+  background: rgba(28, 28, 26, 0.16);
+}
+.m-detail-close {
+  position: absolute;
+  top: 5px; right: 10px;
+  z-index: 5;
+  width: 42px; height: 42px;
+  color: var(--ink-soft);
+  font-size: 21px; font-weight: 300;
+  line-height: 1;
+  transition: color 0.25s ease;
+}
+.m-detail-close:active { color: var(--charcoal); }
+.m-detail-close:focus-visible { outline: 1px solid var(--brass-2); outline-offset: -8px; }
+
+.m-detail-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 26px 24px 22px;
+}
+
+/* ── ledger head: what it is ————— what it costs ── */
+.m-d-ledger { display: flex; align-items: baseline; gap: 11px; padding-right: 26px; }
+.m-d-tag {
+  flex-shrink: 0;
+  font-size: 9.5px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--brass-ink);
+}
+.m-d-ledger i { flex: 1; border-bottom: 1px dotted rgba(122, 101, 64, 0.4); transform: translateY(-3px); }
+.m-d-price {
+  flex-shrink: 0;
+  font-family: var(--serif); font-weight: 600;
+  font-size: 19px; letter-spacing: -0.01em;
+  color: var(--charcoal);
+}
+
+/* ── masthead: the name set large, the dish shown whole ── */
+.m-d-head {
+  display: flex; align-items: center; gap: 16px;
+  margin-top: 14px;
+}
+.m-detail-name {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(27px, 8.4vw, 34px);
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+  color: var(--charcoal);
+  opacity: 0; transform: translateY(9px);
+  transition: opacity 0.55s var(--ease-out) 0.12s, transform 0.55s var(--ease-out) 0.12s;
+}
+.m-detail.open .m-detail-name { opacity: 1; transform: none; }
+
+/* the mounted print: matted, never cropped, laid on the card at a
+   slight angle — an accent, not the hero */
+.m-detail-img[hidden] { display: none; }
+.m-detail-img {
+  display: block;
+  flex-shrink: 0;
+  width: clamp(116px, 34vw, 146px);
+  aspect-ratio: 4 / 3;
+  padding: 6px;
+  background-color: #FFFDF8;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: contain;
+  background-origin: content-box;
+  background-clip: padding-box;
+  border: 1px solid rgba(196, 168, 124, 0.5);
+  box-shadow: 0 12px 26px rgba(28, 28, 26, 0.16);
+  transform: rotate(-4.5deg) scale(0.92);
+  opacity: 0;
+  transition: transform 0.7s var(--ease-spring) 0.14s, opacity 0.5s ease 0.14s;
+}
+.m-detail.open .m-detail-img { transform: rotate(-1.8deg); opacity: 1; }
+
+/* the drawn rule divides identity from account */
+.m-d-flourish { margin-top: 17px; }
+.m-d-flourish path {
+  stroke: var(--brass-2);
+  stroke-dasharray: 420;
+  stroke-dashoffset: 420;
+  transition: stroke-dashoffset 1.05s var(--ease-out) 0.2s;
+}
+.m-detail.open .m-d-flourish path { stroke-dashoffset: 0; }
+
+.m-detail-desc {
+  margin-top: 13px;
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 17px; line-height: 23px;
+  letter-spacing: 0.002em;
+  color: #46443F;
+}
+
+/* ── the specimen band ──────────────────────────────────────────
+   The macros are not a sentence; they are set in, ruled in brass,
+   columned and dotted like a card of record. */
+.m-d-spec {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin-top: 18px;
+  padding: 11px 0 9px;
+  border-top: 1px solid var(--brass-2);
+  border-bottom: 1px solid rgba(168, 144, 96, 0.4);
+}
+.m-d-spec[hidden] { display: none; }
+.m-d-cell {
+  text-align: center;
+  padding: 0 2px;
+  opacity: 0; transform: translateY(7px);
+  transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+  transition-delay: calc(0.3s + var(--i) * 0.06s);
+}
+.m-detail.open .m-d-cell { opacity: 1; transform: none; }
+.m-d-cell + .m-d-cell { border-left: 1px dotted rgba(122, 101, 64, 0.3); }
+.m-d-cell b {
+  display: block;
+  font-family: var(--serif); font-weight: 600;
+  font-size: 25px; line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: lining-nums;
+  font-feature-settings: "lnum" 1;
+  color: var(--charcoal);
+}
+.m-d-cell b i {
+  font-style: normal;
+  font-family: var(--sans); font-weight: 500;
+  font-size: 10px;
+  color: var(--brass-ink);
+  margin-left: 1px;
+}
+.m-d-cell span {
+  display: block;
+  margin-top: 5px;
+  font-size: 8px; font-weight: 700;
+  letter-spacing: 0.13em; text-transform: uppercase;
+  color: var(--brass-ink);
+  white-space: nowrap;
+}
+
+/* dietary facts as marks, not chips — the diamond carries it */
+.m-d-under {
+  display: flex; align-items: baseline; gap: 12px;
+  margin-top: 11px;
+}
+.m-d-under[hidden] { display: none; }
+.m-detail-tags { display: flex; flex-wrap: wrap; gap: 5px 15px; flex: 1; }
+.m-detail-tags[hidden] { display: none; }
+.m-diet-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.13em; text-transform: uppercase;
+}
+.m-diet-tag::before {
+  content: "";
+  width: 5px; height: 5px;
+  transform: rotate(45deg);
+}
+.m-diet-tag.safe { color: #1B5E40; }
+.m-diet-tag.safe::before { background: #1B5E40; }
+.m-diet-tag.allergen { color: #96453C; }
+.m-diet-tag.allergen::before { border: 1px solid #96453C; }
+.m-d-serving {
+  flex-shrink: 0;
+  font-family: var(--serif); font-style: italic;
+  font-size: 12.5px;
+  color: var(--brass-ink);
+}
+.m-detail.no-macros .m-d-serving { display: none; }
+
+/* ── collections: the flavor set, listed like a card of record ── */
+.m-detail-flavors { margin-top: 18px; border-top: 1px solid var(--brass-2); }
+.m-detail-flavors[hidden] { display: none; }
+.m-flavor-row {
+  display: flex; align-items: baseline; gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--hairline-light);
+  opacity: 0; transform: translateX(-8px);
+  transition: opacity 0.45s var(--ease-out), transform 0.45s var(--ease-out);
+  transition-delay: calc(0.28s + var(--i) * 0.08s);
+}
+.m-detail.open .m-flavor-row { opacity: 1; transform: none; }
+.m-flavor-row b {
+  flex-shrink: 0;
+  font-family: var(--serif); font-weight: 600;
+  font-size: 18px; line-height: 1.1;
+  color: var(--charcoal);
+}
+.m-flavor-row span {
+  flex: 1;
+  text-align: right;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+}
+
+/* ── section labels inside the card: micro-caps, ruled out ── */
+.m-detail-label {
+  display: flex; align-items: center; gap: 9px;
+  font-size: 9.5px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 11px;
+}
+.m-detail-label em {
+  flex-shrink: 0;
+  font-family: var(--serif); font-style: italic; font-weight: 500;
+  font-size: 12.5px; letter-spacing: 0.01em; text-transform: none;
+  color: var(--brass-ink);
+}
+.m-detail-label i { flex: 1; height: 1px; background: var(--hairline-light); }
+
+/* ── make it: letterpress tags, squared like the menu cards ── */
+.m-detail-mods { margin-top: 21px; }
+.m-detail-mods[hidden] { display: none; }
+.m-mod-pills { display: flex; flex-wrap: wrap; gap: 7px; }
+.m-mod-pill {
+  display: inline-flex; align-items: center;
+  min-height: 42px;
+  padding: 0 13px;
+  background: #FFFDF8;
+  border: 1px solid var(--hairline-light);
+  border-radius: 2px;
+  font-size: 11.5px; font-weight: 600; letter-spacing: 0.01em;
+  color: var(--ink-soft);
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.m-mod-pill:focus-visible { outline: 1px solid var(--brass-2); outline-offset: 2px; }
+.m-mod-pill.on {
+  background: var(--forest);
+  border-color: var(--forest);
+  color: var(--cream);
+  box-shadow: 0 6px 14px rgba(10, 22, 18, 0.22);
+}
+
+/* ── the note: written onto the card, not typed into a box ── */
+.m-detail-custom { margin-top: 21px; }
+.m-custom-input {
+  display: block;
+  width: 100%;
+  padding: 4px 2px 9px;
+  border: 0;
+  border-bottom: 1px dashed var(--hairline-light);
+  background: transparent;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 17px; line-height: 23px;
+  color: var(--charcoal);
+  resize: none;
+  transition: border-color 0.25s ease;
+}
+.m-custom-input::placeholder { color: #A49E92; }
+.m-custom-input:focus { outline: none; border-bottom-color: var(--brass-2); border-bottom-style: solid; }
+.m-custom-input:focus-visible { outline: none; }
+
+/* ── the footer: forest bar, the same anchor as the dock ── */
+.m-detail-foot {
+  position: relative;
+  z-index: 3;
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  padding: 13px 20px 13px 24px;
+  padding-bottom: calc(13px + env(safe-area-inset-bottom, 0px));
+  background: var(--forest);
+  border-top: 1px solid rgba(196, 168, 124, 0.45);
+}
+.m-d-foot-txt { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.m-d-foot-label {
+  font-size: 9.5px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--cream-dim);
+}
+.m-d-foot-each {
+  font-family: var(--serif); font-style: italic;
+  font-size: 15px;
+  color: var(--brass);
+}
+.m-detail-stepper {
+  flex-shrink: 0;
+  display: flex; align-items: center;
+  border: 1px solid rgba(196, 168, 124, 0.5);
+  border-radius: 3px;
+}
+.m-detail-stepper button {
+  width: 48px; min-height: 46px;
+  color: var(--brass);
+  font-size: 19px; font-weight: 500;
+  transition: background 0.2s ease;
+}
+.m-detail-stepper button:active { background: rgba(196, 168, 124, 0.16); }
+.m-detail-stepper button:focus-visible { outline: 1px solid var(--brass); outline-offset: -4px; }
+.m-detail-stepper b {
+  min-width: 30px; text-align: center;
+  font-family: var(--serif); font-weight: 600;
+  font-size: 21px;
+  color: var(--cream);
+}
+
+/* ── small screens ──────────────────────────────────────────── */
+@media (max-width: 350px) {
+  .m-head { padding-left: 16px; padding-right: 16px; }
+  #m-menu { padding-left: 14px; padding-right: 14px; }
+  .m-ribbon-amt { font-size: 22px; }
+  .m-ribbon-note { letter-spacing: 0.1em; }
+  .m-bar-build-title { font-size: 13.5px; }
+  .m-bar-skip { font-size: 11.5px; }
+  .m-intro { padding: 34px 16px 4px; }
+
+  /* the card of record compresses rather than crops */
+  .m-detail { max-height: 96dvh; border-radius: 24px 24px 0 0; }
+  .m-detail-body { padding: 16px 17px 14px; }
+  .m-d-head { gap: 12px; margin-top: 11px; }
+  .m-detail-img { width: 104px; }
+  .m-d-flourish { margin-top: 12px; }
+  .m-detail-desc { margin-top: 10px; font-size: 15.5px; line-height: 20px; }
+  .m-d-spec { margin-top: 12px; padding: 8px 0 7px; }
+  .m-d-cell { padding: 0 1px; }
+  .m-d-cell b { font-size: 21px; }
+  .m-d-cell span { font-size: 7px; letter-spacing: 0.08em; margin-top: 4px; }
+  .m-d-under { margin-top: 8px; }
+  .m-d-serving { font-size: 11.5px; }
+  .m-diet-tag { font-size: 8.5px; letter-spacing: 0.1em; }
+  .m-detail-flavors { margin-top: 13px; }
+  .m-flavor-row { padding: 8px 0; }
+  .m-detail-mods, .m-detail-custom { margin-top: 13px; }
+  .m-detail-label { margin-bottom: 9px; }
+  .m-mod-pills { gap: 6px; }
+  .m-mod-pill { min-height: 36px; padding: 0 10px; font-size: 11px; }
+  .m-custom-input { font-size: 16px; line-height: 21px; padding-bottom: 7px; }
+  .m-detail-foot { padding: 10px 13px 10px 17px; }
+  .m-detail-stepper button { width: 44px; min-height: 44px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .m-ribbon { animation: none; }
+  .m-ribbon-sheen, .m-shimmer::after { display: none; }
+  .m-drawer { transition: none; }
+
+  /* the card arrives already drawn */
+  .m-detail, .m-sheet-backdrop, .m-sheet { transition: none; }
+  .m-detail-name, .m-d-cell, .m-flavor-row {
+    opacity: 1; transform: none; transition: none;
+  }
+  .m-detail-img {
+    opacity: 1; transform: rotate(-1.8deg); transition: none;
+  }
+  .m-d-flourish path { stroke-dashoffset: 0; transition: none; }
+}
+
+/* ═══════════ short viewports — the detail sheet must FIT ═══════════
+   Zeshan's rule: an expanded meal shows everything with no scrolling
+   inside the sheet. dvh gets us the real screen height, but when the
+   browser chrome is out (or on a small phone) there is simply less of
+   it — so the RHYTHM compresses instead of the content being cut off.
+   Measured: the sheet ran ~110px long at 660px of viewport.
+
+   Threshold raised 790 → 830 on Aug 4: dish descriptions now come from the
+   weekly menu CSV instead of being hand-shortened, and the longest of them
+   (the salads, ~205 chars vs ~135 before) ran the sheet 9px long at 375×812 —
+   a very common phone, and the one height that previously got NO compression
+   at all. */
+@media (max-height: 830px) {
+  .m-detail-body { padding: 16px 20px 12px; }
+  .m-d-head { margin-top: 9px; gap: 13px; }
+  .m-detail-body > svg { margin-top: 10px !important; }
+  .m-detail-desc { margin-top: 9px; font-size: 16px; line-height: 21px; }
+  .m-d-spec { margin-top: 11px; padding: 8px 0 6px; }
+  .m-d-under { margin-top: 7px; }
+  .m-detail-flavors { margin-top: 12px; }
+  .m-detail-mods { margin-top: 12px; }
+  .m-detail-custom { margin-top: 12px; }
+  .m-detail-img { width: clamp(100px, 29vw, 124px); }
+  .m-mod-pill { min-height: 36px; padding: 0 11px; }
+  .m-mod-pills { gap: 6px; }
+}
+
+/* very short viewports (small phones with the chrome out) — one more
+   notch, so the sheet still shows everything rather than scrolling */
+@media (max-height: 690px) {
+  .m-detail-body { padding: 12px 18px 10px; }
+  .m-d-head { margin-top: 7px; gap: 11px; }
+  .m-detail-body > svg { margin-top: 8px !important; }
+  .m-detail-desc { margin-top: 8px; font-size: 15px; line-height: 19.5px; }
+  .m-d-spec { margin-top: 9px; padding: 6px 0 5px; }
+  .m-d-under { margin-top: 6px; }
+  .m-detail-flavors, .m-detail-mods, .m-detail-custom { margin-top: 9px; }
+  .m-detail-img { width: clamp(92px, 26vw, 108px); }
+  .m-mod-pill { min-height: 32px; padding: 0 10px; font-size: 11px; }
+  .m-mod-pills { gap: 5px; }
+}
+
+/* Narrow AND not-tall (320×700 class). Width is the hidden variable in the
+   ladder above: at 320px a ~205-char description wraps to six lines where at
+   402px it takes four, so a height that is comfortable on a wide phone runs
+   22px long on a narrow one. Same compression notch as the very-short band,
+   keyed on the combination. */
+@media (max-width: 360px) and (max-height: 830px) {
+  .m-detail-body { padding: 13px 17px 10px; }
+  .m-d-head { margin-top: 7px; gap: 11px; }
+  .m-detail-body > svg { margin-top: 8px !important; }
+  .m-detail-desc { margin-top: 8px; font-size: 15px; line-height: 19.5px; }
+  .m-d-spec { margin-top: 9px; padding: 6px 0 5px; }
+  .m-d-under { margin-top: 6px; }
+  .m-detail-flavors, .m-detail-mods, .m-detail-custom { margin-top: 9px; }
+  .m-mod-pill { min-height: 34px; padding: 0 10px; font-size: 11px; }
+  .m-mod-pills { gap: 5px; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ▓▓▓ MOCKUP · COMPLIANCE LAYER (menu page) ▓▓▓
+   Proposed, not shipped.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── 8 · disclosure under the skip CTA ──────────────────────────── */
+.m-consent {
+  max-width: 34em;
+  margin: 18px auto 0;
+  font-size: 10.5px;
+  line-height: 15px;
+  color: var(--ink-soft);
+  text-align: left;
+  text-wrap: pretty;
+}
+.m-consent b { color: var(--charcoal); font-weight: 700; }
+/* the Terms/Privacy links were inheriting body colour with no underline —
+   an unstyled <a> inside fine print reads as prose and nobody taps it,
+   which defeats the point of putting the links there */
+.m-consent a {
+  color: var(--brass-ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  white-space: nowrap;
+}
+
+/* ── 10 · disclosure in the draft sheet, at the send ───────────── */
+/* The draft sheet is FOREST (#0A1612), not cream — unlike .m-skip just
+   above it. Styled for cream first, this line came out at ~2:1 contrast
+   and the bold STOP/HELP at ~1.2:1, i.e. invisible. Same words, dark
+   surface palette. (invariant 7) */
+.m-send-fine {
+  margin-top: 14px;
+  font-size: 10.5px;
+  line-height: 15px;
+  color: rgba(245, 241, 234, 0.66);   /* 6.2:1 on --forest */
+  text-align: center;
+  text-wrap: pretty;
+}
+.m-send-fine b { color: var(--cream); font-weight: 700; }
+.m-send-fine a {
+  color: var(--brass);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  white-space: nowrap;
+}
+
+/* ── 9 · the menu page footer ───────────────────────────────────── */
+/* Collapsed to identity + links (Aug 10) — the .m-footer-label and
+   .m-footer h3 rules went with the fine-print sections they styled. */
+.m-footer {
+  margin-top: 12px;
+  padding: 24px 0 22px;
+  background: var(--forest);
+  color: var(--cream);
+}
+.m-footer-in { padding: 0 22px; }
+.m-footer p {
+  font-size: 10px;
+  line-height: 14.5px;
+  color: rgba(245, 241, 234, 0.64);   /* 6.0:1 on --forest */
+  text-wrap: pretty;
+}
+.m-footer b { color: var(--cream); font-weight: 600; }
+.m-footer-links {
+  display: flex; flex-wrap: wrap;
+  gap: 2px 16px;
+  margin: 0 0 10px;
+}
+.m-footer-links a {
+  display: inline-block;
+  padding: 3px 0;                      /* tap height without bigger type */
+  font-size: 11px; font-weight: 600;
+  color: var(--brass);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.m-footer-c {
+  margin-top: 6px;
+  font-size: 9px !important;
+  color: rgba(245, 241, 234, 0.66) !important;
+}
