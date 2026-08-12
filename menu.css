@@ -5,13 +5,6 @@
 
 .menu-page { background: var(--cream); }
 
-.topbar-back {
-  font-size: 18px;
-  color: var(--cream);
-  margin-right: 2px;
-  padding: 2px 6px 2px 0;
-}
-
 /* ── masthead ───────────────────────────────────────────────── */
 .m-head {
   padding: 96px 22px 34px;
