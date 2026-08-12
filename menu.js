@@ -1,6 +1,6 @@
 /* HAVN · This week's menu — selections → draft text → send or skip.
    Deterministic, no frameworks. State lives here; nothing persists.
-   Regular meals $28 · salads $25 · sides $10 · collections $25. Each
+   Meals $25 · sides $10 · collections $25. Each
    collection counts as one meal equivalent; three sides count as one.
    Dish data is generated from the explicitly selected finalized weekly menu. Tapping a card
    opens its detail sheet (description, full macros, dietary tags,
@@ -12,7 +12,9 @@
   var priceForSlot = window.HAVN_PRICING && window.HAVN_PRICING.priceForSlot;
   if (!priceForSlot) throw new Error("Havn acquisition pricing did not load");
   var MODE = window.HAVN_MENU_MODE || "active";
-  var mealPrice = MODE === "welcome" ? 28 : 25;
+  /* Section labels derive from the same resolver as the cart and receipt, so
+     a future price adjustment cannot leave the visible menu out of sync. */
+  var mealPrice = priceForSlot("cheat");
 
   /* ── BEGIN GENERATED: SECTIONS ───────────────────────────────────
      Written by scripts/sync_design_lab_menu.py from the weekly menu

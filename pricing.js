@@ -27,7 +27,10 @@
 
   var mode = menuMode();
   root.HAVN_MENU_MODE = mode;
-  var memberMealPrice = mode === "welcome" ? 28 : 25;
+  /* Meal pricing is intentionally uniform across every member-menu variant.
+     Credits remain represented separately in the receipt instead of changing
+     the underlying meal price. */
+  var memberMealPrice = 25;
 
   var SLOT_PRICES = Object.freeze({
     cheat: memberMealPrice,
