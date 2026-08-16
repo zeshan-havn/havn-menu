@@ -726,6 +726,14 @@
       sendBtn.classList.toggle("m-send-off", !lines.length);
     }
 
+    /* Pending-menu mode wins over everything above: drafting stays live,
+       the send itself is paused until the new menu is published. */
+    if (pendingMode) {
+      sendBtn.classList.add("m-send-off");
+      sendBtn.removeAttribute("href");
+      sendBtn.textContent = "Ordering opens with the new menu";
+    }
+
   }
 
   function openSheet() {
@@ -797,6 +805,75 @@
     container = chip.dataset.container;
     renderSheet();
   });
+
+  /* ── pending-menu mode ──────────────────────────────────────────
+     Driven by the operator "Pending Menu Mode" toggle on the comms
+     dashboard (public read: api.havnclub.com/intake/menu-status), with
+     ?pending=1 as a QA override. Fail-open: if the status call errors or
+     times out, the page behaves exactly as it does today. */
+  var pendingMode = false;
+
+  function enterPendingMode() {
+    if (pendingMode) return;
+    pendingMode = true;
+    document.body.classList.add("m-pending");
+
+    /* The intro line must stop claiming "This week's menu" with a computed
+       upcoming-Sunday date — while pending, both halves would be wrong. Kept
+       short: the persistent band right above already says the rest. */
+    var introLabel = document.querySelector(".m-intro-label");
+    if (introLabel) {
+      introLabel.innerHTML = "<i aria-hidden=\"true\"></i>Last week&rsquo;s menu";
+    }
+
+    var banner = document.getElementById("m-pend-banner");
+    var topbar = document.getElementById("topbar");
+    if (banner) {
+      banner.style.top = (topbar ? topbar.offsetHeight : 0) + "px";
+      banner.hidden = false;
+    }
+
+    renderSheet();
+
+    var pop = document.getElementById("m-pend");
+    var popBackdrop = document.getElementById("m-pend-backdrop");
+    var okBtn = document.getElementById("m-pend-ok");
+    if (pop && popBackdrop && okBtn) {
+      pop.hidden = false;
+      popBackdrop.hidden = false;
+      setTimeout(function () {
+        pop.classList.add("open");
+        popBackdrop.classList.add("open");
+        okBtn.focus();
+      }, 20);
+      var closePend = function () {
+        pop.classList.remove("open");
+        popBackdrop.classList.remove("open");
+        setTimeout(function () { pop.hidden = true; popBackdrop.hidden = true; }, 380);
+      };
+      okBtn.addEventListener("click", closePend);
+      popBackdrop.addEventListener("click", closePend);
+    }
+  }
+
+  (function initPendingMode() {
+    var qs;
+    try { qs = new URLSearchParams(window.location.search || ""); }
+    catch (e) { qs = null; }
+    if (qs && qs.has("pending")) { enterPendingMode(); return; }
+    var url = (window.HAVN_CONFIG && window.HAVN_CONFIG.MENU_STATUS_URL) ||
+      "https://api.havnclub.com/intake/menu-status";
+    try {
+      var ctrl = ("AbortController" in window) ? new AbortController() : null;
+      if (ctrl) setTimeout(function () { ctrl.abort(); }, 4000);
+      fetch(url, ctrl ? { signal: ctrl.signal } : {})
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (data) {
+          if (data && data.ordering === "pending") enterPendingMode();
+        })
+        .catch(function () { /* fail-open */ });
+    } catch (e) { /* fail-open */ }
+  })();
 
   refresh();
 })();

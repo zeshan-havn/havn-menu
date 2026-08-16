@@ -194,8 +194,32 @@
        The estimate/tax sentence is CUT on his call: this line is for
        informed consent to the messages, nothing else. The sheet already
        says "You pay nothing now. The concierge confirms first." -->
+  <p class="m-pend-sheet-note">Ordering is paused until the new menu drops. Your picks stay right here.</p>
   <a class="m-send" id="m-send" href="#send">Send the order text</a>
   <a class="m-sheet-skip" href="sms:" data-skip-direct>Skip</a>
+</section>
+
+<!-- ── pending-menu notice ─────────────────────────────────────
+     Hidden unless the operator "Pending Menu Mode" toggle on the comms
+     dashboard is ON (or ?pending=1 for QA). While pending, the page shows
+     LAST week's menu for browsing: the card explains, the band persists,
+     dishes still add to the draft, and only the send is paused. -->
+<div class="m-pend-banner" id="m-pend-banner" hidden>
+  <span class="m-pend-banner-dot" aria-hidden="true"></span>
+  Last week&rsquo;s menu &middot; new menu dropping soon
+</div>
+
+<div class="m-pend-backdrop" id="m-pend-backdrop" hidden></div>
+<section class="m-pend" id="m-pend" role="dialog" aria-modal="true" aria-labelledby="m-pend-title" hidden>
+  <p class="m-pend-kicker">A quick note</p>
+  <h2 class="m-pend-title" id="m-pend-title">The new menu is<br><em>dropping soon</em></h2>
+  <svg class="m-rule m-pend-rule" viewBox="0 0 340 9" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    <path d="M1 5.4C26 2.2 52 7.4 78 4.6S128 1.8 156 5.2 206 8.2 232 4.4 286 1.6 312 5s21 1.2 27 -0.6"/>
+  </svg>
+  <p class="m-pend-body">You&rsquo;re browsing last week&rsquo;s menu while the next one is finalized.
+    Look around, get a feel for the meals, and draft your favorites.
+    Ordering opens the moment the new menu is live.</p>
+  <button class="m-pend-ok" id="m-pend-ok" type="button">Browse the menu</button>
 </section>
 
 <script src="/config.js"></script>
