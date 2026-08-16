@@ -79,6 +79,12 @@ window.HAVN_CONFIG = {
      entirely; nothing third-party is fetched when it is empty. */
   META_PIXEL_ID: "1512896839934759",
 
+  /* ── pending-menu status ──────────────────────────────────────
+     Public read of the operator "Pending Menu Mode" toggle on the comms
+     dashboard. While it reports pending, menu.js shows the browse-only
+     notice and pauses the order send. Errors fail open to normal. */
+  MENU_STATUS_URL: "https://api.havnclub.com/intake/menu-status",
+
   /* ── the desktop path ─────────────────────────────────────────
      REPLACED the old FORM block on Zeshan's call, Aug 10. A visitor
      whose device can't open an SMS composer (in practice: desktop)

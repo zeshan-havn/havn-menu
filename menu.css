@@ -1140,3 +1140,90 @@ body.active-menu .m-intro { padding-top: 88px; }
   font-size: 9px !important;
   color: rgba(245, 241, 234, 0.66) !important;
 }
+
+/* ── pending-menu mode ──────────────────────────────────────────
+   Active only while the operator toggle says last week's menu is still
+   the published one. Browsing and drafting stay live; sending pauses. */
+
+.m-pend-banner {
+  position: fixed;
+  left: 50%; transform: translateX(-50%);
+  width: 100%; max-width: 480px;
+  z-index: 45; /* under the topbar (50), over the page */
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  background: var(--forest);
+  border-top: 1px solid rgba(196, 168, 124, 0.35);
+  color: var(--cream-2);
+  font: 500 12px/1.4 'DM Sans', sans-serif;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  padding: 8px 14px;
+  text-align: center;
+}
+.m-pend-banner[hidden] { display: none; }
+.m-pend-banner-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--brass); flex: 0 0 auto;
+}
+
+.m-pend-backdrop {
+  position: fixed; inset: 0;
+  z-index: 90;
+  background: rgba(6, 12, 10, 0.6);
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.m-pend-backdrop.open { opacity: 1; }
+.m-pend-backdrop[hidden], .m-pend[hidden] { display: none; }
+
+.m-pend {
+  position: fixed; left: 50%; top: 50%;
+  transform: translate(-50%, -50%) scale(0.96);
+  width: min(400px, calc(100vw - 44px));
+  z-index: 95;
+  background: var(--cream);
+  border-radius: 18px;
+  padding: 30px 26px 24px;
+  box-shadow: 0 30px 80px rgba(10, 22, 18, 0.5);
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.m-pend.open { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+.m-pend-kicker {
+  font: 600 11px/1 'DM Sans', sans-serif;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--brass-2);
+  margin: 0 0 12px;
+}
+.m-pend-title {
+  font: 500 31px/1.12 'Cormorant Garamond', serif;
+  color: var(--forest);
+  margin: 0 0 4px;
+}
+.m-pend-title em { font-style: italic; color: #1B5E40; }
+.m-pend-rule { width: 58%; margin: 8px auto 14px; opacity: 0.85; }
+.m-pend-body {
+  font: 400 14.5px/1.65 'DM Sans', sans-serif;
+  color: #5C5A55;
+  margin: 0 0 20px;
+}
+.m-pend-ok {
+  display: block; width: 100%;
+  border: 0; border-radius: 12px;
+  background: var(--forest);
+  color: var(--cream);
+  font: 600 15px/1 'DM Sans', sans-serif;
+  padding: 15px 18px;
+  cursor: pointer;
+}
+
+/* While pending, the sheet carries ONE message: the dimmed send button
+   itself says ordering opens with the new menu. The pay-note line reads
+   wrong when sending is paused, so it steps aside. */
+body.m-pending .m-pay-note { display: none; }
+body.m-pending .m-send.m-send-off { opacity: 0.55; margin-top: 18px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .m-pend, .m-pend-backdrop { transition: none; }
+}
