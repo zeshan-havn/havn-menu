@@ -731,7 +731,7 @@
     if (pendingMode) {
       sendBtn.classList.add("m-send-off");
       sendBtn.removeAttribute("href");
-      sendBtn.textContent = "Ordering opens with the new menu";
+      sendBtn.textContent = "Ordering opens when the new menu drops";
     }
 
   }

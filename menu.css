@@ -1218,19 +1218,11 @@ body.active-menu .m-intro { padding-top: 88px; }
   cursor: pointer;
 }
 
-/* draft-sheet note — visible only while pending */
-.m-pend-sheet-note { display: none; }
-body.m-pending .m-pend-sheet-note {
-  display: block;
-  font: 500 12.5px/1.5 'DM Sans', sans-serif;
-  color: var(--brass-ink);
-  background: rgba(196, 168, 124, 0.14);
-  border: 1px solid rgba(196, 168, 124, 0.4);
-  border-radius: 10px;
-  padding: 9px 12px;
-  margin: 0 0 10px;
-  text-align: center;
-}
+/* While pending, the sheet carries ONE message: the dimmed send button
+   itself says ordering opens with the new menu. The pay-note line reads
+   wrong when sending is paused, so it steps aside. */
+body.m-pending .m-pay-note { display: none; }
+body.m-pending .m-send.m-send-off { opacity: 0.55; margin-top: 18px; }
 
 @media (prefers-reduced-motion: reduce) {
   .m-pend, .m-pend-backdrop { transition: none; }
