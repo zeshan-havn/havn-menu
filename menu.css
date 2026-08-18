@@ -1145,6 +1145,16 @@ body.active-menu .m-intro { padding-top: 88px; }
    Active only while the operator toggle says last week's menu is still
    the published one. Browsing and drafting stay live; sending pauses. */
 
+/* Keep the generated upcoming lineup out of view until the public menu-status
+   read resolves. In pending mode JavaScript swaps in the prior-week snapshot
+   before removing this class; open/error paths reveal the prepared lineup. */
+body.m-menu-checking .m-intro,
+body.m-menu-checking #m-menu,
+body.m-menu-checking .m-back-top-wrap,
+body.m-menu-checking #m-bar {
+  visibility: hidden;
+}
+
 .m-pend-banner {
   position: fixed;
   left: 50%; transform: translateX(-50%);

@@ -160,8 +160,15 @@
   ];
   /* ── END GENERATED: SECTIONS ─────────────────────────────────── */
 
-  var ITEMS = {};
-  SECTIONS.forEach(function (s) { s.items.forEach(function (it) { ITEMS[it.id] = it; }); });
+  function indexItems(sections) {
+    var indexed = {};
+    sections.forEach(function (s) {
+      s.items.forEach(function (it) { indexed[it.id] = it; });
+    });
+    return indexed;
+  }
+
+  var ITEMS = indexItems(SECTIONS);
 
   var qty = {};
   var mods = {};   /* id -> array of active Make-it pills */
@@ -261,93 +268,99 @@
       "</div>";
   }
 
-  SECTIONS.forEach(function (section) {
-    var sec = document.createElement("section");
-    sec.className = "m-sec";
+  function renderMenuSections() {
+    mount.innerHTML = "";
 
-    var grid = document.createElement("div");
-    grid.className = "m-grid" +
-      (section.side ? " m-grid-sides" : "") +
-      (section.collection ? " m-grid-collections" : "");
+    SECTIONS.forEach(function (section) {
+      var sec = document.createElement("section");
+      sec.className = "m-sec";
 
-    if (section.drop) {
-      /* collapsed drawer: the label row is the handle */
-      sec.classList.add("m-sec-drop");
-      var btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "m-sec-toggle";
-      btn.setAttribute("aria-expanded", "true");
-      btn.innerHTML = '<span class="m-sec-label-text">' + section.label + '</span><i class="m-sec-rule"></i><span class="m-sec-chev" aria-hidden="true">&#8964;</span>';
-      sec.appendChild(btn);
-      sec.classList.add("open");
+      var grid = document.createElement("div");
+      grid.className = "m-grid" +
+        (section.side ? " m-grid-sides" : "") +
+        (section.collection ? " m-grid-collections" : "");
 
-      var drawer = document.createElement("div");
-      drawer.className = "m-drawer";
-      var inner = document.createElement("div");
-      inner.className = "m-drawer-in";
-      inner.appendChild(grid);
-      drawer.appendChild(inner);
-      sec.appendChild(drawer);
+      if (section.drop) {
+        /* collapsed drawer: the label row is the handle */
+        sec.classList.add("m-sec-drop");
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "m-sec-toggle";
+        btn.setAttribute("aria-expanded", "true");
+        btn.innerHTML = '<span class="m-sec-label-text">' + section.label + '</span><i class="m-sec-rule"></i><span class="m-sec-chev" aria-hidden="true">&#8964;</span>';
+        sec.appendChild(btn);
+        sec.classList.add("open");
 
-      btn.addEventListener("click", function () {
-        var open = sec.classList.toggle("open");
-        btn.setAttribute("aria-expanded", open ? "true" : "false");
-      });
-    } else {
-      var lab = document.createElement("p");
-      lab.className = "m-sec-label";
-      lab.textContent = section.label;
-      sec.appendChild(lab);
-      sec.appendChild(grid);
-    }
+        var drawer = document.createElement("div");
+        drawer.className = "m-drawer";
+        var inner = document.createElement("div");
+        inner.className = "m-drawer-in";
+        inner.appendChild(grid);
+        drawer.appendChild(inner);
+        sec.appendChild(drawer);
 
-    section.items.forEach(function (item) {
-      var card = document.createElement("article");
-      card.dataset.item = item.id;
-      card.tabIndex = 0;
-      card.setAttribute("aria-haspopup", "dialog");
-      card.setAttribute("aria-label", "View details for " + item.name);
-      if (item.addon) {
-        /* collections are the highlight pieces — brass frame,
-           shimmer sweep; the flavor list lives in the detail sheet */
-        card.className = "m-card m-card-collection m-shimmer";
-        card.innerHTML =
-          '<span class="m-card-tag">' + item.tag + " &middot; $" + priceForSlot(item.id) + "</span>" +
-          '<h3 class="m-card-name">' + item.name + "</h3>" +
-          '<p class="m-card-macros">' + item.note + "</p>" +
-          stepperHTML(item.id);
-      } else if (item.side) {
-        /* breakfast rides imageless text cards */
-        card.className = "m-card m-card-side";
-        card.innerHTML =
-          '<span class="m-card-tag">' + item.tag + "</span>" +
-          '<h3 class="m-card-name">' + item.name + "</h3>" +
-          '<p class="m-card-macros">' + item.cal + " cal &middot; " + item.protein + "g protein</p>" +
-          stepperHTML(item.id);
+        btn.addEventListener("click", function () {
+          var open = sec.classList.toggle("open");
+          btn.setAttribute("aria-expanded", open ? "true" : "false");
+        });
       } else {
-        card.className = "m-card";
-        card.innerHTML =
-          '<span class="m-card-img" style="background-image:url(\'' + item.img + "')\"></span>" +
-          '<span class="m-card-tag">' + item.tag + "</span>" +
-          '<h3 class="m-card-name">' + item.name + "</h3>" +
-          '<p class="m-card-macros">' + item.cal + " cal &middot; " + item.protein + "g protein</p>" +
-          stepperHTML(item.id);
+        var lab = document.createElement("p");
+        lab.className = "m-sec-label";
+        lab.textContent = section.label;
+        sec.appendChild(lab);
+        sec.appendChild(grid);
       }
-      card.addEventListener("keydown", function (e) {
-        if (e.target !== card || (e.key !== "Enter" && e.key !== " ")) return;
-        e.preventDefault();
-        openDetail(item.id, card);
+
+      section.items.forEach(function (item) {
+        var card = document.createElement("article");
+        card.dataset.item = item.id;
+        card.tabIndex = 0;
+        card.setAttribute("aria-haspopup", "dialog");
+        card.setAttribute("aria-label", "View details for " + item.name);
+        if (item.addon) {
+          /* collections are the highlight pieces — brass frame,
+             shimmer sweep; the flavor list lives in the detail sheet */
+          card.className = "m-card m-card-collection m-shimmer";
+          card.innerHTML =
+            '<span class="m-card-tag">' + item.tag + " &middot; $" + priceForSlot(item.id) + "</span>" +
+            '<h3 class="m-card-name">' + item.name + "</h3>" +
+            '<p class="m-card-macros">' + item.note + "</p>" +
+            stepperHTML(item.id);
+        } else if (item.side) {
+          /* breakfast rides imageless text cards */
+          card.className = "m-card m-card-side";
+          card.innerHTML =
+            '<span class="m-card-tag">' + item.tag + "</span>" +
+            '<h3 class="m-card-name">' + item.name + "</h3>" +
+            '<p class="m-card-macros">' + item.cal + " cal &middot; " + item.protein + "g protein</p>" +
+            stepperHTML(item.id);
+        } else {
+          card.className = "m-card";
+          card.innerHTML =
+            '<span class="m-card-img" style="background-image:url(\'' + item.img + "')\"></span>" +
+            '<span class="m-card-tag">' + item.tag + "</span>" +
+            '<h3 class="m-card-name">' + item.name + "</h3>" +
+            '<p class="m-card-macros">' + item.cal + " cal &middot; " + item.protein + "g protein</p>" +
+            stepperHTML(item.id);
+        }
+        card.addEventListener("keydown", function (e) {
+          if (e.target !== card || (e.key !== "Enter" && e.key !== " ")) return;
+          e.preventDefault();
+          openDetail(item.id, card);
+        });
+        grid.appendChild(card);
       });
-      grid.appendChild(card);
+
+      mount.appendChild(sec);
     });
 
-    mount.appendChild(sec);
-  });
+    /* stagger the shimmer so the two collections don't flash in sync */
+    Array.prototype.forEach.call(document.querySelectorAll(".m-shimmer"), function (el, i) {
+      el.style.setProperty("--shimmer-delay", (i * 1.1) + "s");
+    });
+  }
 
-  /* stagger the shimmer so the two collections don't flash in sync */
-  Array.prototype.forEach.call(document.querySelectorAll(".m-shimmer"), function (el, i) {
-    el.style.setProperty("--shimmer-delay", (i * 1.1) + "s");
-  });
+  renderMenuSections();
 
   /* ── selection state ────────────────────────────────────────── */
   function counts() {
@@ -814,10 +827,26 @@
      times out, the page behaves exactly as it does today. */
   var pendingMode = false;
 
+  function revealResolvedMenu() {
+    document.body.classList.remove("m-menu-checking");
+  }
+
   function enterPendingMode() {
     if (pendingMode) return;
     pendingMode = true;
     document.body.classList.add("m-pending");
+
+    /* menu.js already contains the ready-to-launch week. Pending mode swaps
+       in the preserved prior-week snapshot before the hidden menu is revealed,
+       so the operator toggle controls the first customer reveal by itself. */
+    if (window.HAVN_PREVIOUS_MENU_SECTIONS) {
+      SECTIONS = window.HAVN_PREVIOUS_MENU_SECTIONS;
+      ITEMS = indexItems(SECTIONS);
+      qty = {};
+      mods = {};
+      notes = {};
+      renderMenuSections();
+    }
 
     /* The intro line must stop claiming "This week's menu" with a computed
        upcoming-Sunday date — while pending, both halves would be wrong. Kept
@@ -850,11 +879,26 @@
       var closePend = function () {
         pop.classList.remove("open");
         popBackdrop.classList.remove("open");
+        document.removeEventListener("keydown", handlePendKeydown);
         setTimeout(function () { pop.hidden = true; popBackdrop.hidden = true; }, 380);
       };
+      var handlePendKeydown = function (e) {
+        if (e.key === "Escape") {
+          e.preventDefault();
+          closePend();
+          return;
+        }
+        if (e.key === "Tab") {
+          e.preventDefault();
+          okBtn.focus();
+        }
+      };
+      document.addEventListener("keydown", handlePendKeydown);
       okBtn.addEventListener("click", closePend);
       popBackdrop.addEventListener("click", closePend);
     }
+
+    revealResolvedMenu();
   }
 
   (function initPendingMode() {
@@ -871,9 +915,10 @@
         .then(function (r) { return r.ok ? r.json() : null; })
         .then(function (data) {
           if (data && data.ordering === "pending") enterPendingMode();
+          else revealResolvedMenu();
         })
-        .catch(function () { /* fail-open */ });
-    } catch (e) { /* fail-open */ }
+        .catch(function () { revealResolvedMenu(); /* fail-open */ });
+    } catch (e) { revealResolvedMenu(); /* fail-open */ }
   })();
 
   refresh();
