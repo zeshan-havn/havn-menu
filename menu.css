@@ -1193,7 +1193,7 @@ body.active-menu .m-intro { padding-top: 88px; }
 .m-pend-kicker {
   font: 600 11px/1 'DM Sans', sans-serif;
   letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--brass-2);
+  color: var(--forest);
   margin: 0 0 12px;
 }
 .m-pend-title {
