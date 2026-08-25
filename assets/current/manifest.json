@@ -1,74 +1,74 @@
 {
   "schema": 1,
   "week": {
-    "start": "2026-08-23",
-    "end": "2026-08-29"
+    "start": "2026-08-30",
+    "end": "2026-09-05"
   },
   "menu_source": {
-    "path": "CulinaryOps/Aug 23rd Menu File/finalized-menu.json",
-    "sha256": "f6599a8511070bedfb8a03977379a237852b7bc2ab7f7b7925a0a89b8b9023b9"
+    "path": "CulinaryOps/Aug 30th Menu File/finalized-menu.json",
+    "sha256": "8f20d305bde762ba115bebf54508ec00e3aa66dd15ec09028bfb8ca805f783c4"
   },
   "transform": "sips -Z 900 -s format jpeg -s formatOptions 82",
   "items": {
     "special": {
-      "source": "CulinaryOps/Aug 23rd Menu File/meal-images/cheat-birria-beef-bowl.png",
-      "source_sha256": "8ac5cdc92713c198c2d398f6462053e5f68409a489ced37e288672716ff51ad4",
+      "source": "CulinaryOps/Aug 30th Menu File/meal-images/cheat-smash-burger-bowl.png",
+      "source_sha256": "97ac373d14edc4c635bc3a908c33f79aa8b10982d6d1ab5764f7c6c2491f8377",
       "output": "assets/current/special.jpg",
-      "output_sha256": "962a48bbde5ae3f8f681ba8bc016a7496e10aba040abb4d9e0883d8f0bf10e68"
+      "output_sha256": "9577a493b57d19509a8c9ca770a9bdc41e63e0df90f6d323ad4fa12ff9ebff9a"
     },
     "chicken": {
-      "source": "CulinaryOps/Aug 23rd Menu File/meal-images/chicken-peri-peri-chicken.png",
-      "source_sha256": "b9b5acff9dd8f7ba60642c68937f9634e800368f76dab3a481ee9b2aef2ed414",
+      "source": "CulinaryOps/Aug 30th Menu File/meal-images/chicken-chicken-tikka.png",
+      "source_sha256": "2a9cc285391b1be9754dd42d76568fe66ed326d09b836a517021a0288b99652e",
       "output": "assets/current/chicken.jpg",
-      "output_sha256": "abaaf1b4084a10569260003d0ec8b40c72025182fe372f3d0f6c721f0c0c420f"
+      "output_sha256": "b7626aafe53f72008f664ead2e47302b53536edf0bd9822e2e536a170d86b6d9"
     },
     "chicken_2": {
-      "source": "CulinaryOps/Aug 23rd Menu File/meal-images/chicken_2-lemon-herb-feta-chicken.png",
+      "source": "CulinaryOps/Aug 30th Menu File/meal-images/chicken_2-lemon-herb-feta-chicken.png",
       "source_sha256": "a1fcc66cb46dd6ff2e351078e259962b0103a50f245fc866e712bb20c0dbfe76",
       "output": "assets/current/chicken_2.jpg",
       "output_sha256": "e339aed7b42067bd61c485dcb1fee68754331ed305010115ef2ebf60db923068"
     },
     "beef": {
-      "source": "CulinaryOps/Aug 23rd Menu File/meal-images/beef-carne-asada-steak.png",
-      "source_sha256": "26a9425a0384ba69f812f5c5ea1f3a91d60815904794eae93842a8ba056d7f3c",
+      "source": "CulinaryOps/Aug 30th Menu File/meal-images/beef-balsamic-fig-short-ribs.png",
+      "source_sha256": "f4c541ee376097237c839c7b6978f748194b7918285b9b6b278226afb1876695",
       "output": "assets/current/beef.jpg",
-      "output_sha256": "7e76b7a0543f0ee9570ac9c217373d75520f2172f9a98185931c4bdf894fa1ed"
+      "output_sha256": "75eefe95f3bf6af0596bc80a343891f31a3fb532b9a2cfd63f84b74f87eb1908"
     },
     "seafood": {
-      "source": "CulinaryOps/Aug 23rd Menu File/meal-images/seafood-maple-dijon-salmon.png",
-      "source_sha256": "db52f40176f1d22d788791fb8e5b1c9fd93c6f2fd930192c9c0fe4723e5b9190",
+      "source": "CulinaryOps/Aug 30th Menu File/meal-images/seafood-blackened-salmon.png",
+      "source_sha256": "e54c688168d38b865e0e87e6525908bcc1b94f4491cf23664c4ad780b7c67bb1",
       "output": "assets/current/seafood.jpg",
-      "output_sha256": "bb2a8be279197f6ea7077badb858d0c22401d6a32c092d840ca3d22d3270eb9d"
+      "output_sha256": "ceded1a2f474040450ae7ab60b2cd6af0849f64a85c4bb587a0f2729491ab611"
     },
     "seafood_2": {
-      "source": "CulinaryOps/Aug 23rd Menu File/meal-images/seafood_2-honey-chipotle-shrimp.png",
-      "source_sha256": "7bec16b40ae8b7c0c2e925c706528ae133744feebc99dd301913f3ecead7d8bd",
+      "source": "CulinaryOps/Aug 30th Menu File/meal-images/seafood_2-asian-garlic-shrimp.png",
+      "source_sha256": "d2f498708fcc2cb05a54fb7641c19eed5a1dcb8b4add437a12717d6eb72f3720",
       "output": "assets/current/seafood_2.jpg",
-      "output_sha256": "6b26dbbec3a369d514e36959d9d1b1dd6d4b614782b1ade3e79d058a69e8e8c6"
+      "output_sha256": "be99ade3a3dfc53ae09b7d7d87ad33126dc73e595ec159943046e8659d308a34"
     },
     "veg": {
-      "source": "CulinaryOps/Aug 23rd Menu File/meal-images/vegetarian-crispy-za-atar-chickpeas.png",
-      "source_sha256": "3ff202bb353c1b481e06cfa099b88dc5ca7b6cd2ffc4a5a35355d6b80bea9f41",
+      "source": "CulinaryOps/Aug 30th Menu File/meal-images/vegetarian-korean-seared-tofu.png",
+      "source_sha256": "5fe5daa7ffdef55e35d279622502153f5de88da4d6c6f48f74f65db5467af57e",
       "output": "assets/current/veg.jpg",
-      "output_sha256": "90892f1ca7c3a18938797a44b38d26f666b5e6a44be646a20b0c3732f02d86ae"
+      "output_sha256": "88ea421b676bb7f0e8d5b9b624d9f668328b35c6e03d1641a637af01f2bbf8f5"
     },
     "pasta": {
-      "source": "CulinaryOps/Aug 23rd Menu File/meal-images/pasta-hot-honey-mac-and-cheese.png",
-      "source_sha256": "815c2f4d30ce69a217d63e8ab38d658f08cd2ab039fb66ee4e1cdcc52e50433c",
+      "source": "CulinaryOps/Aug 30th Menu File/meal-images/pasta-vodka-pasta.png",
+      "source_sha256": "2b238d5a7f18c7b2aeacbc3da393f3eacbcd332cc5aba750b0c793ec04d57f5d",
       "output": "assets/current/pasta.jpg",
-      "output_sha256": "4b3c6d5bd997c32f2e97b172b5ac42ed304fb433b81316334a37a246b2fbda75"
+      "output_sha256": "6daa4e39427ed11a51556c6a489efd1dcb04736ebcbc2672427f4d99a37645df"
     },
     "salad": {
-      "source": "CulinaryOps/Aug 23rd Menu File/meal-images/salad-green-goddess-salad.png",
+      "source": "CulinaryOps/Aug 30th Menu File/meal-images/salad-green-goddess-salad.png",
       "source_sha256": "6f074fbe9f142a1c4848d538ba513937619438756b8d2bd410345f46f0fc92f7",
       "output": "assets/current/salad.jpg",
       "output_sha256": "748645ddba7e44b814712d2c7fa66343b226c5fa4357011317c8e4b2b7e172dc"
     },
     "salad_2": {
-      "source": "CulinaryOps/Aug 23rd Menu File/meal-images/salad_2-harvest-bowl-salad.png",
-      "source_sha256": "10e67e3fd35edbcef938d32e42e916c42295509645f01e9a9a41334dcd694385",
+      "source": "CulinaryOps/Aug 30th Menu File/meal-images/salad_2-ruby-goddess-salad.png",
+      "source_sha256": "bf81644147ea64322979130c4916b7ec26795f13c67934823315274d6d14f115",
       "output": "assets/current/salad_2.jpg",
-      "output_sha256": "ce30f849e3e9c9388018c47f7143fb187c9efb79f89a56f0b1b1a7007895e1cf"
+      "output_sha256": "9d779eb93002dc98c644bc48ac685debb1668448fb0e5213923874b40de75f27"
     }
   }
 }
