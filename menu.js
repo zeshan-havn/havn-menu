@@ -38,12 +38,6 @@
           desc: "Braised short ribs with a balsamic fig glaze and caramelized pearl onions and roasted wild mushrooms over roasted baby potatoes.",
           cal: 675, protein: 58, fat: 28, fiber: 7, carbs: 54,
           diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
-        },
-        {
-          id: "seafood_2", name: "Asian Garlic Shrimp", tag: "Seafood", img: "/assets/current/seafood_2.jpg",
-          desc: "Asian garlic shrimp and hot honey sauce with spicy broccoli and carrots over cilantro lime rice.",
-          cal: 557, protein: 46, fat: 9, fiber: 6, carbs: 73,
-          diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
         }
       ]
     },
@@ -77,6 +71,12 @@
           id: "seafood", name: "Blackened Salmon", tag: "Seafood", img: "/assets/current/seafood.jpg",
           desc: "Blackened salmon with a maple honey dijon reduction and roasted broccoli and roasted beets over tri-color quinoa.",
           cal: 653, protein: 54, fat: 30, fiber: 8, carbs: 40,
+          diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
+        },
+        {
+          id: "seafood_2", name: "Asian Garlic Shrimp", tag: "Seafood", img: "/assets/current/seafood_2.jpg",
+          desc: "Asian garlic shrimp and hot honey sauce with spicy broccoli and carrots over cilantro lime rice.",
+          cal: 557, protein: 46, fat: 9, fiber: 6, carbs: 73,
           diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
         }
       ]
