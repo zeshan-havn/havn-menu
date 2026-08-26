@@ -4,3 +4,13 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+
+/acquisition-manifest.js
+  Access-Control-Allow-Origin: *
+  Cache-Control: public,max-age=0,must-revalidate
+  Content-Type: application/javascript; charset=UTF-8
+
+/acquisition-manifest.json
+  Access-Control-Allow-Origin: *
+  Cache-Control: public,max-age=0,must-revalidate
+  Content-Type: application/json; charset=UTF-8
