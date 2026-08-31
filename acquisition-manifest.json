@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "releaseDigest": "3cf5fce7d3154f25c147666bff28ca6a99cb812f4786e9affa7c368926c52cc4",
+  "releaseDigest": "a113ec5b9565987aca7e57c39a392a024d679dbb62445f9ce8e9c14da7f85d61",
   "menu": {
-    "id": "delivery-2026-08-30",
-    "version": "sha256-3cf5fce7d3154f25c147666bff28ca6a99cb812f4786e9affa7c368926c52cc4",
-    "weekLabel": "August 30",
+    "id": "delivery-2026-09-06",
+    "version": "sha256-a113ec5b9565987aca7e57c39a392a024d679dbb62445f9ce8e9c14da7f85d61",
+    "weekLabel": "September 6",
     "pricingPolicyId": "backend-25-10-v1",
     "offerPolicyId": "welcome-20-40-v1",
     "imagePolicy": {
@@ -14,8 +14,8 @@
     },
     "featuredIds": [
       "cheat",
-      "beef",
-      "seafood_2"
+      "seafood",
+      "salad"
     ],
     "presets": {
       "seven": [
@@ -24,11 +24,11 @@
           "quantity": 1
         },
         {
-          "itemId": "beef",
+          "itemId": "seafood",
           "quantity": 1
         },
         {
-          "itemId": "seafood_2",
+          "itemId": "salad",
           "quantity": 1
         },
         {
@@ -40,11 +40,11 @@
           "quantity": 1
         },
         {
-          "itemId": "seafood",
+          "itemId": "beef",
           "quantity": 1
         },
         {
-          "itemId": "pasta",
+          "itemId": "seafood_2",
           "quantity": 1
         }
       ],
@@ -54,11 +54,11 @@
           "quantity": 1
         },
         {
-          "itemId": "beef",
+          "itemId": "seafood",
           "quantity": 1
         },
         {
-          "itemId": "seafood_2",
+          "itemId": "salad",
           "quantity": 1
         },
         {
@@ -77,162 +77,13 @@
         "type": "meal",
         "category": "Beef",
         "menuSection": "Chef Special",
-        "name": "Smash Burger Bowl",
+        "name": "Braised Short Rib",
         "priceCents": 2500,
-        "description": "Seasoned ground beef finished with a smoky special burger sauce, served with caramelized onions, a crisp apple cider cabbage slaw, and roasted sweet potato wedges for a bold, craveable plate with a nostalgic, American finish.",
+        "description": "Slow braised short rib finished with a glossy balsamic reduction, served with roasted mushrooms and roasted pearl onions over wild rice for a classic, deeply savory plate with a bright, syrupy finish.",
         "macros": {
-          "calories": 765,
-          "protein": 53,
-          "fat": 46,
-          "fiber": 7,
-          "netCarbs": 36
-        },
-        "diet": [
-          "Dairy (Yogurt)",
-          "Gluten Free"
-        ],
-        "allergens": [
-          "dairy"
-        ],
-        "featured": true,
-        "customizations": [
-          "Low carb",
-          "No carb",
-          "Extra protein",
-          "Dairy-free"
-        ],
-        "image": {
-          "url": "/assets/releases/sha256-3cf5fce7d3154f25c147666bff28ca6a99cb812f4786e9affa7c368926c52cc4/cheat.jpg",
-          "width": 654,
-          "height": 900,
-          "format": "jpeg",
-          "sha256": "9577a493b57d19509a8c9ca770a9bdc41e63e0df90f6d323ad4fa12ff9ebff9a",
-          "alt": "Smash Burger Bowl"
-        }
-      },
-      {
-        "id": "chicken",
-        "type": "meal",
-        "category": "Chicken",
-        "menuSection": "Chicken",
-        "name": "Chicken Tikka",
-        "priceCents": 2500,
-        "description": "Tikka marinated chicken thighs simmered with a rich tikka masala sauce and served with roasted cauliflower and eggplant over cardamom basmati rice for a warm, aromatic Indian inspired plate with a gently spiced finish.",
-        "macros": {
-          "calories": 706,
-          "protein": 58,
-          "fat": 30,
-          "fiber": 6,
-          "netCarbs": 47
-        },
-        "diet": [
-          "Dairy (Yogurt)",
-          "Gluten Free"
-        ],
-        "allergens": [
-          "dairy"
-        ],
-        "featured": false,
-        "customizations": [
-          "Low carb",
-          "No carb",
-          "Extra protein",
-          "Dairy-free"
-        ],
-        "image": {
-          "url": "/assets/releases/sha256-3cf5fce7d3154f25c147666bff28ca6a99cb812f4786e9affa7c368926c52cc4/chicken.jpg",
-          "width": 654,
-          "height": 900,
-          "format": "jpeg",
-          "sha256": "b7626aafe53f72008f664ead2e47302b53536edf0bd9822e2e536a170d86b6d9",
-          "alt": "Chicken Tikka"
-        }
-      },
-      {
-        "id": "chicken_2",
-        "type": "meal",
-        "category": "Chicken",
-        "menuSection": "Chicken",
-        "name": "Lemon Herb Feta Chicken",
-        "priceCents": 2500,
-        "description": "Lemon herb chicken breast with a ruby whipped feta and roasted sweet potato and lacinato kale with a house pickled vegetable medley and dried cranberries for a bright, herb forward plate with a creamy, beet tinted finish.",
-        "macros": {
-          "calories": 675,
-          "protein": 66,
-          "fat": 31,
-          "fiber": 7,
-          "netCarbs": 33
-        },
-        "diet": [
-          "Dairy (Feta)",
-          "Gluten Free"
-        ],
-        "allergens": [
-          "dairy"
-        ],
-        "featured": false,
-        "customizations": [
-          "Low carb",
-          "No carb",
-          "Extra protein",
-          "Dairy-free"
-        ],
-        "image": {
-          "url": "/assets/releases/sha256-3cf5fce7d3154f25c147666bff28ca6a99cb812f4786e9affa7c368926c52cc4/chicken_2.jpg",
-          "width": 654,
-          "height": 900,
-          "format": "jpeg",
-          "sha256": "e339aed7b42067bd61c485dcb1fee68754331ed305010115ef2ebf60db923068",
-          "alt": "Lemon Herb Feta Chicken"
-        }
-      },
-      {
-        "id": "beef",
-        "type": "meal",
-        "category": "Beef",
-        "menuSection": "Chef Special",
-        "name": "Balsamic Fig Short Ribs",
-        "priceCents": 2500,
-        "description": "Tender braised short ribs finished with a sweet balsamic fig glaze, served with caramelized pearl onions and roasted wild mushrooms over roasted baby potatoes for a rich, French inspired plate with a bold, savory finish.",
-        "macros": {
-          "calories": 675,
-          "protein": 58,
-          "fat": 28,
-          "fiber": 7,
-          "netCarbs": 54
-        },
-        "diet": [
-          "Dairy Free",
-          "Gluten Free"
-        ],
-        "allergens": [],
-        "featured": true,
-        "customizations": [
-          "Low carb",
-          "No carb",
-          "Extra protein"
-        ],
-        "image": {
-          "url": "/assets/releases/sha256-3cf5fce7d3154f25c147666bff28ca6a99cb812f4786e9affa7c368926c52cc4/beef.jpg",
-          "width": 654,
-          "height": 900,
-          "format": "jpeg",
-          "sha256": "75eefe95f3bf6af0596bc80a343891f31a3fb532b9a2cfd63f84b74f87eb1908",
-          "alt": "Balsamic Fig Short Ribs"
-        }
-      },
-      {
-        "id": "seafood",
-        "type": "meal",
-        "category": "Seafood",
-        "menuSection": "Seafood",
-        "name": "Blackened Salmon",
-        "priceCents": 2500,
-        "description": "Blackened salmon finished with a maple honey dijon reduction, served with roasted broccoli and roasted beets over tri-color quinoa for a sweet and savory seafood plate with earthy depth and a refined finish.",
-        "macros": {
-          "calories": 653,
-          "protein": 54,
-          "fat": 30,
+          "calories": 617,
+          "protein": 61,
+          "fat": 24,
           "fiber": 8,
           "netCarbs": 40
         },
@@ -241,6 +92,79 @@
           "Gluten Free"
         ],
         "allergens": [],
+        "featured": true,
+        "customizations": [
+          "Low carb",
+          "No carb",
+          "Extra protein"
+        ],
+        "image": {
+          "url": "/assets/releases/sha256-a113ec5b9565987aca7e57c39a392a024d679dbb62445f9ce8e9c14da7f85d61/cheat.jpg",
+          "width": 654,
+          "height": 900,
+          "format": "jpeg",
+          "sha256": "7e6627a1f482e9d9d580a4724c6f444b944b11833998a6d703a084311df92eda",
+          "alt": "Braised Short Rib"
+        }
+      },
+      {
+        "id": "chicken",
+        "type": "meal",
+        "category": "Chicken",
+        "menuSection": "Chicken",
+        "name": "Tuscan Chicken",
+        "priceCents": 2500,
+        "description": "Tuscan style chicken thigh finished with a creamy sun dried tomato sauce, roasted zucchini, and cremini mushrooms over basmati rice for a rich, savory plate with a warm, Italian finish.",
+        "macros": {
+          "calories": 791,
+          "protein": 56,
+          "fat": 38,
+          "fiber": 4,
+          "netCarbs": 58
+        },
+        "diet": [
+          "Dairy (Cream)",
+          "Gluten Free"
+        ],
+        "allergens": [
+          "dairy"
+        ],
+        "featured": false,
+        "customizations": [
+          "Low carb",
+          "No carb",
+          "Extra protein",
+          "Dairy-free"
+        ],
+        "image": {
+          "url": "/assets/releases/sha256-a113ec5b9565987aca7e57c39a392a024d679dbb62445f9ce8e9c14da7f85d61/chicken.jpg",
+          "width": 654,
+          "height": 900,
+          "format": "jpeg",
+          "sha256": "94939d2b48784184a99139ed82f75396f7031079b1842da32385a6086d0acc16",
+          "alt": "Tuscan Chicken"
+        }
+      },
+      {
+        "id": "chicken_2",
+        "type": "meal",
+        "category": "Chicken",
+        "menuSection": "Chicken",
+        "name": "Mediterranean Chickpea Chicken Bowl",
+        "priceCents": 2500,
+        "description": "Pan-seared chicken breast layered with our dairy-free tahini green goddess, roasted chickpeas, roasted broccoli, and bright pickled red onions over tri-color quinoa for a fresh, herbaceous Mediterranean bowl with a satisfying grain base.",
+        "macros": {
+          "calories": 700,
+          "protein": 63,
+          "fat": 26,
+          "fiber": 16,
+          "netCarbs": 47
+        },
+        "diet": [
+          "Dairy Free",
+          "Gluten Free"
+        ],
+        "allergens": [],
         "featured": false,
         "customizations": [
           "Low carb",
@@ -248,28 +172,63 @@
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-3cf5fce7d3154f25c147666bff28ca6a99cb812f4786e9affa7c368926c52cc4/seafood.jpg",
+          "url": "/assets/releases/sha256-a113ec5b9565987aca7e57c39a392a024d679dbb62445f9ce8e9c14da7f85d61/chicken_2.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
-          "sha256": "ceded1a2f474040450ae7ab60b2cd6af0849f64a85c4bb587a0f2729491ab611",
-          "alt": "Blackened Salmon"
+          "sha256": "b97fcad1f854a18f61350e9092f219af8fdc701ba45e0308194ede2e362b75e1",
+          "alt": "Mediterranean Chickpea Chicken Bowl"
         }
       },
       {
-        "id": "seafood_2",
+        "id": "beef",
+        "type": "meal",
+        "category": "Beef",
+        "menuSection": "Beef",
+        "name": "Rosemary Thyme Steak",
+        "priceCents": 2500,
+        "description": "Rosemary and thyme crusted top sirloin finished with a savory steakhouse reduction and served with roasted garlic potatoes, cremini mushrooms and blistered green beans for a hearty, classic steakhouse plate with a deeply savory finish.",
+        "macros": {
+          "calories": 733,
+          "protein": 65,
+          "fat": 31,
+          "fiber": 7,
+          "netCarbs": 44
+        },
+        "diet": [
+          "Dairy Free",
+          "Gluten Free"
+        ],
+        "allergens": [],
+        "featured": false,
+        "customizations": [
+          "Low carb",
+          "No carb",
+          "Extra protein"
+        ],
+        "image": {
+          "url": "/assets/releases/sha256-a113ec5b9565987aca7e57c39a392a024d679dbb62445f9ce8e9c14da7f85d61/beef.jpg",
+          "width": 654,
+          "height": 900,
+          "format": "jpeg",
+          "sha256": "e37fb883bbbf6315f93b6eb4300afc1c3a8827c62ecec5ecb6e874c431c9ea9e",
+          "alt": "Rosemary Thyme Steak"
+        }
+      },
+      {
+        "id": "seafood",
         "type": "meal",
         "category": "Seafood",
-        "menuSection": "Seafood",
-        "name": "Asian Garlic Shrimp",
+        "menuSection": "Chef Special",
+        "name": "Blood Orange Salmon",
         "priceCents": 2500,
-        "description": "Asian garlic shrimp and a hot honey reduction with spicy broccoli and roasted carrots over cilantro lime rice.",
+        "description": "Seared salmon finished with a bright blood orange glaze, served with roasted beets over roasted sweet potatoes for a light, citrus forward plate with a vibrant, refreshing finish.",
         "macros": {
-          "calories": 557,
-          "protein": 46,
-          "fat": 9,
-          "fiber": 6,
-          "netCarbs": 73
+          "calories": 672,
+          "protein": 52,
+          "fat": 28,
+          "fiber": 7,
+          "netCarbs": 47
         },
         "diet": [
           "Dairy Free",
@@ -283,12 +242,50 @@
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-3cf5fce7d3154f25c147666bff28ca6a99cb812f4786e9affa7c368926c52cc4/seafood_2.jpg",
+          "url": "/assets/releases/sha256-a113ec5b9565987aca7e57c39a392a024d679dbb62445f9ce8e9c14da7f85d61/seafood.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
-          "sha256": "be99ade3a3dfc53ae09b7d7d87ad33126dc73e595ec159943046e8659d308a34",
-          "alt": "Asian Garlic Shrimp"
+          "sha256": "1d9a4319486ac0e94b9329ec67021c3e9a800da0783d7eefc4b32e9b691a4d55",
+          "alt": "Blood Orange Salmon"
+        }
+      },
+      {
+        "id": "seafood_2",
+        "type": "meal",
+        "category": "Seafood",
+        "menuSection": "Seafood",
+        "name": "Spicy Tuna Bowl",
+        "priceCents": 2500,
+        "description": "Crispy albacore tuna cakes finished with a spicy yuzu mayo, served with pickled cucumber, miso glazed roasted carrots, and blistered green beans over seasoned sushi rice for a bold, Japanese inspired bowl with a bright, umami finish.",
+        "macros": {
+          "calories": 652,
+          "protein": 37,
+          "fat": 21,
+          "fiber": 7,
+          "netCarbs": 72
+        },
+        "diet": [
+          "Dairy Free",
+          "Gluten (Breadcrumbs)"
+        ],
+        "allergens": [
+          "gluten"
+        ],
+        "featured": false,
+        "customizations": [
+          "Low carb",
+          "No carb",
+          "Extra protein",
+          "Gluten-free"
+        ],
+        "image": {
+          "url": "/assets/releases/sha256-a113ec5b9565987aca7e57c39a392a024d679dbb62445f9ce8e9c14da7f85d61/seafood_2.jpg",
+          "width": 654,
+          "height": 900,
+          "format": "jpeg",
+          "sha256": "d7819e69979e64ad3a24a89f7ef6314fa0105fc628f0a7e14c93f8bac4c07d71",
+          "alt": "Spicy Tuna Bowl"
         }
       },
       {
@@ -296,15 +293,15 @@
         "type": "meal",
         "category": "Pasta",
         "menuSection": "Pasta",
-        "name": "Vodka Pasta",
+        "name": "Marry Me Chicken Pasta",
         "priceCents": 2500,
-        "description": "Tender blackened chicken breast layered over luxurious shell pasta and finished with a silky dairy free vodka cream sauce made from San Marzano tomatoes and coconut milk for a rich, indulgent plate with a bright, classic Italian American finish.",
+        "description": "Marry Me chicken breast over rigatoni in a creamy dairy free sun dried tomato sauce with garlic, nutritional yeast, Italian herbs, and a hint of red pepper for a rich, savory Italian American pasta with a warmly spiced finish.",
         "macros": {
-          "calories": 717,
-          "protein": 54,
-          "fat": 33,
-          "fiber": 4,
-          "netCarbs": 50
+          "calories": 667,
+          "protein": 67,
+          "fat": 21,
+          "fiber": 2,
+          "netCarbs": 32
         },
         "diet": [
           "Dairy Free",
@@ -321,12 +318,12 @@
           "Gluten-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-3cf5fce7d3154f25c147666bff28ca6a99cb812f4786e9affa7c368926c52cc4/pasta.jpg",
+          "url": "/assets/releases/sha256-a113ec5b9565987aca7e57c39a392a024d679dbb62445f9ce8e9c14da7f85d61/pasta.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
-          "sha256": "6daa4e39427ed11a51556c6a489efd1dcb04736ebcbc2672427f4d99a37645df",
-          "alt": "Vodka Pasta"
+          "sha256": "e2e76e1e434ff0fd2986835d23463e2417d640f61ac08aadf0777c1f6c0b19b4",
+          "alt": "Marry Me Chicken Pasta"
         }
       },
       {
@@ -334,15 +331,15 @@
         "type": "meal",
         "category": "Veg",
         "menuSection": "Veg",
-        "name": "Korean Seared Tofu",
+        "name": "Chickpea Tikka Masala",
         "priceCents": 2500,
-        "description": "Extra firm tofu seared crispy and finished with a sweet spicy gochujang glaze, served with charred broccoli and roasted cremini mushrooms over basmati rice for a bold, Korean inspired plate with a fiery, umami finish.",
+        "description": "Crispy seared tofu simmered in a creamy coconut tikka masala with roasted cauliflower and chickpeas over basmati rice for a warm, aromatic plate with a bold, comforting finish.",
         "macros": {
-          "calories": 663,
-          "protein": 50,
-          "fat": 22,
-          "fiber": 10,
-          "netCarbs": 71
+          "calories": 753,
+          "protein": 40,
+          "fat": 33,
+          "fiber": 12,
+          "netCarbs": 68
         },
         "diet": [
           "Dairy Free",
@@ -356,48 +353,51 @@
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-3cf5fce7d3154f25c147666bff28ca6a99cb812f4786e9affa7c368926c52cc4/vegetarian.jpg",
+          "url": "/assets/releases/sha256-a113ec5b9565987aca7e57c39a392a024d679dbb62445f9ce8e9c14da7f85d61/vegetarian.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
-          "sha256": "88ea421b676bb7f0e8d5b9b624d9f668328b35c6e03d1641a637af01f2bbf8f5",
-          "alt": "Korean Seared Tofu"
+          "sha256": "c59f6b3d8f427c45a13c7e7b8ba4f4b558bdd5b321df14ca7d64bd2336480700",
+          "alt": "Chickpea Tikka Masala"
         }
       },
       {
         "id": "salad",
         "type": "meal",
         "category": "Salads",
-        "menuSection": "Salads",
-        "name": "Green Goddess Salad",
+        "menuSection": "Chef Special",
+        "name": "Chicken Caesar Crunch Salad",
         "priceCents": 2500,
-        "description": "Diced lemon herb chicken over a shredded purple cabbage and kale base with pickled red onion, cucumber and roasted chickpeas, finished with red grapes, toasted pumpkin seeds and dried apricots, served with tahini green goddess dressing on the side for a bright, crunchy cold plate at 45 g of protein.",
+        "description": "Diced lemon herb chicken over a sturdy shredded kale base with roasted chickpeas, shaved celery, and pickled cucumber, finished with blueberries and hemp seeds and served with a creamy eggless caper Caesar dressing on the side for a savory, tangy crunch that holds well through the week.",
         "macros": {
-          "calories": 479,
-          "protein": 45,
-          "fat": 20,
-          "fiber": 10,
-          "netCarbs": 31
+          "calories": 419,
+          "protein": 48,
+          "fat": 17,
+          "fiber": 8,
+          "netCarbs": 19
         },
         "diet": [
-          "Dairy Free",
+          "Dairy (Yogurt)",
           "Gluten Free",
           "high protein"
         ],
-        "allergens": [],
-        "featured": false,
+        "allergens": [
+          "dairy"
+        ],
+        "featured": true,
         "customizations": [
           "Low carb",
           "No carb",
-          "Extra protein"
+          "Extra protein",
+          "Dairy-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-3cf5fce7d3154f25c147666bff28ca6a99cb812f4786e9affa7c368926c52cc4/salad.jpg",
+          "url": "/assets/releases/sha256-a113ec5b9565987aca7e57c39a392a024d679dbb62445f9ce8e9c14da7f85d61/salad.jpg",
           "width": 720,
           "height": 900,
           "format": "jpeg",
-          "sha256": "748645ddba7e44b814712d2c7fa66343b226c5fa4357011317c8e4b2b7e172dc",
-          "alt": "Green Goddess Salad"
+          "sha256": "9d41f4c9d1a12554337a25ce5294c15b37e0e9fd04254228a05882bbdab9e4e6",
+          "alt": "Chicken Caesar Crunch Salad"
         }
       },
       {
@@ -405,15 +405,15 @@
         "type": "meal",
         "category": "Salads",
         "menuSection": "Salads",
-        "name": "Ruby Goddess Salad",
+        "name": "Chinese Chicken Salad",
         "priceCents": 2500,
-        "description": "Diced lemon herb chicken over a shredded purple cabbage and kale base with roasted chickpeas, pickled red onion and thin-sliced watermelon radish, finished with fresh blueberries, pomegranate arils and toasted pumpkin seeds, served with a ruby beet tahini dressing on the side for a bright, crunchy cold plate at 47 g of protein.",
+        "description": "Sesame chicken over a sturdy kale and shredded purple cabbage base with edamame, shredded carrots, cooled roasted red pepper, dried mango, scallions, and plain toasted pumpkin seeds, served with a ginger sesame tamari dressing on the side for a bright, savory salad with distinct sweet, nutty, and umami notes.",
         "macros": {
-          "calories": 513,
-          "protein": 47,
-          "fat": 23,
-          "fiber": 13,
-          "netCarbs": 30
+          "calories": 555,
+          "protein": 49,
+          "fat": 25,
+          "fiber": 9,
+          "netCarbs": 28
         },
         "diet": [
           "Dairy Free",
@@ -428,12 +428,12 @@
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-3cf5fce7d3154f25c147666bff28ca6a99cb812f4786e9affa7c368926c52cc4/salad_2.jpg",
+          "url": "/assets/releases/sha256-a113ec5b9565987aca7e57c39a392a024d679dbb62445f9ce8e9c14da7f85d61/salad_2.jpg",
           "width": 720,
           "height": 900,
           "format": "jpeg",
-          "sha256": "9d779eb93002dc98c644bc48ac685debb1668448fb0e5213923874b40de75f27",
-          "alt": "Ruby Goddess Salad"
+          "sha256": "3beb110995e4ef1113dae4e13e35e3933fa8ba99e37adc1819ea890fcdb943e4",
+          "alt": "Chinese Chicken Salad"
         }
       },
       {
@@ -441,15 +441,15 @@
         "type": "side",
         "category": "Breakfast",
         "menuSection": "Breakfast",
-        "name": "Classic Overnight Oats",
+        "name": "Strawberry Overnight Oats",
         "priceCents": 1000,
-        "description": "Premium rolled oats in organic milk, lightly sweetened with maple and vanilla.",
+        "description": "Premium rolled oats in organic milk, lightly sweetened with maple and vanilla, finished with fresh strawberries.",
         "macros": {
-          "calories": 305,
-          "protein": 23,
+          "calories": 225,
+          "protein": 17,
           "fat": 3,
-          "fiber": 6,
-          "netCarbs": 40
+          "fiber": 4,
+          "netCarbs": 30
         },
         "diet": [
           "Dairy (Milk)",
@@ -471,18 +471,18 @@
         "type": "side",
         "category": "Breakfast",
         "menuSection": "Breakfast",
-        "name": "Mango Chia Pudding",
+        "name": "Vanilla Chia Pudding",
         "priceCents": 1000,
-        "description": "A creamy mango chia pudding layered with coconut cream and topped with fresh mango.",
+        "description": "A creamy vanilla chia pudding sweetened with maple syrup and topped with fresh blackberries and blueberries.",
         "macros": {
-          "calories": 393,
+          "calories": 286,
           "protein": 22,
-          "fat": 16,
-          "fiber": 10,
-          "netCarbs": 30
+          "fat": 9,
+          "fiber": 11,
+          "netCarbs": 20
         },
         "diet": [
-          "Dairy (Mascarpone)",
+          "Dairy (Yogurt)",
           "Gluten Free"
         ],
         "allergens": [
@@ -501,15 +501,15 @@
         "type": "side",
         "category": "Breakfast",
         "menuSection": "Breakfast",
-        "name": "Tiramisu Chia Pudding",
+        "name": "Chai Apple Crisp Chia Pudding",
         "priceCents": 1000,
-        "description": "Creamy vanilla chia pudding layered with a lightly sweet tiramisu style cream, finished with a light cocoa dusting for a rich, dessert inspired treat.",
+        "description": "Creamy chia pudding infused with a dry blend of cinnamon, cardamom, ginger, nutmeg, clove, and black pepper, layered with butter-sautéed cinnamon apples and finished with a toasted oat crisp for a warmly spiced apple dessert with no brewed tea or caffeine.",
         "macros": {
-          "calories": 376,
-          "protein": 25,
-          "fat": 14,
-          "fiber": 11,
-          "netCarbs": 27
+          "calories": 400,
+          "protein": 22,
+          "fat": 15,
+          "fiber": 13,
+          "netCarbs": 34
         },
         "diet": [
           "Dairy (Yogurt)",
@@ -533,7 +533,7 @@
         "menuSection": "Wellness",
         "name": "Wellness Shots Collection",
         "priceCents": 2500,
-        "description": "Four cold-pressed rituals in glass vials, made fresh the week of delivery. Coconut water base: refrigerate, enjoy within six days.",
+        "description": "Four cold-pressed rituals in glass vials, made fresh the week of delivery. Coconut water base, refrigerate and enjoy within six days.",
         "macros": null,
         "diet": [
           "Dairy Free",
@@ -570,7 +570,7 @@
         "menuSection": "Wellness",
         "name": "Date Ball Collection",
         "priceCents": 2500,
-        "description": "Five date balls across three flavors: sweet, fudgy, and made to disappear.",
+        "description": "Five date balls across three flavors, sweet, fudgy, and made to disappear.",
         "macros": null,
         "diet": [
           "Dairy Free",
@@ -601,11 +601,11 @@
   "cities": {
     "DC": {
       "timezone": "America/New_York",
-      "cutoffAt": "2026-08-27T23:00:00Z",
+      "cutoffAt": "2026-09-03T23:00:00Z",
       "cutoffLabel": "Thursday at 7 PM ET",
       "deliveryDates": [
-        "2026-08-30",
-        "2026-08-31"
+        "2026-09-06",
+        "2026-09-07"
       ],
       "deliveryWindows": [
         "Sunday Morning",
@@ -619,11 +619,11 @@
     },
     "SD": {
       "timezone": "America/Los_Angeles",
-      "cutoffAt": "2026-08-27T23:00:00Z",
+      "cutoffAt": "2026-09-03T23:00:00Z",
       "cutoffLabel": "Thursday at 4 PM PT",
       "deliveryDates": [
-        "2026-08-30",
-        "2026-08-31"
+        "2026-09-06",
+        "2026-09-07"
       ],
       "deliveryWindows": [
         "Sunday Morning",
