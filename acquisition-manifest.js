@@ -1,11 +1,11 @@
-/* acquisition-manifest.json sha256=21a7fc74542ef851de67ec126892871344fb53331c7f18491ae4bb3c025a232d */
+/* acquisition-manifest.json sha256=32b4678a30b2fd3f7970a38d9af66172ebc42c25da796ae57cfa4bd1517b4403 */
 window.HAVN_ACQUISITION_MANIFEST =
 {
   "schemaVersion": 1,
-  "releaseDigest": "a113ec5b9565987aca7e57c39a392a024d679dbb62445f9ce8e9c14da7f85d61",
+  "releaseDigest": "aaab8863d4a1c50d60b3886c1ab05a1892077d9485964a48c5cc598e40db9542",
   "menu": {
     "id": "delivery-2026-09-06",
-    "version": "sha256-a113ec5b9565987aca7e57c39a392a024d679dbb62445f9ce8e9c14da7f85d61",
+    "version": "sha256-aaab8863d4a1c50d60b3886c1ab05a1892077d9485964a48c5cc598e40db9542",
     "weekLabel": "September 6",
     "pricingPolicyId": "backend-25-10-v1",
     "offerPolicyId": "welcome-20-40-v1",
@@ -101,7 +101,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-a113ec5b9565987aca7e57c39a392a024d679dbb62445f9ce8e9c14da7f85d61/cheat.jpg",
+          "url": "/assets/releases/sha256-aaab8863d4a1c50d60b3886c1ab05a1892077d9485964a48c5cc598e40db9542/cheat.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
@@ -139,7 +139,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Dairy-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-a113ec5b9565987aca7e57c39a392a024d679dbb62445f9ce8e9c14da7f85d61/chicken.jpg",
+          "url": "/assets/releases/sha256-aaab8863d4a1c50d60b3886c1ab05a1892077d9485964a48c5cc598e40db9542/chicken.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
@@ -174,7 +174,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-a113ec5b9565987aca7e57c39a392a024d679dbb62445f9ce8e9c14da7f85d61/chicken_2.jpg",
+          "url": "/assets/releases/sha256-aaab8863d4a1c50d60b3886c1ab05a1892077d9485964a48c5cc598e40db9542/chicken_2.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
@@ -209,7 +209,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-a113ec5b9565987aca7e57c39a392a024d679dbb62445f9ce8e9c14da7f85d61/beef.jpg",
+          "url": "/assets/releases/sha256-aaab8863d4a1c50d60b3886c1ab05a1892077d9485964a48c5cc598e40db9542/beef.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
@@ -244,7 +244,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-a113ec5b9565987aca7e57c39a392a024d679dbb62445f9ce8e9c14da7f85d61/seafood.jpg",
+          "url": "/assets/releases/sha256-aaab8863d4a1c50d60b3886c1ab05a1892077d9485964a48c5cc598e40db9542/seafood.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
@@ -282,7 +282,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Gluten-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-a113ec5b9565987aca7e57c39a392a024d679dbb62445f9ce8e9c14da7f85d61/seafood_2.jpg",
+          "url": "/assets/releases/sha256-aaab8863d4a1c50d60b3886c1ab05a1892077d9485964a48c5cc598e40db9542/seafood_2.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
@@ -297,19 +297,20 @@ window.HAVN_ACQUISITION_MANIFEST =
         "menuSection": "Pasta",
         "name": "Marry Me Chicken Pasta",
         "priceCents": 2500,
-        "description": "Marry Me chicken breast over rigatoni in a creamy dairy free sun dried tomato sauce with garlic, nutritional yeast, Italian herbs, and a hint of red pepper for a rich, savory Italian American pasta with a warmly spiced finish.",
+        "description": "Pan seared chicken breast over rigatoni in a sun dried tomato cream sauce with garlic, Parmigiano, Italian herbs, and a hint of red pepper for a rich, indulgent Italian American pasta with a deeply savory finish.",
         "macros": {
-          "calories": 667,
+          "calories": 673,
           "protein": 67,
-          "fat": 21,
+          "fat": 23,
           "fiber": 2,
-          "netCarbs": 32
+          "netCarbs": 33
         },
         "diet": [
-          "Dairy Free",
+          "Dairy (Cream + Parmigiano)",
           "Gluten (Pasta)"
         ],
         "allergens": [
+          "dairy",
           "gluten"
         ],
         "featured": false,
@@ -317,14 +318,15 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Low carb",
           "No carb",
           "Extra protein",
+          "Dairy-free",
           "Gluten-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-a113ec5b9565987aca7e57c39a392a024d679dbb62445f9ce8e9c14da7f85d61/pasta.jpg",
+          "url": "/assets/releases/sha256-aaab8863d4a1c50d60b3886c1ab05a1892077d9485964a48c5cc598e40db9542/pasta.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
-          "sha256": "e2e76e1e434ff0fd2986835d23463e2417d640f61ac08aadf0777c1f6c0b19b4",
+          "sha256": "706525c3360041586ab41f37e00c2058bc25a423f09b178d2b2dcb1201984dfb",
           "alt": "Marry Me Chicken Pasta"
         }
       },
@@ -355,7 +357,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-a113ec5b9565987aca7e57c39a392a024d679dbb62445f9ce8e9c14da7f85d61/vegetarian.jpg",
+          "url": "/assets/releases/sha256-aaab8863d4a1c50d60b3886c1ab05a1892077d9485964a48c5cc598e40db9542/vegetarian.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
@@ -394,7 +396,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Dairy-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-a113ec5b9565987aca7e57c39a392a024d679dbb62445f9ce8e9c14da7f85d61/salad.jpg",
+          "url": "/assets/releases/sha256-aaab8863d4a1c50d60b3886c1ab05a1892077d9485964a48c5cc598e40db9542/salad.jpg",
           "width": 720,
           "height": 900,
           "format": "jpeg",
@@ -430,7 +432,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-a113ec5b9565987aca7e57c39a392a024d679dbb62445f9ce8e9c14da7f85d61/salad_2.jpg",
+          "url": "/assets/releases/sha256-aaab8863d4a1c50d60b3886c1ab05a1892077d9485964a48c5cc598e40db9542/salad_2.jpg",
           "width": 720,
           "height": 900,
           "format": "jpeg",

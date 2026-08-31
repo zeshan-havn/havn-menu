@@ -6,7 +6,7 @@
   },
   "menu_source": {
     "path": "CulinaryOps/Sep 6th Menu File/finalized-menu.json",
-    "sha256": "7f17195793c064363cdaca3c2b779d8bcea7182ec95d4597c6b1caab733f470a"
+    "sha256": "852c742e4489fa778e8194aa86813b215a5b4f32302a3fe49e51bee1b1644cd1"
   },
   "transform": "sips -Z 900 -s format jpeg -s formatOptions 82",
   "items": {
@@ -48,9 +48,9 @@
     },
     "pasta": {
       "source": "CulinaryOps/Sep 6th Menu File/meal-images/pasta-marry-me-chicken-pasta.png",
-      "source_sha256": "d443fbaf65675b5ea165c0a1d483422da0adf594ab69af42801d8a16cd9c2bd5",
+      "source_sha256": "46a3e43458fc045c1617149bd592c772dfe8dbf1b3c177242d9ea6a6d54a63cc",
       "output": "assets/current/pasta.jpg",
-      "output_sha256": "e2e76e1e434ff0fd2986835d23463e2417d640f61ac08aadf0777c1f6c0b19b4"
+      "output_sha256": "706525c3360041586ab41f37e00c2058bc25a423f09b178d2b2dcb1201984dfb"
     },
     "veg": {
       "source": "CulinaryOps/Sep 6th Menu File/meal-images/vegetarian-chickpea-tikka-masala.png",
