@@ -32,18 +32,6 @@
           desc: "Braised short rib with a balsamic reduction and roasted mushrooms and roasted pearl onions over wild rice.",
           cal: 617, protein: 61, fat: 24, fiber: 8, carbs: 40,
           diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
-        },
-        {
-          id: "seafood", name: "Blood Orange Salmon", tag: "Seafood", img: "/assets/current/seafood.jpg",
-          desc: "Seared salmon with a blood orange glaze and roasted beets over roasted sweet potatoes.",
-          cal: 672, protein: 52, fat: 28, fiber: 7, carbs: 47,
-          diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
-        },
-        {
-          id: "salad", name: "Chicken Caesar Crunch Salad", tag: "Salad", img: "/assets/current/salad.jpg",
-          desc: "Diced lemon herb chicken over shredded kale with roasted chickpeas, shaved celery, pickled cucumber, blueberries, and hemp seeds, with eggless caper Caesar dressing on the side.",
-          cal: 419, protein: 48, fat: 17, fiber: 8, carbs: 19,
-          diet: [["Dairy (yogurt)", "allergen"], ["Gluten free", "safe"]]
         }
       ]
     },
@@ -80,6 +68,12 @@
       label: "Seafood",
       items: [
         {
+          id: "seafood", name: "Blood Orange Salmon", tag: "Seafood", img: "/assets/current/seafood.jpg",
+          desc: "Seared salmon with a blood orange glaze and roasted beets over roasted sweet potatoes.",
+          cal: 672, protein: 52, fat: 28, fiber: 7, carbs: 47,
+          diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
+        },
+        {
           id: "seafood_2", name: "Spicy Tuna Bowl", tag: "Seafood", img: "/assets/current/seafood_2.jpg",
           desc: "Crispy albacore tuna cakes with a spicy yuzu mayo and pickled cucumber, miso glazed roasted carrots, and blistered green beans over seasoned sushi rice.",
           cal: 652, protein: 37, fat: 21, fiber: 7, carbs: 72,
@@ -90,6 +84,12 @@
     {
       label: "Salads & vegetarian",
       items: [
+        {
+          id: "salad", name: "Chicken Caesar Crunch Salad", tag: "Salad", img: "/assets/current/salad.jpg",
+          desc: "Diced lemon herb chicken over shredded kale with roasted chickpeas, shaved celery, pickled cucumber, blueberries, and hemp seeds, with eggless caper Caesar dressing on the side.",
+          cal: 419, protein: 48, fat: 17, fiber: 8, carbs: 19,
+          diet: [["Dairy (yogurt)", "allergen"], ["Gluten free", "safe"]]
+        },
         {
           id: "salad_2", name: "Chinese Chicken Salad", tag: "Salad", img: "/assets/current/salad_2.jpg",
           desc: "Sesame chicken over kale and purple cabbage with edamame, carrots, roasted red pepper, dried mango, scallions, and pumpkin seeds, with ginger sesame tamari dressing on the side.",

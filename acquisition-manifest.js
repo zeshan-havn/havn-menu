@@ -1,11 +1,11 @@
-/* acquisition-manifest.json sha256=32b4678a30b2fd3f7970a38d9af66172ebc42c25da796ae57cfa4bd1517b4403 */
+/* acquisition-manifest.json sha256=61103a688a2cc22872f959fcfd728d33f79a2db92af5b566a5a9001b799f5ec0 */
 window.HAVN_ACQUISITION_MANIFEST =
 {
   "schemaVersion": 1,
-  "releaseDigest": "aaab8863d4a1c50d60b3886c1ab05a1892077d9485964a48c5cc598e40db9542",
+  "releaseDigest": "8f56f5a827e4eb37fd433b6889370611bc51acae8d85fd7a7bc9064888f2ee4a",
   "menu": {
     "id": "delivery-2026-09-06",
-    "version": "sha256-aaab8863d4a1c50d60b3886c1ab05a1892077d9485964a48c5cc598e40db9542",
+    "version": "sha256-8f56f5a827e4eb37fd433b6889370611bc51acae8d85fd7a7bc9064888f2ee4a",
     "weekLabel": "September 6",
     "pricingPolicyId": "backend-25-10-v1",
     "offerPolicyId": "welcome-20-40-v1",
@@ -101,7 +101,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-aaab8863d4a1c50d60b3886c1ab05a1892077d9485964a48c5cc598e40db9542/cheat.jpg",
+          "url": "/assets/releases/sha256-8f56f5a827e4eb37fd433b6889370611bc51acae8d85fd7a7bc9064888f2ee4a/cheat.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
@@ -139,7 +139,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Dairy-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-aaab8863d4a1c50d60b3886c1ab05a1892077d9485964a48c5cc598e40db9542/chicken.jpg",
+          "url": "/assets/releases/sha256-8f56f5a827e4eb37fd433b6889370611bc51acae8d85fd7a7bc9064888f2ee4a/chicken.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
@@ -174,7 +174,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-aaab8863d4a1c50d60b3886c1ab05a1892077d9485964a48c5cc598e40db9542/chicken_2.jpg",
+          "url": "/assets/releases/sha256-8f56f5a827e4eb37fd433b6889370611bc51acae8d85fd7a7bc9064888f2ee4a/chicken_2.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
@@ -209,7 +209,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-aaab8863d4a1c50d60b3886c1ab05a1892077d9485964a48c5cc598e40db9542/beef.jpg",
+          "url": "/assets/releases/sha256-8f56f5a827e4eb37fd433b6889370611bc51acae8d85fd7a7bc9064888f2ee4a/beef.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
@@ -221,7 +221,7 @@ window.HAVN_ACQUISITION_MANIFEST =
         "id": "seafood",
         "type": "meal",
         "category": "Seafood",
-        "menuSection": "Chef Special",
+        "menuSection": "Seafood",
         "name": "Blood Orange Salmon",
         "priceCents": 2500,
         "description": "Seared salmon finished with a bright blood orange glaze, served with roasted beets over roasted sweet potatoes for a light, citrus forward plate with a vibrant, refreshing finish.",
@@ -244,7 +244,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-aaab8863d4a1c50d60b3886c1ab05a1892077d9485964a48c5cc598e40db9542/seafood.jpg",
+          "url": "/assets/releases/sha256-8f56f5a827e4eb37fd433b6889370611bc51acae8d85fd7a7bc9064888f2ee4a/seafood.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
@@ -282,7 +282,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Gluten-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-aaab8863d4a1c50d60b3886c1ab05a1892077d9485964a48c5cc598e40db9542/seafood_2.jpg",
+          "url": "/assets/releases/sha256-8f56f5a827e4eb37fd433b6889370611bc51acae8d85fd7a7bc9064888f2ee4a/seafood_2.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
@@ -322,7 +322,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Gluten-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-aaab8863d4a1c50d60b3886c1ab05a1892077d9485964a48c5cc598e40db9542/pasta.jpg",
+          "url": "/assets/releases/sha256-8f56f5a827e4eb37fd433b6889370611bc51acae8d85fd7a7bc9064888f2ee4a/pasta.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
@@ -357,7 +357,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-aaab8863d4a1c50d60b3886c1ab05a1892077d9485964a48c5cc598e40db9542/vegetarian.jpg",
+          "url": "/assets/releases/sha256-8f56f5a827e4eb37fd433b6889370611bc51acae8d85fd7a7bc9064888f2ee4a/vegetarian.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
@@ -369,7 +369,7 @@ window.HAVN_ACQUISITION_MANIFEST =
         "id": "salad",
         "type": "meal",
         "category": "Salads",
-        "menuSection": "Chef Special",
+        "menuSection": "Salads",
         "name": "Chicken Caesar Crunch Salad",
         "priceCents": 2500,
         "description": "Diced lemon herb chicken over a sturdy shredded kale base with roasted chickpeas, shaved celery, and pickled cucumber, finished with blueberries and hemp seeds and served with a creamy eggless caper Caesar dressing on the side for a savory, tangy crunch that holds well through the week.",
@@ -396,7 +396,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Dairy-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-aaab8863d4a1c50d60b3886c1ab05a1892077d9485964a48c5cc598e40db9542/salad.jpg",
+          "url": "/assets/releases/sha256-8f56f5a827e4eb37fd433b6889370611bc51acae8d85fd7a7bc9064888f2ee4a/salad.jpg",
           "width": 720,
           "height": 900,
           "format": "jpeg",
@@ -432,7 +432,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-aaab8863d4a1c50d60b3886c1ab05a1892077d9485964a48c5cc598e40db9542/salad_2.jpg",
+          "url": "/assets/releases/sha256-8f56f5a827e4eb37fd433b6889370611bc51acae8d85fd7a7bc9064888f2ee4a/salad_2.jpg",
           "width": 720,
           "height": 900,
           "format": "jpeg",
