@@ -52,9 +52,9 @@
       items: [
         {
           id: "pasta", name: "Marry Me Chicken Pasta", tag: "Pasta", img: "/assets/current/pasta.jpg",
-          desc: "Marry Me chicken breast over rigatoni in a creamy sun dried tomato sauce.",
-          cal: 667, protein: 67, fat: 21, fiber: 2, carbs: 32,
-          diet: [["Dairy free", "safe"], ["Gluten (pasta)", "allergen"]]
+          desc: "Pan seared chicken breast over rigatoni in a sun dried tomato cream sauce.",
+          cal: 673, protein: 67, fat: 23, fiber: 2, carbs: 33,
+          diet: [["Dairy (cream + parmigiano)", "allergen"], ["Gluten (pasta)", "allergen"]]
         },
         {
           id: "chicken", name: "Tuscan Chicken", tag: "Chicken", img: "/assets/current/chicken.jpg",
