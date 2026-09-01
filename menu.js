@@ -664,9 +664,18 @@
   var gate = document.getElementById("m-gate");
   var sendBtn = document.getElementById("m-send");
   /* Existing members are already opted in. No acquisition token is minted or
-     registered from this ordering surface. */
+     registered from this ordering surface. The one exception is a paid
+     retention URL: it gets a dedicated attribution-only token that does not
+     trigger signup welcomes or Meta Lead optimization. */
   var orderBody = "";
   var smsNumber = (window.HAVN_CONFIG && window.HAVN_CONFIG.SMS_NUMBER) || "+12245370344";
+  var retentionAttribution = window.HAVN_INTAKE ?
+    window.HAVN_INTAKE.attribution() : {};
+  var retentionCampaign = String(retentionAttribution.utm_campaign || "");
+  var retentionEnabled = /^retention_[a-z0-9]+_(dc|sd)$/i.test(retentionCampaign);
+  var retentionToken = retentionEnabled && window.HAVN_INTAKE ?
+    window.HAVN_INTAKE.mintToken() : "";
+  var retentionRegistrationStarted = false;
   Array.prototype.forEach.call(document.querySelectorAll("[data-skip-direct]"), function (link) {
     link.href = "sms:" + smsNumber + "?&body=" + encodeURIComponent("Skip");
   });
@@ -717,6 +726,13 @@
     }
     orderBody = blocks.join("\n\n");
     var outgoingOrder = orderBody;
+    if (retentionEnabled && retentionToken) {
+      outgoingOrder = window.HAVN_INTAKE.draftBody(
+        retentionToken,
+        (window.HAVN_CONFIG.DRAFTS || {}).order || "{body} ({token})",
+        orderBody
+      );
+    }
     sendBtn.href = "sms:" + smsNumber + "?&body=" + encodeURIComponent(outgoingOrder);
 
     /* The preview is a SUMMARY of what they picked — the meals and the
@@ -813,8 +829,29 @@
     if (e.key === "Escape" && !sheet.hidden) closeSheet();
   });
 
+  function registerRetentionOrder() {
+    if (!retentionEnabled || retentionRegistrationStarted || !retentionToken) return;
+    retentionRegistrationStarted = true;
+    var registration = window.HAVN_INTAKE.registerClick(
+      retentionToken, "retention_order");
+    if (registration && registration["catch"]) {
+      registration["catch"](function () {
+        /* The order text still opens. A missing registration must never block
+           the customer; it simply remains visible as unattributed. */
+      });
+    }
+  }
+
+  sendBtn.addEventListener("pointerdown", function (e) {
+    if (e.button && e.button !== 0) return;
+    if (!sendBtn.classList.contains("m-send-off")) registerRetentionOrder();
+  });
   sendBtn.addEventListener("click", function (e) {
-    if (sendBtn.classList.contains("m-send-off")) e.preventDefault();
+    if (sendBtn.classList.contains("m-send-off")) {
+      e.preventDefault();
+      return;
+    }
+    registerRetentionOrder();
   });
 
   /* pickers */

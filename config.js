@@ -20,6 +20,11 @@ window.HAVN_CONFIG = {
      The desktop QR registers through this same endpoint before it is drawn. */
   OS_BASE_URL: "https://os.havnclub.com",
 
+  /* Returning-customer ad attribution is owned by the live HQ/Front intake
+     service. Keeping it explicit avoids changing the incumbent acquisition
+     path while still letting a retention order text carry a measurable token. */
+  RETENTION_API_BASE_URL: "https://api.havnclub.com",
+
   /* ── which build this is ──────────────────────────────────── */
   CITY: "DC",                       /* "DC" | "SD" — goes into the payload   */
   CITY_LABEL: "DC · MD · VA",      /* what the visitor reads on the page    */
@@ -68,7 +73,8 @@ window.HAVN_CONFIG = {
     menus: "menu_list",
     skip: "menu_list",
     concierge: "question",
-    order: "order"
+    order: "order",
+    retention_order: "retention_order"
   },
 
   /* ── Meta pixel ───────────────────────────────────────────────
@@ -99,4 +105,3 @@ window.HAVN_CONFIG = {
     imgAlt: "QR code that opens a text message to Havn Club"
   }
 };
-

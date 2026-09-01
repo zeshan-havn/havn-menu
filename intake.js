@@ -134,6 +134,12 @@
     return c;
   }
 
+  function retentionCity() {
+    var campaign = String(attribution.utm_campaign || "").toLowerCase();
+    var match = campaign.match(/^retention_[a-z0-9]+_(dc|sd)$/);
+    return match ? match[1].toUpperCase() : "";
+  }
+
   /* the pixel can set _fbp AFTER first paint, so read the cookie at POST
      time rather than trusting the snapshot taken on arrival */
   function liveFbp() {
@@ -146,7 +152,8 @@
       /* always explicit: a missing intent is defaulted to "order" by the
          OS, which would file every menu-list signup as an order */
       intent: intentFor(intentKey),
-      city: requiredCity(),
+      city: intentKey === "retention_order" ?
+        (retentionCity() || requiredCity()) : requiredCity(),
       fbclid: attribution.fbclid || "",
       fbp: liveFbp(),
       utm_source: attribution.utm_source || "",
@@ -213,12 +220,14 @@
   function registerClick(token, intentKey, prepared) {
     var PromiseCtor = window.Promise;
     if (!PromiseCtor) return null;
-    if (!CFG.OS_BASE_URL) {
+    var baseUrl = intentKey === "retention_order" ?
+      (CFG.RETENTION_API_BASE_URL || CFG.OS_BASE_URL) : CFG.OS_BASE_URL;
+    if (!baseUrl) {
       return PromiseCtor.reject(new Error("intake is not configured"));
     }
     var registration = prepared || {
       payload: clickPayload(token, intentKey),
-      url: CFG.OS_BASE_URL.replace(/\/+$/, "") + "/intake/click"
+      url: baseUrl.replace(/\/+$/, "") + "/intake/click"
     };
     var payload = registration.payload;
     var url = registration.url;
@@ -732,4 +741,3 @@
     init();
   }
 })();
-
