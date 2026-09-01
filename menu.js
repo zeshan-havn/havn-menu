@@ -25,7 +25,7 @@
   /* delivery-week: 2026-09-06 */
   var SECTIONS = [
     {
-      label: "Chef picks",
+      label: "Chef Special",
       items: [
         {
           id: "cheat", name: "Braised Short Rib", tag: "Chef special", img: "/assets/current/special.jpg",
@@ -36,14 +36,8 @@
       ]
     },
     {
-      label: "Chicken & beef & pasta",
+      label: "Chicken",
       items: [
-        {
-          id: "pasta", name: "Marry Me Chicken Pasta", tag: "Pasta", img: "/assets/current/pasta.jpg",
-          desc: "Pan seared chicken breast over rigatoni in a sun dried tomato cream sauce.",
-          cal: 673, protein: 67, fat: 23, fiber: 2, carbs: 33,
-          diet: [["Dairy (cream + parmigiano)", "allergen"], ["Gluten (pasta)", "allergen"]]
-        },
         {
           id: "chicken", name: "Tuscan Chicken", tag: "Chicken", img: "/assets/current/chicken.jpg",
           desc: "Tuscan chicken thigh with a creamy sun dried tomato sauce and roasted zucchini and cremini mushrooms over basmati rice.",
@@ -55,7 +49,12 @@
           desc: "Pan-seared chicken breast with tahini green goddess, roasted chickpeas, broccoli, pickled red onions, and tri-color quinoa.",
           cal: 700, protein: 63, fat: 26, fiber: 16, carbs: 47,
           diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
-        },
+        }
+      ]
+    },
+    {
+      label: "Beef",
+      items: [
         {
           id: "beef", name: "Rosemary Thyme Steak", tag: "Beef", img: "/assets/current/beef.jpg",
           desc: "Rosemary thyme steak with a savory steakhouse reduction and roasted garlic potatoes and cremini mushrooms and blistered green beans.",
@@ -82,7 +81,29 @@
       ]
     },
     {
-      label: "Salads & vegetarian",
+      label: "Pasta",
+      items: [
+        {
+          id: "pasta", name: "Marry Me Chicken Pasta", tag: "Pasta", img: "/assets/current/pasta.jpg",
+          desc: "Pan seared chicken breast over rigatoni in a sun dried tomato cream sauce.",
+          cal: 673, protein: 67, fat: 23, fiber: 2, carbs: 33,
+          diet: [["Dairy (cream + parmigiano)", "allergen"], ["Gluten (pasta)", "allergen"]]
+        }
+      ]
+    },
+    {
+      label: "Vegetarian",
+      items: [
+        {
+          id: "vegetarian", name: "Chickpea Tikka Masala", tag: "Vegetarian", img: "/assets/current/veg.jpg",
+          desc: "Seared tofu in a creamy coconut tikka masala with roasted cauliflower and chickpeas over basmati rice.",
+          cal: 753, protein: 40, fat: 33, fiber: 12, carbs: 68,
+          diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
+        }
+      ]
+    },
+    {
+      label: "Salads",
       items: [
         {
           id: "salad", name: "Chicken Caesar Crunch Salad", tag: "Salad", img: "/assets/current/salad.jpg",
@@ -94,12 +115,6 @@
           id: "salad_2", name: "Chinese Chicken Salad", tag: "Salad", img: "/assets/current/salad_2.jpg",
           desc: "Sesame chicken over kale and purple cabbage with edamame, carrots, roasted red pepper, dried mango, scallions, and pumpkin seeds, with ginger sesame tamari dressing on the side.",
           cal: 555, protein: 49, fat: 25, fiber: 9, carbs: 28,
-          diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
-        },
-        {
-          id: "vegetarian", name: "Chickpea Tikka Masala", tag: "Vegetarian", img: "/assets/current/veg.jpg",
-          desc: "Seared tofu in a creamy coconut tikka masala with roasted cauliflower and chickpeas over basmati rice.",
-          cal: 753, protein: 40, fat: 33, fiber: 12, carbs: 68,
           diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
         }
       ]
