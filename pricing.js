@@ -11,7 +11,10 @@
   function menuMode() {
     var parts = (root.location.pathname || "/").split("/").filter(Boolean);
     var isSdRoute = parts.indexOf("sd") !== -1;
-    if (/^aug\d+$/i.test(parts[0] || "")) parts.shift();
+    /* Campaign URLs begin with a cache-busting week slug such as may17,
+       aug02, or sep6. Strip any real month/day slug before reading the promo
+       suffix so the offer does not silently fall back to the active menu. */
+    if (/^(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\d{1,2}$/i.test(parts[0] || "")) parts.shift();
     /* SoCal uses an optional city segment in some weekly campaign links. */
     if (parts[0] === "sd" || parts[0] === "dc") parts.shift();
     var first = parts[0] || "";
