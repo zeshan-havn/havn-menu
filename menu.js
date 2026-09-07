@@ -22,16 +22,16 @@
      the next weekly run overwrites it. Authored content that is not in
      the CSV (collection flavors/notes, bespoke art, short display
      names) lives in menu-data.overrides.json and survives every run. */
-  /* delivery-week: 2026-09-06 */
+  /* delivery-week: 2026-09-13 */
   var SECTIONS = [
     {
       label: "Chef Special",
       items: [
         {
-          id: "cheat", name: "Braised Short Rib", tag: "Chef special", img: "/assets/current/special.jpg",
-          desc: "Braised short rib with a balsamic reduction and roasted mushrooms and roasted pearl onions over wild rice.",
-          cal: 617, protein: 61, fat: 24, fiber: 8, carbs: 40,
-          diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
+          id: "cheat", name: "Beef Bourguignon", tag: "Chef special", img: "/assets/current/special.jpg",
+          desc: "Slow braised beef chuck with a red wine reduction and cremini mushrooms and pearl onions over whipped Yukon Gold purée.",
+          cal: 621, protein: 49, fat: 21, fiber: 7, carbs: 40,
+          diet: [["Dairy (potato purée)", "allergen"], ["Gluten free", "safe"]]
         }
       ]
     },
@@ -39,16 +39,16 @@
       label: "Chicken",
       items: [
         {
-          id: "chicken", name: "Tuscan Chicken", tag: "Chicken", img: "/assets/current/chicken.jpg",
-          desc: "Tuscan chicken thigh with a creamy sun dried tomato sauce and roasted zucchini and cremini mushrooms over basmati rice.",
-          cal: 791, protein: 56, fat: 38, fiber: 4, carbs: 58,
+          id: "chicken", name: "Butter Chicken", tag: "Chicken", img: "/assets/current/chicken.jpg",
+          desc: "Butter chicken with a creamy tikka masala sauce and roasted cauliflower and roasted eggplant over cardamom basmati rice.",
+          cal: 707, protein: 58, fat: 36, fiber: 6, carbs: 43,
           diet: [["Dairy (cream)", "allergen"], ["Gluten free", "safe"]]
         },
         {
-          id: "chicken_2", name: "Mediterranean Chickpea Chicken Bowl", tag: "Chicken", img: "/assets/current/chicken_2.jpg",
-          desc: "Pan-seared chicken breast with tahini green goddess, roasted chickpeas, broccoli, pickled red onions, and tri-color quinoa.",
-          cal: 700, protein: 63, fat: 26, fiber: 16, carbs: 47,
-          diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
+          id: "chicken_2", name: "Lemon Herb Feta Chicken", tag: "Chicken", img: "/assets/current/chicken_2.jpg",
+          desc: "Lemon herb chicken with a ruby whipped feta and roasted sweet potato and lacinato kale with a house pickled vegetable medley.",
+          cal: 675, protein: 66, fat: 31, fiber: 7, carbs: 33,
+          diet: [["Dairy (feta)", "allergen"], ["Gluten free", "safe"]]
         }
       ]
     },
@@ -56,9 +56,9 @@
       label: "Beef",
       items: [
         {
-          id: "beef", name: "Rosemary Thyme Steak", tag: "Beef", img: "/assets/current/beef.jpg",
-          desc: "Rosemary thyme steak with a savory steakhouse reduction and roasted garlic potatoes and cremini mushrooms and blistered green beans.",
-          cal: 733, protein: 65, fat: 31, fiber: 7, carbs: 44,
+          id: "beef", name: "Carne Asada Steak", tag: "Beef", img: "/assets/current/beef.jpg",
+          desc: "Carne asada steak with a creamy Peruvian aji verde and roasted sweet plantains and pickled red onions over cilantro lime rice.",
+          cal: 708, protein: 54, fat: 22, fiber: 3, carbs: 71,
           diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
         }
       ]
@@ -67,16 +67,16 @@
       label: "Seafood",
       items: [
         {
-          id: "seafood", name: "Blood Orange Salmon", tag: "Seafood", img: "/assets/current/seafood.jpg",
-          desc: "Seared salmon with a blood orange glaze and roasted beets over roasted sweet potatoes.",
-          cal: 672, protein: 52, fat: 28, fiber: 7, carbs: 47,
+          id: "seafood", name: "Pomegranate Salmon", tag: "Seafood", img: "/assets/current/seafood.jpg",
+          desc: "Pomegranate salmon with a whipped pomegranate sauce and roasted zucchini over saffron cauliflower rice.",
+          cal: 677, protein: 49, fat: 43, fiber: 5, carbs: 24,
           diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
         },
         {
-          id: "seafood_2", name: "Spicy Tuna Bowl", tag: "Seafood", img: "/assets/current/seafood_2.jpg",
-          desc: "Crispy albacore tuna cakes with a spicy yuzu mayo and pickled cucumber, miso glazed roasted carrots, and blistered green beans over seasoned sushi rice.",
-          cal: 652, protein: 37, fat: 21, fiber: 7, carbs: 72,
-          diet: [["Dairy free", "safe"], ["Gluten (breadcrumbs)", "allergen"]]
+          id: "seafood_2", name: "Garlic Butter Shrimp", tag: "Seafood", img: "/assets/current/seafood_2.jpg",
+          desc: "Garlic herb shrimp with a lemon garlic butter and roasted cauliflower and zucchini over orzo.",
+          cal: 558, protein: 53, fat: 23, fiber: 5, carbs: 36,
+          diet: [["Dairy (butter)", "allergen"], ["Gluten (orzo)", "allergen"]]
         }
       ]
     },
@@ -84,10 +84,10 @@
       label: "Pasta",
       items: [
         {
-          id: "pasta", name: "Marry Me Chicken Pasta", tag: "Pasta", img: "/assets/current/pasta.jpg",
-          desc: "Pan seared chicken breast over rigatoni in a sun dried tomato cream sauce.",
-          cal: 673, protein: 67, fat: 23, fiber: 2, carbs: 33,
-          diet: [["Dairy (cream + parmigiano)", "allergen"], ["Gluten (pasta)", "allergen"]]
+          id: "pasta", name: "Beef Bolognese", tag: "Pasta", img: "/assets/current/pasta.jpg",
+          desc: "Beef bolognese with a rich tomato sofrito over pappardelle.",
+          cal: 609, protein: 48, fat: 27, fiber: 5, carbs: 43,
+          diet: [["Dairy free", "safe"], ["Gluten (pasta)", "allergen"]]
         }
       ]
     },
@@ -95,9 +95,9 @@
       label: "Vegetarian",
       items: [
         {
-          id: "vegetarian", name: "Chickpea Tikka Masala", tag: "Vegetarian", img: "/assets/current/veg.jpg",
-          desc: "Seared tofu in a creamy coconut tikka masala with roasted cauliflower and chickpeas over basmati rice.",
-          cal: 753, protein: 40, fat: 33, fiber: 12, carbs: 68,
+          id: "vegetarian", name: "Thai Coconut Curry Bowl", tag: "Vegetarian", img: "/assets/current/veg.jpg",
+          desc: "Marinated tofu with a thai coconut curry sauce and roasted bell peppers and broccoli and shredded cabbage over jasmine rice.",
+          cal: 683, protein: 46, fat: 32, fiber: 10, carbs: 47,
           diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
         }
       ]
@@ -106,16 +106,16 @@
       label: "Salads",
       items: [
         {
-          id: "salad", name: "Chicken Caesar Crunch Salad", tag: "Salad", img: "/assets/current/salad.jpg",
-          desc: "Diced lemon herb chicken over shredded kale with roasted chickpeas, shaved celery, pickled cucumber, blueberries, and hemp seeds, with eggless caper Caesar dressing on the side.",
-          cal: 419, protein: 48, fat: 17, fiber: 8, carbs: 19,
-          diet: [["Dairy (yogurt)", "allergen"], ["Gluten free", "safe"]]
+          id: "salad", name: "Green Goddess Salad", tag: "Salad", img: "/assets/current/salad.jpg",
+          desc: "Diced lemon herb chicken over shredded purple cabbage and kale with pickled red onion, cucumber, roasted chickpeas, red grapes, toasted pumpkin seeds and dried apricots, with tahini green goddess on the side.",
+          cal: 479, protein: 45, fat: 20, fiber: 10, carbs: 31,
+          diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
         },
         {
-          id: "salad_2", name: "Chinese Chicken Salad", tag: "Salad", img: "/assets/current/salad_2.jpg",
-          desc: "Sesame chicken over kale and purple cabbage with edamame, carrots, roasted red pepper, dried mango, scallions, and pumpkin seeds, with ginger sesame tamari dressing on the side.",
-          cal: 555, protein: 49, fat: 25, fiber: 9, carbs: 28,
-          diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
+          id: "salad_2", name: "Harvest Bowl Salad", tag: "Salad", img: "/assets/current/salad_2.jpg",
+          desc: "Diced lemon herb chicken over apple cider slaw and kale with roasted sweet potato, shaved carrot and celery, spiced pickled apple and goat cheese, with balsamic vinaigrette on the side.",
+          cal: 506, protein: 42, fat: 25, fiber: 9, carbs: 29,
+          diet: [["Dairy (goat cheese)", "allergen"], ["Gluten free", "safe"]]
         }
       ]
     },
@@ -125,21 +125,21 @@
       side: true,
       items: [
         {
-          id: "oats", name: "Strawberry Overnight Oats", tag: "Oats", side: true,
-          desc: "Premium rolled oats in organic milk, lightly sweetened with maple and vanilla, finished with fresh strawberries.",
-          cal: 225, protein: 17, fat: 3, fiber: 4, carbs: 30,
+          id: "oats", name: "Classic Overnight Oats", tag: "Oats", side: true,
+          desc: "Rolled oats in milk, lightly sweetened with maple and vanilla, topped with fresh blackberries and blueberries.",
+          cal: 305, protein: 23, fat: 3, fiber: 6, carbs: 40,
           diet: [["Dairy (milk)", "allergen"], ["Gluten free", "safe"]]
         },
         {
-          id: "chia", name: "Vanilla Chia Pudding", tag: "Chia", side: true,
-          desc: "Vanilla chia pudding with fresh blackberries and blueberries.",
-          cal: 286, protein: 22, fat: 9, fiber: 11, carbs: 20,
+          id: "chia", name: "Chai Apple Crisp Chia Pudding", tag: "Chia", side: true,
+          desc: "Chai spiced chia pudding with cinnamon apples and a toasted oat crisp.",
+          cal: 400, protein: 22, fat: 15, fiber: 13, carbs: 34,
           diet: [["Dairy (yogurt)", "allergen"], ["Gluten free", "safe"]]
         },
         {
-          id: "chia_2", name: "Chai Apple Crisp Chia Pudding", tag: "Chia", side: true,
-          desc: "Chai-spiced chia pudding with butter-sautéed cinnamon apples and a toasted oat crisp.",
-          cal: 400, protein: 22, fat: 15, fiber: 13, carbs: 34,
+          id: "chia_2", name: "Chocolate Chia Pudding", tag: "Chia", side: true,
+          desc: "Chocolate chia pudding with a chocolate mascarpone cream and fresh raspberries.",
+          cal: 323, protein: 23, fat: 13, fiber: 10, carbs: 30,
           diet: [["Dairy (yogurt)", "allergen"], ["Gluten free", "safe"]]
         }
       ]
