@@ -1,11 +1,11 @@
-/* acquisition-manifest.json sha256=18f27923ed6a1a5f3754a155c87bfd1ac958fb4a03ea051f6bcd320ea59483b2 */
+/* acquisition-manifest.json sha256=086339962311e2be90da5fe3febe8fa98d18648e0e415098e9fbca798c9edaf4 */
 window.HAVN_ACQUISITION_MANIFEST =
 {
   "schemaVersion": 1,
-  "releaseDigest": "33c19ea6f359c0b679e06b8a4fe2ce525f3d73dff78bd295fbac23fb4297955a",
+  "releaseDigest": "e12cd10ff5160ae882b5b2af192d844d3fca3bf8fe19035a26264018e3f56e7f",
   "menu": {
     "id": "delivery-2026-09-13",
-    "version": "sha256-33c19ea6f359c0b679e06b8a4fe2ce525f3d73dff78bd295fbac23fb4297955a",
+    "version": "sha256-e12cd10ff5160ae882b5b2af192d844d3fca3bf8fe19035a26264018e3f56e7f",
     "weekLabel": "September 13",
     "pricingPolicyId": "backend-25-10-v1",
     "offerPolicyId": "welcome-20-40-v1",
@@ -104,7 +104,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Dairy-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-33c19ea6f359c0b679e06b8a4fe2ce525f3d73dff78bd295fbac23fb4297955a/cheat.jpg",
+          "url": "/assets/releases/sha256-e12cd10ff5160ae882b5b2af192d844d3fca3bf8fe19035a26264018e3f56e7f/cheat.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
@@ -142,7 +142,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Dairy-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-33c19ea6f359c0b679e06b8a4fe2ce525f3d73dff78bd295fbac23fb4297955a/chicken.jpg",
+          "url": "/assets/releases/sha256-e12cd10ff5160ae882b5b2af192d844d3fca3bf8fe19035a26264018e3f56e7f/chicken.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
@@ -180,7 +180,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Dairy-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-33c19ea6f359c0b679e06b8a4fe2ce525f3d73dff78bd295fbac23fb4297955a/chicken_2.jpg",
+          "url": "/assets/releases/sha256-e12cd10ff5160ae882b5b2af192d844d3fca3bf8fe19035a26264018e3f56e7f/chicken_2.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
@@ -215,7 +215,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-33c19ea6f359c0b679e06b8a4fe2ce525f3d73dff78bd295fbac23fb4297955a/beef.jpg",
+          "url": "/assets/releases/sha256-e12cd10ff5160ae882b5b2af192d844d3fca3bf8fe19035a26264018e3f56e7f/beef.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
@@ -250,7 +250,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-33c19ea6f359c0b679e06b8a4fe2ce525f3d73dff78bd295fbac23fb4297955a/seafood.jpg",
+          "url": "/assets/releases/sha256-e12cd10ff5160ae882b5b2af192d844d3fca3bf8fe19035a26264018e3f56e7f/seafood.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
@@ -290,7 +290,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Gluten-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-33c19ea6f359c0b679e06b8a4fe2ce525f3d73dff78bd295fbac23fb4297955a/seafood_2.jpg",
+          "url": "/assets/releases/sha256-e12cd10ff5160ae882b5b2af192d844d3fca3bf8fe19035a26264018e3f56e7f/seafood_2.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
@@ -328,7 +328,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Gluten-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-33c19ea6f359c0b679e06b8a4fe2ce525f3d73dff78bd295fbac23fb4297955a/pasta.jpg",
+          "url": "/assets/releases/sha256-e12cd10ff5160ae882b5b2af192d844d3fca3bf8fe19035a26264018e3f56e7f/pasta.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
@@ -363,7 +363,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-33c19ea6f359c0b679e06b8a4fe2ce525f3d73dff78bd295fbac23fb4297955a/vegetarian.jpg",
+          "url": "/assets/releases/sha256-e12cd10ff5160ae882b5b2af192d844d3fca3bf8fe19035a26264018e3f56e7f/vegetarian.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
@@ -399,7 +399,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-33c19ea6f359c0b679e06b8a4fe2ce525f3d73dff78bd295fbac23fb4297955a/salad.jpg",
+          "url": "/assets/releases/sha256-e12cd10ff5160ae882b5b2af192d844d3fca3bf8fe19035a26264018e3f56e7f/salad.jpg",
           "width": 720,
           "height": 900,
           "format": "jpeg",
@@ -438,7 +438,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Dairy-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-33c19ea6f359c0b679e06b8a4fe2ce525f3d73dff78bd295fbac23fb4297955a/salad_2.jpg",
+          "url": "/assets/releases/sha256-e12cd10ff5160ae882b5b2af192d844d3fca3bf8fe19035a26264018e3f56e7f/salad_2.jpg",
           "width": 720,
           "height": 900,
           "format": "jpeg",
@@ -570,39 +570,6 @@ window.HAVN_ACQUISITION_MANIFEST =
           [
             "Clarity",
             "Blue spirulina, lemon, L-theanine, honey"
-          ]
-        ]
-      },
-      {
-        "id": "date_balls",
-        "type": "addon",
-        "category": "Wellness",
-        "menuSection": "Wellness",
-        "name": "Date Ball Collection",
-        "priceCents": 2500,
-        "description": "Five date balls across three flavors, sweet, fudgy, and made to disappear.",
-        "macros": null,
-        "diet": [
-          "Dairy Free",
-          "Gluten Free"
-        ],
-        "allergens": [],
-        "featured": false,
-        "customizations": [],
-        "collectionLabel": "Five date balls",
-        "note": "Sweet, fudgy, and made to disappear.",
-        "flavors": [
-          [
-            "Havn Signature",
-            "Sweet, fudgy, sea salt finish"
-          ],
-          [
-            "Dark Chocolate Espresso",
-            "Rich cacao, espresso depth"
-          ],
-          [
-            "Coconut Vanilla",
-            "Coconut, vanilla, lightly sweet"
           ]
         ]
       }

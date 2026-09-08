@@ -159,20 +159,13 @@
             ["Purify", "Wheatgrass, cucumber, chlorophyll, mint"],
             ["Clarity", "Blue spirulina, lemon, L-theanine, honey"]
           ]
-        },
-        {
-          id: "date_balls", name: "Date Ball Collection", tag: "Five date balls", addon: true,
-          desc: "Five date balls across three flavors, sweet, fudgy, and made to disappear.",
-          note: "Sweet, fudgy, and made to disappear.",
-          flavors: [
-            ["Havn Signature", "Sweet, fudgy, sea salt finish"],
-            ["Dark Chocolate Espresso", "Rich cacao, espresso depth"],
-            ["Coconut Vanilla", "Coconut, vanilla, lightly sweet"]
-          ]
         }
       ]
     }
   ];
+  /* This week: the second-timer bundle offer uses Wellness Shots. */
+  if (MODE === "db") { MODE = "ws"; window.HAVN_MENU_MODE = MODE; }
+
   /* ── END GENERATED: SECTIONS ─────────────────────────────────── */
 
   function indexItems(sections) {
