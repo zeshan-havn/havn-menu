@@ -1,0 +1,127 @@
+{
+  "purpose": "History and unfinished-source preservation only. This is not an integrated release. Recover a specific original commit in a temporary worktree; do not merge this archive branch into production.",
+  "date": "2026-09-08",
+  "original_refs": [
+    {
+      "ref": "refs/archive/context-cleanup-20260908/2581f74a6215",
+      "sha": "3ea8de54835f2d0bbe33c2fbc10673090ff88d24",
+      "unpublished_commits": 5
+    },
+    {
+      "ref": "refs/archive/context-cleanup-20260908/41b0e3acc212",
+      "sha": "db8407018c77d2a6f7a33f9086b7c1a3ed52eecf",
+      "unpublished_commits": 0
+    },
+    {
+      "ref": "refs/archive/context-cleanup-20260908/618876f76de6",
+      "sha": "e3dbad72e46f7ee616445277a6f18d7644054822",
+      "unpublished_commits": 0
+    },
+    {
+      "ref": "refs/archive/context-cleanup-20260908/6f516c4b14af",
+      "sha": "5b130ce01dc2b5b098e1090611629025b11267a6",
+      "unpublished_commits": 2
+    },
+    {
+      "ref": "refs/archive/context-cleanup-20260908/9fe9c76ccac6",
+      "sha": "c0031cb1f05c1f0a590a63e6c9de09ce11c2d3ec",
+      "unpublished_commits": 0
+    },
+    {
+      "ref": "refs/archive/context-cleanup-20260908/c941d8259341",
+      "sha": "1034c3bbfa29bc1a8a8380305c32bc12b70692d3",
+      "unpublished_commits": 0
+    },
+    {
+      "ref": "refs/archive/context-cleanup-20260908/cd4b4f2de0b3",
+      "sha": "084f9e597ec7d601fb6a45dba4901238a5875f00",
+      "unpublished_commits": 0
+    },
+    {
+      "ref": "refs/archive/context-cleanup-20260908/d01c1b618a8e",
+      "sha": "b54ed562d906507c53acf0dd2d5d0f5f03650c59",
+      "unpublished_commits": 0
+    },
+    {
+      "ref": "refs/heads/codex/aug16-member-menu",
+      "sha": "5b130ce01dc2b5b098e1090611629025b11267a6",
+      "unpublished_commits": 2
+    },
+    {
+      "ref": "refs/heads/codex/fix-weekly-promo-routes",
+      "sha": "dc8ecf52af55ced65db317fa40018fd2b6453f2b",
+      "unpublished_commits": 0
+    },
+    {
+      "ref": "refs/heads/codex/member-menu-active-variant-20260811",
+      "sha": "e3dbad72e46f7ee616445277a6f18d7644054822",
+      "unpublished_commits": 0
+    },
+    {
+      "ref": "refs/heads/codex/member-menu-date-ball-variant-20260811",
+      "sha": "c0031cb1f05c1f0a590a63e6c9de09ce11c2d3ec",
+      "unpublished_commits": 0
+    },
+    {
+      "ref": "refs/heads/codex/member-menu-dc-foundation-20260811",
+      "sha": "1034c3bbfa29bc1a8a8380305c32bc12b70692d3",
+      "unpublished_commits": 0
+    },
+    {
+      "ref": "refs/heads/codex/member-menu-exact-landing-section-20260811",
+      "sha": "b54ed562d906507c53acf0dd2d5d0f5f03650c59",
+      "unpublished_commits": 0
+    },
+    {
+      "ref": "refs/heads/codex/member-menu-landing-replica-20260811",
+      "sha": "db8407018c77d2a6f7a33f9086b7c1a3ed52eecf",
+      "unpublished_commits": 0
+    },
+    {
+      "ref": "refs/heads/codex/member-menu-pricing-candidate-20260811",
+      "sha": "b54ed562d906507c53acf0dd2d5d0f5f03650c59",
+      "unpublished_commits": 0
+    },
+    {
+      "ref": "refs/heads/codex/member-menu-wellness-variant-20260811",
+      "sha": "084f9e597ec7d601fb6a45dba4901238a5875f00",
+      "unpublished_commits": 0
+    },
+    {
+      "ref": "refs/heads/codex/menu-deepen-forest-20260811",
+      "sha": "2eb86d1f21e33ffda60712cdfa062f01bca9e9ee",
+      "unpublished_commits": 0
+    },
+    {
+      "ref": "refs/heads/codex/menu-remove-nav-chrome-20260812",
+      "sha": "0a62d8b7dcb2d0f18d01668c622755287bdc9229",
+      "unpublished_commits": 0
+    },
+    {
+      "ref": "refs/heads/codex/menu-variants-live-20260811",
+      "sha": "fd54f9b19e701cc66f686e68afebe2b8e9bd0a9f",
+      "unpublished_commits": 0
+    },
+    {
+      "ref": "refs/heads/codex/new-customer-pricing-menu",
+      "sha": "3ea8de54835f2d0bbe33c2fbc10673090ff88d24",
+      "unpublished_commits": 5
+    },
+    {
+      "ref": "refs/heads/codex/pre-weekly-safety-20260818",
+      "sha": "b54ed562d906507c53acf0dd2d5d0f5f03650c59",
+      "unpublished_commits": 0
+    },
+    {
+      "ref": "refs/heads/codex/safety-accidental-main-cherry-pick-20260811",
+      "sha": "10d42aae28eb86623f70fc3d20a3c6599badc520",
+      "unpublished_commits": 1
+    },
+    {
+      "ref": "refs/heads/main",
+      "sha": "30806552334a7a58ac8b3ae3bd021e6420c609f4",
+      "unpublished_commits": 0
+    }
+  ],
+  "snapshots": []
+}
