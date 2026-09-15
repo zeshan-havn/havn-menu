@@ -141,5 +141,3 @@ window.HAVN_PREVIOUS_MENU_SECTIONS = [
       ]
     }
   ];
-  /* This week: the second-timer bundle offer uses Wellness Shots. */
-  if (MODE === "db") { MODE = "ws"; window.HAVN_MENU_MODE = MODE; }
