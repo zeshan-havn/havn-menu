@@ -12,6 +12,9 @@
   var priceForSlot = window.HAVN_PRICING && window.HAVN_PRICING.priceForSlot;
   if (!priceForSlot) throw new Error("Havn acquisition pricing did not load");
   var MODE = window.HAVN_MENU_MODE || "active";
+  var ARCHIVED_DELIVERY_DATE = /^\/sep13(?:\/|$)/i.test(window.location.pathname || "")
+    ? new Date("2026-09-13T12:00:00")
+    : null;
   /* Section labels derive from the same resolver as the cart and receipt, so
      a future price adjustment cannot leave the visible menu out of sync. */
   var mealPrice = priceForSlot("cheat");
@@ -165,6 +168,12 @@
   ];
   /* ── END GENERATED: SECTIONS ─────────────────────────────────── */
 
+  /* Keep the shareable /Sep13 link pinned to that delivery week's
+     preserved snapshot while the normal routes continue using the live menu. */
+  if (ARCHIVED_DELIVERY_DATE && window.HAVN_PREVIOUS_MENU_SECTIONS) {
+    SECTIONS = window.HAVN_PREVIOUS_MENU_SECTIONS;
+  }
+
   function indexItems(sections) {
     var indexed = {};
     sections.forEach(function (s) {
@@ -243,9 +252,11 @@
   (function () {
     var dateLabel = document.getElementById("m-menu-date");
     if (!dateLabel) return;
-    var delivery = new Date();
-    delivery.setHours(12, 0, 0, 0);
-    delivery.setDate(delivery.getDate() + ((7 - delivery.getDay()) % 7));
+    var delivery = ARCHIVED_DELIVERY_DATE ? new Date(ARCHIVED_DELIVERY_DATE) : new Date();
+    if (!ARCHIVED_DELIVERY_DATE) {
+      delivery.setHours(12, 0, 0, 0);
+      delivery.setDate(delivery.getDate() + ((7 - delivery.getDay()) % 7));
+    }
     dateLabel.dateTime = delivery.toISOString().slice(0, 10);
     dateLabel.textContent = delivery.toLocaleDateString("en-US", {
       weekday: "long", month: "long", day: "numeric"
@@ -944,6 +955,9 @@
   }
 
   (function initPendingMode() {
+    /* An archive route is intentionally fixed and must not inherit the live
+       operator pending state or its "new menu dropping soon" messaging. */
+    if (ARCHIVED_DELIVERY_DATE) { revealResolvedMenu(); return; }
     var qs;
     try { qs = new URLSearchParams(window.location.search || ""); }
     catch (e) { qs = null; }

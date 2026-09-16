@@ -1,4 +1,4 @@
-/* Generated prior-week snapshot for Pending Menu Mode.
+/* Generated prior-week snapshot for Pending Menu Mode and /Sep13.
    Preserved from delivery week 2026-09-13. */
 /* delivery-week: 2026-09-13 */
 window.HAVN_PREVIOUS_MENU_SECTIONS = [
