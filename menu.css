@@ -95,6 +95,22 @@
   color: rgba(46, 34, 16, 0.92);
   white-space: nowrap;
 }
+/* Sold-out swap notice (Date Ball cohort, Sep 20): same brass micro-type,
+   allowed to wrap on narrow phones, with the credit line tucked beneath. */
+.m-ribbon-note-swap {
+  white-space: normal;
+  line-height: 1.5;
+  max-width: 34ch;
+}
+.m-ribbon-fine {
+  margin: 3px 0 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 12.5px;
+  letter-spacing: 0.01em;
+  color: rgba(46, 34, 16, 0.78);
+}
 
 /* ── the hand-drawn brass rule ──────────────────────────────────
    One motif, two places: it opens the menu body and it divides

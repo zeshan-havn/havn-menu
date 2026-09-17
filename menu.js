@@ -195,14 +195,16 @@
   var PROMO_LABELS = {
     welcome: "Welcome offer",
     ws: "Wellness credit",
-    db: "Date Ball credit",
+    db: "Wellness credit",
     in: "Welcome back credit"
   };
 
   function discountFor(meals, wellnessShots, dateBalls) {
     if (MODE === "welcome") return meals >= 7 ? 40 : meals >= 5 ? 20 : 0;
     if (MODE === "ws") return meals >= 5 && wellnessShots >= 1 ? 25 : 0;
-    if (MODE === "db") return meals >= 5 && dateBalls >= 1 ? 25 : 0;
+    /* Sep 20 week: the Date Ball Collection sold out, so the /db cohort earns
+       its $25 with Wellness Shots instead (mirrors the Airtable Wellness Credit). */
+    if (MODE === "db") return meals >= 5 && wellnessShots >= 1 ? 25 : 0;
     if (MODE === "in") return meals >= 5 ? 25 : 0;
     return 0;
   }
@@ -212,13 +214,9 @@
     if (MODE === "welcome") {
       return c.meals < 5 ? " · $20 off at 5 meals" : " · $40 off at 7";
     }
-    if (MODE === "ws") {
+    if (MODE === "ws" || MODE === "db") {
       if (c.wellnessShots < 1 && c.meals < 5) return " · add Wellness Shots + " + (5 - c.meals) + " more for $25 off";
       return c.wellnessShots < 1 ? " · add Wellness Shots for $25 off" : " · add " + (5 - c.meals) + " more for $25 off";
-    }
-    if (MODE === "db") {
-      if (c.dateBalls < 1 && c.meals < 5) return " · add Date Ball Collection + " + (5 - c.meals) + " more for $25 off";
-      return c.dateBalls < 1 ? " · add Date Ball Collection for $25 off" : " · add " + (5 - c.meals) + " more for $25 off";
     }
     return " · $25 off at 5 meals";
   }
@@ -239,13 +237,20 @@
     if (!ribbon || MODE === "welcome") return;
     var isWellness = MODE === "ws";
     var isDateBall = MODE === "db";
-    var title = isWellness ? "Wellness Shots" : isDateBall ? "Date Ball Collection" : "Welcome Back";
-    var qualifier = isWellness ? "5 meals + Wellness Shots" : isDateBall ? "5 meals + Date Ball Collection" : "on 5 meals";
-    ribbon.setAttribute("aria-label", "25 dollar credit " + qualifier + ", applied automatically");
+    /* The Date Ball cohort keeps its $25 credit; with the collection sold out
+       this week the credit unlocks with Wellness Shots instead. */
+    var title = (isWellness || isDateBall) ? "Wellness Shots" : "Welcome Back";
+    var qualifier = (isWellness || isDateBall) ? "5 meals + Wellness Shots" : "on 5 meals";
+    var note = isDateBall
+      ? "Date Balls sold out this week &middot; Wellness Shots swap in"
+      : "Applied automatically";
+    ribbon.setAttribute("aria-label", "25 dollar credit " + qualifier + ", applied automatically" +
+      (isDateBall ? ". Date Ball Collection is sold out this week; Wellness Shots swap in." : ""));
     ribbon.innerHTML = '<span class="m-ribbon-sheen" aria-hidden="true"></span>' +
       '<p class="m-ribbon-kicker">$25 Credit &middot; ' + title + '</p>' +
       '<div class="m-ribbon-amts m-ribbon-amts-single"><span class="m-ribbon-amt">$<b>25</b> off <i>' + qualifier + '</i></span></div>' +
-      '<p class="m-ribbon-note">Applied automatically</p>';
+      '<p class="m-ribbon-note' + (isDateBall ? ' m-ribbon-note-swap' : '') + '">' + note + '</p>' +
+      (isDateBall ? '<p class="m-ribbon-fine">Credit applied automatically</p>' : '');
   })();
 
   /* The label always identifies the Sunday delivery the menu is for. */
