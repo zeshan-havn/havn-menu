@@ -1,0 +1,80 @@
+{
+  "source": "CustomerComms/config/delivery_windows.py",
+  "standard_windows": [
+    "Sunday Morning",
+    "Sunday Evening",
+    "Monday Morning"
+  ],
+  "windows": {
+    "Monday Evening": {
+      "compact": "5-10 PM",
+      "display": "Monday Evening (5p-10p)",
+      "end_hour": 22,
+      "holiday_only": true,
+      "long": "5 PM-10 PM",
+      "short": "5p-10p",
+      "standard": false,
+      "start_hour": 17
+    },
+    "Monday Morning": {
+      "compact": "8 AM-1 PM",
+      "display": "Monday Morning (8a-1p)",
+      "end_hour": 13,
+      "holiday_only": false,
+      "long": "8 AM-1 PM",
+      "short": "8a-1p",
+      "standard": true,
+      "start_hour": 8
+    },
+    "Sunday Evening": {
+      "compact": "5-10 PM",
+      "display": "Sunday Evening (5p-10p)",
+      "end_hour": 22,
+      "holiday_only": false,
+      "long": "5 PM-10 PM",
+      "short": "5p-10p",
+      "standard": true,
+      "start_hour": 17
+    },
+    "Sunday Morning": {
+      "compact": "8 AM-1 PM",
+      "display": "Sunday Morning (8a-1p)",
+      "end_hour": 13,
+      "holiday_only": false,
+      "long": "8 AM-1 PM",
+      "short": "8a-1p",
+      "standard": true,
+      "start_hour": 8
+    },
+    "Thursday Evening": {
+      "compact": "6 PM-12 AM",
+      "display": "Thursday Evening (6p-12a)",
+      "end_hour": 24,
+      "holiday_only": false,
+      "long": "6 PM-12 AM",
+      "short": "6p-12a",
+      "standard": false,
+      "start_hour": 18
+    },
+    "Thursday Morning": {
+      "compact": "8 AM-1 PM",
+      "display": "Thursday Morning (8a-1p)",
+      "end_hour": 13,
+      "holiday_only": false,
+      "long": "8 AM-1 PM",
+      "short": "8a-1p",
+      "standard": false,
+      "start_hour": 8
+    },
+    "Tuesday Morning": {
+      "compact": "8 AM-1 PM",
+      "display": "Tuesday Morning (8a-1p)",
+      "end_hour": 13,
+      "holiday_only": true,
+      "long": "8 AM-1 PM",
+      "short": "8a-1p",
+      "standard": false,
+      "start_hour": 8
+    }
+  }
+}

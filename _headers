@@ -14,3 +14,7 @@
   Access-Control-Allow-Origin: *
   Cache-Control: public,max-age=0,must-revalidate
   Content-Type: application/json; charset=UTF-8
+
+/delivery-windows.json
+  Cache-Control: public,max-age=0,must-revalidate
+  Content-Type: application/json; charset=UTF-8
