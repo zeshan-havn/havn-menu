@@ -860,6 +860,32 @@
     registerRetentionOrder();
   });
 
+  /* Delivery window times come from delivery-windows.json, a copy of HQ's
+     CustomerComms/config/delivery_windows.json (the single source V2 and the
+     confirmation texts read; the weekly deploy refreshes the copy). The times
+     typed in index.html are only the fallback when the fetch fails, so a
+     window change is one edit in HQ, not a hand edit here. */
+  (function syncWindowChips() {
+    var chips = document.querySelectorAll("#m-pick-window .m-chip[data-window]");
+    if (!chips.length || typeof fetch !== "function") return;
+    try {
+      fetch("/delivery-windows.json", { cache: "no-store" })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (data) {
+          var windows = data && data.windows;
+          if (!windows) return;
+          chips.forEach(function (chip) {
+            var name = (chip.dataset.window || "").split("(")[0].trim().toLowerCase();
+            var key = Object.keys(windows).filter(function (k) { return k.toLowerCase() === name; })[0];
+            var range = key && windows[key] && windows[key].short;
+            var label = chip.querySelector("i");
+            if (range && label) label.textContent = range.replace("-", "\u2013");
+          });
+        })
+        .catch(function () { /* keep the HTML fallback */ });
+    } catch (e) { /* keep the HTML fallback */ }
+  })();
+
   /* pickers */
   document.getElementById("m-pick-window").addEventListener("click", function (e) {
     var chip = e.target.closest(".m-chip");
