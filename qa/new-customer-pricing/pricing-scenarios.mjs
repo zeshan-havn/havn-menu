@@ -184,9 +184,9 @@ await scenario('PRICE-04', 'all stable promo variants use configured tiers', asy
 
   const dateBall = await fresh('?db');
   for (const key of ['special', 'chicken', 'chicken_2', 'beef', 'seafood']) await clickPlus(dateBall.page, key);
-  assert.match(await dateBall.page.locator('#welcomeBanner').innerText(), /\$25 credit · with date ball collection/i);
-  assert.equal(await dateBall.page.locator('#priceNudge').innerText(), 'Add the Date Ball Collection to unlock $25 off');
-  await clickPlus(dateBall.page, 'date_balls');
+  assert.match(await dateBall.page.locator('#welcomeBanner').innerText(), /\$25 credit · with wellness shots/i);
+  assert.equal(await dateBall.page.locator('#priceNudge').innerText(), 'Add Wellness Shots to unlock $25 off');
+  await clickPlus(dateBall.page, 'wellness_shots');
   assert.equal(await dateBall.page.locator('#priceSubtotal').innerText(), '$165');
   assert.equal(await dateBall.page.locator('#priceDiscount').innerText(), '–$25');
   assert.equal(await dateBall.page.locator('#priceTotal').innerText(), '$140');

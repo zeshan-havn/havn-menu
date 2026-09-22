@@ -36,7 +36,7 @@ The pricing repair must preserve the member menu's one-cart architecture and con
 | P02 | Existing member scans the reassurance | Learns that ordering from the saved number retains legacy pricing; no client-side eligibility claim is made. |
 | P03 | Customer mixes regular meals, salads, sides, and collections | Sees a subtotal derived from each selected slot's generated unit price. |
 | P04 | Customer opens or edits a preset | Card and bundle-sheet totals stay identical because both use the same slot resolver. |
-| P05 | Promo customer follows `/welcome`, `/ws`, `/db`, or `/in` | Existing offer rules and amounts remain intact; the discount is applied to the new slot-aware subtotal. |
+| P05 | Promo customer follows `/welcome`, `/ws`, legacy `/db`, or `/in` | `/db` safely aliases to the Wellness Credit offer; the discount is applied to the new slot-aware subtotal. |
 | P06 | Customer reaches the order minimum | The existing four-equivalent rule remains unchanged and independent of price. |
 | P07 | Customer sends the SMS | The message contains choices and notes, not a browser-authored charge; the server owns final pricing. |
 
@@ -49,7 +49,7 @@ The pricing repair must preserve the member menu's one-cart architecture and con
 - P-C05: Display the approved legacy-pricing reassurance without exposing a legacy amount.
 - P-C06: Price the Basic, Standard, and Signature presets at `$147`, `$225`, and `$309` before promo discounts.
 - P-C07: Keep preset-card, bundle-sheet, and mixed-cart totals in agreement.
-- P-C08: Keep `/welcome` at `$20 off / 5 meals` and `$40 off / 7 meals`; keep `/ws`, `/db`, and `/in` at their existing `$25` offer rules.
+- P-C08: Keep `/welcome` at `$20 off / 5 meals` and `$40 off / 7 meals`; keep `/ws` and `/in` at `$25`, with legacy `/db` resolving to `/ws` behavior.
 - P-C09: Derive `/in` nudge thresholds from `PROMO_CONFIG` so the five-meal offer never tells a customer to add up to seven.
 - P-C10: Keep the minimum at four meal equivalents: each meal/salad/collection is one; every three sides is one.
 - P-C11: Keep the SMS draft free of subtotal, discount, or final-charge claims.
@@ -85,7 +85,7 @@ The deterministic browser replay lives in `qa/new-customer-pricing/pricing-scena
 2. In `?welcome` mode, assert five regular meals subtotal to `$140`, discount by `$20`, and total `$120`.
 3. Assert promo preset strikethroughs are computed from the new bases.
 4. In `?ws` mode, assert five meals require the Wellness Shots Collection, then unlock the existing `$25` credit when it is added.
-5. In `?db` mode, assert five meals require the Date Ball Collection, then unlock the existing `$25` credit when it is added.
+5. In legacy `?db` mode, assert the page behaves exactly like `?ws`: five meals require Wellness Shots, then unlock the `$25` credit.
 6. In `?in` mode, assert four meals say `Add 1 more meal for $25 off`.
 7. Add the fifth meal and assert the existing `$25` credit unlocks.
 

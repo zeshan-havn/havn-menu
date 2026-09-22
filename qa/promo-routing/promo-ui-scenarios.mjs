@@ -49,11 +49,11 @@ const cases = [
   },
   {
     path: '/sep6/db',
-    mode: 'db',
-    banner: /\$25 Credit · Date Ball Collection/i,
-    extras: ['date_balls'],
-    barTotal: '$125 after Date Ball credit',
-    offerLabel: 'Date Ball credit',
+    mode: 'ws',
+    banner: /\$25 Credit · Wellness Shots/i,
+    extras: ['wellness_shots'],
+    barTotal: '$125 after Wellness credit',
+    offerLabel: 'Wellness credit',
     offerAmount: '–$25',
     receiptTotal: '$125'
   },

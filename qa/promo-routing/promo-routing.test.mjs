@@ -10,7 +10,7 @@ function resolveMenuLocation(pathname, search = '') {
   return { mode: window.HAVN_MENU_MODE, city: window.HAVN_MENU_CITY };
 }
 
-const promoModes = ['welcome', 'ws', 'db', 'in'];
+const promoModes = ['welcome', 'ws', 'in'];
 const representativeWeeks = ['jan1', 'may17', 'aug02', 'sep6', 'dec31'];
 
 for (const mode of promoModes) {
@@ -35,6 +35,12 @@ for (const queryMode of promoModes) {
   assert.deepEqual(resolveMenuLocation('/sep6', `?${queryMode}`), { mode: queryMode, city: 'DC' });
   assert.deepEqual(resolveMenuLocation('/sep6/sd', `?${queryMode}`), { mode: queryMode, city: 'SD' });
 }
+
+// Old Date Ball Credit links remain safe, but now resolve to Wellness Credit.
+for (const path of ['/db', '/sd/db', '/sep6/db', '/sep6/sd/db']) {
+  assert.equal(resolveMenuLocation(path).mode, 'ws');
+}
+assert.equal(resolveMenuLocation('/sep6', '?db').mode, 'ws');
 
 assert.deepEqual(resolveMenuLocation('/sep6'), { mode: 'active', city: 'DC' });
 assert.deepEqual(resolveMenuLocation('/sep6/sd'), { mode: 'active', city: 'SD' });

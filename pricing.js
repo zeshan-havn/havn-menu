@@ -22,9 +22,10 @@
     root.HAVN_MENU_CITY = (isSdRoute || qs.has("sd")) ? "SD" : "DC";
     if (qs.has("welcome")) return "welcome";
     if (qs.has("ws")) return "ws";
-    if (qs.has("db")) return "db";
+    if (qs.has("db")) return "ws"; // legacy alias
     if (qs.has("in")) return "in";
-    if (first === "welcome" || first === "ws" || first === "db" || first === "in") return first;
+    if (first === "db") return "ws"; // legacy alias
+    if (first === "welcome" || first === "ws" || first === "in") return first;
     return "active";
   }
 
