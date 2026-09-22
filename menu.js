@@ -25,16 +25,16 @@
      the next weekly run overwrites it. Authored content that is not in
      the CSV (collection flavors/notes, bespoke art, short display
      names) lives in menu-data.overrides.json and survives every run. */
-  /* delivery-week: 2026-09-20 */
+  /* delivery-week: 2026-09-27 */
   var SECTIONS = [
     {
       label: "Chef Special",
       items: [
         {
-          id: "cheat", name: "Moroccan Lamb & Beef Meatballs", tag: "Chef special", img: "/assets/current/special.jpg",
-          desc: "Moroccan spiced lamb and beef meatballs with a garlic yogurt sauce, harissa roasted butternut squash and roasted cauliflower over herbed pearl couscous.",
-          cal: 763, protein: 60, fat: 37, fiber: 10, carbs: 53,
-          diet: [["Dairy (yogurt)", "allergen"], ["Gluten (couscous)", "allergen"]]
+          id: "cheat", name: "Chicken Shawarma Bowl", tag: "Chef special", img: "/assets/current/special.jpg",
+          desc: "Shawarma chicken with a red, white and green sauce, roasted bell peppers and charred sweet corn over cumin rice pilaf.",
+          cal: 667, protein: 55, fat: 25, fiber: 4, carbs: 54,
+          diet: [["Dairy (yogurt)", "allergen"], ["Gluten free", "safe"]]
         }
       ]
     },
@@ -42,16 +42,16 @@
       label: "Chicken",
       items: [
         {
-          id: "chicken", name: "Thai Coconut Curry Chicken", tag: "Chicken", img: "/assets/current/chicken.jpg",
-          desc: "Soy agave chicken breast with a Thai coconut curry sauce and spicy roasted broccoli and carrots over basmati rice.",
-          cal: 769, protein: 65, fat: 30, fiber: 6, carbs: 60,
+          id: "chicken", name: "Honey Sriracha Chicken Bowl", tag: "Chicken", img: "/assets/current/chicken.jpg",
+          desc: "Roasted chicken breast with a sweet and spicy honey sriracha glaze, charred green beans and roasted carrots over basmati rice.",
+          cal: 675, protein: 62, fat: 15, fiber: 6, carbs: 71,
           diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
         },
         {
-          id: "chicken_2", name: "Lemon Herb Feta Chicken", tag: "Chicken", img: "/assets/current/chicken_2.jpg",
-          desc: "Lemon herb chicken with a ruby whipped feta and roasted sweet potato and lacinato kale with a house pickled vegetable medley.",
-          cal: 675, protein: 66, fat: 31, fiber: 7, carbs: 33,
-          diet: [["Dairy (feta)", "allergen"], ["Gluten free", "safe"]]
+          id: "chicken_2", name: "Mediterranean Chicken Bowl", tag: "Chicken", img: "/assets/current/chicken_2.jpg",
+          desc: "Pan-seared chicken breast over a dairy-free green tahini bed. Roasted chickpeas, broccoli, pickled red onions.",
+          cal: 580, protein: 57, fat: 24, fiber: 12, carbs: 28,
+          diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
         }
       ]
     },
@@ -59,10 +59,10 @@
       label: "Beef",
       items: [
         {
-          id: "beef", name: "Texas Steakhouse Steak", tag: "Beef", img: "/assets/current/beef.jpg",
-          desc: "Sliced steak with a garlic herb steakhouse butter, roasted mushrooms and broccoli over silky potato purée.",
-          cal: 765, protein: 64, fat: 43, fiber: 8, carbs: 28,
-          diet: [["Dairy (milk)", "allergen"], ["Gluten free", "safe"]]
+          id: "beef", name: "Mongolian Beef", tag: "Beef", img: "/assets/current/beef.jpg",
+          desc: "Tender sliced beef with a savory sweet Mongolian glaze, roasted broccoli and red peppers over jasmine rice.",
+          cal: 702, protein: 64, fat: 20, fiber: 6, carbs: 62,
+          diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
         }
       ]
     },
@@ -70,15 +70,15 @@
       label: "Seafood",
       items: [
         {
-          id: "seafood", name: "Gochujang Honey Butter Salmon", tag: "Seafood", img: "/assets/current/seafood.jpg",
-          desc: "Roasted salmon with a gochujang honey butter, roasted broccoli and red peppers over jasmine rice.",
-          cal: 748, protein: 49, fat: 40, fiber: 5, carbs: 47,
-          diet: [["Dairy (butter)", "allergen"], ["Gluten free", "safe"]]
+          id: "seafood", name: "Marry Me Salmon", tag: "Seafood", img: "/assets/current/seafood.jpg",
+          desc: "Roasted salmon with a creamy sun dried tomato parmesan sauce, roasted mushrooms and broccoli over herb orzo.",
+          cal: 740, protein: 55, fat: 38, fiber: 7, carbs: 44,
+          diet: [["Dairy (cream, parmesan)", "allergen"], ["Gluten (orzo)", "allergen"]]
         },
         {
-          id: "seafood_2", name: "Bang Bang Shrimp Bowl", tag: "Seafood", img: "/assets/current/seafood_2.jpg",
-          desc: "Garlic herb shrimp with a creamy sweet chili bang bang sauce, charred corn and roasted red peppers over cilantro lime rice.",
-          cal: 675, protein: 52, fat: 22, fiber: 4, carbs: 65,
+          id: "seafood_2", name: "Hibachi Shrimp Fried Rice", tag: "Seafood", img: "/assets/current/seafood_2.jpg",
+          desc: "Garlic hibachi shrimp with vegetable fried rice, roasted mushrooms and zucchini, finished with a ginger garlic tamari sauce.",
+          cal: 578, protein: 54, fat: 15, fiber: 6, carbs: 51,
           diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
         }
       ]
@@ -87,10 +87,10 @@
       label: "Pasta",
       items: [
         {
-          id: "pasta", name: "Blackened Chicken Vodka Pasta", tag: "Pasta", img: "/assets/current/pasta.jpg",
-          desc: "Blackened chicken breast with a dairy free vodka cream sauce, roasted mushrooms and bell peppers over fusilli pasta.",
-          cal: 737, protein: 54, fat: 36, fiber: 6, carbs: 47,
-          diet: [["Dairy free", "safe"], ["Gluten (pasta)", "allergen"]]
+          id: "pasta", name: "Philly Cheesesteak Mac & Cheese", tag: "Pasta", img: "/assets/current/pasta.jpg",
+          desc: "Thin sliced steak with roasted bell peppers and caramelized onions over creamy mac and cheese, finished with a provolone style cheese sauce.",
+          cal: 701, protein: 60, fat: 37, fiber: 4, carbs: 31,
+          diet: [["Dairy (cheese)", "allergen"], ["Gluten (pasta)", "allergen"]]
         }
       ]
     },
@@ -98,9 +98,9 @@
       label: "Vegetarian",
       items: [
         {
-          id: "vegetarian", name: "BBQ Glazed Tofu", tag: "Vegetarian", img: "/assets/current/veg.jpg",
-          desc: "Seared tofu with a homemade barbecue glaze and roasted carrots over herb roasted baby Yukon potatoes.",
-          cal: 608, protein: 40, fat: 26, fiber: 7, carbs: 49,
+          id: "vegetarian", name: "Buffalo Cauliflower Bowl", tag: "Vegetarian", img: "/assets/current/veg.jpg",
+          desc: "Crispy buffalo cauliflower and crispy tofu with a tangy buffalo glaze and roasted rainbow carrots over herbed quinoa.",
+          cal: 519, protein: 37, fat: 27, fiber: 8, carbs: 33,
           diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
         }
       ]
@@ -109,10 +109,10 @@
       label: "Salads",
       items: [
         {
-          id: "salad", name: "Buffalo Chicken Ranch Kale Salad", tag: "Salad", img: "/assets/current/salad.jpg",
-          desc: "Diced buffalo chicken over shredded purple cabbage and kale with celery, carrots, whole grape tomatoes, pickled red onions, sharp cheddar and roasted chickpeas, with a creamy ranch on the side.",
-          cal: 500, protein: 50, fat: 21, fiber: 9, carbs: 23,
-          diet: [["Dairy (cheddar, yogurt)", "allergen"], ["Gluten free", "safe"]]
+          id: "salad", name: "Pesto Chicken Caprese Kale Salad", tag: "Salad", img: "/assets/current/salad.jpg",
+          desc: "Lemon herb chicken over purple cabbage and kale with whole grape tomatoes, mozzarella, roasted chickpeas and pickled red onions, with a pesto balsamic dressing on the side.",
+          cal: 504, protein: 48, fat: 25, fiber: 8, carbs: 22,
+          diet: [["Dairy (mozzarella, parmesan)", "allergen"], ["Gluten free", "safe"]]
         },
         {
           id: "salad_2", name: "Green Goddess Salad", tag: "Salad", img: "/assets/current/salad_2.jpg",
@@ -134,16 +134,16 @@
           diet: [["Dairy (yogurt, mascarpone)", "allergen"], ["Gluten free", "safe"]]
         },
         {
-          id: "chia", name: "Apple Crisp Chia Pudding", tag: "Chia", side: true,
-          desc: "Cinnamon vanilla chia pudding with butter sautéed cinnamon apples and a toasted oat crisp.",
-          cal: 400, protein: 22, fat: 15, fiber: 13, carbs: 34,
-          diet: [["Dairy (yogurt)", "allergen"], ["Gluten free", "safe"]]
+          id: "chia", name: "Pumpkin Cheesecake Chia Pudding", tag: "Chia", side: true,
+          desc: "Pumpkin spice chia pudding with a maple vanilla mascarpone style cheesecake layer and graham oat crumble.",
+          cal: 454, protein: 25, fat: 17, fiber: 10, carbs: 39,
+          diet: [["Dairy (yogurt, mascarpone)", "allergen"], ["Gluten (graham)", "allergen"]]
         },
         {
-          id: "chia_2", name: "Tiramisu Chia Pudding", tag: "Chia", side: true,
-          desc: "Tiramisu chia pudding with a sweet tiramisu style cream topped with a light cocoa dusting.",
-          cal: 376, protein: 25, fat: 14, fiber: 11, carbs: 27,
-          diet: [["Dairy (yogurt)", "allergen"], ["Gluten free", "safe"]]
+          id: "chia_2", name: "Mango Chia Pudding", tag: "Chia", side: true,
+          desc: "A creamy mango chia pudding layered with coconut cream and topped with fresh mango.",
+          cal: 393, protein: 22, fat: 16, fiber: 10, carbs: 30,
+          diet: [["Dairy (mascarpone)", "allergen"], ["Gluten free", "safe"]]
         }
       ]
     },
