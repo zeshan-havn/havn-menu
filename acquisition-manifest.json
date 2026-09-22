@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "releaseDigest": "121a7ab5de3c18eb1417f3ac3ef775dd0fe06a4a6f2fd23b36887a99421a9ae0",
+  "releaseDigest": "4f1c152df7d1bb0a2fe90ee73eef0f102caf5ff0e049b939d8e35bbe5d2c4ea4",
   "menu": {
     "id": "delivery-2026-09-27",
-    "version": "sha256-121a7ab5de3c18eb1417f3ac3ef775dd0fe06a4a6f2fd23b36887a99421a9ae0",
+    "version": "sha256-4f1c152df7d1bb0a2fe90ee73eef0f102caf5ff0e049b939d8e35bbe5d2c4ea4",
     "weekLabel": "September 27",
     "pricingPolicyId": "backend-25-10-v1",
     "offerPolicyId": "welcome-20-40-v1",
@@ -102,11 +102,11 @@
           "Dairy-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-121a7ab5de3c18eb1417f3ac3ef775dd0fe06a4a6f2fd23b36887a99421a9ae0/cheat.jpg",
-          "width": 656,
+          "url": "/assets/releases/sha256-4f1c152df7d1bb0a2fe90ee73eef0f102caf5ff0e049b939d8e35bbe5d2c4ea4/cheat.jpg",
+          "width": 654,
           "height": 900,
           "format": "jpeg",
-          "sha256": "5fc3732eec7dfc30c4d8465f01c4ec982cca66882ab5b44833214ff8b8df06af",
+          "sha256": "5f655438d043e46d70b0fd007c65e9cc0d765094ca228519537fd1af47189a68",
           "alt": "Chicken Shawarma Bowl"
         }
       },
@@ -137,11 +137,11 @@
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-121a7ab5de3c18eb1417f3ac3ef775dd0fe06a4a6f2fd23b36887a99421a9ae0/chicken.jpg",
-          "width": 656,
+          "url": "/assets/releases/sha256-4f1c152df7d1bb0a2fe90ee73eef0f102caf5ff0e049b939d8e35bbe5d2c4ea4/chicken.jpg",
+          "width": 654,
           "height": 900,
           "format": "jpeg",
-          "sha256": "8e2d6a201f7874bd27ac848ffd66a6bc374eaa604fda80005912e9890183b57e",
+          "sha256": "149d4613ccf3ef4e94609954449e402635eb719effe3616e122f0fbb56384087",
           "alt": "Honey Sriracha Chicken Bowl"
         }
       },
@@ -172,11 +172,11 @@
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-121a7ab5de3c18eb1417f3ac3ef775dd0fe06a4a6f2fd23b36887a99421a9ae0/chicken_2.jpg",
-          "width": 656,
+          "url": "/assets/releases/sha256-4f1c152df7d1bb0a2fe90ee73eef0f102caf5ff0e049b939d8e35bbe5d2c4ea4/chicken_2.jpg",
+          "width": 654,
           "height": 900,
           "format": "jpeg",
-          "sha256": "955d8248c11c81c037994664cdd4f209221a8b8c1695feb79012b90609430dfa",
+          "sha256": "e934f308b2a8e898e71129ef2290ae8e43fcceb56363035a08a72c6ac5abfb0a",
           "alt": "Mediterranean Chicken Bowl"
         }
       },
@@ -207,11 +207,11 @@
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-121a7ab5de3c18eb1417f3ac3ef775dd0fe06a4a6f2fd23b36887a99421a9ae0/beef.jpg",
-          "width": 656,
+          "url": "/assets/releases/sha256-4f1c152df7d1bb0a2fe90ee73eef0f102caf5ff0e049b939d8e35bbe5d2c4ea4/beef.jpg",
+          "width": 654,
           "height": 900,
           "format": "jpeg",
-          "sha256": "18bd016437bbedf62adf7616402a1a301ffd2cb194e1c70192f27540b47409a9",
+          "sha256": "0b12f68410980052d1f52adc0d62b8a17009a5215e3d85be30eceff42c6f620a",
           "alt": "Mongolian Beef"
         }
       },
@@ -247,11 +247,11 @@
           "Gluten-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-121a7ab5de3c18eb1417f3ac3ef775dd0fe06a4a6f2fd23b36887a99421a9ae0/seafood.jpg",
-          "width": 656,
+          "url": "/assets/releases/sha256-4f1c152df7d1bb0a2fe90ee73eef0f102caf5ff0e049b939d8e35bbe5d2c4ea4/seafood.jpg",
+          "width": 654,
           "height": 900,
           "format": "jpeg",
-          "sha256": "8c8b238b6f127007f7848d0ecd7648e4f939d2476fa48374b592c50b880f64c0",
+          "sha256": "7f0a63db03588d0547fae2f613a0fba3c8128ce2ff600b206be728d5c92e4058",
           "alt": "Marry Me Salmon"
         }
       },
@@ -282,11 +282,11 @@
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-121a7ab5de3c18eb1417f3ac3ef775dd0fe06a4a6f2fd23b36887a99421a9ae0/seafood_2.jpg",
-          "width": 656,
+          "url": "/assets/releases/sha256-4f1c152df7d1bb0a2fe90ee73eef0f102caf5ff0e049b939d8e35bbe5d2c4ea4/seafood_2.jpg",
+          "width": 654,
           "height": 900,
           "format": "jpeg",
-          "sha256": "7a3b792608fcfc96b11bef6cd1bf415350cd25a999a8e0244db9d22ffaa2bb07",
+          "sha256": "6409da5f73940b9d6eff7300739990f92fccc5be9d13fe78637f190080c6efa4",
           "alt": "Hibachi Shrimp Fried Rice"
         }
       },
@@ -322,11 +322,11 @@
           "Gluten-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-121a7ab5de3c18eb1417f3ac3ef775dd0fe06a4a6f2fd23b36887a99421a9ae0/pasta.jpg",
-          "width": 656,
+          "url": "/assets/releases/sha256-4f1c152df7d1bb0a2fe90ee73eef0f102caf5ff0e049b939d8e35bbe5d2c4ea4/pasta.jpg",
+          "width": 654,
           "height": 900,
           "format": "jpeg",
-          "sha256": "3b6dbc426608031836a1cb03927088a659b683ef5be28cc7879da8e0279bfc68",
+          "sha256": "361645b003edb93971b0e3009897fde1e348daf22c5a04f35020ebca2dc2f434",
           "alt": "Philly Cheesesteak Mac & Cheese"
         }
       },
@@ -357,11 +357,11 @@
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-121a7ab5de3c18eb1417f3ac3ef775dd0fe06a4a6f2fd23b36887a99421a9ae0/vegetarian.jpg",
+          "url": "/assets/releases/sha256-4f1c152df7d1bb0a2fe90ee73eef0f102caf5ff0e049b939d8e35bbe5d2c4ea4/vegetarian.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
-          "sha256": "5ee3571c943348968f63528a2f0dbf46bb6b7acfc9b7e6fb2e6a345a099944b3",
+          "sha256": "9184a8885ef5a168eb76fb7dffe25fe65d401b73d0e0b655f027ba17bf70f876",
           "alt": "Buffalo Cauliflower Bowl"
         }
       },
@@ -395,11 +395,11 @@
           "Dairy-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-121a7ab5de3c18eb1417f3ac3ef775dd0fe06a4a6f2fd23b36887a99421a9ae0/salad.jpg",
+          "url": "/assets/releases/sha256-4f1c152df7d1bb0a2fe90ee73eef0f102caf5ff0e049b939d8e35bbe5d2c4ea4/salad.jpg",
           "width": 720,
           "height": 900,
           "format": "jpeg",
-          "sha256": "f7402872dbc4903d2c8e0baa15f4225a9602c7c0e77f806be0c9a93c28d4a66d",
+          "sha256": "35606f216df5f2d3c76d3f1f66838ff51d6e45d6ec2fe58c43f5d8c8f5b7dbf9",
           "alt": "Pesto Chicken Caprese Kale Salad"
         }
       },
@@ -431,11 +431,11 @@
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-121a7ab5de3c18eb1417f3ac3ef775dd0fe06a4a6f2fd23b36887a99421a9ae0/salad_2.jpg",
+          "url": "/assets/releases/sha256-4f1c152df7d1bb0a2fe90ee73eef0f102caf5ff0e049b939d8e35bbe5d2c4ea4/salad_2.jpg",
           "width": 720,
           "height": 900,
           "format": "jpeg",
-          "sha256": "fc841c92e0d86faa291c6a1599357db3ce153a953e02cfb046d68fd8b3955eb4",
+          "sha256": "3138e433398f1ba5a44add71a889ad263b559b19232cf524ffebeeecfd17c496",
           "alt": "Green Goddess Salad"
         }
       },
