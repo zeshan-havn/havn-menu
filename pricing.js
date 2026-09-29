@@ -18,6 +18,9 @@
     /* SoCal uses an optional city segment in some weekly campaign links. */
     if (parts[0] === "sd" || parts[0] === "dc") parts.shift();
     var first = parts[0] || "";
+    /* The quiz signup lands on /welcome/quiz: the same welcome offer and
+       menu, opened by a short how-to-order block for first-time visitors. */
+    root.HAVN_MENU_VARIANT = first === "welcome" && parts[1] === "quiz" ? "quiz" : "";
     var qs = new URLSearchParams(root.location.search || "");
     root.HAVN_MENU_CITY = (isSdRoute || qs.has("sd")) ? "SD" : "DC";
     if (qs.has("welcome")) return "welcome";

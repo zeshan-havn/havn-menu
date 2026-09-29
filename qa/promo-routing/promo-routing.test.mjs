@@ -46,4 +46,17 @@ assert.deepEqual(resolveMenuLocation('/sep6'), { mode: 'active', city: 'DC' });
 assert.deepEqual(resolveMenuLocation('/sep6/sd'), { mode: 'active', city: 'SD' });
 assert.deepEqual(resolveMenuLocation('/seasonal/in'), { mode: 'active', city: 'DC' });
 
+// Quiz signups: /welcome/quiz keeps the welcome offer and adds the quiz variant.
+function resolveVariant(pathname, search = '') {
+  const window = { location: { pathname, search } };
+  vm.runInNewContext(pricingSource, { window, URLSearchParams });
+  return { mode: window.HAVN_MENU_MODE, city: window.HAVN_MENU_CITY, variant: window.HAVN_MENU_VARIANT };
+}
+for (const [path, city] of [['/welcome/quiz', 'DC'], ['/oct04/welcome/quiz', 'DC'], ['/sd/welcome/quiz', 'SD'], ['/oct04/sd/welcome/quiz', 'SD']]) {
+  assert.deepEqual(resolveVariant(path), { mode: 'welcome', city, variant: 'quiz' }, `${path} must open the quiz welcome`);
+}
+for (const path of ['/welcome', '/oct04/welcome', '/ws', '/in', '/quiz', '/ws/quiz']) {
+  assert.equal(resolveVariant(path).variant, '', `${path} must not open the quiz welcome`);
+}
+
 console.log(`PASS ${promoModes.length * (2 + representativeWeeks.length * 2 + 2) + 3} promo route cases`);

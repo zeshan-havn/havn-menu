@@ -25,11 +25,13 @@
 <header class="topbar solid" id="topbar">
   <span class="topbar-mark">H</span>
   <span class="topbar-name">Havn Club</span>
+  <img class="topbar-logo" id="topbar-logo" src="/assets/brand/havn-club-logo-cream.png" alt="Havn Club" width="56" height="34" hidden>
 </header>
 
 <!-- masthead -->
 <section class="m-head">
-  <h1 class="m-head-title">Draft your<br><em>order text</em></h1>
+  <h1 class="m-head-title" id="m-head-title">Draft your<br><em>order text</em></h1>
+  <p class="m-quiz-sub" id="m-quiz-sub" hidden>Here&rsquo;s this week&rsquo;s menu. A new one comes by text every Tuesday.</p>
 
   <!-- the welcome offer rides a brass ribbon — same metal as the coupon -->
   <div class="m-ribbon" aria-label="Welcome offer: 20 dollars off five meals, 40 dollars off seven or more, applied automatically">
@@ -40,6 +42,17 @@
       <span class="m-ribbon-amt">$<b id="m-rb-1">40</b> off <i>on 7+</i></span>
     </div>
     <p class="m-ribbon-note">Welcome offer applied automatically</p>
+  </div>
+
+  <!-- quiz signups only (/welcome/quiz): how ordering works, before the menu -->
+  <div class="m-howto" id="m-howto" hidden>
+    <p class="m-howto-label">How to order</p>
+    <ol class="m-howto-steps">
+      <li><i aria-hidden="true">1</i><span>Tap Add on anything that looks good. The minimum is 4 meals.</span></li>
+      <li><i aria-hidden="true">2</i><span>Tap Draft order text and pick a delivery time.</span></li>
+      <li><i aria-hidden="true">3</i><span>Send the text. We&rsquo;ll confirm before you pay anything.</span></li>
+    </ol>
+    <p class="m-howto-cutoff" id="m-howto-cutoff"></p>
   </div>
 </section>
 

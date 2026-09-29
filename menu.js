@@ -217,6 +217,51 @@
     return " · $25 off at 5 meals";
   }
 
+  /* Quiz signups land on /welcome/quiz#n=<first name>. The name is read
+     once, kept for this tab, and cleared from the address bar before the
+     pixel (intake.js, on DOMContentLoaded) can report the page URL. */
+  function quizFirstName() {
+    var name = "";
+    var match = /^#(?:.*&)?n=([^&]*)/.exec(window.location.hash || "");
+    if (match) {
+      try { name = decodeURIComponent(match[1].replace(/\+/g, " ")); } catch (e) { name = ""; }
+      try { history.replaceState(null, "", window.location.pathname + window.location.search); } catch (e) {}
+      try { sessionStorage.setItem("havn_quiz_name", name); } catch (e) {}
+    } else {
+      try { name = sessionStorage.getItem("havn_quiz_name") || ""; } catch (e) {}
+    }
+    name = name.trim().split(/\s+/)[0] || "";
+    if (!/^[A-Za-z\u00C0-\u024F'\u2019-]{1,20}$/.test(name)) return "";
+    return name.charAt(0).toUpperCase() + name.slice(1);
+  }
+
+  /* Same welcome offer and menu; the masthead greets them and a short
+     how-to-order block explains the text flow before the first dish. */
+  function configureQuizWelcome() {
+    document.body.classList.add("quiz-welcome");
+    var logo = document.getElementById("topbar-logo");
+    if (logo) logo.hidden = false;
+    var title = document.getElementById("m-head-title");
+    var name = quizFirstName();
+    if (title) {
+      var em = document.createElement("em");
+      em.textContent = name ? name + "." : "in.";
+      title.textContent = name ? "You\u2019re in," : "You\u2019re";
+      title.appendChild(document.createElement("br"));
+      title.appendChild(em);
+    }
+    var sub = document.getElementById("m-quiz-sub");
+    if (sub) sub.hidden = false;
+    var howto = document.getElementById("m-howto");
+    if (howto) howto.hidden = false;
+    /* Order cutoffs: DMV Thursday 7pm, San Diego Thursday 4pm. */
+    var cutoff = document.getElementById("m-howto-cutoff");
+    if (cutoff) {
+      cutoff.textContent = "Order by Thursday at " +
+        (window.HAVN_MENU_CITY === "SD" ? "4pm" : "7pm") + " for delivery Sunday or Monday.";
+    }
+  }
+
   /* The same page is safely reused for all member cohorts. Only the
      path-selected offer and the active-member header treatment vary. */
   (function configureModePresentation() {
@@ -226,6 +271,7 @@
       var cityLabel = document.querySelector(".topbar-city");
       if (cityLabel) cityLabel.textContent = "SoCal";
     }
+    if (MODE === "welcome" && window.HAVN_MENU_VARIANT === "quiz") configureQuizWelcome();
     if (MODE === "active") {
       body.classList.add("active-menu");
       return;
