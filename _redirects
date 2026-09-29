@@ -27,6 +27,11 @@
 /:week/sd/*         /index.html  200
 /:week/sd           /index.html  200
 
+# Quiz and club signups land on /welcome/quiz. Without these rules it matches
+# /:week/* below (week="welcome"), rewrites to /quiz and returns 404.
+/welcome/quiz/*     /index.html  200
+/welcome/quiz       /index.html  200
+
 # Strip the weekly prefix off everything else under /{week}/* — used for
 # static asset cache-bust (e.g. /may17/menu-preview.png → /menu-preview.png).
 /:week/*    /:splat 200
