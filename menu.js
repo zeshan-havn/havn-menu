@@ -106,6 +106,23 @@
       ]
     },
     {
+      label: "Salads",
+      items: [
+        {
+          id: "salad", name: "Green Goddess Salad", tag: "Salad", img: "/assets/current/salad.jpg",
+          desc: "Diced lemon herb chicken over shredded purple cabbage and kale with pickled red onion, cucumber, roasted chickpeas, red grapes, toasted pumpkin seeds and dried apricots, with tahini green goddess on the side.",
+          cal: 479, protein: 45, fat: 20, fiber: 10, carbs: 31,
+          diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
+        },
+        {
+          id: "salad_2", name: "Harvest Bowl Salad", tag: "Salad", img: "/assets/current/salad_2.jpg",
+          desc: "Diced lemon herb chicken over apple cider slaw and kale with roasted sweet potato, shaved carrot and celery, spiced pickled apple and goat cheese, with balsamic vinaigrette on the side.",
+          cal: 506, protein: 42, fat: 25, fiber: 9, carbs: 29,
+          diet: [["Dairy (goat cheese)", "allergen"], ["Gluten free", "safe"]]
+        }
+      ]
+    },
+    {
       label: "Breakfast & sides — $10",
       drop: true,
       side: true,

@@ -6,7 +6,7 @@
   },
   "menu_source": {
     "path": "CulinaryOps/Oct 4th Menu File/finalized-menu.json",
-    "sha256": "723e16fa783bd69bce54f8615cec202e8a9997bd97ada1e07179ce0167e5d777"
+    "sha256": "5d90c95a932e0891e47f92b79db498d848e5e55a7c75f5c72893a7f48d2860a7"
   },
   "transform": "sips -Z 900 -s format jpeg -s formatOptions 82",
   "items": {
@@ -57,6 +57,18 @@
       "source_sha256": "c6fd0207687a9e8f5fbfa40ea91eaa7976feb7c3697fd36e0ea1837ef345455d",
       "output": "assets/current/veg.jpg",
       "output_sha256": "d8fca463773d1ba104c12fe9bfe7c68e5a7dec2529741c00b3fbd9ee81d51431"
+    },
+    "salad": {
+      "source": "CulinaryOps/Oct 4th Menu File/meal-images/salad-green-goddess-salad.png",
+      "source_sha256": "485a66ed531786b162a77ea513857443a08f3a511dc10c0f39fcb874368ccf59",
+      "output": "assets/current/salad.jpg",
+      "output_sha256": "fc841c92e0d86faa291c6a1599357db3ce153a953e02cfb046d68fd8b3955eb4"
+    },
+    "salad_2": {
+      "source": "CulinaryOps/Oct 4th Menu File/meal-images/salad_2-harvest-bowl-salad.png",
+      "source_sha256": "da35bfe3a6e36e785f1bc9d4add48b2d76ab3a7fc16119e812132994e1938bca",
+      "output": "assets/current/salad_2.jpg",
+      "output_sha256": "939065894393d6e335a0267dbd8f1df6f88ba7c193b6dd959e74d04cd18569a3"
     }
   }
 }

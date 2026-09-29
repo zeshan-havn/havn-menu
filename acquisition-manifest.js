@@ -1,11 +1,11 @@
-/* acquisition-manifest.json sha256=44505f04c1db35b001338828369ad7e1a5e17431a31a66cd125139c28550f1b6 */
+/* acquisition-manifest.json sha256=c1b687cf8834b5ef420a7c9137c32adf1b023b1049569feea28489175468d8b1 */
 window.HAVN_ACQUISITION_MANIFEST =
 {
   "schemaVersion": 1,
-  "releaseDigest": "e428d66445f5b4e8c1ea56885266a872e29a078e4131d56acbf46909202f3338",
+  "releaseDigest": "b96d35453cf2e3d2c57ab3f54be87941abd378847d91b31c800950180629d3aa",
   "menu": {
     "id": "delivery-2026-10-04",
-    "version": "sha256-e428d66445f5b4e8c1ea56885266a872e29a078e4131d56acbf46909202f3338",
+    "version": "sha256-b96d35453cf2e3d2c57ab3f54be87941abd378847d91b31c800950180629d3aa",
     "weekLabel": "October 4",
     "pricingPolicyId": "backend-25-10-v1",
     "offerPolicyId": "welcome-20-40-v1",
@@ -104,7 +104,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Dairy-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-e428d66445f5b4e8c1ea56885266a872e29a078e4131d56acbf46909202f3338/cheat.jpg",
+          "url": "/assets/releases/sha256-b96d35453cf2e3d2c57ab3f54be87941abd378847d91b31c800950180629d3aa/cheat.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
@@ -139,7 +139,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-e428d66445f5b4e8c1ea56885266a872e29a078e4131d56acbf46909202f3338/chicken.jpg",
+          "url": "/assets/releases/sha256-b96d35453cf2e3d2c57ab3f54be87941abd378847d91b31c800950180629d3aa/chicken.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
@@ -177,7 +177,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Dairy-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-e428d66445f5b4e8c1ea56885266a872e29a078e4131d56acbf46909202f3338/chicken_2.jpg",
+          "url": "/assets/releases/sha256-b96d35453cf2e3d2c57ab3f54be87941abd378847d91b31c800950180629d3aa/chicken_2.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
@@ -212,7 +212,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-e428d66445f5b4e8c1ea56885266a872e29a078e4131d56acbf46909202f3338/beef.jpg",
+          "url": "/assets/releases/sha256-b96d35453cf2e3d2c57ab3f54be87941abd378847d91b31c800950180629d3aa/beef.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
@@ -247,7 +247,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-e428d66445f5b4e8c1ea56885266a872e29a078e4131d56acbf46909202f3338/seafood.jpg",
+          "url": "/assets/releases/sha256-b96d35453cf2e3d2c57ab3f54be87941abd378847d91b31c800950180629d3aa/seafood.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
@@ -285,7 +285,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Gluten-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-e428d66445f5b4e8c1ea56885266a872e29a078e4131d56acbf46909202f3338/seafood_2.jpg",
+          "url": "/assets/releases/sha256-b96d35453cf2e3d2c57ab3f54be87941abd378847d91b31c800950180629d3aa/seafood_2.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
@@ -323,7 +323,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Gluten-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-e428d66445f5b4e8c1ea56885266a872e29a078e4131d56acbf46909202f3338/pasta.jpg",
+          "url": "/assets/releases/sha256-b96d35453cf2e3d2c57ab3f54be87941abd378847d91b31c800950180629d3aa/pasta.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
@@ -358,12 +358,87 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-e428d66445f5b4e8c1ea56885266a872e29a078e4131d56acbf46909202f3338/vegetarian.jpg",
+          "url": "/assets/releases/sha256-b96d35453cf2e3d2c57ab3f54be87941abd378847d91b31c800950180629d3aa/vegetarian.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
           "sha256": "d8fca463773d1ba104c12fe9bfe7c68e5a7dec2529741c00b3fbd9ee81d51431",
           "alt": "Korean Seared Tofu"
+        }
+      },
+      {
+        "id": "salad",
+        "type": "meal",
+        "category": "Salads",
+        "menuSection": "Salads",
+        "name": "Green Goddess Salad",
+        "priceCents": 2500,
+        "description": "Diced lemon herb chicken over shredded purple cabbage and kale with pickled red onions, pickled cucumbers, roasted chickpeas, red grapes, toasted pumpkin seeds and dried apricots, served with a tahini green goddess dressing on the side for a bright, crunchy salad with a fresh, herbaceous finish.",
+        "macros": {
+          "calories": 479,
+          "protein": 45,
+          "fat": 20,
+          "fiber": 10,
+          "netCarbs": 31
+        },
+        "diet": [
+          "Dairy Free",
+          "Gluten Free",
+          "high protein"
+        ],
+        "allergens": [],
+        "featured": false,
+        "customizations": [
+          "Low carb",
+          "No carb",
+          "Extra protein"
+        ],
+        "image": {
+          "url": "/assets/releases/sha256-b96d35453cf2e3d2c57ab3f54be87941abd378847d91b31c800950180629d3aa/salad.jpg",
+          "width": 720,
+          "height": 900,
+          "format": "jpeg",
+          "sha256": "fc841c92e0d86faa291c6a1599357db3ce153a953e02cfb046d68fd8b3955eb4",
+          "alt": "Green Goddess Salad"
+        }
+      },
+      {
+        "id": "salad_2",
+        "type": "meal",
+        "category": "Salads",
+        "menuSection": "Salads",
+        "name": "Harvest Bowl Salad",
+        "priceCents": 2500,
+        "description": "Diced lemon herb chicken over apple cider cabbage slaw and kale with roasted sweet potatoes, carrots, celery, spiced pickled apple, goat cheese and toasted pumpkin seeds, served with a balsamic vinaigrette on the side for a colorful, hearty salad with a bright, tangy finish.",
+        "macros": {
+          "calories": 506,
+          "protein": 42,
+          "fat": 25,
+          "fiber": 9,
+          "netCarbs": 29
+        },
+        "diet": [
+          "Dairy (Goat Cheese)",
+          "Gluten Free",
+          "high protein"
+        ],
+        "allergens": [
+          "dairy"
+        ],
+        "featured": false,
+        "customizations": [
+          "Low carb",
+          "No carb",
+          "Extra protein",
+          "Dairy-free"
+        ],
+        "image": {
+          "url": "/assets/releases/sha256-b96d35453cf2e3d2c57ab3f54be87941abd378847d91b31c800950180629d3aa/salad_2.jpg",
+          "width": 720,
+          "height": 900,
+          "format": "jpeg",
+          "sha256": "939065894393d6e335a0267dbd8f1df6f88ba7c193b6dd959e74d04cd18569a3",
+          "alt": "Harvest Bowl Salad"
         }
       },
       {
