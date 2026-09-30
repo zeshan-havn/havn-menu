@@ -16,6 +16,8 @@
 </style>
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/menu.css">
+<link rel="stylesheet" href="/tasting.css">
+<link rel="stylesheet" href="/simple.css">
 <script src="https://havnclub.com/hybrid/tracking.js"></script>
 </head>
 <body class="menu-page m-menu-checking">
@@ -176,7 +178,7 @@
 
   <div class="m-pick">
     <p class="m-pick-label">Delivery</p>
-    <div class="m-pick-row" id="m-pick-window">
+    <div class="m-pick-row m-pick-window-row" id="m-pick-window">
       <button type="button" class="m-chip on" data-window="Sunday morning">Sun AM <i>8a&ndash;1p</i></button>
       <button type="button" class="m-chip" data-window="Sunday evening">Sun PM <i>5p&ndash;10p</i></button>
       <button type="button" class="m-chip" data-window="Monday morning">Mon AM <i>8a&ndash;1p</i></button>
@@ -185,7 +187,7 @@
 
   <div class="m-pick">
     <p class="m-pick-label">Containers</p>
-    <div class="m-pick-row" id="m-pick-container">
+    <div class="m-pick-row m-pick-container-row" id="m-pick-container">
       <button type="button" class="m-chip on" data-container="Glass">Reusable Glass</button>
       <button type="button" class="m-chip" data-container="BPA-free">BPA free plastic</button>
     </div>
@@ -194,6 +196,8 @@
   <ul class="m-receipt">
     <li><span id="m-r-items">0 meals</span><i></i><span id="m-r-sub">$0</span></li>
     <li class="m-r-offer" id="m-r-offer-row" hidden><span id="m-r-offer-label">Welcome offer</span><i></i><span id="m-r-offer">&ndash;$0</span></li>
+    <li class="m-r-offer" id="m-r-gift-row" hidden><span>Chia + Wellness Shots</span><i></i><span>Free</span></li>
+    <li id="m-r-deliv-row" hidden><span>Delivery</span><i></i><span id="m-r-deliv">Free</span></li>
     <li class="m-r-total"><span>Estimated total</span><i></i><span id="m-r-total">$0</span></li>
   </ul>
   <p class="m-gate" id="m-gate" hidden></p>
@@ -233,6 +237,73 @@
     Look around, get a feel for the meals, and draft your favorites.
     Ordering opens the moment the new menu is live.</p>
   <button class="m-pend-ok" id="m-pend-ok" type="button">Browse the menu</button>
+</section>
+
+<!-- ▓▓▓ MOCKUP · TASTING MENU (welcome pages, ?tasting=b|c|d|e|f) ▓▓▓
+     Two ways to try: the fixed Tasting Menu, sent as its own text, or any
+     one meal. menu.js fills the items. -->
+<div class="m-sheet-backdrop" id="m-taste-backdrop" hidden></div>
+<section class="m-sheet m-taste" id="m-taste" role="dialog" aria-modal="true" aria-labelledby="m-taste-title" hidden>
+  <div class="m-sheet-grip" aria-hidden="true"></div>
+  <button class="m-sheet-close" id="m-taste-close" type="button" aria-label="Close">&times;</button>
+
+  <p class="m-sheet-label">First order only</p>
+  <h2 class="m-taste-title" id="m-taste-title">The Tasting <em>Menu</em></h2>
+  <p class="m-taste-intro">Two ways to try Havn before a full week.</p>
+
+  <div class="m-taste-tabs" role="tablist" aria-label="Ways to try">
+    <button type="button" role="tab" id="m-taste-tab-menu" aria-controls="m-taste-panel-menu" aria-selected="true" data-taste-tab="menu"><b>Tasting Menu</b><span>$60 &middot; $85 value</span></button>
+    <button type="button" role="tab" id="m-taste-tab-one" aria-controls="m-taste-panel-one" aria-selected="false" tabindex="-1" data-taste-tab="one"><b>One meal</b><span>$30 &middot; any meal</span></button>
+  </div>
+
+  <div class="m-taste-panel" id="m-taste-panel-one" role="tabpanel" aria-labelledby="m-taste-tab-one" hidden>
+    <p class="m-taste-price"><b>$30</b><s>$25 meal + $5 delivery</s></p>
+    <p class="m-taste-lede">Pick any one meal from this week&rsquo;s menu. If you like it, add a week of 4+ meals and delivery is free.</p>
+    <button class="m-send m-taste-one-btn" id="m-taste-one" type="button">Pick my meal</button>
+  </div>
+
+  <div class="m-taste-panel" id="m-taste-panel-menu" role="tabpanel" aria-labelledby="m-taste-tab-menu">
+  <p class="m-taste-price"><b>$60</b><s>$85 value</s><span>Free delivery</span></p>
+  <p class="m-taste-lede">Our two top sellers in two different proteins, a chia pudding and a set of wellness shots. A set menu, no swaps.</p>
+  <ul class="m-taste-items" id="m-taste-items"></ul>
+
+  <div class="m-compose">
+    <div class="m-compose-to">To: <b>Havn Club</b></div>
+    <div class="m-compose-bubble" id="m-taste-bubble"></div>
+    <p class="m-compose-hint">This opens in messages as shown</p>
+  </div>
+
+  <div class="m-pick">
+    <p class="m-pick-label">Delivery</p>
+    <div class="m-pick-row m-pick-window-row">
+      <button type="button" class="m-chip on" data-window="Sunday morning">Sun AM <i>8a&ndash;1p</i></button>
+      <button type="button" class="m-chip" data-window="Sunday evening">Sun PM <i>5p&ndash;10p</i></button>
+      <button type="button" class="m-chip" data-window="Monday morning">Mon AM <i>8a&ndash;1p</i></button>
+    </div>
+  </div>
+  <div class="m-pick">
+    <p class="m-pick-label">Containers</p>
+    <div class="m-pick-row m-pick-container-row">
+      <button type="button" class="m-chip on" data-container="Glass">Reusable Glass</button>
+      <button type="button" class="m-chip" data-container="BPA-free">BPA free plastic</button>
+    </div>
+  </div>
+
+  <ul class="m-receipt">
+    <li><span>Tasting Menu</span><i></i><span>$60</span></li>
+    <li><span>Delivery</span><i></i><span>Free</span></li>
+    <li class="m-r-total"><span>Estimated total</span><i></i><span>$60</span></li>
+  </ul>
+  <p class="m-pay-note">You pay nothing now. The concierge confirms first.</p>
+  <a class="m-send" id="m-taste-send" href="#send">Send the tasting text</a>
+  </div>
+
+  <div class="m-taste-up">
+    <p class="m-taste-up-label">Or make it a week</p>
+    <p class="m-taste-up-copy">Start with these two meals and add three more. At 5 meals you get $15 off, and the chia and shots stay free.</p>
+    <button class="m-taste-up-btn" id="m-taste-upgrade" type="button">Build a week with these two</button>
+  </div>
+  <p class="m-taste-fine">Delivery is free on the Tasting Menu and on every weekly order of 4+ meals. First order only.</p>
 </section>
 
 <script src="/config.js"></script>

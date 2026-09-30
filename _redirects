@@ -31,6 +31,9 @@
 # /:week/* below (week="welcome"), rewrites to /quiz and returns 404.
 /welcome/quiz/*     /index.html  200
 /welcome/quiz       /index.html  200
+# The Tasting Menu welcome page (A/B arm of the quiz landing), same reason.
+/welcome/tasting/*  /index.html  200
+/welcome/tasting    /index.html  200
 
 # Strip the weekly prefix off everything else under /{week}/* — used for
 # static asset cache-bust (e.g. /may17/menu-preview.png → /menu-preview.png).
