@@ -38,6 +38,25 @@
     } catch (e) { return ""; }
   }
 
+  /* HQ's SMS links end in a source tag (intake/return_links.py in HQ):
+       /sms[/{campaign}[/{kind}]]   campaign defaults to the page's mode
+                                    (welcome, ws, in; "active" for the member
+                                    menu), kind to the campaign, and the city
+                                    is the page's own (/sd = SD)
+       /via/sms/{campaign}/{kind}/{dc|sd}   links sent before Oct 2 2026 */
+  function smsTag(path) {
+    var m = path.match(/\/via\/sms\/([a-z0-9]+)\/([a-z0-9_]+)\/(dc|sd)\/?$/i);
+    if (m) return { campaign: m[1].toLowerCase(), kind: m[2].toLowerCase(), city: m[3].toLowerCase() };
+    m = path.match(/\/sms(?:\/([a-z0-9]+)(?:\/([a-z0-9_]+))?)?\/?$/i);
+    if (!m) return null;
+    var page = path.slice(0, m.index).split("/").filter(Boolean);
+    var city = page.indexOf("sd") !== -1 ? "sd" : "dc";
+    if (/^(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\d{1,2}$/i.test(page[0] || "")) page.shift();
+    if (page[0] === "sd" || page[0] === "dc") page.shift();
+    var campaign = (m[1] || page[0] || "active").toLowerCase();
+    return { campaign: campaign, kind: (m[2] || campaign).toLowerCase(), city: city };
+  }
+
   function captureAttribution() {
     var stored = null;
     try { stored = JSON.parse(sessionStorage.getItem(STORE_KEY) || "null"); } catch (e) {}
@@ -58,12 +77,12 @@
       placement: get("placement")
     };
     /* AT&T rotation shims preserve paths but can discard query strings. */
-    var smsSource = window.location.pathname.match(/\/via\/sms\/([a-z0-9]+)\/([a-z0-9_]+)\/(dc|sd)\/?$/i);
+    var smsSource = smsTag(window.location.pathname || "/");
     if (smsSource && !fresh.utm_campaign) {
       fresh.utm_source = "sms";
       fresh.utm_medium = "text";
-      fresh.utm_campaign = "sms_" + smsSource[1].toLowerCase() + "_" + smsSource[3].toLowerCase();
-      fresh.utm_content = smsSource[2].toLowerCase();
+      fresh.utm_campaign = "sms_" + smsSource.campaign + "_" + smsSource.city;
+      fresh.utm_content = smsSource.kind;
     }
 
     /* a fresh fbclid always wins — it means Meta just sent them again */

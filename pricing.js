@@ -9,17 +9,17 @@
      path-based so Netlify rewrites cannot accidentally turn a member into a
      welcome customer. The dated weekly aliases have their prefix removed. */
   function menuMode() {
-    var parts = (root.location.pathname || "/").split("/").filter(Boolean);
-    /* HQ's SMS attribution suffix (/via/sms/{campaign}/{kind}/{dc|sd}) ends
-       the path and is read by intake.js. Drop it here so its labels are never
-       read as a mode or city; its last segment is the link's city. */
-    var via = parts.indexOf("via");
-    var viaCity = "";
-    if (via !== -1 && parts[via + 1] === "sms") {
-      viaCity = String(parts[via + 4] || "").toLowerCase();
-      parts = parts.slice(0, via);
-    }
-    var isSdRoute = parts.indexOf("sd") !== -1 || viaCity === "sd";
+    var path = root.location.pathname || "/";
+    /* HQ's SMS source tag ends the path and is read by intake.js: /sms[/…]
+       now, /via/sms/{campaign}/{kind}/{dc|sd} on older links. Drop it so its
+       labels are never read as a mode or city; the older form names its city
+       last. */
+    var legacyTag = path.match(/\/via\/sms\/[^/]+\/[^/]+\/(dc|sd)\/?$/i);
+    var tagCity = legacyTag ? legacyTag[1].toLowerCase() : "";
+    if (legacyTag) path = path.slice(0, legacyTag.index);
+    else path = path.replace(/\/sms(?:\/[^/]+){0,2}\/?$/i, "");
+    var parts = path.split("/").filter(Boolean);
+    var isSdRoute = parts.indexOf("sd") !== -1 || tagCity === "sd";
     /* Campaign URLs begin with a cache-busting week slug such as may17,
        aug02, or sep6. Strip any real month/day slug before reading the promo
        suffix so the offer does not silently fall back to the active menu. */

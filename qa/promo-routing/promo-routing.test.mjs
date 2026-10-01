@@ -78,6 +78,16 @@ const sentShapes = [
   ['/dc/welcome', 'welcome', 'DC', ''],
   ['/oct04/dc/welcome/tasting', 'welcome', 'DC', 'tasting'],
   ['/welcome/sd', 'welcome', 'SD', ''],
+  // The short source tag HQ sends from Oct 2: /sms[/{campaign}[/{kind}]].
+  ['/welcome/sms', 'welcome', 'DC', ''],
+  ['/sd/welcome/sms', 'welcome', 'SD', ''],
+  ['/welcome/quiz/sms', 'welcome', 'DC', 'quiz'],
+  ['/sd/welcome/tasting/sms', 'welcome', 'SD', 'tasting'],
+  ['/oct04/sms/7f3eabcd01234/menu_blast', 'active', 'DC', ''],
+  ['/oct04/sd/sms/7f3eabcd01234/menu_blast', 'active', 'SD', ''],
+  ['/oct04/ws/sms/7f3eabcd01234/reminder_2', 'ws', 'DC', ''],
+  ['/oct04/sd/welcome/tasting/sms/7f3eabcd01234', 'welcome', 'SD', 'tasting'],
+  ['/in/sms/7f3eabcd01234/menu_blast/', 'in', 'DC', ''],
 ];
 for (const [path, mode, city, variant] of sentShapes) {
   assert.deepEqual(resolveVariant(path), { mode, city, variant }, `${path} must resolve`);

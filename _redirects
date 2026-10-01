@@ -9,19 +9,21 @@
 # Every customer menu URL serves the one index.html; pricing.js reads the
 # path. The full grammar, every part optional, in this order:
 #
-#   /{week}/{dc|sd}/{welcome|ws|db|in}/{quiz|tasting}/via/sms/{campaign}/{kind}/{dc|sd}
+#   /{week}/{dc|sd}/{welcome|ws|db|in}/{quiz|tasting}/sms/{campaign}/{kind}
 #
 #   week     cache-bust slug (oct04, sep27, jun7 …) so link previews refresh
 #   dc|sd    city (DC is the default; SD links carry /sd)
 #   mode     welcome = first order, ws = wellness credit, db = legacy ws,
 #            in = win-back; none = the regular member menu
 #   variant  /welcome/quiz (quiz signup), /welcome/tasting (Tasting Menu)
-#   via/sms  SMS attribution suffix from HQ (intake/return_links.py). It is a
-#            path, not a query string, because AT&T rotation shims drop queries.
+#   sms      SMS source tag from HQ (intake/return_links.py), read by intake.js;
+#            campaign and kind are optional. Links sent before Oct 2 2026 end in
+#            /via/sms/{campaign}/{kind}/{dc|sd} instead. It is a path, not a
+#            query string, because AT&T rotation shims drop queries.
 #
 # These rules MUST stay above the /:week/* asset strip below. Netlify does not
 # re-evaluate a rewrite, so if /:week/* matched first it would read "welcome",
-# "sd" or "via" as a week slug, rewrite /welcome/via/... to /via/... and 404.
+# "sd", "sms" or "via" as a week slug, rewrite /welcome/via/... to /via/... and 404.
 /:week/welcome/*    /index.html  200
 /:week/welcome      /index.html  200
 /:week/ws/*         /index.html  200
@@ -34,6 +36,8 @@
 /:week/sd           /index.html  200
 /:week/dc/*         /index.html  200
 /:week/dc           /index.html  200
+/:week/sms/*        /index.html  200
+/:week/sms          /index.html  200
 /:week/via/*        /index.html  200
 /welcome/*          /index.html  200
 /welcome            /index.html  200
@@ -47,6 +51,8 @@
 /sd                 /index.html  200
 /dc/*               /index.html  200
 /dc                 /index.html  200
+/sms/*              /index.html  200
+/sms                /index.html  200
 /via/*              /index.html  200
 
 # Strip the weekly prefix off everything else under /{week}/* — static asset
