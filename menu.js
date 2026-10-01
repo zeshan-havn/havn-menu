@@ -1100,6 +1100,7 @@
         outgoingOrder
       );
     }
+    if (window.HAVN_MAIN_TASTING && window.HAVN_MAIN_TASTING.body) outgoingOrder = window.HAVN_MAIN_TASTING.body(outgoingOrder);
     sendBtn.href = "sms:" + smsNumber + "?&body=" + encodeURIComponent(outgoingOrder);
 
     /* The preview is a SUMMARY of what they picked — the meals and the
@@ -1312,6 +1313,10 @@
     return TASTING_MEAL_IDS.concat(TASTING_EXTRA_IDS).map(function (id) { return ITEMS[id] ? ITEMS[id].name : id; });
   }
   function tastingBody() {
+    var body = tastingBodyOriginal();
+    return window.HAVN_MAIN_TASTING && window.HAVN_MAIN_TASTING.body ? window.HAVN_MAIN_TASTING.body(body) : body;
+  }
+  function tastingBodyOriginal() {
     /* "1 " quantities: HQ's parser reads the same "N Dish" lines as orders */
     var text = SIMPLE ? "Hi Chef, I\u2019d like the Tasting Menu:\n\n" +
       tastingLines().map(function (n) { return "1 " + n; }).join("\n") + "\n\n" + delWindow + "\n" + container + " containers" :

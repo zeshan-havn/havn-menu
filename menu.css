@@ -574,7 +574,7 @@ body.active-menu .m-intro { padding-top: 88px; }
   border-radius: 18px;
   padding: 13px 15px;
 }
-.m-compose-to { font-size: 12px; color: #8A8A8E; padding-bottom: 10px; border-bottom: 1px solid #E4E4E7; }
+.m-compose-to { font-size: 12px; color: #6B6B70; padding-bottom: 10px; border-bottom: 1px solid #E4E4E7; }
 .m-compose-to b { color: #171717; }
 .m-compose-bubble {
   /* the preview is the real composed message, blank lines and all */
@@ -582,14 +582,14 @@ body.active-menu .m-intro { padding-top: 88px; }
   margin: 12px 0 4px auto;
   width: fit-content;
   max-width: 92%;
-  background: #0B84FF;
+  background: #0066D6;
   color: #fff;
   border-radius: 17px 17px 5px 17px;
   padding: 10px 14px;
   font-size: 15px; line-height: 21px;
 }
 .m-compose-empty { color: rgba(255, 255, 255, 0.75); font-style: italic; }
-.m-compose-hint { font-size: 11px; line-height: 15px; color: #8A8A8E; padding-top: 8px; }
+.m-compose-hint { font-size: 11px; line-height: 15px; color: #6B6B70; padding-top: 8px; }
 
 .m-pick { margin-top: 18px; }
 .m-pick-label {
