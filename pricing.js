@@ -10,7 +10,16 @@
      welcome customer. The dated weekly aliases have their prefix removed. */
   function menuMode() {
     var parts = (root.location.pathname || "/").split("/").filter(Boolean);
-    var isSdRoute = parts.indexOf("sd") !== -1;
+    /* HQ's SMS attribution suffix (/via/sms/{campaign}/{kind}/{dc|sd}) ends
+       the path and is read by intake.js. Drop it here so its labels are never
+       read as a mode or city; its last segment is the link's city. */
+    var via = parts.indexOf("via");
+    var viaCity = "";
+    if (via !== -1 && parts[via + 1] === "sms") {
+      viaCity = String(parts[via + 4] || "").toLowerCase();
+      parts = parts.slice(0, via);
+    }
+    var isSdRoute = parts.indexOf("sd") !== -1 || viaCity === "sd";
     /* Campaign URLs begin with a cache-busting week slug such as may17,
        aug02, or sep6. Strip any real month/day slug before reading the promo
        suffix so the offer does not silently fall back to the active menu. */

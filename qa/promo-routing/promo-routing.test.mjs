@@ -59,4 +59,28 @@ for (const path of ['/welcome', '/oct04/welcome', '/ws', '/in', '/quiz', '/ws/qu
   assert.equal(resolveVariant(path).variant, '', `${path} must not open the quiz welcome`);
 }
 
-console.log(`PASS ${promoModes.length * (2 + representativeWeeks.length * 2 + 2) + 3} promo route cases`);
+// Every shape HQ has sent: an optional /dc city segment, and the SMS
+// attribution suffix /via/sms/{campaign}/{kind}/{city} (intake/return_links.py)
+// whose labels ("welcome", "sd", …) must never be read as a mode or city.
+const sentShapes = [
+  ['/welcome/via/sms/welcome/welcome/dc', 'welcome', 'DC', ''],
+  ['/sd/welcome/via/sms/welcome/welcome/sd', 'welcome', 'SD', ''],
+  ['/welcome/quiz/via/sms/welcome/welcome/dc', 'welcome', 'DC', 'quiz'],
+  ['/welcome/tasting/via/sms/welcome/welcome/dc', 'welcome', 'DC', 'tasting'],
+  ['/sd/welcome/tasting/via/sms/welcome/welcome/sd', 'welcome', 'SD', 'tasting'],
+  ['/oct04/via/sms/abc123/menu_blast/dc', 'active', 'DC', ''],
+  ['/oct04/sd/via/sms/abc123/menu_blast/sd', 'active', 'SD', ''],
+  ['/oct04/ws/via/sms/abc123/reminder_1/dc', 'ws', 'DC', ''],
+  ['/oct04/sd/in/via/sms/abc123/reminder_2/sd', 'in', 'SD', ''],
+  ['/welcome/via/sms/sd/welcome/dc', 'welcome', 'DC', ''],
+  ['/via/sms/abc123/menu_blast/sd', 'active', 'SD', ''],
+  ['/welcome/dc', 'welcome', 'DC', ''],
+  ['/dc/welcome', 'welcome', 'DC', ''],
+  ['/oct04/dc/welcome/tasting', 'welcome', 'DC', 'tasting'],
+  ['/welcome/sd', 'welcome', 'SD', ''],
+];
+for (const [path, mode, city, variant] of sentShapes) {
+  assert.deepEqual(resolveVariant(path), { mode, city, variant }, `${path} must resolve`);
+}
+
+console.log(`PASS ${promoModes.length * (2 + representativeWeeks.length * 2 + 2) + 3 + sentShapes.length} promo route cases`);

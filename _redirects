@@ -6,14 +6,22 @@
 # preview instead of serving the previous week's cached image. Bump the
 # prefix weekly alongside the menu deploy.
 #
-# Promo variants UNDER any weekly prefix — must come BEFORE the /:splat
-# strip rule. Uses Netlify's :week placeholder so this works for any
-# week slug (may17, may24, jun7, etc.) without needing weekly edits.
+# Every customer menu URL serves the one index.html; pricing.js reads the
+# path. The full grammar, every part optional, in this order:
 #
-# Routes /{week}/welcome, /{week}/ws, /{week}/db, /{week}/in to /index.html. The JS
-# in index.html strips the /{week}/ prefix before detecting mode.
-# Without these, /may17/ws would hit /:splat and rewrite to /ws, then
-# Netlify wouldn't re-evaluate and would return 404.
+#   /{week}/{dc|sd}/{welcome|ws|db|in}/{quiz|tasting}/via/sms/{campaign}/{kind}/{dc|sd}
+#
+#   week     cache-bust slug (oct04, sep27, jun7 …) so link previews refresh
+#   dc|sd    city (DC is the default; SD links carry /sd)
+#   mode     welcome = first order, ws = wellness credit, db = legacy ws,
+#            in = win-back; none = the regular member menu
+#   variant  /welcome/quiz (quiz signup), /welcome/tasting (Tasting Menu)
+#   via/sms  SMS attribution suffix from HQ (intake/return_links.py). It is a
+#            path, not a query string, because AT&T rotation shims drop queries.
+#
+# These rules MUST stay above the /:week/* asset strip below. Netlify does not
+# re-evaluate a rewrite, so if /:week/* matched first it would read "welcome",
+# "sd" or "via" as a week slug, rewrite /welcome/via/... to /via/... and 404.
 /:week/welcome/*    /index.html  200
 /:week/welcome      /index.html  200
 /:week/ws/*         /index.html  200
@@ -22,40 +30,28 @@
 /:week/db           /index.html  200
 /:week/in/*         /index.html  200
 /:week/in           /index.html  200
-# San Diego dish-variant marker (e.g. /jun07/sd, /jun07/sd/ws). SD's links carry
-# /sd so the shared index.html can show San Diego's version of a dish.
 /:week/sd/*         /index.html  200
 /:week/sd           /index.html  200
+/:week/dc/*         /index.html  200
+/:week/dc           /index.html  200
+/:week/via/*        /index.html  200
+/welcome/*          /index.html  200
+/welcome            /index.html  200
+/ws/*               /index.html  200
+/ws                 /index.html  200
+/db/*               /index.html  200
+/db                 /index.html  200
+/in/*               /index.html  200
+/in                 /index.html  200
+/sd/*               /index.html  200
+/sd                 /index.html  200
+/dc/*               /index.html  200
+/dc                 /index.html  200
+/via/*              /index.html  200
 
-# Quiz and club signups land on /welcome/quiz. Without these rules it matches
-# /:week/* below (week="welcome"), rewrites to /quiz and returns 404.
-/welcome/quiz/*     /index.html  200
-/welcome/quiz       /index.html  200
-# The Tasting Menu welcome page (A/B arm of the quiz landing), same reason.
-/welcome/tasting/*  /index.html  200
-/welcome/tasting    /index.html  200
-
-# Strip the weekly prefix off everything else under /{week}/* — used for
-# static asset cache-bust (e.g. /may17/menu-preview.png → /menu-preview.png).
+# Strip the weekly prefix off everything else under /{week}/* — static asset
+# cache-bust (e.g. /oct04/menu-preview.jpg → /menu-preview.jpg).
 /:week/*    /:splat 200
-
-# Promo variants — same index.html, mode detected from window.location.pathname.
-# Each path is routed via Make.com to its own customer cohort:
-#   /welcome  → first-time customers (current $20-at-5 / $40-at-7 welcome offer)
-#   /ws       → wellness-credit cohort ($25 with Wellness Shots + 5 meals)
-#   /db       → legacy alias for /ws (old links remain safe)
-#   /in       → inactive / win-back ($25 on any 5-meal order)
-/welcome/*  /index.html 200
-/welcome    /index.html 200
-/ws/*       /index.html 200
-/ws         /index.html 200
-/db/*       /index.html 200
-/db         /index.html 200
-/in/*       /index.html 200
-/in         /index.html 200
-# San Diego dish-variant marker (no weekly prefix — used by SD rotation-site shims)
-/sd/*       /index.html 200
-/sd         /index.html 200
 
 # Internal weekly performance review — unguessable path, not linked from anywhere
 /may10-review  /may10-review.html  200
