@@ -689,7 +689,7 @@
      is fetched when META_PIXEL_ID is blank. */
   function loadPixel() {
     var id = CFG.META_PIXEL_ID;
-    if (!id || window.fbq) return;
+    if (!id || window.fbq || new URLSearchParams(location.search).get("havn_test") === "1") return;
     /* standard Meta bootstrap, ES5-safe */
     var n = window.fbq = function () {
       n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);

@@ -1437,7 +1437,7 @@
     var steps = document.createElement("ol");
     steps.className = "g-steps";
     steps.setAttribute("aria-label", "How it works");
-    steps.innerHTML = "<li><i>1</i><b>Pick 4+ meals</b><span>Tap any meal for details and customizations.</span></li>" +
+    steps.innerHTML = "<li><i>1</i><b>Try the Tasting Menu, or choose 4+ meals</b><span>Tap any meal for details and customizations.</span></li>" +
       "<li><i>2</i><b>Click Send Order Text</b><span>Order text drafted below.</span></li>" +
       "<li><i>3</i><b>Pay after confirmation</b></li>";
     /* the welcome credit keeps its brass ribbon; the steps follow it */
@@ -1847,8 +1847,10 @@
      ("tasting"), so the funnel compares view → text drafted per arm. The
      flow comes from the drafted text's opening sentence, as HQ reads it. */
   (function welcomeArmEvents() {
-    var arm = window.HAVN_MENU_VARIANT;
-    if (MODE !== "welcome" || (arm !== "quiz" && arm !== "tasting")) return;
+    var variant = window.HAVN_MENU_VARIANT;
+    if (MODE !== "welcome" || (variant !== "quiz" && variant !== "tasting") ||
+        new URLSearchParams(location.search).get("havn_test") === "1") return;
+    var arm = variant === "quiz" ? "standard" : "tasting";
     var city = window.HAVN_MENU_CITY || "DC";
     function fb(name, data) {
       try { if (typeof window.fbq === "function") window.fbq("trackCustom", name, data); } catch (e) {}
@@ -1862,7 +1864,7 @@
       var flow = /the tasting menu:/i.test(text) ? "tasting" : /my first week:/i.test(text) ? "first_week" : "order";
       fb("OrderTextOpened", { arm: arm, city: city, flow: flow });
       if (el.id !== "m-send" && window.HAVN_HYBRID && window.HAVN_HYBRID.event) {
-        window.HAVN_HYBRID.event("composer_opened", { flow: flow });
+        window.HAVN_HYBRID.event("composer_opened", { flow: flow, welcome_arm: arm, send_eligible: true });
       }
     }, true);
   })();
