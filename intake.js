@@ -51,13 +51,29 @@
       utm_source: get("utm_source"),
       utm_medium: get("utm_medium"),
       utm_campaign: get("utm_campaign"),
-      utm_content: get("utm_content")
+      utm_content: get("utm_content"),
+      meta_campaign_id: get("meta_campaign_id"),
+      meta_adset_id: get("meta_adset_id"),
+      meta_ad_id: get("meta_ad_id"),
+      placement: get("placement")
     };
+    /* AT&T rotation shims preserve paths but can discard query strings. */
+    var smsSource = window.location.pathname.match(/\/via\/sms\/([a-z0-9]+)\/([a-z0-9_]+)\/(dc|sd)\/?$/i);
+    if (smsSource && !fresh.utm_campaign) {
+      fresh.utm_source = "sms";
+      fresh.utm_medium = "text";
+      fresh.utm_campaign = "sms_" + smsSource[1].toLowerCase() + "_" + smsSource[3].toLowerCase();
+      fresh.utm_content = smsSource[2].toLowerCase();
+    }
 
     /* a fresh fbclid always wins — it means Meta just sent them again */
     var any = false;
     for (var k in fresh) { if (fresh[k]) { any = true; break; } }
-    var attr = (any || !stored) ? fresh : stored;
+    /* A direct return must not inherit an old retention ad or SMS touch. */
+    var oldRetention = stored && /^(retention_|sms_)/i.test(stored.utm_campaign || "");
+    var attr = (any || !stored || oldRetention) ? fresh : stored;
+    attr.touch_started_at = new Date().toISOString();
+    attr.session_id = "menu_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2);
 
     /* _fbp is set by the Meta pixel and can appear AFTER first paint,
        so read it live every time rather than trusting the snapshot */
@@ -136,7 +152,7 @@
 
   function retentionCity() {
     var campaign = String(attribution.utm_campaign || "").toLowerCase();
-    var match = campaign.match(/^retention_[a-z0-9]+_(dc|sd)$/);
+    var match = campaign.match(/^(?:retention_[a-z0-9]+|sms_[a-z0-9]+)_(dc|sd)$/);
     return match ? match[1].toUpperCase() : "";
   }
 
@@ -160,6 +176,12 @@
       utm_medium: attribution.utm_medium || "",
       utm_campaign: attribution.utm_campaign || "",
       utm_content: attribution.utm_content || "",
+      meta_campaign_id: attribution.meta_campaign_id || "",
+      meta_adset_id: attribution.meta_adset_id || "",
+      meta_ad_id: attribution.meta_ad_id || "",
+      placement: attribution.placement || "",
+      session_id: attribution.session_id,
+      touch_started_at: attribution.touch_started_at,
       landing_variant: CFG.LANDING_VARIANT || "",
       landing_path: window.location.pathname,
       ts: new Date().toISOString()
