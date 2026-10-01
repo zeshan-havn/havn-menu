@@ -1024,13 +1024,12 @@
   var retentionAttribution = window.HAVN_INTAKE ?
     window.HAVN_INTAKE.attribution() : {};
   var retentionCampaign = String(retentionAttribution.utm_campaign || "");
-  var retentionEnabled = /^retention_[a-z0-9]+_(dc|sd)$/i.test(retentionCampaign);
+  var retentionEnabled = /^(retention_[a-z0-9]+|sms_[a-z0-9]+)_(dc|sd)$/i.test(retentionCampaign);
   var retentionToken = retentionEnabled && window.HAVN_INTAKE ?
     window.HAVN_INTAKE.mintToken() : "";
   var retentionRegistrationStarted = false;
-  /* g (the Tasting Menu welcome page): no code in the text. The visitor has
-     already signed up with this phone; the opening sentence alone tells HQ's
-     router which flow it is (docs/reference/tasting-welcome.md in HQ). */
+  /* Tagged return visits carry an attribution-only code. Fixed Tasting
+     opening sentences stay intact so HQ still applies the approved offer. */
   Array.prototype.forEach.call(document.querySelectorAll("[data-skip-direct]"), function (link) {
     link.href = "sms:" + smsNumber + "?&body=" + encodeURIComponent("Skip");
   });
@@ -1093,11 +1092,12 @@
          upgrade ("first week": chia + shots added free by HQ) or a regular
          order. Keep these exact: HQ's parser matches them. */
       outgoingOrder = (c.gifts ? "Hi Chef, Here\u2019s my first week:" : "Hi Chef, Here\u2019s my order:") + "\n\n" + orderBody;
-    } else if (retentionEnabled && retentionToken) {
+    }
+    if (retentionEnabled && retentionToken) {
       outgoingOrder = window.HAVN_INTAKE.draftBody(
         retentionToken,
-        (window.HAVN_CONFIG.DRAFTS || {}).order || "{body} ({token})",
-        orderBody
+        "{body}\n\n({token})",
+        outgoingOrder
       );
     }
     if (window.HAVN_MAIN_TASTING && window.HAVN_MAIN_TASTING.body) outgoingOrder = window.HAVN_MAIN_TASTING.body(outgoingOrder);
@@ -1318,9 +1318,10 @@
   }
   function tastingBodyOriginal() {
     /* "1 " quantities: HQ's parser reads the same "N Dish" lines as orders */
-    if (SIMPLE) return "Hi Chef, I\u2019d like the Tasting Menu:\n\n" +
-      tastingLines().map(function (n) { return "1 " + n; }).join("\n") + "\n\n" + delWindow + "\n" + container + " containers";
-    return "Tasting Menu\n" + tastingLines().join("\n") + "\n\n" + delWindow + "\n" + container + " containers";
+    var text = SIMPLE ? "Hi Chef, I\u2019d like the Tasting Menu:\n\n" +
+      tastingLines().map(function (n) { return "1 " + n; }).join("\n") + "\n\n" + delWindow + "\n" + container + " containers" :
+      "Tasting Menu\n" + tastingLines().join("\n") + "\n\n" + delWindow + "\n" + container + " containers";
+    return retentionEnabled && retentionToken ? window.HAVN_INTAKE.draftBody(retentionToken, "{body}\n\n({token})", text) : text;
   }
   function renderTaste() {
     if (!taste) return;
@@ -1669,6 +1670,12 @@
     }
     registerRetentionOrder();
   });
+
+  var tastingSend = document.getElementById("m-taste-send");
+  if (tastingSend) {
+    tastingSend.addEventListener("pointerdown", registerRetentionOrder);
+    tastingSend.addEventListener("click", registerRetentionOrder);
+  }
 
   /* Delivery window times come from delivery-windows.json, a copy of HQ's
      CustomerComms/config/delivery_windows.json (the single source V2 and the
