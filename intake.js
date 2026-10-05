@@ -38,6 +38,25 @@
     } catch (e) { return ""; }
   }
 
+  /* HQ's SMS links end in a source tag (intake/return_links.py in HQ):
+       /sms[/{campaign}[/{kind}]]   campaign defaults to the page's mode
+                                    (welcome, ws, in; "active" for the member
+                                    menu), kind to the campaign, and the city
+                                    is the page's own (/sd = SD)
+       /via/sms/{campaign}/{kind}/{dc|sd}   links sent before Oct 2 2026 */
+  function smsTag(path) {
+    var m = path.match(/\/via\/sms\/([a-z0-9]+)\/([a-z0-9_]+)\/(dc|sd)\/?$/i);
+    if (m) return { campaign: m[1].toLowerCase(), kind: m[2].toLowerCase(), city: m[3].toLowerCase() };
+    m = path.match(/\/sms(?:\/([a-z0-9]+)(?:\/([a-z0-9_]+))?)?\/?$/i);
+    if (!m) return null;
+    var page = path.slice(0, m.index).split("/").filter(Boolean);
+    var city = page.indexOf("sd") !== -1 ? "sd" : "dc";
+    if (/^(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\d{1,2}$/i.test(page[0] || "")) page.shift();
+    if (page[0] === "sd" || page[0] === "dc") page.shift();
+    var campaign = (m[1] || page[0] || "active").toLowerCase();
+    return { campaign: campaign, kind: (m[2] || campaign).toLowerCase(), city: city };
+  }
+
   function captureAttribution() {
     var stored = null;
     try { stored = JSON.parse(sessionStorage.getItem(STORE_KEY) || "null"); } catch (e) {}
@@ -51,13 +70,29 @@
       utm_source: get("utm_source"),
       utm_medium: get("utm_medium"),
       utm_campaign: get("utm_campaign"),
-      utm_content: get("utm_content")
+      utm_content: get("utm_content"),
+      meta_campaign_id: get("meta_campaign_id"),
+      meta_adset_id: get("meta_adset_id"),
+      meta_ad_id: get("meta_ad_id"),
+      placement: get("placement")
     };
+    /* AT&T rotation shims preserve paths but can discard query strings. */
+    var smsSource = smsTag(window.location.pathname || "/");
+    if (smsSource && !fresh.utm_campaign) {
+      fresh.utm_source = "sms";
+      fresh.utm_medium = "text";
+      fresh.utm_campaign = "sms_" + smsSource.campaign + "_" + smsSource.city;
+      fresh.utm_content = smsSource.kind;
+    }
 
     /* a fresh fbclid always wins — it means Meta just sent them again */
     var any = false;
     for (var k in fresh) { if (fresh[k]) { any = true; break; } }
-    var attr = (any || !stored) ? fresh : stored;
+    /* A direct return must not inherit an old retention ad or SMS touch. */
+    var oldRetention = stored && /^(retention_|sms_)/i.test(stored.utm_campaign || "");
+    var attr = (any || !stored || oldRetention) ? fresh : stored;
+    attr.touch_started_at = new Date().toISOString();
+    attr.session_id = "menu_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2);
 
     /* _fbp is set by the Meta pixel and can appear AFTER first paint,
        so read it live every time rather than trusting the snapshot */
@@ -136,7 +171,7 @@
 
   function retentionCity() {
     var campaign = String(attribution.utm_campaign || "").toLowerCase();
-    var match = campaign.match(/^retention_[a-z0-9]+_(dc|sd)$/);
+    var match = campaign.match(/^(?:retention_[a-z0-9]+|sms_[a-z0-9]+)_(dc|sd)$/);
     return match ? match[1].toUpperCase() : "";
   }
 
@@ -160,6 +195,12 @@
       utm_medium: attribution.utm_medium || "",
       utm_campaign: attribution.utm_campaign || "",
       utm_content: attribution.utm_content || "",
+      meta_campaign_id: attribution.meta_campaign_id || "",
+      meta_adset_id: attribution.meta_adset_id || "",
+      meta_ad_id: attribution.meta_ad_id || "",
+      placement: attribution.placement || "",
+      session_id: attribution.session_id,
+      touch_started_at: attribution.touch_started_at,
       landing_variant: CFG.LANDING_VARIANT || "",
       landing_path: window.location.pathname,
       ts: new Date().toISOString()
@@ -689,7 +730,7 @@
      is fetched when META_PIXEL_ID is blank. */
   function loadPixel() {
     var id = CFG.META_PIXEL_ID;
-    if (!id || window.fbq) return;
+    if (!id || window.fbq || new URLSearchParams(location.search).get("havn_test") === "1") return;
     /* standard Meta bootstrap, ES5-safe */
     var n = window.fbq = function () {
       n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
