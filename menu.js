@@ -241,9 +241,9 @@
     var second = ranked.filter(function (m) { return m.protein !== first.protein; })[0];
     return [first, second];
   }
-  var TASTING_PICKS = pickTasting(TASTING_FORECAST);
+  var TASTING_PICKS = [{"id": "cheat"}, {"id": "chicken"}];
   var TASTING_MEAL_IDS = TASTING_PICKS.map(function (m) { return m.id; });
-  var TASTING_EXTRA_IDS = ["chia", "wellness_shots"];
+  var TASTING_EXTRA_IDS = ["chia_2", "wellness_shots"];
   var TASTING_PRICE = 60;
   var SINGLE_DELIVERY = 5;
   var tastingGifts = false;
