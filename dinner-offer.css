@@ -1,0 +1,22 @@
+/* Scoped to the invitation route. Keep the existing menu, sheets and z-index scale. */
+body.dinner-welcome .m-head { padding-bottom: 28px; }
+body.dinner-welcome .m-head-title { font-size: clamp(40px, 11.8vw, 57px); line-height: 1.03; }
+.dinner-intro { margin-top: 20px; }
+.dinner-note { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--brass); }
+.dinner-promise { margin-top: 12px; max-width: 32ch; font-size: 17px; line-height: 1.5; color: var(--cream); }
+.dinner-promise strong { font-weight: 700; }
+.dinner-terms { margin-top: 10px; font-size: 13px; line-height: 1.5; color: var(--cream-dim); }
+.dinner-choose { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; padding: 15px 18px; border-radius: 12px; background: var(--brass); color: var(--forest); font-size: 15px; font-weight: 700; min-height: 48px; }
+.dinner-choose:focus-visible { outline: 2px solid var(--cream); outline-offset: 4px; }
+.dinner-alternative { margin-top: 26px; font-size: 13px; color: var(--cream-dim); }
+body.dinner-welcome .m-ribbon { margin-top: 10px; padding: 12px; background: transparent; border: 1px solid var(--hairline-dark); color: var(--brass); box-shadow: none; animation: none; }
+body.dinner-welcome .m-ribbon-sheen { display: none; }
+body.dinner-welcome .m-ribbon-amt { font-size: 18px; }
+body.dinner-welcome .m-ribbon-amt i { font-size: 11px; }
+body.dinner-welcome .m-ribbon-note { color: var(--cream-dim); font-size: 11px; line-height: 1.5; white-space: normal; text-transform: none; letter-spacing: 0; }
+body.dinner-welcome #m-menu { scroll-margin-top: 80px; }
+body.dinner-welcome .m-endpad { height: 230px; }
+.dinner-progress { padding: 2px 8px 10px; font-size: 12px; line-height: 1.45; color: var(--cream); }
+.dinner-progress[hidden], .dinner-credit[hidden] { display: none; }
+.dinner-credit { margin: 12px 0; padding: 12px 14px; border: 1px solid var(--hairline); border-radius: 10px; background: var(--cream); color: var(--forest); font-size: 13px; line-height: 1.5; }
+body.dinner-welcome .m-gate-info { line-height: 1.55; }

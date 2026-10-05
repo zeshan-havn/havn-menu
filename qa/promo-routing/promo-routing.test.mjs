@@ -63,6 +63,12 @@ for (const path of ['/welcome', '/oct04/welcome', '/ws', '/in', '/quiz', '/ws/qu
 // attribution suffix /via/sms/{campaign}/{kind}/{city} (intake/return_links.py)
 // whose labels ("welcome", "sd", …) must never be read as a mode or city.
 const sentShapes = [
+  ['/welcome/dinner', 'welcome', 'DC', 'dinner'],
+  ['/sd/welcome/dinner', 'welcome', 'SD', 'dinner'],
+  ['/oct11/dc/welcome/dinner/sms/abc123/menu_blast', 'welcome', 'DC', 'dinner'],
+  ['/oct11/sd/welcome/dinner/sms/abc123/menu_blast', 'welcome', 'SD', 'dinner'],
+  ['/welcome/dinner/via/sms/abc123/menu_blast/dc', 'welcome', 'DC', 'dinner'],
+  ['/sd/welcome/dinner/via/sms/abc123/menu_blast/sd', 'welcome', 'SD', 'dinner'],
   ['/welcome/via/sms/welcome/welcome/dc', 'welcome', 'DC', ''],
   ['/sd/welcome/via/sms/welcome/welcome/sd', 'welcome', 'SD', ''],
   ['/welcome/quiz/via/sms/welcome/welcome/dc', 'welcome', 'DC', 'quiz'],

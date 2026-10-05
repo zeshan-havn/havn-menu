@@ -12,6 +12,7 @@
   var priceForSlot = window.HAVN_PRICING && window.HAVN_PRICING.priceForSlot;
   if (!priceForSlot) throw new Error("Havn acquisition pricing did not load");
   var MODE = window.HAVN_MENU_MODE || "active";
+  var DINNER = window.HAVN_DINNER || null;
   var ARCHIVED_DELIVERY_DATE = /^\/sep13(?:\/|$)/i.test(window.location.pathname || "")
     ? new Date("2026-09-13T12:00:00")
     : null;
@@ -219,7 +220,7 @@
      Delivery is free on the Tasting Menu and on weekly orders. Upgrading from
      the Tasting Menu keeps the chia and shots free once the week reaches 5. */
   var TASTING = (function () {
-    if (MODE !== "welcome") return "";
+    if (MODE !== "welcome" || DINNER) return "";
     /* the live Tasting Menu welcome page is route-driven; the lettered mock
        variants stay available only on a local preview */
     if (window.HAVN_MENU_VARIANT === "tasting") return "g";
@@ -911,9 +912,11 @@
       if (c.sides) bits.push(c.sides + (c.sides === 1 ? " side" : " sides"));
       if (c.addons) bits.push(c.addons + (c.addons === 1 ? " collection" : " collections"));
       barCount.textContent = bits.join(" · ");
-      var ready = c.equivalents >= 4 - 1e-9;
+      var ready = DINNER ? DINNER.ready(c) : c.equivalents >= 4 - 1e-9;
       var hint = "";
-      if (c.single) {
+      if (DINNER) {
+        hint = DINNER.eligible(c) ? " · $25 credit next order" : promoHint(c);
+      } else if (c.single) {
         hint = " with delivery · add 3 for a week";
       } else if (tastingGifts && c.meals < 5) {
         hint = " · add " + (5 - c.meals) + " for $15 off";
@@ -943,6 +946,7 @@
         bar.classList.toggle("m-bar-ready", SIMPLE ? c.minEq >= 4 : c.meals >= 4);
       }
     }
+    if (DINNER) DINNER.render(c);
     if (SIMPLE) renderNudge(c, any);
     renderLadders(c);
     renderSheet(c);
@@ -1094,6 +1098,7 @@
     var blocks = [];
     if (c.tasting) lines = ["Tasting Menu"].concat(tastingLines());
     if (c.single) lines.unshift("One meal tasting");
+    if (DINNER && lines.length) lines.unshift(DINNER.orderLabel(c));
     /* g: the free chia and shots ride on the code, not in the text; the
        preview still names them so the customer sees what they get */
     var giftLine = SIMPLE ? "+ free " + TASTING_EXTRA_IDS.map(function (id) { return ITEMS[id].name.replace(" Collection", ""); }).join(" & ") + " (Tasting Menu upgrade)" : "+ free chia and wellness shots (tasting upgrade)";
@@ -1153,13 +1158,19 @@
       giftRow.lastElementChild.textContent = c.gifts ? "Free" : "Free at 5 meals";
       if (SIMPLE && c.gifts) giftRow.lastElementChild.innerHTML = "<s>$" + TASTING_EXTRA_IDS.reduce(function (t, id) { return t + priceForSlot(id); }, 0) + "</s> Free";
     }
-    if (delivRow) delivRow.hidden = !TASTING;
+    if (delivRow) delivRow.hidden = !TASTING && !DINNER;
     var delivAmt = document.getElementById("m-r-deliv");
     if (delivAmt) delivAmt.textContent = c.delivery ? money(c.delivery) : "Free";
 
     var short = 4 - c.equivalents;
     gate.classList.remove("m-gate-info");
-    if (c.single) {
+    if (DINNER) {
+      gate.hidden = !lines.length;
+      gate.classList.add("m-gate-info");
+      gate.textContent = DINNER.message(c);
+      sendBtn.classList.toggle("m-send-off", !DINNER.ready(c));
+      sendBtn.textContent = DINNER.ready(c) ? "Send order text · " + money(c.subtotal - c.discount) : "Choose at least one meal";
+    } else if (c.single) {
       /* MOCK: one meal goes out as a single tasting */
       gate.hidden = false;
       gate.classList.add("m-gate-info");
@@ -1250,17 +1261,19 @@
     if (c.tasting) sendBtn.href = "sms:" + smsNumber + "?&body=" + encodeURIComponent(tastingBody());
   }
 
+  var dinnerSheetReturnFocus = null;
   function openSheet() {
+    if (DINNER && sheet.hidden) dinnerSheetReturnFocus = document.activeElement;
     sheet.hidden = false;
     backdrop.hidden = false;
-    setTimeout(function () { sheet.classList.add("open"); backdrop.classList.add("open"); }, 20);
+    setTimeout(function () { sheet.classList.add("open"); backdrop.classList.add("open"); if (DINNER) document.getElementById("m-sheet-close").focus(); }, 20);
     document.body.style.overflow = "hidden";
   }
   function closeSheet() {
     sheet.classList.remove("open");
     backdrop.classList.remove("open");
     document.body.style.overflow = "";
-    setTimeout(function () { sheet.hidden = true; backdrop.hidden = true; }, 380);
+    setTimeout(function () { sheet.hidden = true; backdrop.hidden = true; if (DINNER && dinnerSheetReturnFocus) dinnerSheetReturnFocus.focus(); }, 380);
   }
 
   reviewBtn.addEventListener("click", openSheet);
@@ -1301,6 +1314,7 @@
       return;
     }
     if (e.key === "Escape" && !sheet.hidden) closeSheet();
+    else if (DINNER && e.key === "Tab" && !sheet.hidden) trapTab(e, sheet);
   });
 
   function trapTab(e, box) {

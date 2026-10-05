@@ -9,13 +9,14 @@
 # Every customer menu URL serves the one index.html; pricing.js reads the
 # path. The full grammar, every part optional, in this order:
 #
-#   /{week}/{dc|sd}/{welcome|ws|db|in}/{quiz|tasting}/sms/{campaign}/{kind}
+#   /{week}/{dc|sd}/{welcome|ws|db|in}/{quiz|tasting|dinner}/sms/{campaign}/{kind}
 #
 #   week     cache-bust slug (oct04, sep27, jun7 …) so link previews refresh
 #   dc|sd    city (DC is the default; SD links carry /sd)
 #   mode     welcome = first order, ws = wellness credit, db = legacy ws,
 #            in = win-back; none = the regular member menu
 #   variant  /welcome/quiz (quiz signup), /welcome/tasting (Tasting Menu)
+#            /welcome/dinner (older-lead one-meal / next-order-credit invitation)
 #   sms      SMS source tag from HQ (intake/return_links.py), read by intake.js;
 #            campaign and kind are optional. Links sent before Oct 2 2026 end in
 #            /via/sms/{campaign}/{kind}/{dc|sd} instead. It is a path, not a

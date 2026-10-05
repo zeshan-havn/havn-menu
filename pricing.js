@@ -31,7 +31,7 @@
        menu, opened by a short how-to-order block for first-time visitors. */
     /* /welcome/tasting is the Tasting Menu welcome page: the quiz landing
        plus the Tasting Menu, the $15/$25 offer and the 4-meal minimum. */
-    root.HAVN_MENU_VARIANT = first === "welcome" && (parts[1] === "quiz" || parts[1] === "tasting") ? parts[1] : "";
+    root.HAVN_MENU_VARIANT = first === "welcome" && (parts[1] === "quiz" || parts[1] === "tasting" || parts[1] === "dinner") ? parts[1] : "";
     var qs = new URLSearchParams(root.location.search || "");
     root.HAVN_MENU_CITY = (isSdRoute || qs.has("sd")) ? "SD" : "DC";
     if (qs.has("welcome")) return "welcome";
