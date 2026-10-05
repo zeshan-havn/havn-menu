@@ -1,12 +1,12 @@
-/* acquisition-manifest.json sha256=c1b687cf8834b5ef420a7c9137c32adf1b023b1049569feea28489175468d8b1 */
+/* acquisition-manifest.json sha256=26e973934755ba0c00b1499c09a833e93b041e300c14b4c8f2ab9fc3d3d5302f */
 window.HAVN_ACQUISITION_MANIFEST =
 {
   "schemaVersion": 1,
-  "releaseDigest": "b96d35453cf2e3d2c57ab3f54be87941abd378847d91b31c800950180629d3aa",
+  "releaseDigest": "1e58b9c1a76943053a77ec22078bf77f5bf3afd3b0b6d65a1bf4adb2f5977455",
   "menu": {
-    "id": "delivery-2026-10-04",
-    "version": "sha256-b96d35453cf2e3d2c57ab3f54be87941abd378847d91b31c800950180629d3aa",
-    "weekLabel": "October 4",
+    "id": "delivery-2026-10-11",
+    "version": "sha256-1e58b9c1a76943053a77ec22078bf77f5bf3afd3b0b6d65a1bf4adb2f5977455",
+    "weekLabel": "October 11",
     "pricingPolicyId": "backend-25-10-v1",
     "offerPolicyId": "welcome-20-40-v1",
     "imagePolicy": {
@@ -15,12 +15,16 @@ window.HAVN_ACQUISITION_MANIFEST =
       "addon": "optional"
     },
     "featuredIds": [
+      "cheat",
       "chicken",
-      "beef",
-      "seafood"
+      "beef"
     ],
     "presets": {
       "seven": [
+        {
+          "itemId": "cheat",
+          "quantity": 1
+        },
         {
           "itemId": "chicken",
           "quantity": 1
@@ -30,15 +34,11 @@ window.HAVN_ACQUISITION_MANIFEST =
           "quantity": 1
         },
         {
-          "itemId": "seafood",
-          "quantity": 1
-        },
-        {
-          "itemId": "cheat",
-          "quantity": 1
-        },
-        {
           "itemId": "chicken_2",
+          "quantity": 1
+        },
+        {
+          "itemId": "seafood",
           "quantity": 1
         },
         {
@@ -52,6 +52,10 @@ window.HAVN_ACQUISITION_MANIFEST =
       ],
       "five": [
         {
+          "itemId": "cheat",
+          "quantity": 1
+        },
+        {
           "itemId": "chicken",
           "quantity": 1
         },
@@ -60,15 +64,11 @@ window.HAVN_ACQUISITION_MANIFEST =
           "quantity": 1
         },
         {
-          "itemId": "seafood",
-          "quantity": 1
-        },
-        {
-          "itemId": "cheat",
-          "quantity": 1
-        },
-        {
           "itemId": "chicken_2",
+          "quantity": 1
+        },
+        {
+          "itemId": "seafood",
           "quantity": 1
         }
       ]
@@ -79,18 +79,91 @@ window.HAVN_ACQUISITION_MANIFEST =
         "type": "meal",
         "category": "Beef",
         "menuSection": "Chef Special",
-        "name": "Beef Bourguignon",
+        "name": "Braised Short Rib",
         "priceCents": 2500,
-        "description": "Slow braised beef chuck with a red wine reduction, cremini mushrooms, and pearl onions, served over whipped Yukon Gold purée with roasted carrots for a rich, rustic French stew with a deeply savory finish.",
+        "description": "Slow braised short rib finished with a glossy balsamic reduction, served with roasted mushrooms and roasted pearl onions over wild rice for a classic, deeply savory plate with a bright, syrupy finish.",
         "macros": {
-          "calories": 621,
-          "protein": 49,
-          "fat": 21,
-          "fiber": 7,
+          "calories": 617,
+          "protein": 61,
+          "fat": 24,
+          "fiber": 8,
           "netCarbs": 40
         },
         "diet": [
-          "Dairy (Potato Purée)",
+          "Dairy (Butter)",
+          "Gluten Free"
+        ],
+        "allergens": [
+          "dairy"
+        ],
+        "featured": true,
+        "customizations": [
+          "Low carb",
+          "No carb",
+          "Extra protein",
+          "Dairy-free"
+        ],
+        "image": {
+          "url": "/assets/releases/sha256-1e58b9c1a76943053a77ec22078bf77f5bf3afd3b0b6d65a1bf4adb2f5977455/cheat.jpg",
+          "width": 654,
+          "height": 900,
+          "format": "jpeg",
+          "sha256": "71a763fbd5db123ea7ec683a49d2f2a6d9f240c9001ef041d46fcdd6d2b25e36",
+          "alt": "Braised Short Rib"
+        }
+      },
+      {
+        "id": "chicken",
+        "type": "meal",
+        "category": "Chicken",
+        "menuSection": "Chicken",
+        "name": "Honey Sriracha Chicken Bowl",
+        "priceCents": 2500,
+        "description": "Roasted chicken breast finished with a sweet and spicy honey sriracha glaze, served with charred green beans and roasted carrots over basmati rice for a colorful, high protein bowl with a fiery finish.",
+        "macros": {
+          "calories": 675,
+          "protein": 62,
+          "fat": 15,
+          "fiber": 6,
+          "netCarbs": 71
+        },
+        "diet": [
+          "Dairy Free",
+          "Gluten Free"
+        ],
+        "allergens": [],
+        "featured": true,
+        "customizations": [
+          "Low carb",
+          "No carb",
+          "Extra protein"
+        ],
+        "image": {
+          "url": "/assets/releases/sha256-1e58b9c1a76943053a77ec22078bf77f5bf3afd3b0b6d65a1bf4adb2f5977455/chicken.jpg",
+          "width": 654,
+          "height": 900,
+          "format": "jpeg",
+          "sha256": "149d4613ccf3ef4e94609954449e402635eb719effe3616e122f0fbb56384087",
+          "alt": "Honey Sriracha Chicken Bowl"
+        }
+      },
+      {
+        "id": "chicken_2",
+        "type": "meal",
+        "category": "Chicken",
+        "menuSection": "Chicken",
+        "name": "Butter Chicken",
+        "priceCents": 2500,
+        "description": "Tender butter chicken finished with a creamy tikka masala sauce, served with roasted cauliflower and roasted eggplant over cardamom basmati rice for a warm, aromatic plate with a rich, comforting finish.",
+        "macros": {
+          "calories": 707,
+          "protein": 58,
+          "fat": 36,
+          "fiber": 6,
+          "netCarbs": 43
+        },
+        "diet": [
+          "Dairy (Cream)",
           "Gluten Free"
         ],
         "allergens": [
@@ -104,26 +177,26 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Dairy-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-b96d35453cf2e3d2c57ab3f54be87941abd378847d91b31c800950180629d3aa/cheat.jpg",
+          "url": "/assets/releases/sha256-1e58b9c1a76943053a77ec22078bf77f5bf3afd3b0b6d65a1bf4adb2f5977455/chicken_2.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
-          "sha256": "8d62319d8ca0556ae74ec8d83fb6bf93fa489acf55349d949d0dad6516e1748b",
-          "alt": "Beef Bourguignon"
+          "sha256": "9707d6ad5f640cf3fa5a58231a8f4020e452d070a20f758253692f9806521b31",
+          "alt": "Butter Chicken"
         }
       },
       {
-        "id": "chicken",
+        "id": "beef",
         "type": "meal",
-        "category": "Chicken",
-        "menuSection": "Chicken",
-        "name": "Peri Peri Chicken",
+        "category": "Beef",
+        "menuSection": "Beef",
+        "name": "Mongolian Beef",
         "priceCents": 2500,
-        "description": "Charred chicken marinated in peri peri and finished with a spicy peri peri glaze and a cooling coconut yogurt drizzle, served with fire charred sweet corn and roasted cauliflower over coconut rice for a bold, Portuguese inspired plate with a bright, spiced finish.",
+        "description": "Tender sliced beef finished with a savory sweet Mongolian glaze, served with roasted broccoli and red peppers over jasmine rice for a rich, colorful bowl with a glossy finish.",
         "macros": {
-          "calories": 739,
-          "protein": 53,
-          "fat": 32,
+          "calories": 702,
+          "protein": 64,
+          "fat": 20,
           "fiber": 6,
           "netCarbs": 62
         },
@@ -139,85 +212,12 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-b96d35453cf2e3d2c57ab3f54be87941abd378847d91b31c800950180629d3aa/chicken.jpg",
+          "url": "/assets/releases/sha256-1e58b9c1a76943053a77ec22078bf77f5bf3afd3b0b6d65a1bf4adb2f5977455/beef.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
-          "sha256": "cf39dec77aa8b16a47ea825a0ed58966dc2cfd016e35664176b0fd2beabb91e0",
-          "alt": "Peri Peri Chicken"
-        }
-      },
-      {
-        "id": "chicken_2",
-        "type": "meal",
-        "category": "Chicken",
-        "menuSection": "Chicken",
-        "name": "Lemon Herb Feta Chicken",
-        "priceCents": 2500,
-        "description": "Lemon herb chicken breast with a ruby whipped feta and roasted sweet potato and lacinato kale with a house pickled vegetable medley and dried cranberries for a bright, herb forward plate with a creamy, beet tinted finish.",
-        "macros": {
-          "calories": 675,
-          "protein": 66,
-          "fat": 31,
-          "fiber": 7,
-          "netCarbs": 33
-        },
-        "diet": [
-          "Dairy (Feta)",
-          "Gluten Free"
-        ],
-        "allergens": [
-          "dairy"
-        ],
-        "featured": false,
-        "customizations": [
-          "Low carb",
-          "No carb",
-          "Extra protein",
-          "Dairy-free"
-        ],
-        "image": {
-          "url": "/assets/releases/sha256-b96d35453cf2e3d2c57ab3f54be87941abd378847d91b31c800950180629d3aa/chicken_2.jpg",
-          "width": 654,
-          "height": 900,
-          "format": "jpeg",
-          "sha256": "f651eaa487af902b5014129e24ab0c44ad848e9f6c6e3132743a003bdf696c6d",
-          "alt": "Lemon Herb Feta Chicken"
-        }
-      },
-      {
-        "id": "beef",
-        "type": "meal",
-        "category": "Beef",
-        "menuSection": "Beef",
-        "name": "Carne Asada Steak",
-        "priceCents": 2500,
-        "description": "Citrus and garlic marinated flank steak chargrilled and sliced, finished with a creamy Peruvian aji verde, served with roasted sweet plantains and pickled red onions over cilantro lime rice for a bold, Latin inspired plate with a bright, herbaceous finish.",
-        "macros": {
-          "calories": 708,
-          "protein": 54,
-          "fat": 22,
-          "fiber": 3,
-          "netCarbs": 71
-        },
-        "diet": [
-          "Dairy Free",
-          "Gluten Free"
-        ],
-        "allergens": [],
-        "featured": true,
-        "customizations": [
-          "Low carb",
-          "No carb",
-          "Extra protein"
-        ],
-        "image": {
-          "url": "/assets/releases/sha256-b96d35453cf2e3d2c57ab3f54be87941abd378847d91b31c800950180629d3aa/beef.jpg",
-          "width": 654,
-          "height": 900,
-          "format": "jpeg",
-          "sha256": "a5ec528f2702f77b292011aa69943b9d8ffeb4be11432bd004af48a65639f8c5",
-          "alt": "Carne Asada Steak"
+          "sha256": "0b12f68410980052d1f52adc0d62b8a17009a5215e3d85be30eceff42c6f620a",
+          "alt": "Mongolian Beef"
         }
       },
       {
@@ -225,34 +225,34 @@ window.HAVN_ACQUISITION_MANIFEST =
         "type": "meal",
         "category": "Seafood",
         "menuSection": "Seafood",
-        "name": "Pomegranate Salmon",
+        "name": "Blackened Salmon",
         "priceCents": 2500,
-        "description": "Salmon marinated in pomegranate molasses, sumac, and Aleppo pepper, then gently roasted, served over saffron cauliflower rice with roasted zucchini and finished with a whipped pomegranate sauce for a bright, tart sweet seafood plate with a complex, Middle Eastern finish.",
+        "description": "Blackened salmon finished with a maple honey dijon reduction, served with roasted broccoli and roasted beets over tri-color quinoa for a sweet and savory seafood plate with earthy depth and a refined finish.",
         "macros": {
-          "calories": 677,
-          "protein": 49,
-          "fat": 43,
-          "fiber": 5,
-          "netCarbs": 24
+          "calories": 615,
+          "protein": 50,
+          "fat": 29,
+          "fiber": 8,
+          "netCarbs": 39
         },
         "diet": [
           "Dairy Free",
           "Gluten Free"
         ],
         "allergens": [],
-        "featured": true,
+        "featured": false,
         "customizations": [
           "Low carb",
           "No carb",
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-b96d35453cf2e3d2c57ab3f54be87941abd378847d91b31c800950180629d3aa/seafood.jpg",
+          "url": "/assets/releases/sha256-1e58b9c1a76943053a77ec22078bf77f5bf3afd3b0b6d65a1bf4adb2f5977455/seafood.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
-          "sha256": "e389dfc6c88bfe3ece8c7769f1b3d488da820eccb6f563fae4e6826dad896d72",
-          "alt": "Pomegranate Salmon"
+          "sha256": "b346dcf05dcc32a055109c7e78df493d82b0073674ae89f3ef89a971f4df969d",
+          "alt": "Blackened Salmon"
         }
       },
       {
@@ -260,91 +260,15 @@ window.HAVN_ACQUISITION_MANIFEST =
         "type": "meal",
         "category": "Seafood",
         "menuSection": "Seafood",
-        "name": "Spicy Tuna",
+        "name": "Hibachi Shrimp Fried Rice",
         "priceCents": 2500,
-        "description": "Crispy albacore tuna cakes finished with a spicy yuzu mayo, served with miso glazed carrots and pickled cucumbers over seasoned sushi rice for a bold, Japanese inspired bowl with a bright, umami finish.",
+        "description": "Garlic hibachi shrimp finished with a ginger garlic tamari sauce, served with roasted mushrooms and zucchini over vegetable fried rice for a savory, colorful bowl with an umami finish.",
         "macros": {
-          "calories": 609,
-          "protein": 36,
-          "fat": 19,
-          "fiber": 5,
-          "netCarbs": 68
-        },
-        "diet": [
-          "Dairy Free",
-          "Gluten (Breadcrumbs)"
-        ],
-        "allergens": [
-          "gluten"
-        ],
-        "featured": false,
-        "customizations": [
-          "Low carb",
-          "No carb",
-          "Extra protein",
-          "Gluten-free"
-        ],
-        "image": {
-          "url": "/assets/releases/sha256-b96d35453cf2e3d2c57ab3f54be87941abd378847d91b31c800950180629d3aa/seafood_2.jpg",
-          "width": 654,
-          "height": 900,
-          "format": "jpeg",
-          "sha256": "6ca2a38f1878777542bf1e4612ecc5308844f6d286c4e776a609950391a111c8",
-          "alt": "Spicy Tuna"
-        }
-      },
-      {
-        "id": "pasta",
-        "type": "meal",
-        "category": "Pasta",
-        "menuSection": "Pasta",
-        "name": "Vodka Pasta",
-        "priceCents": 2500,
-        "description": "Tender blackened chicken breast layered over luxurious shell pasta and finished with a silky dairy free vodka cream sauce made from San Marzano tomatoes and coconut milk for a rich, indulgent plate with a bright, classic Italian American finish.",
-        "macros": {
-          "calories": 717,
+          "calories": 578,
           "protein": 54,
-          "fat": 33,
-          "fiber": 4,
-          "netCarbs": 50
-        },
-        "diet": [
-          "Dairy Free",
-          "Gluten (Pasta)"
-        ],
-        "allergens": [
-          "gluten"
-        ],
-        "featured": false,
-        "customizations": [
-          "Low carb",
-          "No carb",
-          "Extra protein",
-          "Gluten-free"
-        ],
-        "image": {
-          "url": "/assets/releases/sha256-b96d35453cf2e3d2c57ab3f54be87941abd378847d91b31c800950180629d3aa/pasta.jpg",
-          "width": 654,
-          "height": 900,
-          "format": "jpeg",
-          "sha256": "edd45d2276c330e4da37bd369bc2f3255a716599dee7d228cf48eaa9be9fba42",
-          "alt": "Vodka Pasta"
-        }
-      },
-      {
-        "id": "vegetarian",
-        "type": "meal",
-        "category": "Veg",
-        "menuSection": "Veg",
-        "name": "Korean Seared Tofu",
-        "priceCents": 2500,
-        "description": "Extra firm tofu seared crispy and finished with a sweet spicy gochujang glaze, served with charred broccoli and roasted cremini mushrooms over basmati rice for a bold, Korean inspired plate with a fiery, umami finish.",
-        "macros": {
-          "calories": 663,
-          "protein": 50,
-          "fat": 22,
-          "fiber": 10,
-          "netCarbs": 71
+          "fat": 15,
+          "fiber": 6,
+          "netCarbs": 51
         },
         "diet": [
           "Dairy Free",
@@ -358,33 +282,72 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-b96d35453cf2e3d2c57ab3f54be87941abd378847d91b31c800950180629d3aa/vegetarian.jpg",
+          "url": "/assets/releases/sha256-1e58b9c1a76943053a77ec22078bf77f5bf3afd3b0b6d65a1bf4adb2f5977455/seafood_2.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
-          "sha256": "d8fca463773d1ba104c12fe9bfe7c68e5a7dec2529741c00b3fbd9ee81d51431",
-          "alt": "Korean Seared Tofu"
+          "sha256": "6409da5f73940b9d6eff7300739990f92fccc5be9d13fe78637f190080c6efa4",
+          "alt": "Hibachi Shrimp Fried Rice"
         }
       },
       {
-        "id": "salad",
+        "id": "pasta",
         "type": "meal",
-        "category": "Salads",
-        "menuSection": "Salads",
-        "name": "Green Goddess Salad",
+        "category": "Pasta",
+        "menuSection": "Pasta",
+        "name": "Marry Me Chicken Pasta",
         "priceCents": 2500,
-        "description": "Diced lemon herb chicken over shredded purple cabbage and kale with pickled red onions, pickled cucumbers, roasted chickpeas, red grapes, toasted pumpkin seeds and dried apricots, served with a tahini green goddess dressing on the side for a bright, crunchy salad with a fresh, herbaceous finish.",
+        "description": "Pan seared chicken breast over rigatoni in a sun dried tomato cream sauce with garlic, Parmigiano, Italian herbs, and a hint of red pepper for a rich, indulgent Italian American pasta with a deeply savory finish.",
         "macros": {
-          "calories": 479,
-          "protein": 45,
-          "fat": 20,
-          "fiber": 10,
-          "netCarbs": 31
+          "calories": 673,
+          "protein": 67,
+          "fat": 23,
+          "fiber": 2,
+          "netCarbs": 33
+        },
+        "diet": [
+          "Dairy (Cream + Parmigiano)",
+          "Gluten (Pasta)"
+        ],
+        "allergens": [
+          "dairy",
+          "gluten"
+        ],
+        "featured": false,
+        "customizations": [
+          "Low carb",
+          "No carb",
+          "Extra protein",
+          "Dairy-free",
+          "Gluten-free"
+        ],
+        "image": {
+          "url": "/assets/releases/sha256-1e58b9c1a76943053a77ec22078bf77f5bf3afd3b0b6d65a1bf4adb2f5977455/pasta.jpg",
+          "width": 654,
+          "height": 900,
+          "format": "jpeg",
+          "sha256": "fbe144153eebe6d50179b963d92685775f77d5ba1b88d3300e0866974964ca56",
+          "alt": "Marry Me Chicken Pasta"
+        }
+      },
+      {
+        "id": "vegetarian",
+        "type": "meal",
+        "category": "Veg",
+        "menuSection": "Veg",
+        "name": "Thai Coconut Curry Bowl",
+        "priceCents": 2500,
+        "description": "Marinated tofu with a thai coconut curry sauce and roasted bell peppers and broccoli and shredded cabbage over jasmine rice for a rich, fragrant bowl with a creamy coconut finish.",
+        "macros": {
+          "calories": 692,
+          "protein": 44,
+          "fat": 35,
+          "fiber": 7,
+          "netCarbs": 44
         },
         "diet": [
           "Dairy Free",
-          "Gluten Free",
-          "high protein"
+          "Gluten Free"
         ],
         "allergens": [],
         "featured": false,
@@ -394,31 +357,31 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-b96d35453cf2e3d2c57ab3f54be87941abd378847d91b31c800950180629d3aa/salad.jpg",
-          "width": 720,
+          "url": "/assets/releases/sha256-1e58b9c1a76943053a77ec22078bf77f5bf3afd3b0b6d65a1bf4adb2f5977455/vegetarian.jpg",
+          "width": 654,
           "height": 900,
           "format": "jpeg",
-          "sha256": "fc841c92e0d86faa291c6a1599357db3ce153a953e02cfb046d68fd8b3955eb4",
-          "alt": "Green Goddess Salad"
+          "sha256": "f78191fda00256da762e1dc5645df1650f8c371cd7e0c6e9ae036970efaf96b8",
+          "alt": "Thai Coconut Curry Bowl"
         }
       },
       {
-        "id": "salad_2",
+        "id": "salad",
         "type": "meal",
         "category": "Salads",
         "menuSection": "Salads",
-        "name": "Harvest Bowl Salad",
+        "name": "Chicken Caesar Crunch Salad",
         "priceCents": 2500,
-        "description": "Diced lemon herb chicken over apple cider cabbage slaw and kale with roasted sweet potatoes, carrots, celery, spiced pickled apple, goat cheese and toasted pumpkin seeds, served with a balsamic vinaigrette on the side for a colorful, hearty salad with a bright, tangy finish.",
+        "description": "Diced lemon herb chicken over a sturdy shredded kale base with roasted chickpeas, shaved celery, and pickled cucumber, finished with blueberries and hemp seeds and served with a creamy eggless caper Caesar dressing on the side for a savory, tangy crunch that holds well through the week.",
         "macros": {
-          "calories": 506,
-          "protein": 42,
-          "fat": 25,
-          "fiber": 9,
-          "netCarbs": 29
+          "calories": 419,
+          "protein": 48,
+          "fat": 17,
+          "fiber": 8,
+          "netCarbs": 19
         },
         "diet": [
-          "Dairy (Goat Cheese)",
+          "Dairy (Yogurt)",
           "Gluten Free",
           "high protein"
         ],
@@ -433,12 +396,48 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Dairy-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-b96d35453cf2e3d2c57ab3f54be87941abd378847d91b31c800950180629d3aa/salad_2.jpg",
+          "url": "/assets/releases/sha256-1e58b9c1a76943053a77ec22078bf77f5bf3afd3b0b6d65a1bf4adb2f5977455/salad.jpg",
           "width": 720,
           "height": 900,
           "format": "jpeg",
-          "sha256": "939065894393d6e335a0267dbd8f1df6f88ba7c193b6dd959e74d04cd18569a3",
-          "alt": "Harvest Bowl Salad"
+          "sha256": "ef8231f4b214110f0a307bf97d923885b6f30821e881ee5742854dac95a2ff9e",
+          "alt": "Chicken Caesar Crunch Salad"
+        }
+      },
+      {
+        "id": "salad_2",
+        "type": "meal",
+        "category": "Salads",
+        "menuSection": "Salads",
+        "name": "Chinese Chicken Salad",
+        "priceCents": 2500,
+        "description": "Sesame chicken over a sturdy kale and shredded purple cabbage base with edamame, shredded carrots, cooled roasted red pepper, dried mango, scallions, and plain toasted pumpkin seeds, served with a ginger sesame tamari dressing on the side for a bright, savory salad with distinct sweet, nutty, and umami notes.",
+        "macros": {
+          "calories": 555,
+          "protein": 49,
+          "fat": 25,
+          "fiber": 9,
+          "netCarbs": 28
+        },
+        "diet": [
+          "Dairy Free",
+          "Gluten Free",
+          "high protein"
+        ],
+        "allergens": [],
+        "featured": false,
+        "customizations": [
+          "Low carb",
+          "No carb",
+          "Extra protein"
+        ],
+        "image": {
+          "url": "/assets/releases/sha256-1e58b9c1a76943053a77ec22078bf77f5bf3afd3b0b6d65a1bf4adb2f5977455/salad_2.jpg",
+          "width": 720,
+          "height": 900,
+          "format": "jpeg",
+          "sha256": "d30098985950995b204ccf6a3de79dc8bacdfc3b75d57616654fbb050d6913fa",
+          "alt": "Chinese Chicken Salad"
         }
       },
       {
@@ -446,18 +445,18 @@ window.HAVN_ACQUISITION_MANIFEST =
         "type": "side",
         "category": "Breakfast",
         "menuSection": "Breakfast",
-        "name": "Classic Overnight Oats",
+        "name": "Cinnamon Roll Overnight Oats",
         "priceCents": 1000,
-        "description": "Premium rolled oats in organic milk, lightly sweetened with maple and vanilla.",
+        "description": "Creamy cinnamon maple overnight oats layered with a brown sugar cinnamon swirl and finished with a lightly sweet cinnamon vanilla mascarpone style cream.",
         "macros": {
-          "calories": 207,
-          "protein": 17,
-          "fat": 2,
-          "fiber": 3,
-          "netCarbs": 26
+          "calories": 397,
+          "protein": 27,
+          "fat": 8,
+          "fiber": 4,
+          "netCarbs": 51
         },
         "diet": [
-          "Dairy (Milk)",
+          "Dairy (Yogurt, Mascarpone)",
           "Gluten Free"
         ],
         "allergens": [
@@ -476,19 +475,19 @@ window.HAVN_ACQUISITION_MANIFEST =
         "type": "side",
         "category": "Breakfast",
         "menuSection": "Breakfast",
-        "name": "Vanilla Chia Pudding",
+        "name": "Pumpkin Cheesecake Chia Pudding",
         "priceCents": 1000,
-        "description": "Vanilla chia pudding with house granola and fresh blueberries.",
+        "description": "Pumpkin spice chia pudding layered with a maple vanilla mascarpone style cheesecake cream and finished with a graham oat crumble.",
         "macros": {
-          "calories": 311,
-          "protein": 18,
-          "fat": 13,
-          "fiber": 9,
-          "netCarbs": 24
+          "calories": 454,
+          "protein": 25,
+          "fat": 17,
+          "fiber": 10,
+          "netCarbs": 39
         },
         "diet": [
-          "Dairy (Yogurt)",
-          "Gluten (Granola)"
+          "Dairy (Yogurt, Mascarpone)",
+          "Gluten (Graham)"
         ],
         "allergens": [
           "dairy",
@@ -508,31 +507,83 @@ window.HAVN_ACQUISITION_MANIFEST =
         "type": "side",
         "category": "Breakfast",
         "menuSection": "Breakfast",
-        "name": "Strawberry Chia Pudding",
+        "name": "Chai Apple Crisp Chia Pudding",
         "priceCents": 1000,
-        "description": "Strawberry chia pudding with house granola and fresh strawberries.",
+        "description": "Creamy chai spiced chia pudding layered with butter sautéed cinnamon apples and finished with a toasted oat crisp.",
         "macros": {
-          "calories": 304,
-          "protein": 18,
-          "fat": 13,
-          "fiber": 9,
-          "netCarbs": 22
+          "calories": 400,
+          "protein": 22,
+          "fat": 15,
+          "fiber": 13,
+          "netCarbs": 34
         },
         "diet": [
           "Dairy (Yogurt)",
-          "Gluten (Granola)"
+          "Gluten Free"
         ],
         "allergens": [
-          "dairy",
-          "gluten"
+          "dairy"
         ],
         "featured": false,
         "customizations": [
           "Low carb",
           "No carb",
           "Extra protein",
-          "Dairy-free",
-          "Gluten-free"
+          "Dairy-free"
+        ]
+      },
+      {
+        "id": "broth",
+        "type": "side",
+        "category": "Wellness",
+        "menuSection": "Wellness",
+        "name": "Classic Bone Broth",
+        "priceCents": 1000,
+        "description": "Our classic chicken bone broth slow simmered for 24 hours with fresh herbs and spices.",
+        "macros": {
+          "calories": 420,
+          "protein": 41,
+          "fat": 26,
+          "fiber": 0,
+          "netCarbs": 6
+        },
+        "diet": [
+          "Dairy Free",
+          "Gluten Free"
+        ],
+        "allergens": [],
+        "featured": false,
+        "customizations": [
+          "Low carb",
+          "No carb",
+          "Extra protein"
+        ]
+      },
+      {
+        "id": "broth_2",
+        "type": "side",
+        "category": "Wellness",
+        "menuSection": "Wellness",
+        "name": "Golden Broth",
+        "priceCents": 1000,
+        "description": "Our golden turmeric and coconut milk bone broth slow simmered for 24 hours with fresh ginger and warming spices.",
+        "macros": {
+          "calories": 433,
+          "protein": 36,
+          "fat": 29,
+          "fiber": 0,
+          "netCarbs": 7
+        },
+        "diet": [
+          "Dairy Free",
+          "Gluten Free"
+        ],
+        "allergens": [],
+        "featured": false,
+        "customizations": [
+          "Low carb",
+          "No carb",
+          "Extra protein"
         ]
       },
       {
@@ -577,11 +628,11 @@ window.HAVN_ACQUISITION_MANIFEST =
   "cities": {
     "DC": {
       "timezone": "America/New_York",
-      "cutoffAt": "2026-10-01T23:00:00Z",
+      "cutoffAt": "2026-10-08T23:00:00Z",
       "cutoffLabel": "Thursday at 7 PM ET",
       "deliveryDates": [
-        "2026-10-04",
-        "2026-10-05"
+        "2026-10-11",
+        "2026-10-12"
       ],
       "deliveryWindows": [
         "Sunday Morning",
@@ -595,11 +646,11 @@ window.HAVN_ACQUISITION_MANIFEST =
     },
     "SD": {
       "timezone": "America/Los_Angeles",
-      "cutoffAt": "2026-10-01T23:00:00Z",
+      "cutoffAt": "2026-10-08T23:00:00Z",
       "cutoffLabel": "Thursday at 4 PM PT",
       "deliveryDates": [
-        "2026-10-04",
-        "2026-10-05"
+        "2026-10-11",
+        "2026-10-12"
       ],
       "deliveryWindows": [
         "Sunday Morning",
