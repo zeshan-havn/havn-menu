@@ -144,7 +144,14 @@
           desc: "Chai spiced chia pudding with cinnamon apples and a toasted oat crisp.",
           cal: 400, protein: 22, fat: 15, fiber: 13, carbs: 34,
           diet: [["Dairy (yogurt)", "allergen"], ["Gluten free", "safe"]]
-        },
+        }
+      ]
+    },
+    {
+      label: "Broths — $10",
+      drop: true,
+      side: true,
+      items: [
         {
           id: "broth", name: "Classic Bone Broth", tag: "Broth", side: true,
           desc: "Our classic high protein and collagen rich chicken bone broth slow simmered for 24 hours.",
