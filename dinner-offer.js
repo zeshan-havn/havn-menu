@@ -23,7 +23,7 @@
   howto.hidden = false;
   howto.querySelector('.m-howto-steps li span').textContent = 'Choose any meal. One is enough to get started.';
   var cutoff = document.getElementById('m-howto-cutoff');
-  cutoff.textContent = 'Order by Thursday at ' + (root.HAVN_MENU_CITY === 'SD' ? '4pm Pacific' : '7pm Eastern') + ' for delivery Sunday or Monday.';
+  cutoff.textContent = 'Order by Friday at 8pm ' + (root.HAVN_MENU_CITY === 'SD' ? 'Pacific' : 'Eastern') + ' for delivery Sunday or Monday.';
   document.querySelector('.m-bar-build-title').textContent = 'Choose your dinner';
   var progress = document.createElement('div');
   progress.className = 'dinner-progress';

@@ -34,7 +34,7 @@ try {
     assert.equal(await page.evaluate(() => window.HAVN_MENU_CITY), prefix ? 'SD' : 'DC');
     assert.equal(await page.evaluate(() => window.HAVN_MENU_VARIANT), 'dinner');
     assert.match(await page.locator('.dinner-promise').innerText(), /after this dinner is paid/);
-    assert.match(await page.locator('#m-howto-cutoff').innerText(), prefix ? /4pm Pacific/ : /7pm Eastern/);
+    assert.match(await page.locator('#m-howto-cutoff').innerText(), prefix ? /Friday at 8pm Pacific/ : /Friday at 8pm Eastern/);
     assert.equal(await page.locator('.dinner-choose').getAttribute('href'), '#m-menu');
     // Every whole-meal slot can be the single dinner; sides/extras are not substitutes.
     const meals = await page.locator('.m-stepper').evaluateAll(nodes => nodes.filter(node => !node.closest('.m-sec-side, .m-sec-collection')).map(node => node.dataset.id));
