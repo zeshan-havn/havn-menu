@@ -32,6 +32,14 @@
     /* /welcome/tasting is the Tasting Menu welcome page: the quiz landing
        plus the Tasting Menu, the $15/$25 offer and the 4-meal minimum. */
     root.HAVN_MENU_VARIANT = first === "welcome" && (parts[1] === "quiz" || parts[1] === "tasting" || parts[1] === "dinner") ? parts[1] : "";
+    /* The four-week offer is a presentation of the existing $25 inactive
+       credit, never a $100 discount on one order. Path markers survive SMS
+       rotation shims. The Sunday anchor keeps all four dates stable. */
+    var offerStart = /^\d{4}-\d{2}-\d{2}$/.test(parts[2] || "") ? new Date(parts[2] + "T12:00:00Z") : null;
+    root.HAVN_FOUR_WEEK = first === "in" && parts[1] === "100" &&
+      offerStart && !isNaN(offerStart.getTime()) && offerStart.getUTCDay() === 0 &&
+      offerStart.toISOString().slice(0, 10) === parts[2] && /^[1-4]$/.test(parts[3] || "")
+      ? { start: parts[2], week: Number(parts[3]) } : null;
     var qs = new URLSearchParams(root.location.search || "");
     root.HAVN_MENU_CITY = (isSdRoute || qs.has("sd")) ? "SD" : "DC";
     if (qs.has("welcome")) return "welcome";

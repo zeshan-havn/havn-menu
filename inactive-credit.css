@@ -1,0 +1,29 @@
+/* The offer uses the member menu's forest, cream and brass palette. */
+.four-week-menu .m-head { padding-top: 86px; padding-bottom: 28px; }
+.credit-eyebrow { margin: 0 0 12px; color: var(--brass); font-size: 10px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+.four-week-menu .m-head-title { font-size: clamp(42px, 11.5vw, 54px); line-height: 1.02; }
+.credit-promise { margin: 16px 0 0; font-size: 16px; line-height: 1.5; max-width: 35ch; }
+.credit-promise strong { font-weight: 600; }
+.four-week-menu .m-ribbon { margin-top: 20px; padding: 16px 18px; animation: none; }
+.credit-current-label { margin: 0; font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.credit-current-amount { margin: 4px 0; font-family: var(--serif); font-size: 42px; font-weight: 600; line-height: 1.1; }
+.credit-current-amount span { font-size: 21px; font-style: italic; font-weight: 500; }
+.credit-current-terms { margin: 6px 0 0; font-size: 12px; line-height: 1.4; }
+.credit-plan { margin-top: 22px; }
+.credit-plan-heading { margin: 0 0 12px; font-family: var(--sans); font-size: 12px; font-weight: 600; }
+.credit-weeks { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 8px; }
+.credit-week { display: flex; flex-direction: column; align-items: center; padding: 12px 3px 10px; border: 1px solid rgba(196,168,124,.4); border-radius: 8px; gap: 5px; }
+.credit-week.current { background: var(--cream); color: var(--forest); border-color: var(--cream); }
+.credit-week.past { border-style: dashed; }
+.credit-week-label { font-size: 10px; }
+.credit-week strong { font-family: var(--serif); font-size: 28px; font-weight: 600; line-height: 1; }
+.credit-week time { font-size: 11px; }
+.credit-week-status { font-size: 9px; font-weight: 600; line-height: 1.4; }
+.credit-explainer { margin: 15px 0 0; font-size: 14px; line-height: 1.5; }
+.credit-expiry { margin: 12px 0 0; font-size: 12px; line-height: 1.6; color: var(--cream); }
+.credit-expiry strong { display: block; font-weight: 600; }
+.credit-choose { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 15px 16px; margin-top: 20px; border-radius: 8px; background: var(--brass); color: var(--forest); font-size: 14px; font-weight: 600; text-decoration: none; }
+.credit-choose:focus-visible { outline: 2px solid var(--cream); outline-offset: 4px; }
+.credit-cutoff { margin: 10px 0 0; font-size: 11px; line-height: 1.5; }
+.credit-receipt-note { margin: 14px 0; padding: 12px 14px; background: rgba(196,168,124,.14); border-radius: 8px; font-size: 13px; line-height: 1.6; color: var(--cream); }
+@media (max-width: 350px) { .credit-weeks { gap: 5px; } .credit-current-amount span { font-size: 18px; } .credit-choose { font-size: 13px; } }

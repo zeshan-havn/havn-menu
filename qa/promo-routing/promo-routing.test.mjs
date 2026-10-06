@@ -100,3 +100,24 @@ for (const [path, mode, city, variant] of sentShapes) {
 }
 
 console.log(`PASS ${promoModes.length * (2 + representativeWeeks.length * 2 + 2) + 3 + sentShapes.length} promo route cases`);
+
+// Four-week credit menus retain the $25 inactive pricing mode and carry only
+// presentation dates/week. SMS campaign labels cannot accidentally enable it.
+function fourWeek(pathname) {
+ const window = { location: { pathname, search: '' } };
+ vm.runInNewContext(pricingSource, { window, URLSearchParams });
+ return window;
+}
+for (const city of ['', '/sd']) {
+ for (let week = 1; week <= 4; week++) {
+  const w = fourWeek(`/oct11${city}/in/100/2026-10-11/${week}/sms/abc/menu_blast`);
+  assert.equal(w.HAVN_MENU_MODE, 'in');
+  assert.equal(w.HAVN_MENU_CITY, city ? 'SD' : 'DC');
+  assert.equal(w.HAVN_FOUR_WEEK.start, '2026-10-11');
+  assert.equal(w.HAVN_FOUR_WEEK.week, week);
+ }
+}
+for (const path of ['/oct11/in', '/oct11/in/sms/100/menu_blast', '/in/100/2026-10-11/5', '/in/100/2026-10-12/1', '/in/100/2026-02-30/1', '/welcome/100/2026-10-11/1']) {
+ assert.equal(fourWeek(path).HAVN_FOUR_WEEK, null, path);
+}
+console.log('PASS four-week credit paths, city/source preservation and invalid date/week rejection');
