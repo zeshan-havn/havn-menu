@@ -37,13 +37,14 @@
   }
   plan.appendChild(list);
   var remaining = (4 - week) * 25;
-  plan.insertAdjacentHTML('beforeend', '<p class="credit-explainer">' + (first
+  plan.insertAdjacentHTML('beforeend', '<ul class="credit-terms"><li>' + (first
     ? 'Order this week and the other three $25 credits will be added automatically, one each week.'
     : remaining ? '$' + remaining + ' in credits follows over the next ' + (4 - week) + ' ' + (week === 3 ? 'week' : 'weeks') + ', $25 at a time.'
-    : 'This is the last week of your four-week offer.') + '</p>' +
-    '<p class="credit-expiry"><strong>One credit expires each week, whether you use it or not.</strong> Unused credits don’t roll over. The $100 is spread across four weeks, not taken off one order.</p>' +
-    '<a class="credit-choose" href="#m-menu">' + (first ? 'Choose my meals & claim my credits' : 'Choose my meals for this week') + '<span aria-hidden="true">↓</span></a>' +
-    '<p class="credit-cutoff">Order by Thursday at ' + (root.HAVN_MENU_CITY === 'SD' ? '4pm Pacific' : '7pm Eastern') + ' for this week’s delivery.</p>');
+    : 'This is the last week of your four-week offer.') + '</li>' +
+    '<li><strong>One credit expires each week, whether you use it or not.</strong></li>' +
+    '<li>Unused credits don’t roll over.</li>' +
+    '<li>The $100 is spread across four weeks, not taken off one order.</li></ul>' +
+    '<a class="credit-choose" href="#m-menu">' + (first ? 'Choose my meals & claim my credits' : 'Choose my meals for this week') + '<span aria-hidden="true">↓</span></a>');
   ribbon.insertAdjacentElement('afterend', plan);
   var receipt = document.querySelector('#m-sheet .m-receipt');
   var sheet = document.getElementById('m-sheet');
