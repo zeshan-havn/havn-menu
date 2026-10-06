@@ -13,6 +13,7 @@
   if (!priceForSlot) throw new Error("Havn acquisition pricing did not load");
   var MODE = window.HAVN_MENU_MODE || "active";
   var DINNER = window.HAVN_DINNER || null;
+  var FOCUS_SHEET = DINNER || window.HAVN_FOUR_WEEK;
   var ARCHIVED_DELIVERY_DATE = /^\/sep13(?:\/|$)/i.test(window.location.pathname || "")
     ? new Date("2026-09-13T12:00:00")
     : null;
@@ -270,7 +271,7 @@
   var PROMO_LABELS = {
     welcome: TASTING ? "Welcome credit" : "Welcome offer",
     ws: "Wellness credit",
-    in: "Welcome back credit"
+    in: window.HAVN_FOUR_WEEK ? "Week " + window.HAVN_FOUR_WEEK.week + " credit" : "Welcome back credit"
   };
 
   function discountFor(meals, wellnessShots, dateBalls) {
@@ -356,7 +357,7 @@
       body.classList.add("active-menu");
       return;
     }
-    if (!ribbon || MODE === "welcome") return;
+    if (!ribbon || MODE === "welcome" || window.HAVN_FOUR_WEEK) return;
     var isWellness = MODE === "ws";
     var title = isWellness ? "Wellness Shots" : "Welcome Back";
     var qualifier = isWellness ? "5 meals + Wellness Shots" : "on 5 meals";
@@ -1263,17 +1264,17 @@
 
   var dinnerSheetReturnFocus = null;
   function openSheet() {
-    if (DINNER && sheet.hidden) dinnerSheetReturnFocus = document.activeElement;
+    if (FOCUS_SHEET && sheet.hidden) dinnerSheetReturnFocus = document.activeElement;
     sheet.hidden = false;
     backdrop.hidden = false;
-    setTimeout(function () { sheet.classList.add("open"); backdrop.classList.add("open"); if (DINNER) document.getElementById("m-sheet-close").focus(); }, 20);
+    setTimeout(function () { sheet.classList.add("open"); backdrop.classList.add("open"); if (FOCUS_SHEET) document.getElementById("m-sheet-close").focus(); }, 20);
     document.body.style.overflow = "hidden";
   }
   function closeSheet() {
     sheet.classList.remove("open");
     backdrop.classList.remove("open");
     document.body.style.overflow = "";
-    setTimeout(function () { sheet.hidden = true; backdrop.hidden = true; if (DINNER && dinnerSheetReturnFocus) dinnerSheetReturnFocus.focus(); }, 380);
+    setTimeout(function () { sheet.hidden = true; backdrop.hidden = true; if (FOCUS_SHEET && dinnerSheetReturnFocus) dinnerSheetReturnFocus.focus(); }, 380);
   }
 
   reviewBtn.addEventListener("click", openSheet);
@@ -1314,7 +1315,7 @@
       return;
     }
     if (e.key === "Escape" && !sheet.hidden) closeSheet();
-    else if (DINNER && e.key === "Tab" && !sheet.hidden) trapTab(e, sheet);
+    else if (FOCUS_SHEET && e.key === "Tab" && !sheet.hidden) trapTab(e, sheet);
   });
 
   function trapTab(e, box) {
