@@ -9,6 +9,12 @@
      path-based so Netlify rewrites cannot accidentally turn a member into a
      welcome customer. The dated weekly aliases have their prefix removed. */
   function menuMode() {
+    if (root.HAVN_SHORT_MENU) {
+      root.HAVN_MENU_VARIANT = '';
+      root.HAVN_FOUR_WEEK = root.HAVN_SHORT_MENU.offer;
+      root.HAVN_MENU_CITY = root.HAVN_SHORT_MENU.city === 'sd' ? 'SD' : 'DC';
+      return 'in';
+    }
     var path = root.location.pathname || "/";
     /* HQ's SMS source tag ends the path and is read by intake.js: /sms[/…]
        now, /via/sms/{campaign}/{kind}/{dc|sd} on older links. Drop it so its

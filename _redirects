@@ -25,6 +25,7 @@
 # These rules MUST stay above the /:week/* asset strip below. Netlify does not
 # re-evaluate a rewrite, so if /:week/* matched first it would read "welcome",
 # "sd", "sms" or "via" as a week slug, rewrite /welcome/via/... to /via/... and 404.
+/c/*               /index.html  200
 /:week/welcome/*    /index.html  200
 /:week/welcome      /index.html  200
 /:week/ws/*         /index.html  200

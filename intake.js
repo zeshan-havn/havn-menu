@@ -45,6 +45,7 @@
                                     is the page's own (/sd = SD)
        /via/sms/{campaign}/{kind}/{dc|sd}   links sent before Oct 2 2026 */
   function smsTag(path) {
+    if (window.HAVN_SHORT_MENU) return window.HAVN_SHORT_MENU;
     var m = path.match(/\/via\/sms\/([a-z0-9]+)\/([a-z0-9_]+)\/(dc|sd)\/?$/i);
     if (m) return { campaign: m[1].toLowerCase(), kind: m[2].toLowerCase(), city: m[3].toLowerCase() };
     m = path.match(/\/sms(?:\/([a-z0-9]+)(?:\/([a-z0-9_]+))?)?\/?$/i);

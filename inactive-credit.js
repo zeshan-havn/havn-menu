@@ -42,7 +42,6 @@
     : remaining ? '$' + remaining + ' in credits follows over the next ' + (4 - week) + ' ' + (week === 3 ? 'week' : 'weeks') + ', $25 at a time.'
     : 'This is the last week of your four-week offer.') + '</li>' +
     '<li><strong>One credit expires each week, whether you use it or not.</strong></li>' +
-    '<li>Unused credits don’t roll over.</li>' +
     '<li>The $100 is spread across four weeks, not taken off one order.</li></ul>' +
     '<a class="credit-choose" href="#m-menu">' + (first ? 'Choose my meals & claim my credits' : 'Choose my meals for this week') + '<span aria-hidden="true">↓</span></a>');
   ribbon.insertAdjacentElement('afterend', plan);
