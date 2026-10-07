@@ -46,7 +46,7 @@
   function message(cart) {
     if (!cart.meals) return 'Choose at least one meal. Breakfast and extras can be added to your dinner.';
     if (eligible(cart)) return 'Your dinner is ready. Or add 4 more meals for $20 off this order.';
-    if (cart.meals < 5) return 'Your order is ready. Add ' + (5 - cart.meals) + ' more meals for $20 off this order.';
+    if (cart.meals < 5) return 'Your order is ready. Add ' + (5 - cart.meals) + ' more ' + (cart.meals === 4 ? 'meal' : 'meals') + ' for $20 off this order.';
     if (cart.meals < 7) return '$20 off this order. Add ' + (7 - cart.meals) + ' more ' + (cart.meals === 6 ? 'meal' : 'meals') + ' for $40 off.';
     return '$40 welcome discount applied to this order.';
   }
