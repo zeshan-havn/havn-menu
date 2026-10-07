@@ -36,11 +36,6 @@
   sheet.setAttribute('role', 'dialog');
   sheet.setAttribute('aria-modal', 'true');
   sheet.setAttribute('tabindex', '-1');
-  var credit = document.createElement('p');
-  credit.className = 'dinner-credit';
-  credit.id = 'dinner-credit';
-  credit.hidden = true;
-  document.querySelector('#m-sheet .m-receipt').insertAdjacentElement('afterend', credit);
 
   function eligible(cart) { return cart.meals >= 1; }
   function message(cart) {
@@ -58,8 +53,6 @@
     render: function (cart) {
       progress.hidden = !cart.meals && !cart.sides && !cart.addons;
       progress.textContent = message(cart);
-      credit.hidden = !cart.meals;
-      credit.textContent = 'The $25 credit for the free meal from Chef J will apply to your next order.';
     }
   };
 })(window);

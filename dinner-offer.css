@@ -17,6 +17,5 @@ body.dinner-welcome .m-ribbon-note { color: var(--cream-dim); font-size: 11px; l
 body.dinner-welcome #m-menu { scroll-margin-top: 80px; }
 body.dinner-welcome .m-endpad { height: 230px; }
 .dinner-progress { padding: 2px 8px 10px; font-size: 12px; line-height: 1.45; color: var(--cream); }
-.dinner-progress[hidden], .dinner-credit[hidden] { display: none; }
-.dinner-credit { margin: 12px 0; padding: 12px 14px; border: 1px solid var(--hairline); border-radius: 10px; background: var(--cream); color: var(--forest); font-size: 13px; line-height: 1.5; }
+.dinner-progress[hidden] { display: none; }
 body.dinner-welcome .m-gate-info { line-height: 1.55; }

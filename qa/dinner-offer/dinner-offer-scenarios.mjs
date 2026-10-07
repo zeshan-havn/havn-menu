@@ -49,7 +49,7 @@ try {
       assert.equal(await page.locator('#m-r-deliv').innerText(), 'Free');
       assert.equal(await page.locator('#m-send').evaluate(el => el.classList.contains('m-send-off')), false);
       assert.match(decodeURIComponent(await page.locator('#m-send').getAttribute('href')), /Chef J dinner offer: one meal/);
-      assert.match(await page.locator('#dinner-credit').innerText(), /will apply to your next order/);
+      assert.equal(await page.locator('#dinner-credit').count(), 0);
       await page.locator('#m-sheet-close').click();
       await page.waitForSelector('#m-sheet[hidden]', { state: 'attached' });
       await card.locator('.m-dec').click(); checked++;
@@ -73,14 +73,15 @@ try {
       assert.equal(await page.locator('#m-r-offer-row').isVisible(), discount > 0);
       assert.equal(await page.locator('#m-send').evaluate(el => el.classList.contains('m-send-off')), false);
       assert.match(decodeURIComponent(await page.locator('#m-send').getAttribute('href')), /Chef J dinner offer: regular welcome/);
-      assert.match(await page.locator('#dinner-credit').innerText(), /will apply to your next order/);
+      assert.equal(await page.locator('#dinner-credit').count(), 0);
+      if (discount) assert.match(await page.locator('#m-gate').innerText(), /\$25 credit next time/);
       await page.locator('#m-sheet-close').click();
       await page.waitForSelector('#m-sheet[hidden]', { state: 'attached' }); checked++;
     }
     for (let i = 0; i < 6; i++) await card.locator('.m-dec').click();
     await page.locator('#m-bar-review').click();
     assert.equal(await page.locator('#m-r-total').innerText(), '$25');
-    assert.match(await page.locator('#dinner-credit').innerText(), /will apply to your next order/);
+    assert.equal(await page.locator('#dinner-credit').count(), 0);
     await page.locator('#m-sheet-close').click(); await page.waitForSelector('#m-sheet[hidden]', { state: 'attached' });
     await card.locator('.m-dec').click();
     await page.locator('.m-stepper[data-id="chia_2"] .m-add').click();
