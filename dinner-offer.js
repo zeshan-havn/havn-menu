@@ -12,13 +12,13 @@
   var intro = document.createElement('div');
   intro.className = 'dinner-intro';
   intro.innerHTML = '<p class="dinner-note">A personal invitation from Chef J</p>' +
-    '<p class="dinner-promise">Choose any meal for <strong>$25</strong>. Earn <strong>$25 credit on your next order</strong> after this dinner is paid.</p>' +
-    '<p class="dinner-terms">Start with one meal. No order minimum. Your reusable glass container is yours to keep.</p>' +
+    '<p class="dinner-promise">Choose any meal for <strong>$25</strong>. Earn <strong>$25 credit on your next order</strong> for a free meal.</p>' +
+    '<p class="dinner-terms">Start with one meal. No order minimum. If you don\'t like, keep the glass as a gift.</p>' +
     '<a class="dinner-choose" href="#m-menu">Choose my dinner <span aria-hidden="true">&darr;</span></a>';
   title.insertAdjacentElement('afterend', intro);
   var ribbon = document.querySelector('.m-ribbon');
-  ribbon.insertAdjacentHTML('beforebegin', '<p class="dinner-alternative">Want a few dinners instead?</p>');
-  ribbon.querySelector('.m-ribbon-note').textContent = 'Regular welcome discount on this order. Choose one offer.';
+  ribbon.insertAdjacentHTML('beforebegin', '<p class="dinner-alternative">Make it a full week?</p>');
+  ribbon.querySelector('.m-ribbon-note').textContent = 'Get the welcome offer this week, plus $25 credit for your next order.';
   var howto = document.getElementById('m-howto');
   howto.hidden = false;
   howto.querySelector('.m-howto-steps li span').textContent = 'Choose any meal. One is enough to get started.';
@@ -42,26 +42,24 @@
   credit.hidden = true;
   document.querySelector('#m-sheet .m-receipt').insertAdjacentElement('afterend', credit);
 
-  function eligible(cart) { return cart.meals === 1 && !cart.discount; }
+  function eligible(cart) { return cart.meals >= 1; }
   function message(cart) {
     if (!cart.meals) return 'Choose at least one meal. Breakfast and extras can be added to your dinner.';
-    if (eligible(cart)) return 'Your dinner is ready. Or add 4 more meals for $20 off this order.';
+    if (cart.meals === 1) return 'Your dinner is ready. Or add 4 more meals for $20 off this order.';
     if (cart.meals < 5) return 'Your order is ready. Add ' + (5 - cart.meals) + ' more ' + (cart.meals === 4 ? 'meal' : 'meals') + ' for $20 off this order.';
-    if (cart.meals < 7) return '$20 off this order. Add ' + (7 - cart.meals) + ' more ' + (cart.meals === 6 ? 'meal' : 'meals') + ' for $40 off.';
-    return '$40 welcome discount applied to this order.';
+    if (cart.meals < 7) return '$20 off this order, plus $25 credit next time. Add ' + (7 - cart.meals) + ' more ' + (cart.meals === 6 ? 'meal' : 'meals') + ' for $40 off.';
+    return '$40 welcome discount applied to this order, plus $25 credit next time.';
   }
   root.HAVN_DINNER = {
     eligible: eligible,
     ready: function (cart) { return cart.meals >= 1; },
     message: message,
-    orderLabel: function (cart) { return eligible(cart) ? 'Chef J dinner offer: one meal' : 'Chef J dinner offer: regular welcome'; },
+    orderLabel: function (cart) { return cart.meals === 1 ? 'Chef J dinner offer: one meal' : 'Chef J dinner offer: regular welcome'; },
     render: function (cart) {
       progress.hidden = !cart.meals && !cart.sides && !cart.addons;
       progress.textContent = message(cart);
       credit.hidden = !cart.meals;
-      credit.textContent = eligible(cart)
-        ? 'Next order: $25 credit activates after this dinner is paid. It applies to a later meal order, not today’s total.'
-        : 'The one-meal next-order credit is a separate option. This cart uses the regular welcome offer at 5 or 7 meals.';
+      credit.textContent = 'The $25 credit for the free meal from Chef J will apply to your next order.';
     }
   };
 })(window);

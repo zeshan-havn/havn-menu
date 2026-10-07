@@ -5,11 +5,11 @@ Frontend-only preview for invited older non-ordering leads in both cities:
 and SMS suffixes resolve identically. Normal welcome and tasting routes retain
 their existing gates and offers.
 
-Exactly one actual meal costs $25 and promises $25 credit on a later meal order,
+A qualifying invitation order with at least one actual meal promises $25 credit on a later meal order,
 activated only after the first order is paid. The future credit never reduces
 today's total. Sides/extras are charged normally and cannot replace the meal.
 Two–four meals are allowed at normal price; five–six receive $20 off and seven+
-receive $40 off instead of the next-order credit. Orders include one of these
+receive $40 off in addition to the next-order credit. Orders include one of these
 informational markers before the ordinary SMS body:
 
 - `Chef J dinner offer: one meal`

@@ -33,7 +33,7 @@ try {
     await page.waitForSelector('body:not(.m-menu-checking)');
     assert.equal(await page.evaluate(() => window.HAVN_MENU_CITY), prefix ? 'SD' : 'DC');
     assert.equal(await page.evaluate(() => window.HAVN_MENU_VARIANT), 'dinner');
-    assert.match(await page.locator('.dinner-promise').innerText(), /after this dinner is paid/);
+    assert.match(await page.locator('.dinner-promise').innerText(), /for a free meal/);
     assert.match(await page.locator('#m-howto-cutoff').innerText(), prefix ? /Friday at 8pm Pacific/ : /Friday at 8pm Eastern/);
     assert.equal(await page.locator('.dinner-choose').getAttribute('href'), '#m-menu');
     // Every whole-meal slot can be the single dinner; sides/extras are not substitutes.
@@ -49,7 +49,7 @@ try {
       assert.equal(await page.locator('#m-r-deliv').innerText(), 'Free');
       assert.equal(await page.locator('#m-send').evaluate(el => el.classList.contains('m-send-off')), false);
       assert.match(decodeURIComponent(await page.locator('#m-send').getAttribute('href')), /Chef J dinner offer: one meal/);
-      assert.match(await page.locator('#dinner-credit').innerText(), /activates after this dinner is paid/);
+      assert.match(await page.locator('#dinner-credit').innerText(), /will apply to your next order/);
       await page.locator('#m-sheet-close').click();
       await page.waitForSelector('#m-sheet[hidden]', { state: 'attached' });
       await card.locator('.m-dec').click(); checked++;
@@ -73,14 +73,14 @@ try {
       assert.equal(await page.locator('#m-r-offer-row').isVisible(), discount > 0);
       assert.equal(await page.locator('#m-send').evaluate(el => el.classList.contains('m-send-off')), false);
       assert.match(decodeURIComponent(await page.locator('#m-send').getAttribute('href')), /Chef J dinner offer: regular welcome/);
-      assert.doesNotMatch(await page.locator('#dinner-credit').innerText(), /activates after/);
+      assert.match(await page.locator('#dinner-credit').innerText(), /will apply to your next order/);
       await page.locator('#m-sheet-close').click();
       await page.waitForSelector('#m-sheet[hidden]', { state: 'attached' }); checked++;
     }
     for (let i = 0; i < 6; i++) await card.locator('.m-dec').click();
     await page.locator('#m-bar-review').click();
     assert.equal(await page.locator('#m-r-total').innerText(), '$25');
-    assert.match(await page.locator('#dinner-credit').innerText(), /activates after/);
+    assert.match(await page.locator('#dinner-credit').innerText(), /will apply to your next order/);
     await page.locator('#m-sheet-close').click(); await page.waitForSelector('#m-sheet[hidden]', { state: 'attached' });
     await card.locator('.m-dec').click();
     await page.locator('.m-stepper[data-id="chia_2"] .m-add').click();

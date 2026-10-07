@@ -916,7 +916,7 @@
       var ready = DINNER ? DINNER.ready(c) : c.equivalents >= 4 - 1e-9;
       var hint = "";
       if (DINNER) {
-        hint = DINNER.eligible(c) ? " · $25 credit next order" : promoHint(c);
+        hint = promoHint(c) + (DINNER.eligible(c) ? " · $25 credit next order" : "");
       } else if (c.single) {
         hint = " with delivery · add 3 for a week";
       } else if (tastingGifts && c.meals < 5) {
