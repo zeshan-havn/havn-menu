@@ -38,6 +38,11 @@
     } catch (e) { return ""; }
   }
 
+  function matchingFbc(value, clickId) {
+    return /^fb\.\d+\.\d+\..+/.test(value || "") &&
+      (!clickId || value.split(".").slice(3).join(".") === clickId);
+  }
+
   /* HQ's SMS links end in a source tag (intake/return_links.py in HQ):
        /sms[/{campaign}[/{kind}]]   campaign defaults to the page's mode
                                     (welcome, ws, in; "active" for the member
@@ -75,6 +80,7 @@
       meta_campaign_id: get("meta_campaign_id"),
       meta_adset_id: get("meta_adset_id"),
       meta_ad_id: get("meta_ad_id"),
+      meta_creative_id: get("meta_creative_id"),
       placement: get("placement")
     };
     /* AT&T rotation shims preserve paths but can discard query strings. */
@@ -92,8 +98,16 @@
     /* A direct return must not inherit an old retention ad or SMS touch. */
     var oldRetention = stored && /^(retention_|sms_)/i.test(stored.utm_campaign || "");
     var attr = (any || !stored || oldRetention) ? fresh : stored;
-    attr.touch_started_at = new Date().toISOString();
-    attr.session_id = "menu_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2);
+    attr.touch_started_at = attr.touch_started_at || new Date().toISOString();
+    attr.session_id = attr.session_id || "menu_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2);
+
+    /* Preserve the actual click cookie timestamp across pages and repeated
+       composer taps. A new fbclid must never inherit the previous ad cookie. */
+    var cookieFbc = readCookie("_fbc");
+    var previousFbc = stored && stored.fbc;
+    attr.fbc = matchingFbc(cookieFbc, attr.fbclid) ? cookieFbc :
+      (matchingFbc(previousFbc, attr.fbclid) ? previousFbc :
+        (attr.fbclid ? "fb.1." + Date.now() + "." + attr.fbclid : ""));
 
     /* _fbp is set by the Meta pixel and can appear AFTER first paint,
        so read it live every time rather than trusting the snapshot */
@@ -163,7 +177,9 @@
      missing visitor attribute — say so loudly instead of posting "" and
      letting the OS file leads against no market. */
   function requiredCity() {
-    var c = CFG.CITY || "";
+    // The shared menu config is DC by default; pricing resolves the displayed
+    // city from the live route (including compact and carrier-shim links).
+    var c = window.HAVN_MENU_CITY || CFG.CITY || "";
     if (!c && window.console) {
       console.warn("[havn] CITY is empty — check config.js; intake requires it.");
     }
@@ -182,6 +198,11 @@
     return readCookie("_fbp") || attribution.fbp || "";
   }
 
+  function liveFbc() {
+    var value = readCookie("_fbc");
+    return matchingFbc(value, attribution.fbclid) ? value : attribution.fbc || "";
+  }
+
   function clickPayload(token, intentKey) {
     return JSON.stringify({
       token: token,
@@ -192,6 +213,7 @@
         (retentionCity() || requiredCity()) : requiredCity(),
       fbclid: attribution.fbclid || "",
       fbp: liveFbp(),
+      fbc: liveFbc(),
       utm_source: attribution.utm_source || "",
       utm_medium: attribution.utm_medium || "",
       utm_campaign: attribution.utm_campaign || "",
@@ -199,6 +221,7 @@
       meta_campaign_id: attribution.meta_campaign_id || "",
       meta_adset_id: attribution.meta_adset_id || "",
       meta_ad_id: attribution.meta_ad_id || "",
+      meta_creative_id: attribution.meta_creative_id || "",
       placement: attribution.placement || "",
       session_id: attribution.session_id,
       touch_started_at: attribution.touch_started_at,
