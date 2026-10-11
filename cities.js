@@ -22,6 +22,8 @@
   var SMS_NUMBER = "+18335651133";
   var ORDER_DRAFTS_URL = "https://havn-os-next-production.up.railway.app/api/public/order-drafts";
   var GREETING = "Hi Chef, Here's my order:";
+  /* order-drafts tokens are exactly 6 upper-case letters/digits (Crockford). */
+  var TOKEN_RE = /^[0-9A-Z]{6}$/;
   var DRAFT_DELAY_MS = 450;
   var DRAFT_TIMEOUT_MS = 6000;
   var WINDOW_IDS = { "sunday morning": "sun_am", "sunday evening": "sun_pm", "monday morning": "mon_am" };
@@ -86,6 +88,7 @@
   var inflight = 0;
   var timer = null;
   var writing = false;
+  var lastHref = ""; /* what we last wrote to the send button */
 
   function fetchToken(payload) {
     var ctrl = typeof root.AbortController === "function" ? new root.AbortController() : null;
@@ -100,7 +103,7 @@
       return r.json();
     }).then(function (data) {
       if (t) clearTimeout(t);
-      if (!data || typeof data.token !== "string" || !/^[A-Za-z0-9]{4,12}$/.test(data.token)) {
+      if (!data || typeof data.token !== "string" || !TOKEN_RE.test(data.token)) {
         throw new Error("order-drafts: no token");
       }
       return data.token;
@@ -116,14 +119,16 @@
       var parts = hrefParts(send.getAttribute("href"));
       if (!parts) return; /* no href: pending-menu mode or nothing selected */
       var base = parts.body;
-      var tail = base.match(/\n\n\((?:miami|phoenix|[A-Za-z0-9]{4,12})\)$/);
-      if (tail) return; /* our own write */
+      /* Skip only our own write, recognised by its exact value. Never by what the text ends with: a
+         customer's note can end in "(anything)" and must still get the greeting and the tag. */
+      if (send.getAttribute("href") === lastHref) return;
       var text = GREETING + "\n\n" + base;
       var key = text;
       if (timer) clearTimeout(timer);
       var mine = ++inflight; /* any older pending draft is now stale */
       writing = true;
-      send.setAttribute("href", build(parts.prefix, text, cache.key === key && cache.token ? cache.token : slug));
+      lastHref = build(parts.prefix, text, cache.key === key && cache.token ? cache.token : slug);
+      send.setAttribute("href", lastHref);
       writing = false;
 
       if (cache.key === key && cache.token) return;
@@ -142,7 +147,8 @@
           var cur = hrefParts(send.getAttribute("href"));
           if (!cur) return;
           writing = true;
-          send.setAttribute("href", build(cur.prefix, text, token));
+          lastHref = build(cur.prefix, text, token);
+          send.setAttribute("href", lastHref);
           writing = false;
         })["catch"](function () { /* keep the "(city)" fallback already in the href */ });
       }, DRAFT_DELAY_MS);
