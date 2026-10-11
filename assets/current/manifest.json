@@ -8,67 +8,67 @@
     "path": "CulinaryOps/Oct 18th Menu File/finalized-menu.json",
     "sha256": "9f00f46814c064a025e3273c1dd10c444f6c8bc69b873f0a1459b5d5f64b2a08"
   },
-  "transform": "sips -Z 900 -s format jpeg -s formatOptions 82",
+  "transform": "sips -Z min(1600, source-long-edge) -s format jpeg -s formatOptions 90",
   "items": {
     "special": {
       "source": "CulinaryOps/Oct 18th Menu File/meal-images/cheat-chicken-shawarma-bowl.png",
-      "source_sha256": "f4f2f9324a9157f203d7f883b45976b27fd520a797f08be0b61ef92c1032e4fc",
+      "source_sha256": "6f1b4d69fc86e5aebf3ba82719fba1faf0aee7157d093cd388a52e7c17898730",
       "output": "assets/current/special.jpg",
-      "output_sha256": "5f655438d043e46d70b0fd007c65e9cc0d765094ca228519537fd1af47189a68"
+      "output_sha256": "aed44cea1bed10b98cb5e4ae40e492295f40da2ba1230261ff759c42e5d6ee91"
     },
     "chicken": {
       "source": "CulinaryOps/Oct 18th Menu File/meal-images/chicken-thai-coconut-curry-chicken.png",
-      "source_sha256": "4cd43816f3ec867446d6e41a7148afbea8f863c5428bae2c9260853077aa922d",
+      "source_sha256": "3df9fda02025f9b088e9b5a70ace18844e7909fce7af8ec3a823821e9844e165",
       "output": "assets/current/chicken.jpg",
-      "output_sha256": "8ef4a4ace45f1ff1c84c531e260645ec19d09cb0d22008558445d70445e9f0ab"
+      "output_sha256": "8b1ed9868d499ac7a3c0d8c38c0c1c2ccd7bd753f9279ee2ae4b721d58e84161"
     },
     "chicken_2": {
       "source": "CulinaryOps/Oct 18th Menu File/meal-images/chicken_2-mediterranean-chickpea-chicken-bowl-with-green-tahini.png",
-      "source_sha256": "0b62f1219d371cdfa1943ed980f53c3a3ef92b137db0f75923ca38660debde21",
+      "source_sha256": "87e7531300110fc1a75efc2bbd53ef52cc916b3cf643b7582c113a92af9445c7",
       "output": "assets/current/chicken_2.jpg",
-      "output_sha256": "2957f05a6960a25de1475b4036a81b58ebe4924864dbefde08d8deb3f298dada"
+      "output_sha256": "87a85e845995c51e67e65681ee606e25527d22bedd0fc1485e675d9758ba7828"
     },
     "beef": {
       "source": "CulinaryOps/Oct 18th Menu File/meal-images/beef-texas-steakhouse-steak.png",
-      "source_sha256": "f6c74406a7b8116ab9fe47ab18960080efc932dc34cb58b4b3061ba668fa25dc",
+      "source_sha256": "391d8a8174466715f92a29593f22236e8e058fa3ca470da46e821c27984100d4",
       "output": "assets/current/beef.jpg",
-      "output_sha256": "2f238b9fb7358163582269bd7efbd1b8baa8ab731e1c0f1a527c4ef7e099ed0e"
+      "output_sha256": "e24d90f929bd9666dddd2c4c41ae3297edade6227f331d0a9909b21330c2975f"
     },
     "seafood": {
       "source": "CulinaryOps/Oct 18th Menu File/meal-images/seafood-gochujang-honey-butter-salmon.png",
-      "source_sha256": "cc02c4d4993cef528580b9a72b55529027fddf57639d319a571278bdc754974f",
+      "source_sha256": "57f4a96a32c761528ad497b2a80621b1d35229fbc6130a5dcc661b9d375640d9",
       "output": "assets/current/seafood.jpg",
-      "output_sha256": "44b40557beaed63006f18a4e0b618b82a843fdc90f4e3277bf9f01d721d496a3"
+      "output_sha256": "cb81ba9b4a8a940cdf80441eccf352eae70e0dec10d3e504183785ed8f34abfb"
     },
     "seafood_2": {
       "source": "CulinaryOps/Oct 18th Menu File/meal-images/seafood_2-bang-bang-shrimp-bowl.png",
-      "source_sha256": "6dc983eb709986806c38de40941340ebc069162ef76a390aef83d13015f880a0",
+      "source_sha256": "9ee7194fa4c8dcb0d1a22485f020cee434d681a791915d4a04260cfdfa4ee7eb",
       "output": "assets/current/seafood_2.jpg",
-      "output_sha256": "13b708cd1564584c032ca8523c04fc0dbf52c6d109da3cfde7e34f777d467ae7"
+      "output_sha256": "384b79248c46eac3e9d02d475c9288d6a35f12bfdee86b450dbbc07fa3844a77"
     },
     "pasta": {
       "source": "CulinaryOps/Oct 18th Menu File/meal-images/pasta-philly-cheesesteak-mac-cheese.png",
-      "source_sha256": "36cddb29204cd647cc9f1240a9f03a01e3c3b53de8260ef6f6c6e14476fe7079",
+      "source_sha256": "1e40b874c61687b502e8b899a73e21067cddc3d5ac70c151b6469e0ccbb875cd",
       "output": "assets/current/pasta.jpg",
-      "output_sha256": "361645b003edb93971b0e3009897fde1e348daf22c5a04f35020ebca2dc2f434"
+      "output_sha256": "99404dc208e420687eb07d48b3bcd1091c2c3340ec1b1efba58cf1271178a146"
     },
     "veg": {
       "source": "CulinaryOps/Oct 18th Menu File/meal-images/vegetarian-crispy-za-atar-chickpeas.png",
-      "source_sha256": "8103da953f5ff5b49692daf6b2734aa5bf775afededa2f77e833bef09805051e",
+      "source_sha256": "04578c78af56f1d813819636d62ad989a1ca9582ddb640369fd20004820bce3e",
       "output": "assets/current/veg.jpg",
-      "output_sha256": "d133cd0dede09647ac488eedfe41d7a18951137c0d69d31dc85dbbe0f4aeb6e4"
+      "output_sha256": "31bdd87d7432fe793ce0dabba7620bc4584aab1b0f915733b3d558d6f9ccc8b7"
     },
     "salad": {
       "source": "CulinaryOps/Oct 18th Menu File/meal-images/salad-ruby-goddess-salad.png",
-      "source_sha256": "0ca17e1717c46655f8582565bd82a023ee102912d5b687c8ba264ebd7170f6e9",
+      "source_sha256": "e0adf905696b6418daff03b17777d9f4b377566fa54945f0a762a4b113b85b20",
       "output": "assets/current/salad.jpg",
-      "output_sha256": "90a7b1d5fd5ef0c44c2bba868adb96256e1ed3e9f3aa4efb6211e3114595fed5"
+      "output_sha256": "98bf98d5ce3ab7e23ec49cd87e949ee6394655d8bad354bc367a2b1d184ac3af"
     },
     "salad_2": {
       "source": "CulinaryOps/Oct 18th Menu File/meal-images/salad_2-pesto-chicken-caprese-kale-salad.png",
-      "source_sha256": "b6c4b01c2662167b9c4e7caff17e22269c432805b5a52352364fb6609164570f",
+      "source_sha256": "0d67d3751fb97b67762881fc0ee46a2445792630f4edb10d3791fe708f35cdc7",
       "output": "assets/current/salad_2.jpg",
-      "output_sha256": "35606f216df5f2d3c76d3f1f66838ff51d6e45d6ec2fe58c43f5d8c8f5b7dbf9"
+      "output_sha256": "17eb7359c23e51e135bbf32706f1e20df13a74743799481958c6f8da09825446"
     }
   }
 }

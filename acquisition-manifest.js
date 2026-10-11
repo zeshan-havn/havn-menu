@@ -1,11 +1,11 @@
-/* acquisition-manifest.json sha256=723c9209e86a7ef70533251a1c233c4c426ce606d17175b46c63b8296a12cc93 */
+/* acquisition-manifest.json sha256=cc60079ce9c3fb0ffa84f5e069d3225342ab5de200bebc64043307f4a8daec14 */
 window.HAVN_ACQUISITION_MANIFEST =
 {
   "schemaVersion": 1,
-  "releaseDigest": "853a009a81e0352b39eb222e4505774da283f8007afc4d63e33a016bb78ed5fd",
+  "releaseDigest": "09377c6c8542ceefa03d364057c50b866fa5c73c21e577055b75b3ba4c979d81",
   "menu": {
     "id": "delivery-2026-10-18",
-    "version": "sha256-853a009a81e0352b39eb222e4505774da283f8007afc4d63e33a016bb78ed5fd",
+    "version": "sha256-09377c6c8542ceefa03d364057c50b866fa5c73c21e577055b75b3ba4c979d81",
     "weekLabel": "October 18",
     "pricingPolicyId": "backend-25-10-v1",
     "offerPolicyId": "welcome-20-40-v1",
@@ -104,11 +104,11 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Dairy-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-853a009a81e0352b39eb222e4505774da283f8007afc4d63e33a016bb78ed5fd/cheat.jpg",
-          "width": 654,
-          "height": 900,
+          "url": "/assets/releases/sha256-09377c6c8542ceefa03d364057c50b866fa5c73c21e577055b75b3ba4c979d81/cheat.jpg",
+          "width": 1163,
+          "height": 1600,
           "format": "jpeg",
-          "sha256": "5f655438d043e46d70b0fd007c65e9cc0d765094ca228519537fd1af47189a68",
+          "sha256": "aed44cea1bed10b98cb5e4ae40e492295f40da2ba1230261ff759c42e5d6ee91",
           "alt": "Chicken Shawarma Bowl"
         }
       },
@@ -139,11 +139,11 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-853a009a81e0352b39eb222e4505774da283f8007afc4d63e33a016bb78ed5fd/chicken.jpg",
-          "width": 656,
-          "height": 900,
+          "url": "/assets/releases/sha256-09377c6c8542ceefa03d364057c50b866fa5c73c21e577055b75b3ba4c979d81/chicken.jpg",
+          "width": 1163,
+          "height": 1600,
           "format": "jpeg",
-          "sha256": "8ef4a4ace45f1ff1c84c531e260645ec19d09cb0d22008558445d70445e9f0ab",
+          "sha256": "8b1ed9868d499ac7a3c0d8c38c0c1c2ccd7bd753f9279ee2ae4b721d58e84161",
           "alt": "Thai Coconut Curry Chicken"
         }
       },
@@ -174,11 +174,11 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-853a009a81e0352b39eb222e4505774da283f8007afc4d63e33a016bb78ed5fd/chicken_2.jpg",
-          "width": 656,
-          "height": 900,
+          "url": "/assets/releases/sha256-09377c6c8542ceefa03d364057c50b866fa5c73c21e577055b75b3ba4c979d81/chicken_2.jpg",
+          "width": 1163,
+          "height": 1600,
           "format": "jpeg",
-          "sha256": "2957f05a6960a25de1475b4036a81b58ebe4924864dbefde08d8deb3f298dada",
+          "sha256": "87a85e845995c51e67e65681ee606e25527d22bedd0fc1485e675d9758ba7828",
           "alt": "Mediterranean Chickpea Chicken Bowl with Green Tahini"
         }
       },
@@ -212,11 +212,11 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Dairy-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-853a009a81e0352b39eb222e4505774da283f8007afc4d63e33a016bb78ed5fd/beef.jpg",
-          "width": 656,
-          "height": 900,
+          "url": "/assets/releases/sha256-09377c6c8542ceefa03d364057c50b866fa5c73c21e577055b75b3ba4c979d81/beef.jpg",
+          "width": 1163,
+          "height": 1600,
           "format": "jpeg",
-          "sha256": "2f238b9fb7358163582269bd7efbd1b8baa8ab731e1c0f1a527c4ef7e099ed0e",
+          "sha256": "e24d90f929bd9666dddd2c4c41ae3297edade6227f331d0a9909b21330c2975f",
           "alt": "Texas Steakhouse Steak"
         }
       },
@@ -250,11 +250,11 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Dairy-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-853a009a81e0352b39eb222e4505774da283f8007afc4d63e33a016bb78ed5fd/seafood.jpg",
-          "width": 656,
-          "height": 900,
+          "url": "/assets/releases/sha256-09377c6c8542ceefa03d364057c50b866fa5c73c21e577055b75b3ba4c979d81/seafood.jpg",
+          "width": 1163,
+          "height": 1600,
           "format": "jpeg",
-          "sha256": "44b40557beaed63006f18a4e0b618b82a843fdc90f4e3277bf9f01d721d496a3",
+          "sha256": "cb81ba9b4a8a940cdf80441eccf352eae70e0dec10d3e504183785ed8f34abfb",
           "alt": "Gochujang Honey Butter Salmon"
         }
       },
@@ -285,11 +285,11 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-853a009a81e0352b39eb222e4505774da283f8007afc4d63e33a016bb78ed5fd/seafood_2.jpg",
-          "width": 656,
-          "height": 900,
+          "url": "/assets/releases/sha256-09377c6c8542ceefa03d364057c50b866fa5c73c21e577055b75b3ba4c979d81/seafood_2.jpg",
+          "width": 1163,
+          "height": 1600,
           "format": "jpeg",
-          "sha256": "13b708cd1564584c032ca8523c04fc0dbf52c6d109da3cfde7e34f777d467ae7",
+          "sha256": "384b79248c46eac3e9d02d475c9288d6a35f12bfdee86b450dbbc07fa3844a77",
           "alt": "Bang Bang Shrimp Bowl"
         }
       },
@@ -325,11 +325,11 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Gluten-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-853a009a81e0352b39eb222e4505774da283f8007afc4d63e33a016bb78ed5fd/pasta.jpg",
-          "width": 654,
-          "height": 900,
+          "url": "/assets/releases/sha256-09377c6c8542ceefa03d364057c50b866fa5c73c21e577055b75b3ba4c979d81/pasta.jpg",
+          "width": 1163,
+          "height": 1600,
           "format": "jpeg",
-          "sha256": "361645b003edb93971b0e3009897fde1e348daf22c5a04f35020ebca2dc2f434",
+          "sha256": "99404dc208e420687eb07d48b3bcd1091c2c3340ec1b1efba58cf1271178a146",
           "alt": "Philly Cheesesteak Mac & Cheese"
         }
       },
@@ -360,11 +360,11 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-853a009a81e0352b39eb222e4505774da283f8007afc4d63e33a016bb78ed5fd/vegetarian.jpg",
-          "width": 656,
-          "height": 900,
+          "url": "/assets/releases/sha256-09377c6c8542ceefa03d364057c50b866fa5c73c21e577055b75b3ba4c979d81/vegetarian.jpg",
+          "width": 1163,
+          "height": 1600,
           "format": "jpeg",
-          "sha256": "d133cd0dede09647ac488eedfe41d7a18951137c0d69d31dc85dbbe0f4aeb6e4",
+          "sha256": "31bdd87d7432fe793ce0dabba7620bc4584aab1b0f915733b3d558d6f9ccc8b7",
           "alt": "Crispy Za'atar Chickpeas"
         }
       },
@@ -396,11 +396,11 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-853a009a81e0352b39eb222e4505774da283f8007afc4d63e33a016bb78ed5fd/salad.jpg",
-          "width": 720,
-          "height": 900,
+          "url": "/assets/releases/sha256-09377c6c8542ceefa03d364057c50b866fa5c73c21e577055b75b3ba4c979d81/salad.jpg",
+          "width": 1280,
+          "height": 1600,
           "format": "jpeg",
-          "sha256": "90a7b1d5fd5ef0c44c2bba868adb96256e1ed3e9f3aa4efb6211e3114595fed5",
+          "sha256": "98bf98d5ce3ab7e23ec49cd87e949ee6394655d8bad354bc367a2b1d184ac3af",
           "alt": "Ruby Goddess Salad"
         }
       },
@@ -434,11 +434,11 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Dairy-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-853a009a81e0352b39eb222e4505774da283f8007afc4d63e33a016bb78ed5fd/salad_2.jpg",
-          "width": 720,
-          "height": 900,
+          "url": "/assets/releases/sha256-09377c6c8542ceefa03d364057c50b866fa5c73c21e577055b75b3ba4c979d81/salad_2.jpg",
+          "width": 1280,
+          "height": 1600,
           "format": "jpeg",
-          "sha256": "35606f216df5f2d3c76d3f1f66838ff51d6e45d6ec2fe58c43f5d8c8f5b7dbf9",
+          "sha256": "17eb7359c23e51e135bbf32706f1e20df13a74743799481958c6f8da09825446",
           "alt": "Pesto Chicken Caprese Kale Salad"
         }
       },
