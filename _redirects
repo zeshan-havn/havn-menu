@@ -25,6 +25,16 @@
 # These rules MUST stay above the /:week/* asset strip below. Netlify does not
 # re-evaluate a rewrite, so if /:week/* matched first it would read "welcome",
 # "sd", "sms" or "via" as a week slug, rewrite /welcome/via/... to /via/... and 404.
+# Miami and Phoenix (new cities, texting 833-565-1133): same menu page, served as
+# cities.html, which is index.html plus cities.js. DC/SD never touch these rules.
+/miami              /cities.html  200
+/miami/*            /cities.html  200
+/phoenix            /cities.html  200
+/phoenix/*          /cities.html  200
+/:week/miami        /cities.html  200
+/:week/miami/*      /cities.html  200
+/:week/phoenix      /cities.html  200
+/:week/phoenix/*    /cities.html  200
 /c/*               /index.html  200
 /:week/welcome/*    /index.html  200
 /:week/welcome      /index.html  200
