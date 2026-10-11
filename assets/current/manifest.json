@@ -6,7 +6,7 @@
   },
   "menu_source": {
     "path": "CulinaryOps/Oct 18th Menu File/finalized-menu.json",
-    "sha256": "22bba9c0d4bfab64fd3f2020a185e3578e6d6a43fbfebafed01720964a6e666e"
+    "sha256": "9f00f46814c064a025e3273c1dd10c444f6c8bc69b873f0a1459b5d5f64b2a08"
   },
   "transform": "sips -Z 900 -s format jpeg -s formatOptions 82",
   "items": {
