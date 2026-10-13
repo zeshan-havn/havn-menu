@@ -275,7 +275,16 @@
     in: window.HAVN_FOUR_WEEK ? "Week " + window.HAVN_FOUR_WEEK.week + " credit" : "Welcome back credit"
   };
 
+  function partnerWelcomeTiers() {
+    var t = window.HAVN_CONFIG && window.HAVN_CONFIG.WELCOME_OFFER_TIERS;
+    return (window.HAVN_MENU_CITY === "miami" || window.HAVN_MENU_CITY === "phoenix") &&
+      Array.isArray(t) && t.length === 2 ? t : null;
+  }
+
   function discountFor(meals, wellnessShots, dateBalls) {
+    var tiers = MODE === "welcome" && partnerWelcomeTiers();
+    if (tiers) return meals >= tiers[1].minMeals ? tiers[1].offCents / 100 :
+      meals >= tiers[0].minMeals ? tiers[0].offCents / 100 : 0;
     if (MODE === "welcome" && TASTING) return meals >= 7 ? 25 : meals >= 5 ? 15 : 0;
     if (MODE === "welcome") return meals >= 7 ? 40 : meals >= 5 ? 20 : 0;
     if (MODE === "ws") return meals >= 5 && wellnessShots >= 1 ? 25 : 0;
@@ -285,6 +294,8 @@
 
   function promoHint(c) {
     if (MODE === "active" || c.discount) return "";
+    var tiers = MODE === "welcome" && partnerWelcomeTiers();
+    if (tiers) return " · $" + tiers[0].offCents / 100 + " off at " + tiers[0].minMeals + " meals";
     if (MODE === "welcome" && TASTING) {
       if (tastingGifts && c.meals < 5) return " · $15 off at 5 meals";
       return c.meals < 5 ? " · $15 off at 5 meals" : " · $25 off at 7";
@@ -390,7 +401,8 @@
     if (MODE !== "welcome") return;
     var nums = [document.getElementById("m-rb-0"), document.getElementById("m-rb-1")];
     if (!nums[0] || !nums[1]) return;
-    var TARGETS = TASTING ? [15, 25] : [20, 40];
+    var tiers = partnerWelcomeTiers();
+    var TARGETS = tiers ? tiers.map(function (t) { return t.offCents / 100; }) : TASTING ? [15, 25] : [20, 40];
     var rib = document.querySelector(".m-ribbon");
     if (TASTING && rib) rib.setAttribute("aria-label", "Welcome offer: 15 dollars off five meals, 25 dollars off seven or more, applied automatically");
     nums.forEach(function (n, i) { n.textContent = TARGETS[i]; });
