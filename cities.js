@@ -35,9 +35,7 @@
     miami: { label: "Miami" },
     phoenix: { label: "Phoenix" }
   };
-  /* menu.js draws exactly this welcome ladder ($20 off 5 meals, $40 off 7+).
-     The welcome pages show it only when Havn OS offers the same. */
-  var MENU_LADDER = [{ minMeals: 5, offCents: 2000 }, { minMeals: 7, offCents: 4000 }];
+  /* Partner welcome amounts come from Havn OS; the menu supports 5/7 meal tiers. */
   var GREETING = "Hi Chef, Here's my order:";
   var WELCOME_GREETING = "Hi Chef, Here's my first week:";
   /* Havn OS draft tokens: 6 characters from ABCDEFGHJKMNPQRSTUVWXYZ23456789. */
@@ -208,10 +206,9 @@
       return x && isFinite(x.minMeals) && isFinite(x.offCents) && x.offCents > 0;
     }).sort(function (a, b) { return a.minMeals - b.minMeals; });
   }
-  function sameLadder(t) {
-    return !!t && t.length === MENU_LADDER.length && t.every(function (x, i) {
-      return x.minMeals === MENU_LADDER[i].minMeals && x.offCents === MENU_LADDER[i].offCents;
-    });
+  function supportedLadder(t) {
+    return !!t && t.length === 2 && t[0].minMeals === 5 && t[1].minMeals === 7 &&
+      t.every(function (x) { return Number.isInteger(x.offCents) && x.offCents > 0; });
   }
   function cutoffText(label) {
     return String(label).replace(/^(Sun|Mon|Tue|Wed|Thu|Fri|Sat)\b\.? ?/, function (m, d) { return DAYS[d] + " at "; });
@@ -225,7 +222,10 @@
     var tiers = tiersOf(osCity);
     var mode = "active";
     if (welcome) {
-      if (sameLadder(tiers)) mode = "welcome";
+      if (supportedLadder(tiers)) {
+        mode = "welcome";
+        cfg.WELCOME_OFFER_TIERS = tiers;
+      }
       else if (root.console) root.console.warn("[havn] " + slug + ": no matching welcome offer from Havn OS; showing the regular menu.");
     }
     root.HAVN_MENU_MODE = mode;
@@ -249,6 +249,12 @@
   /* ── 4. after menu.js: cutoff, offer, order text, beacons ───────────── */
   function afterMenu(mode, tiers) {
     var label = document.querySelector(".topbar-city");
+    var topbar = document.getElementById("topbar");
+    if (!label && topbar) {
+      label = document.createElement("span");
+      label.className = "topbar-city";
+      topbar.appendChild(label);
+    }
     if (label) label.textContent = city.label;
     var cutoffLabel = (osStatus && osStatus.cutoffLabel) || (osCity && osCity.cutoffLabel) || "";
     var cutoff = document.getElementById("m-howto-cutoff");
