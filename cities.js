@@ -76,6 +76,7 @@
   cfg.CITY = city.label;
   cfg.CITY_LABEL = city.label;
   cfg.CITY_SHORT = city.label;
+  cfg.EXCLUDED_MENU_ITEM_IDS = ["wellness_shots"];
   cfg.LANDING_VARIANT = "os-" + slug;
   cfg.QR = Object.assign({}, cfg.QR, { numberLabel: SMS_LABEL });
   /* menu.js fetches this once; it is replaced with Havn OS's answer below. */

@@ -198,6 +198,12 @@
     return indexed;
   }
 
+  var excludedItems = (window.HAVN_CONFIG || {}).EXCLUDED_MENU_ITEM_IDS || [];
+  SECTIONS = SECTIONS.map(function (section) {
+    return Object.assign({}, section, { items: section.items.filter(function (item) {
+      return excludedItems.indexOf(item.id) === -1;
+    }) });
+  }).filter(function (section) { return section.items.length > 0; });
   var ITEMS = indexItems(SECTIONS);
 
   var qty = {};
