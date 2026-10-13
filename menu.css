@@ -36,6 +36,7 @@
    how-to-order block on the forest masthead, then the normal menu. */
 .topbar-logo { display: block; width: auto; height: 34px; }
 .topbar-logo[hidden] { display: none; }
+.topbar-city { margin-left: auto; color: var(--cream); font-size: 13px; font-weight: 500; white-space: nowrap; }
 body.quiz-welcome .topbar-mark,
 body.quiz-welcome .topbar-name { display: none; }
 body.quiz-welcome .topbar { padding-top: 11px; padding-bottom: 11px; }

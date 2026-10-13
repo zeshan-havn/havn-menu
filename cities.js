@@ -249,6 +249,12 @@
   /* ── 4. after menu.js: cutoff, offer, order text, beacons ───────────── */
   function afterMenu(mode, tiers) {
     var label = document.querySelector(".topbar-city");
+    var topbar = document.getElementById("topbar");
+    if (!label && topbar) {
+      label = document.createElement("span");
+      label.className = "topbar-city";
+      topbar.appendChild(label);
+    }
     if (label) label.textContent = city.label;
     var cutoffLabel = (osStatus && osStatus.cutoffLabel) || (osCity && osCity.cutoffLabel) || "";
     var cutoff = document.getElementById("m-howto-cutoff");
