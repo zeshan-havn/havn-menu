@@ -184,6 +184,8 @@
   ];
   /* ── END GENERATED: SECTIONS ─────────────────────────────────── */
 
+  if (DINNER && DINNER.setDeliveryWeek) DINNER.setDeliveryWeek(ARCHIVED_DELIVERY_DATE ? ARCHIVED_DELIVERY_DATE.toISOString().slice(0, 10) : DELIVERY_WEEK);
+
   /* Keep the shareable /Sep13 link pinned to that delivery week's
      preserved snapshot while the normal routes continue using the live menu. */
   if (ARCHIVED_DELIVERY_DATE && window.HAVN_PREVIOUS_MENU_SECTIONS) {

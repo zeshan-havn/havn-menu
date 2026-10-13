@@ -46,6 +46,10 @@
     return '$40 welcome discount applied to this order, plus $25 credit next time.';
   }
   root.HAVN_DINNER = {
+    setDeliveryWeek: function (week) {
+      if (week !== '2026-10-18') return;
+      cutoff.textContent = 'Order by Thursday at ' + (root.HAVN_MENU_CITY === 'SD' ? '4pm Pacific' : '7pm Eastern') + ' for delivery Sunday or Monday.';
+    },
     eligible: eligible,
     ready: function (cart) { return cart.meals >= 1; },
     message: message,
