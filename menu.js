@@ -1931,6 +1931,8 @@
     }, true);
   })();
 
-  syncChips();
+  document.querySelectorAll(".m-chip[data-window]").forEach(function (c) {
+    c.classList.toggle("on", c.dataset.window === delWindow);
+  });
   refresh();
 })();
