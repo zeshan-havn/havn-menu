@@ -211,7 +211,10 @@
   var qty = {};
   var mods = {};   /* id -> array of active Make-it pills */
   var notes = {};  /* id -> free-text customization */
-  var delWindow = "Sunday morning";
+  /* Spread DMV/SoCal defaults evenly across Sunday; OS cities keep their
+     existing default. Choose once per page so both order sheets agree. */
+  var splitSundayDefault = window.HAVN_MENU_CITY === "DC" || window.HAVN_MENU_CITY === "SD";
+  var delWindow = splitSundayDefault && Math.random() >= 0.5 ? "Sunday evening" : "Sunday morning";
   var container = "Glass";
 
   var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -1928,5 +1931,6 @@
     }, true);
   })();
 
+  syncChips();
   refresh();
 })();
