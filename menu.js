@@ -1383,7 +1383,7 @@
         var li = document.createElement("li");
         var isMeal = TASTING_MEAL_IDS.indexOf(id) !== -1;
         var pick = TASTING_PICKS.filter(function (m) { return m.id === id; })[0];
-        var sub = isMeal ? "Top seller · " + pick.protein.charAt(0).toUpperCase() + pick.protein.slice(1) : it.addon ? "Four 2-oz shots" : "Breakfast";
+        var sub = isMeal ? (pick && pick.protein ? "Top seller · " + pick.protein.charAt(0).toUpperCase() + pick.protein.slice(1) : "Fan favorite") : it.addon ? "Four 2-oz shots" : "Breakfast";
         li.innerHTML = (it.img
           ? '<span class="m-taste-thumb" style="background-image:url(\'' + it.img + '\')"></span>'
           : '<span class="m-taste-thumb m-taste-thumb-mark" aria-hidden="true">' + (it.addon ? "4&times;" : "&#9670;") + "</span>") +
