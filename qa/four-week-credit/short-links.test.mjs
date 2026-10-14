@@ -19,6 +19,14 @@ for(let week=1;week<=4;week++){
  const bytes=Buffer.from('hCY0CvciF2jtlA','base64url');bytes[0]=0x84+(week-1);
  const w=resolve('/c/'+bytes.toString('base64url'));assert.equal(w.HAVN_FOUR_WEEK.week,week);
 }
+for(const [byte,status] of [[1,'used'],[2,'expired'],[3,'unknown'],[4,'unclaimed']]){
+ const bytes=Buffer.concat([Buffer.from('gCY0AB_QlN0GZA','base64url'),Buffer.from([byte])]);bytes[0]=0x81;
+ const w=resolve('/c/'+bytes.toString('base64url'));
+ assert.equal(w.HAVN_FOUR_WEEK.status,status);assert.equal(w.HAVN_FOUR_WEEK.week,2);
+ assert.equal(w.HAVN_SHORT_MENU.campaign,'01fd094dd0664');
+}
+const invalid=Buffer.concat([Buffer.from('gCY0AB_QlN0GZA','base64url'),Buffer.from([255])]);
+assert.equal(resolve('/c/'+invalid.toString('base64url')).HAVN_SHORT_MENU,undefined);
 for(const path of ['/c/garbage','/c/AAAAAAAAAAAAAA','/c/hCY0CvciF2jtlB','/in','/welcome','/oct11/sd/in/100/2026-10-11/1']){
  const w=resolve(path);assert.equal(w.HAVN_SHORT_MENU,undefined,path);
 }

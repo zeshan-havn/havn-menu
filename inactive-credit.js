@@ -6,6 +6,12 @@
   if (!offer || root.HAVN_MENU_MODE !== 'in') return;
   var week = offer.week;
   var first = week === 1;
+  var status = offer.status;
+  var claimed = ['used','expired','unknown'].includes(status);
+  var left = 5 - week;
+  var creditSummary = status === 'used' ? 'Your first $25 credit was used.'
+    : ['expired','unclaimed'].includes(status) ? 'Your first $25 credit expired.'
+    : 'Your first credit window has ended.';
   document.body.classList.add('four-week-menu');
   document.title = first ? 'Your $100 in weekly credits — Havn Club' : 'Week ' + week + ' of your Havn credits';
   var title = document.getElementById('m-head-title');
@@ -13,7 +19,9 @@
   title.insertAdjacentHTML('beforebegin', '<p class="credit-eyebrow">A welcome back from Chef J</p>');
   title.insertAdjacentHTML('afterend', '<p class="credit-promise">' + (first
     ? 'Four $25 credits. <strong>Place an order this week to claim them all.</strong>'
-    : 'Your four-week offer continues. <strong>This week’s $25 credit applies automatically to your order.</strong>') + '</p>');
+    : creditSummary + ' <strong>' + (claimed
+      ? 'You have ' + left + ' weekly $25 ' + (left === 1 ? 'credit' : 'credits') + ' left, including this week.'
+      : 'Order this week to claim the remaining ' + left + ' weekly $25 credits.') + '</strong>') + '</p>');
   var ribbon = document.querySelector('.m-ribbon');
   ribbon.setAttribute('aria-label', 'Week ' + week + ' of four: 25 dollars credit this week on orders of five or more meals');
   ribbon.innerHTML = '<p class="credit-current-label">This week · Credit ' + week + ' of 4</p>' +
@@ -32,17 +40,19 @@
     if (n === week) li.setAttribute('aria-current', 'step');
     li.innerHTML = '<span class="credit-week-label">Week ' + n + '</span><strong>$25</strong>' +
       '<time datetime="' + date.toISOString().slice(0, 10) + '">' + date.toLocaleDateString('en-US', {month:'short',day:'numeric',timeZone:'UTC'}) + '</time>' +
-      '<span class="credit-week-status">' + (n === week ? 'This week' : n < week ? 'Week ended' : 'Next weeks') + '</span>';
+      '<span class="credit-week-status">' + (n === week ? 'This week' : n === 1 && n < week && status === 'used' ? 'Used'
+        : n === 1 && n < week && ['expired','unclaimed'].includes(status) ? 'Expired'
+        : n < week ? 'Week ended' : 'Next weeks') + '</span>';
     list.appendChild(li);
   }
   plan.appendChild(list);
   var remaining = (4 - week) * 25;
   plan.insertAdjacentHTML('beforeend', '<ul class="credit-terms"><li>' + (first
     ? 'Order this week and the other three $25 credits will be added automatically, one each week.'
-    : remaining ? '$' + remaining + ' in credits follows over the next ' + (4 - week) + ' ' + (week === 3 ? 'week' : 'weeks') + ', $25 at a time.'
+    : remaining ? (claimed ? '' : 'Order this week to unlock the remaining credits. ') + '$' + remaining + ' follows over the next ' + (4 - week) + ' ' + (week === 3 ? 'week' : 'weeks') + ', $25 at a time.'
     : 'This is the last week of your four-week offer.') + '</li>' +
-    '<li><strong>One credit expires each week, whether you use it or not.</strong></li>' +
-    '<li>The $100 is spread across four weeks, not taken off one order.</li></ul>' +
+    '<li><strong>Unused credits expire Thursday at ' + (root.HAVN_MENU_CITY === 'SD' ? '4pm' : '7pm') + ' that week.</strong></li>' +
+    '<li>' + (first ? 'The $100 is spread across four weeks, not taken off one order.' : 'The remaining $' + (left * 25) + ' is spread across ' + left + ' weeks, not taken off one order.') + '</li></ul>' +
     '<a class="credit-choose" href="#m-menu">' + (first ? 'Choose my meals & claim my credits' : 'Choose my meals for this week') + '<span aria-hidden="true">↓</span></a>');
   ribbon.insertAdjacentElement('afterend', plan);
   var receipt = document.querySelector('#m-sheet .m-receipt');
