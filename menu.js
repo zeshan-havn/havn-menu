@@ -211,7 +211,10 @@
   var qty = {};
   var mods = {};   /* id -> array of active Make-it pills */
   var notes = {};  /* id -> free-text customization */
-  var delWindow = "Sunday morning";
+  /* Spread DMV/SoCal defaults evenly across Sunday; OS cities keep their
+     existing default. Choose once per page so both order sheets agree. */
+  var splitSundayDefault = window.HAVN_MENU_CITY === "DC" || window.HAVN_MENU_CITY === "SD";
+  var delWindow = splitSundayDefault && Math.random() >= 0.5 ? "Sunday evening" : "Sunday morning";
   var container = "Glass";
 
   var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -1380,7 +1383,7 @@
         var li = document.createElement("li");
         var isMeal = TASTING_MEAL_IDS.indexOf(id) !== -1;
         var pick = TASTING_PICKS.filter(function (m) { return m.id === id; })[0];
-        var sub = isMeal ? "Top seller · " + pick.protein.charAt(0).toUpperCase() + pick.protein.slice(1) : it.addon ? "Four 2-oz shots" : "Breakfast";
+        var sub = isMeal ? (pick && pick.protein ? "Top seller · " + pick.protein.charAt(0).toUpperCase() + pick.protein.slice(1) : "Fan favorite") : it.addon ? "Four 2-oz shots" : "Breakfast";
         li.innerHTML = (it.img
           ? '<span class="m-taste-thumb" style="background-image:url(\'' + it.img + '\')"></span>'
           : '<span class="m-taste-thumb m-taste-thumb-mark" aria-hidden="true">' + (it.addon ? "4&times;" : "&#9670;") + "</span>") +
@@ -1928,5 +1931,8 @@
     }, true);
   })();
 
+  document.querySelectorAll(".m-chip[data-window]").forEach(function (c) {
+    c.classList.toggle("on", c.dataset.window === delWindow);
+  });
   refresh();
 })();
