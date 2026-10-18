@@ -1,3 +1,6 @@
+# Pinned October 18 San Diego menu, requested share link.
+/sd/oct19 /sd/oct19/index.html 200
+/sd/oct19/ /sd/oct19/index.html 200
 # Netlify routing.
 #
 # Weekly cache-bust: the SMS send includes /{week} in the URL (e.g.

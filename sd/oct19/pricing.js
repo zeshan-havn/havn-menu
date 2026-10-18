@@ -1,0 +1,98 @@
+/* Public new-customer acquisition prices.
+   Stable menu slots are the only input so weekly dish names and labels cannot
+   change a price. Final charging remains outside this browser surface. */
+
+(function (root) {
+  "use strict";
+
+  /* Every customer URL serves this one screen. Keep the cohort determination
+     path-based so Netlify rewrites cannot accidentally turn a member into a
+     welcome customer. The dated weekly aliases have their prefix removed. */
+  function menuMode() {
+    if (root.HAVN_SHORT_MENU) {
+      root.HAVN_MENU_VARIANT = '';
+      root.HAVN_FOUR_WEEK = root.HAVN_SHORT_MENU.offer;
+      root.HAVN_MENU_CITY = root.HAVN_SHORT_MENU.city === 'sd' ? 'SD' : 'DC';
+      return 'in';
+    }
+    var path = root.location.pathname || "/";
+    /* HQ's SMS source tag ends the path and is read by intake.js: /sms[/…]
+       now, /via/sms/{campaign}/{kind}/{dc|sd} on older links. Drop it so its
+       labels are never read as a mode or city; the older form names its city
+       last. */
+    var legacyTag = path.match(/\/via\/sms\/[^/]+\/[^/]+\/(dc|sd)\/?$/i);
+    var tagCity = legacyTag ? legacyTag[1].toLowerCase() : "";
+    if (legacyTag) path = path.slice(0, legacyTag.index);
+    else path = path.replace(/\/sms(?:\/[^/]+){0,2}\/?$/i, "");
+    var parts = path.split("/").filter(Boolean);
+    var isSdRoute = true;
+    /* Campaign URLs begin with a cache-busting week slug such as may17,
+       aug02, or sep6. Strip any real month/day slug before reading the promo
+       suffix so the offer does not silently fall back to the active menu. */
+    if (/^(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\d{1,2}$/i.test(parts[0] || "")) parts.shift();
+    /* SoCal uses an optional city segment in some weekly campaign links. */
+    if (parts[0] === "sd" || parts[0] === "dc") parts.shift();
+    var first = parts[0] || "";
+    /* The quiz signup lands on /welcome/quiz: the same welcome offer and
+       menu, opened by a short how-to-order block for first-time visitors. */
+    /* /welcome/tasting is the Tasting Menu welcome page: the quiz landing
+       plus the Tasting Menu, the $15/$25 offer and the 4-meal minimum. */
+    root.HAVN_MENU_VARIANT = first === "welcome" && (parts[1] === "quiz" || parts[1] === "tasting" || parts[1] === "dinner") ? parts[1] : "";
+    /* The four-week offer is a presentation of the existing $25 inactive
+       credit, never a $100 discount on one order. Path markers survive SMS
+       rotation shims. The Sunday anchor keeps all four dates stable. */
+    var offerStart = /^\d{4}-\d{2}-\d{2}$/.test(parts[2] || "") ? new Date(parts[2] + "T12:00:00Z") : null;
+    root.HAVN_FOUR_WEEK = first === "in" && parts[1] === "100" &&
+      offerStart && !isNaN(offerStart.getTime()) && offerStart.getUTCDay() === 0 &&
+      offerStart.toISOString().slice(0, 10) === parts[2] && /^[1-4]$/.test(parts[3] || "")
+      ? { start: parts[2], week: Number(parts[3]) } : null;
+    var qs = new URLSearchParams(root.location.search || "");
+    root.HAVN_MENU_CITY = (isSdRoute || qs.has("sd")) ? "SD" : "DC";
+    if (qs.has("welcome")) return "welcome";
+    if (qs.has("ws")) return "ws";
+    if (qs.has("db")) return "ws"; // legacy alias
+    if (qs.has("in")) return "in";
+    if (first === "db") return "ws"; // legacy alias
+    if (first === "welcome" || first === "ws" || first === "in") return first;
+    return "active";
+  }
+
+  var mode = menuMode();
+  root.HAVN_MENU_MODE = mode;
+  /* Meal pricing is intentionally uniform across every member-menu variant.
+     Credits remain represented separately in the receipt instead of changing
+     the underlying meal price. */
+  var memberMealPrice = 25;
+
+  var SLOT_PRICES = Object.freeze({
+    cheat: memberMealPrice,
+    pasta: memberMealPrice,
+    chicken: memberMealPrice,
+    chicken_2: memberMealPrice,
+    beef: memberMealPrice,
+    seafood: memberMealPrice,
+    seafood_2: memberMealPrice,
+    salad: 25,
+    salad_2: 25,
+    vegetarian: 25,
+    oats: 10,
+    chia: 10,
+    chia_2: 10,
+    broth: 10,
+    broth_2: 10,
+    wellness_shots: 25,
+    date_balls: 25
+  });
+
+  function priceForSlot(slot) {
+    if (typeof slot !== "string" || !slot.trim()) {
+      throw new TypeError("A stable menu slot is required");
+    }
+    if (!Object.prototype.hasOwnProperty.call(SLOT_PRICES, slot)) {
+      throw new RangeError("Unknown menu slot: " + slot);
+    }
+    return SLOT_PRICES[slot];
+  }
+
+  root.HAVN_PRICING = Object.freeze({ priceForSlot: priceForSlot });
+})(window);

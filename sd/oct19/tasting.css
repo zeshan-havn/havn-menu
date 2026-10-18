@@ -1,0 +1,235 @@
+/* ▓▓▓ MOCKUP · TASTING MENU (Sep 29) ▓▓▓
+   Welcome pages only, behind ?tasting=b|c|d|e|f. Same forest/brass/paper
+   language as the dock, the review sheet and the collection cards. */
+
+/* ── the Tasting Menu sheet ────────────────────────────────────── */
+.m-taste .m-sheet-label { margin-bottom: 6px; }
+.m-taste-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 34px; line-height: 36px;
+  letter-spacing: -0.01em;
+  color: var(--cream);
+}
+.m-taste-title em { font-style: italic; color: var(--brass); }
+.m-taste-price {
+  display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px;
+  margin-top: 8px;
+}
+.m-taste-price b { font-family: var(--serif); font-weight: 600; font-size: 28px; color: var(--brass); }
+.m-taste-price s { font-size: 13px; color: var(--cream-dim); }
+.m-taste-price span {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--cream);
+  padding: 3px 8px;
+  border: 1px solid rgba(196, 168, 124, 0.45);
+  border-radius: 999px;
+}
+.m-taste-intro { margin-top: 6px; font-size: 14px; line-height: 20px; color: var(--cream-dim); }
+.m-taste-tabs {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+  margin: 16px 0 6px;
+}
+.m-taste-tabs button {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 2px;
+  min-height: 56px;
+  padding: 9px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(245, 241, 234, 0.2);
+  color: var(--cream-dim);
+  text-align: left;
+}
+.m-taste-tabs b { font-weight: 700; font-size: 14px; color: var(--cream); }
+.m-taste-tabs span { font-size: 11.5px; }
+.m-taste-tabs [aria-selected="true"] { background: rgba(196, 168, 124, 0.14); border-color: var(--brass); }
+.m-taste-tabs [aria-selected="true"] span { color: var(--brass); }
+.m-taste-tabs button:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
+.m-taste-panel[hidden] { display: none; }
+.m-taste-one-btn { margin-top: 18px; width: 100%; }
+.m-taste-lede {
+  margin-top: 10px;
+  font-size: 14px; line-height: 20px;
+  color: var(--cream-dim);
+  text-wrap: pretty;
+}
+
+.m-taste-items { list-style: none; margin: 16px 0 18px; }
+.m-taste-items li {
+  display: flex; align-items: center; gap: 12px;
+  padding: 8px 0;
+}
+.m-taste-items li + li { border-top: 1px solid rgba(245, 241, 234, 0.07); }
+.m-taste-thumb {
+  flex-shrink: 0;
+  width: 48px; height: 48px;
+  border-radius: 10px;
+  background-size: cover; background-position: 50%;
+}
+.m-taste-thumb-mark {
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(196, 168, 124, 0.45);
+  color: var(--brass);
+  font-family: var(--serif); font-style: italic; font-size: 17px;
+}
+.m-taste-txt { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+.m-taste-txt b { font-family: var(--serif); font-weight: 600; font-size: 18px; line-height: 21px; color: var(--cream); }
+.m-taste-txt i { font-style: normal; font-size: 11px; color: var(--brass); }
+.m-taste-val { font-size: 13px; color: var(--cream-dim); text-decoration: line-through; text-decoration-color: rgba(196, 168, 124, 0.6); }
+
+.m-taste-up {
+  margin-top: 22px;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px dashed rgba(196, 168, 124, 0.5);
+}
+.m-taste-up-label {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--brass);
+}
+.m-taste-up-copy { margin-top: 6px; font-size: 13.5px; line-height: 19px; color: var(--cream); text-wrap: pretty; }
+.m-taste-up-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 100%;
+  min-height: 46px;
+  margin-top: 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(245, 241, 234, 0.3);
+  color: var(--cream);
+  font-weight: 700; font-size: 13.5px;
+}
+.m-taste-fine {
+  margin-top: 14px;
+  font-size: 11.5px; line-height: 16px;
+  color: var(--cream-dim);
+  text-align: center;
+  text-wrap: pretty;
+}
+
+/* ── shared: the review-sheet gate points at the box ───────────── */
+.m-gate-taste {
+  display: flex; align-items: center; justify-content: center;
+  width: 100%;
+  min-height: 44px;
+  margin-top: 10px;
+  border-radius: 12px;
+  background: rgba(196, 168, 124, 0.14);
+  border: 1px solid var(--brass);
+  color: var(--cream);
+  font-weight: 700; font-size: 13px;
+}
+.m-gate.m-gate-info { border-style: solid; border-color: rgba(196, 168, 124, 0.35); }
+
+/* ── B · a quiet third action in the dock ──────────────────────── */
+.m-bar-taste {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  width: 100%;
+  min-height: 40px;
+  padding: 0 12px 0 14px;
+  margin-bottom: 7px;
+  border-radius: 14px;
+  background: rgba(245, 241, 234, 0.06);
+  color: var(--cream);
+  font-size: 12.5px;
+  text-align: left;
+}
+.m-bar-taste b { font-weight: 700; color: var(--brass); }
+.m-bar-taste i { flex-shrink: 0; font-style: normal; font-weight: 700; color: var(--brass); }
+.m-bar.m-bar-live .m-bar-taste { display: none; }
+
+/* ── C · the box as the last menu section ──────────────────────── */
+.m-taste-sec .m-grid { padding-top: 16px; }
+.m-taste-card-imgs {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 6px;
+  margin-bottom: 12px;
+}
+.m-taste-card-imgs span {
+  display: block;
+  aspect-ratio: 4 / 3;
+  border-radius: 9px;
+  background-size: cover; background-position: 50%;
+}
+.m-taste-card .m-card-tag s { color: var(--ink-soft); font-weight: 600; }
+.m-taste-card .m-add { margin-top: 4px; }
+
+/* ── D · two ways to start ─────────────────────────────────────── */
+.m-start { margin-top: 22px; }
+.m-start-label {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--brass);
+}
+.m-start-label::after { content: ""; flex: 1; height: 1px; background: var(--hairline-dark); }
+.m-start-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+.m-start-card {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 3px;
+  min-height: 150px;
+  padding: 13px 12px 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(196, 168, 124, 0.4);
+  color: var(--cream);
+  text-align: left;
+}
+.m-start-kicker {
+  font-size: 9.5px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--brass);
+}
+.m-start-card b { font-family: var(--serif); font-weight: 600; font-size: 22px; line-height: 24px; }
+.m-start-card span:not(.m-start-kicker) { font-size: 12px; line-height: 16px; color: var(--cream-dim); text-wrap: pretty; }
+.m-start-card i { margin-top: auto; padding-top: 8px; font-style: normal; font-weight: 700; font-size: 12.5px; color: var(--brass); }
+.m-start-week { background: rgba(196, 168, 124, 0.14); border-color: var(--brass); }
+.m-start-card:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
+
+/* ── E · the order ladder: one track, four stops ───────────────── */
+.m-ladder { position: relative; padding-top: 2px; }
+.m-ladder-dock { margin: 2px 0 9px; }
+.m-bar:not(.m-bar-live) .m-ladder-dock { display: none; }
+.m-ladder-sheet { margin-top: 22px; }
+.m-ladder-track {
+  position: absolute; left: 12.5%; right: 12.5%; top: 7px;
+  height: 2px; border-radius: 2px;
+  background: rgba(245, 241, 234, 0.16);
+}
+.m-ladder-track span { display: block; height: 100%; border-radius: 2px; background: var(--brass); transition: width 0.3s ease; }
+.m-ladder-stops { position: relative; list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); }
+.m-ladder-stops li {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; line-height: 1.2;
+  color: rgba(245, 241, 234, 0.5);
+}
+.m-ladder-stops li > i {
+  width: 12px; height: 12px; margin-bottom: 5px;
+  border-radius: 50%;
+  border: 2px solid rgba(245, 241, 234, 0.3);
+  background: var(--forest);
+}
+.m-ladder-stops b { font-size: 11.5px; font-weight: 700; white-space: nowrap; }
+.m-ladder-stops span { font-size: 10px; white-space: nowrap; }
+.m-ladder-stops li.done > i { background: var(--brass); border-color: var(--brass); }
+.m-ladder-stops li.on { color: var(--cream); }
+.m-ladder-stops li.on > i { background: var(--brass); border-color: var(--cream); box-shadow: 0 0 0 3px rgba(196, 168, 124, 0.3); }
+.m-ladder-stops li.next { color: var(--brass); }
+.m-ladder-stops li.next > i { border-color: var(--brass); border-style: dashed; }
+.m-ladder-stops li.next span { font-weight: 700; }
+@media (prefers-reduced-motion: reduce) { .m-ladder-track span { transition: none; } }
+
+/* ── D (and f) · the dock waits until the two cards scroll past ─── */
+.tasting-d .m-bar, .tasting-f .m-bar { transition: transform 0.32s ease, opacity 0.32s ease, visibility 0s; }
+.m-bar.m-bar-away {
+  transform: translate(-50%, calc(100% + 24px));
+  opacity: 0;
+  visibility: hidden;
+  transition: transform 0.32s ease, opacity 0.32s ease, visibility 0s 0.32s;
+}
+@media (prefers-reduced-motion: reduce) { .tasting-d .m-bar, .tasting-f .m-bar, .m-bar.m-bar-away { transition: none; } }
+
+/* ── C · the one-meal line under the card ──────────────────────── */
+.m-taste-card-one { margin-top: 10px; font-size: 12.5px; color: var(--ink-soft); }
+.m-taste-card-one button { font-weight: 700; color: var(--charcoal); text-decoration: underline; text-underline-offset: 3px; min-height: 32px; }
+
+/* ── mock windows: sold-out chips ─────────────────────────────── */
+.m-chip.m-chip-out { opacity: 0.5; border-style: dashed; cursor: not-allowed; }
+.m-chip.m-chip-out i { color: var(--cream-dim); }

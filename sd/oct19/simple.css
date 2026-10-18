@@ -1,0 +1,314 @@
+/* ▓▓▓ MOCKUP · SIMPLE FIRST VISIT (?tasting=g, Sep 30) ▓▓▓
+   Food first, one checkout, the cart explains the offer. Same forest /
+   brass / cream language as the rest of the page. */
+
+/* ── masthead: greeting, three steps, the credit in one line ───── */
+.tasting-g .m-head { padding-bottom: 26px; }
+.tasting-g .m-quiz-sub { max-width: 30ch; }
+.g-steps {
+  list-style: none;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+  margin-top: 20px;
+}
+.g-steps li {
+  display: flex; flex-direction: column; gap: 6px;
+  padding: 10px 10px 11px;
+  border-radius: 12px;
+  border: 1px solid rgba(196, 168, 124, 0.3);
+  font-size: 12.5px; line-height: 16px; font-weight: 600;
+  color: var(--cream);
+}
+.g-steps i {
+  font-family: var(--serif); font-style: italic; font-size: 18px; line-height: 1;
+  color: var(--brass);
+}
+
+/* ── menu intro: smaller, with the delivery line ────────────────── */
+.g-intro { padding-top: 30px; }
+.g-intro .m-intro-title { font-size: clamp(28px, 8.4vw, 34px); }
+.g-intro .m-rule { margin-top: 14px; }
+
+/* ── meal cards: the two most ordered wear a small badge ───────── */
+.g-badge {
+  position: absolute; top: 13px; left: 13px; z-index: 1;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: var(--forest);
+  color: var(--brass);
+  font-size: 9.5px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
+
+/* ── the Tasting Menu card, right under the two meals it holds ─── */
+.g-taste {
+  grid-column: 1 / -1;
+  padding: 18px 18px 16px;
+  border-radius: 18px;
+  background:
+    radial-gradient(120% 120% at 100% 0%, rgba(196, 168, 124, 0.18), transparent 60%),
+    var(--forest);
+  color: var(--cream);
+  box-shadow: 0 14px 34px rgba(10, 22, 18, 0.25);
+}
+.g-taste-kicker {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--brass);
+}
+.g-taste-title {
+  margin-top: 6px;
+  font-family: var(--serif); font-weight: 500;
+  font-size: 27px; line-height: 29px;
+  letter-spacing: -0.01em;
+}
+.g-taste-title em { color: var(--brass); }
+.g-taste-copy { margin-top: 8px; font-size: 13.5px; line-height: 19px; color: var(--cream-dim); text-wrap: pretty; }
+.g-taste-list {
+  list-style: none;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 6px 12px;
+  margin-top: 12px;
+}
+.g-taste-list li {
+  position: relative;
+  padding-left: 16px;
+  font-size: 12.5px; line-height: 16px;
+  color: var(--cream);
+}
+.g-taste-list li::before {
+  content: "";
+  position: absolute; left: 1px; top: 5px;
+  width: 6px; height: 6px;
+  background: var(--brass);
+  transform: rotate(45deg);
+}
+.g-taste-price { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px; margin-top: 14px; }
+.g-taste-price b { font-family: var(--serif); font-weight: 600; font-size: 30px; line-height: 1; color: var(--brass); }
+.g-taste-price s { font-size: 13px; color: var(--cream-dim); }
+.g-taste-price span {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 3px 8px;
+  border: 1px solid rgba(196, 168, 124, 0.45);
+  border-radius: 999px;
+}
+.g-taste-cta {
+  display: flex; align-items: center; justify-content: center;
+  width: 100%; min-height: 48px;
+  margin-top: 14px;
+  border-radius: 14px;
+  background: var(--brass);
+  color: var(--forest);
+  font-weight: 700; font-size: 14.5px;
+}
+.g-taste-cta:focus-visible { outline: 2px solid var(--cream); outline-offset: 2px; }
+.g-taste-one { margin-top: 11px; font-size: 12px; line-height: 17px; color: var(--cream-dim); text-align: center; text-wrap: balance; }
+
+/* ── dock ───────────────────────────────────────────────────────── */
+.tasting-g .m-bar { transition: transform 0.32s ease, opacity 0.32s ease, visibility 0s; }
+.g-bar-taste {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  width: 100%; min-height: 50px;
+  padding: 0 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(196, 168, 124, 0.45);
+  color: var(--cream);
+  font-size: 14px;
+  text-align: left;
+}
+.g-bar-taste b { color: var(--brass); font-weight: 700; }
+.g-bar-taste i { font-style: normal; font-weight: 700; color: var(--brass); white-space: nowrap; }
+.g-nudge { padding: 4px 9px 9px; }
+.g-nudge[hidden] { display: none; }
+.g-nudge-txt { font-size: 12.5px; font-weight: 600; color: var(--brass); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.g-nudge-bar {
+  position: relative;
+  height: 3px; margin-top: 7px;
+  border-radius: 3px;
+  background: rgba(245, 241, 234, 0.14);
+}
+.g-nudge-fill { display: block; height: 100%; border-radius: 3px; background: var(--brass); transition: width 0.3s ease; }
+.g-nudge-bar i { position: absolute; top: -2px; width: 1px; height: 7px; background: rgba(245, 241, 234, 0.35); }
+.g-nudge-tasting .g-nudge-bar { display: none; }
+.tasting-g .m-bar-count { font-size: 14px; }
+.tasting-g .m-bar-total { font-size: 11.5px; }
+.tasting-g .m-bar-review { padding: 0 20px; font-size: 13.5px; }
+
+/* ── review sheet note + its buttons ────────────────────────────── */
+.g-gate-btns { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.g-gate-btn {
+  flex: 1 1 auto;
+  min-height: 42px;
+  padding: 0 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(245, 241, 234, 0.3);
+  color: var(--cream);
+  font-weight: 700; font-size: 13px;
+}
+.g-gate-main { background: var(--brass); border-color: var(--brass); color: var(--forest); }
+
+@media (prefers-reduced-motion: reduce) {
+  .tasting-g .m-bar, .g-nudge-fill { transition: none; }
+}
+
+/* ── round 2 ────────────────────────────────────────────────────── */
+.g-intro .m-intro-title { font-size: clamp(28px, 8.4vw, 34px); }
+.g-sheet-foot {
+  position: sticky; bottom: -30px;
+  margin: 14px -22px -30px;
+  padding: 12px 22px 22px;
+  background: linear-gradient(to bottom, rgba(10, 22, 18, 0) 0, var(--forest) 14px);
+}
+.g-sheet-foot .m-pay-note { margin: 0 0 10px; font-style: normal; font-family: var(--sans); font-size: 12px; color: var(--cream-dim); text-align: center; }
+.g-toast {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 7px;
+  padding: 9px 9px 9px 12px;
+  border-radius: 14px;
+  background: rgba(196, 168, 124, 0.16);
+}
+.g-toast[hidden] { display: none; }
+.g-toast-txt { flex: 1; font-size: 12px; line-height: 16px; color: var(--cream); }
+.g-toast-undo {
+  flex-shrink: 0;
+  min-height: 36px; padding: 0 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(196, 168, 124, 0.6);
+  color: var(--brass);
+  font-weight: 700; font-size: 12.5px;
+}
+
+/* ── round 3 ────────────────────────────────────────────────────── */
+.g-intro .m-intro-title[hidden] { display: none; }
+.g-intro { padding-bottom: 0; }
+.g-detail-add {
+  display: none;
+  flex: 1;
+  align-items: center; justify-content: center; gap: 6px;
+  min-height: 50px;
+  border-radius: 14px;
+  background: var(--brass);
+  color: var(--forest);
+  font-weight: 700; font-size: 15px;
+}
+.g-detail-add span { font-weight: 600; opacity: 0.8; }
+.g-detail-add:focus-visible { outline: 2px solid var(--cream); outline-offset: 2px; }
+.m-detail-foot.g-foot-empty .g-detail-add { display: flex; }
+.m-detail-foot.g-foot-empty .m-detail-stepper,
+.m-detail-foot.g-foot-empty .m-d-foot-txt { display: none; }
+
+/* ── round 4 ────────────────────────────────────────────────────── */
+.m-send.m-send-off.g-send-browse { opacity: 1; cursor: pointer; }
+.g-intro .m-intro-label { flex-wrap: wrap; row-gap: 4px; letter-spacing: 0.18em; }
+@media (max-width: 360px) {
+  body.quiz-welcome.tasting-g .m-head { padding-top: 70px; padding-bottom: 22px; }
+  .g-steps li { padding: 8px 8px 9px; font-size: 12px; }
+}
+
+/* ── round 5 ────────────────────────────────────────────────────── */
+/* "You're in." on one line; the brass ribbon carries the credit again */
+.tasting-g .m-head-title { font-size: clamp(44px, 13.6vw, 60px); }
+.tasting-g .m-ribbon { margin-top: 20px; }
+.tasting-g .m-ribbon[hidden] { display: none; }
+.m-compose[hidden], .m-receipt[hidden] { display: none; }
+
+/* the Tasting Menu, itemized, at the top of the review sheet */
+.g-tb[hidden] { display: none; }
+.g-tb { margin-top: 4px; }
+.g-tb-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.g-tb-title { font-family: var(--serif); font-weight: 500; font-size: 30px; line-height: 32px; color: var(--cream); }
+.g-tb-title em { color: var(--brass); }
+.g-tb-save {
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: var(--brass);
+  color: var(--forest);
+  font-size: 12px; font-weight: 700;
+  white-space: nowrap;
+}
+.g-tb-items { margin: 12px 0 4px; }
+.g-tb-val { font-size: 14px; font-weight: 600; color: var(--cream-dim); }
+.g-tb-sum { list-style: none; margin-top: 6px; border-top: 1px solid rgba(245, 241, 234, 0.14); }
+.g-tb-sum li { display: flex; align-items: baseline; gap: 8px; padding: 9px 0; font-size: 14px; }
+.g-tb-sum li + li { border-top: 1px solid rgba(245, 241, 234, 0.07); }
+.g-tb-sum i { flex: 1; border-bottom: 1px dotted rgba(196, 168, 124, 0.35); }
+.g-tb-sum span:first-child { color: var(--cream-dim); }
+.g-tb-sum span:last-child { font-weight: 700; color: var(--cream); }
+.g-tb-sum s { margin-right: 6px; font-weight: 500; color: var(--cream-dim); }
+.g-tb-off span:last-child { color: var(--brass); }
+.g-tb-total { font-size: 16px; }
+.g-tb-total span:first-child { color: var(--cream); }
+.g-tb-total span:last-child { font-family: var(--serif); font-size: 24px; color: var(--brass); }
+.g-tb-total s { font-family: var(--sans); font-size: 14px; }
+
+/* ── round 6 ────────────────────────────────────────────────────── */
+/* the three tiles carry the instructions */
+.g-steps li b { font-weight: 600; }
+.g-steps li span { font-size: 11px; line-height: 14px; font-weight: 400; color: var(--cream-dim); text-wrap: pretty; }
+.g-intro .m-rule { margin-top: 12px; }
+
+/* the Tasting Menu items: tappable rows, a thumb and a chevron */
+.g-taste-list:has(.g-taste-item) { gap: 8px; }
+.g-taste-list li:has(.g-taste-item) { padding-left: 0; }
+.g-taste-list li:has(.g-taste-item)::before { display: none; }
+.g-taste-item {
+  display: flex; align-items: center; gap: 8px;
+  width: 100%; min-height: 46px;
+  padding: 6px 8px 6px 6px;
+  border: 1px solid rgba(196, 168, 124, 0.38);
+  border-radius: 12px;
+  background: rgba(245, 241, 234, 0.05);
+  color: var(--cream);
+  font: inherit; font-size: 12.5px; line-height: 15px; font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.g-taste-item:hover, .g-taste-item:active { background: rgba(196, 168, 124, 0.16); border-color: var(--brass); }
+.g-taste-item:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
+.g-ti-name { flex: 1; min-width: 0; }
+.g-ti-go { flex-shrink: 0; font-style: normal; font-size: 18px; line-height: 1; color: var(--brass); }
+
+/* detail opened from the Tasting Menu: customizations shown, locked */
+.g-d-lock[hidden] { display: none; }
+.g-d-lock {
+  position: relative; z-index: 1;
+  margin: 21px 0 -8px;
+  padding: 9px 12px;
+  border-radius: 10px;
+  background: var(--forest);
+  color: var(--cream);
+  font-size: 12.5px; font-weight: 600; text-align: center;
+}
+.g-d-tasting .m-detail-mods,
+.g-d-tasting .m-detail-custom {
+  filter: blur(3px);
+  opacity: 0.55;
+  pointer-events: none;
+  user-select: none;
+}
+.g-d-tasting .m-detail-mods { margin-top: 14px; }
+
+/* ── round 7 ────────────────────────────────────────────────────── */
+.m-r-offer s { margin-right: 6px; font-weight: 500; color: var(--cream-dim); }
+@media (prefers-reduced-motion: reduce) { .g-taste-item { transition: none; } }
+.g-taste-list:has(.g-taste-item) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+/* ── round 8: compact text buttons, a readable $85 ─────────────── */
+.g-taste-item { min-height: 40px; padding: 7px 10px 7px 12px; }
+.g-taste-price { align-items: baseline; gap: 10px; }
+.g-taste-price s {
+  font-family: var(--serif); font-size: 22px; line-height: 1;
+  color: var(--cream-dim);
+  text-decoration-color: rgba(196, 168, 124, 0.85); text-decoration-thickness: 1.5px;
+}
+
+/* ── round 9: past the 4-meal minimum, say it can be sent ───────── */
+.g-nudge-txt { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; white-space: normal; }
+.g-nudge-txt span { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.g-nudge-ok { flex-shrink: 0; font-weight: 700; color: var(--cream); }
+.g-gate-ok { font-weight: 700; color: var(--cream); }
+
+/* ── round 10: the dock's cart line wraps between pieces, never cuts ── */
+.tasting-g .m-bar-count { white-space: normal; overflow: visible; line-height: 18px; }
+.tasting-g .m-bar-count span { white-space: nowrap; }
+@media (max-width: 360px) { .tasting-g .m-bar-review { padding: 0 14px; } }
