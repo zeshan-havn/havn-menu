@@ -263,8 +263,7 @@ body.active-menu .m-intro { padding-top: 88px; }
   display: block;
   width: 100%;
   aspect-ratio: 4 / 3.4;
-  background-size: contain;
-  background-repeat: no-repeat;
+  background-size: cover;
   background-position: 50%;
 }
 .m-card-tag {
