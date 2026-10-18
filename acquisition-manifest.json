@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "releaseDigest": "2d759dc5c26c472a310ccc0681e3d583d0daabe88f94faf431be37341674e66a",
+  "releaseDigest": "5ab341d7a5fb439a79d863fd08ab17268011609649941b3116c0c0e85c86eb82",
   "menu": {
     "id": "delivery-2026-10-25",
-    "version": "sha256-2d759dc5c26c472a310ccc0681e3d583d0daabe88f94faf431be37341674e66a",
+    "version": "sha256-5ab341d7a5fb439a79d863fd08ab17268011609649941b3116c0c0e85c86eb82",
     "weekLabel": "October 25",
     "pricingPolicyId": "backend-25-10-v1",
     "offerPolicyId": "welcome-20-40-v1",
@@ -102,11 +102,11 @@
           "Dairy-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-2d759dc5c26c472a310ccc0681e3d583d0daabe88f94faf431be37341674e66a/cheat.jpg",
+          "url": "/assets/releases/sha256-5ab341d7a5fb439a79d863fd08ab17268011609649941b3116c0c0e85c86eb82/cheat.jpg",
           "width": 1024,
-          "height": 1536,
+          "height": 1408,
           "format": "jpeg",
-          "sha256": "6ce23e97f82d01048b4815046b49c0d495a001eb1e3ccc86a0b3d19732b90818",
+          "sha256": "0a379aac79ad636297bc21acd91f395eb2fee43a1bb2a99a0877d100cbdc81ab",
           "alt": "Smash Burger Bowl"
         }
       },
@@ -140,11 +140,11 @@
           "Dairy-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-2d759dc5c26c472a310ccc0681e3d583d0daabe88f94faf431be37341674e66a/chicken.jpg",
+          "url": "/assets/releases/sha256-5ab341d7a5fb439a79d863fd08ab17268011609649941b3116c0c0e85c86eb82/chicken.jpg",
           "width": 1024,
-          "height": 1536,
+          "height": 1408,
           "format": "jpeg",
-          "sha256": "f39d45325f9b8ae028ee55a383418fb77eac27567c45077d67a6f872fdd0771f",
+          "sha256": "545073abbb37bbfcbc60e1da17c2b65b38e111de3341e30a092d1d37756195ad",
           "alt": "Chicken Tikka"
         }
       },
@@ -175,11 +175,11 @@
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-2d759dc5c26c472a310ccc0681e3d583d0daabe88f94faf431be37341674e66a/chicken_2.jpg",
+          "url": "/assets/releases/sha256-5ab341d7a5fb439a79d863fd08ab17268011609649941b3116c0c0e85c86eb82/chicken_2.jpg",
           "width": 1024,
-          "height": 1536,
+          "height": 1408,
           "format": "jpeg",
-          "sha256": "7de63d177d41fa7e570ee95a816445db2d7decb87b35fade3a934bbe9cff3786",
+          "sha256": "a0d47d27d2a8595ab2d90af8179786f6e4d38a5a8e568ea168b5bcb22eaf3233",
           "alt": "Chimichurri Chicken"
         }
       },
@@ -213,11 +213,11 @@
           "Dairy-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-2d759dc5c26c472a310ccc0681e3d583d0daabe88f94faf431be37341674e66a/beef.jpg",
+          "url": "/assets/releases/sha256-5ab341d7a5fb439a79d863fd08ab17268011609649941b3116c0c0e85c86eb82/beef.jpg",
           "width": 1024,
-          "height": 1536,
+          "height": 1408,
           "format": "jpeg",
-          "sha256": "9ea8b6b34d1856541c51d8db485976d9deca5b851404ea69ef5d49b1d96186e1",
+          "sha256": "be564618ba068de1da6b028c7061a3038769ca896fb911d43ae671c6e1dba3fc",
           "alt": "Rosemary Thyme Steak"
         }
       },
@@ -253,11 +253,11 @@
           "Gluten-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-2d759dc5c26c472a310ccc0681e3d583d0daabe88f94faf431be37341674e66a/seafood.jpg",
+          "url": "/assets/releases/sha256-5ab341d7a5fb439a79d863fd08ab17268011609649941b3116c0c0e85c86eb82/seafood.jpg",
           "width": 1024,
-          "height": 1536,
+          "height": 1408,
           "format": "jpeg",
-          "sha256": "f92f68cdacbddfb747ae216aec3b90195d1802e1d571b2880ad8fe4c890ade2b",
+          "sha256": "2122eed3343115cf1b14580ce34ce54f144b0cfe415bf724227b5462073cbe80",
           "alt": "Marry Me Salmon"
         }
       },
@@ -288,11 +288,11 @@
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-2d759dc5c26c472a310ccc0681e3d583d0daabe88f94faf431be37341674e66a/seafood_2.jpg",
+          "url": "/assets/releases/sha256-5ab341d7a5fb439a79d863fd08ab17268011609649941b3116c0c0e85c86eb82/seafood_2.jpg",
           "width": 1024,
-          "height": 1536,
+          "height": 1408,
           "format": "jpeg",
-          "sha256": "a0b6bc2c6bd731fef29bb04af3689a23da091c451d7e9b861d5e0199e3f2909a",
+          "sha256": "03e9a70098179daf548813a8ad04c454374371c74f43526ab8f5fb0bdb66e6a1",
           "alt": "Asian Garlic Shrimp"
         }
       },
@@ -326,11 +326,11 @@
           "Gluten-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-2d759dc5c26c472a310ccc0681e3d583d0daabe88f94faf431be37341674e66a/pasta.jpg",
-          "width": 1024,
-          "height": 1536,
+          "url": "/assets/releases/sha256-5ab341d7a5fb439a79d863fd08ab17268011609649941b3116c0c0e85c86eb82/pasta.jpg",
+          "width": 654,
+          "height": 900,
           "format": "jpeg",
-          "sha256": "a17151bf8d2c811aa88b95a3e5556e9a53c91b4c56c2f35a87d5ac94703808d0",
+          "sha256": "4a20244823c8174d8b5fae24e083e8023c2b77e732bc6bc9db315495ac76d5d6",
           "alt": "Vodka Pasta"
         }
       },
@@ -361,11 +361,11 @@
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-2d759dc5c26c472a310ccc0681e3d583d0daabe88f94faf431be37341674e66a/vegetarian.jpg",
-          "width": 1024,
-          "height": 1536,
+          "url": "/assets/releases/sha256-5ab341d7a5fb439a79d863fd08ab17268011609649941b3116c0c0e85c86eb82/vegetarian.jpg",
+          "width": 654,
+          "height": 900,
           "format": "jpeg",
-          "sha256": "0bf9f703f75544f5aca171b3d89c1b4a329a93c89ccf915eb311087856f8974b",
+          "sha256": "8090f592561f6b790130d39b8c4d7bfa784a480ff112e6cdf8758307e98bd854",
           "alt": "Korean Seared Tofu"
         }
       },
@@ -397,11 +397,11 @@
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-2d759dc5c26c472a310ccc0681e3d583d0daabe88f94faf431be37341674e66a/salad.jpg",
+          "url": "/assets/releases/sha256-5ab341d7a5fb439a79d863fd08ab17268011609649941b3116c0c0e85c86eb82/salad.jpg",
           "width": 1024,
-          "height": 1536,
+          "height": 1280,
           "format": "jpeg",
-          "sha256": "cc201bfdb7400652873a9d9ba9fd7dac50f97938305f617c71c0747ed9316ac6",
+          "sha256": "4de7ce2808062fcb514334eaccf86da3573f85ff40696614c362daa6466fe933",
           "alt": "Green Goddess Salad"
         }
       },
@@ -436,11 +436,11 @@
           "Dairy-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-2d759dc5c26c472a310ccc0681e3d583d0daabe88f94faf431be37341674e66a/salad_2.jpg",
+          "url": "/assets/releases/sha256-5ab341d7a5fb439a79d863fd08ab17268011609649941b3116c0c0e85c86eb82/salad_2.jpg",
           "width": 1024,
-          "height": 1536,
+          "height": 1280,
           "format": "jpeg",
-          "sha256": "fbb16dd7da9be0085f6a8b3accb4083f50ac919c14e9613f2795f05e4c50bd0f",
+          "sha256": "feb59470dc33547695ca11f3323c61a9134ee9563078bd52a765d177ebe5fdb6",
           "alt": "Harvest Bowl Salad"
         }
       },
