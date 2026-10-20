@@ -104,7 +104,7 @@
           id: "vegetarian", name: "Korean Seared Tofu", tag: "Vegetarian", img: "/assets/current/veg.jpg",
           desc: "Crispy seared tofu with a gochujang glaze and charred broccoli and roasted cremini mushrooms over basmati rice.",
           cal: 663, protein: 50, fat: 22, fiber: 10, carbs: 71,
-          diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
+          diet: [["Dairy free", "safe"], ["Gluten (gochujang)", "allergen"]]
         }
       ]
     },
