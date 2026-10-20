@@ -685,6 +685,15 @@
 
   var MODS = ["Dairy free", "Gluten free", "Low carb", "No carb", "Extra protein (+$2)", "Extra carbs"];
 
+  /* A "Dairy free" / "Gluten free" request on a meal the menu already marks dairy
+     free / gluten free changes nothing, so that option is not offered there. The
+     match is on the dish's own "safe" diet marks, so it follows the weekly data. */
+  function modsFor(it) {
+    var safe = (it.diet || []).filter(function (d) { return d[1] === "safe"; })
+      .map(function (d) { return String(d[0]).toLowerCase(); });
+    return MODS.filter(function (m) { return safe.indexOf(m.toLowerCase()) === -1; });
+  }
+
   function openDetail(id, trigger) {
     var it = ITEMS[id];
     if (!it) return;
@@ -762,7 +771,7 @@
     if (modsApply) {
       dPills.innerHTML = "";
       var active = mods[id] || [];
-      MODS.forEach(function (m) {
+      modsFor(it).forEach(function (m) {
         var b = document.createElement("button");
         b.type = "button";
         b.className = "m-mod-pill" + (active.indexOf(m) !== -1 ? " on" : "");
@@ -1078,7 +1087,8 @@
     SECTIONS.forEach(function (s) {
       s.items.forEach(function (it) {
         if (!(qty[it.id] > 0)) return;
-        var parts = (mods[it.id] || []).slice();
+        var offered = modsFor(it);
+        var parts = (mods[it.id] || []).filter(function (m) { return offered.indexOf(m) !== -1; });
         var free = (notes[it.id] || "").trim();
         if (free) parts.push(free);
         if (parts.length) out.push(it.name + ": " + parts.join(", ").toLowerCase());
