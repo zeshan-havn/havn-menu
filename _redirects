@@ -37,10 +37,14 @@
 /miami/*            /cities.html  200
 /phoenix            /cities.html  200
 /phoenix/*          /cities.html  200
+/boston             /cities.html  200
+/boston/*           /cities.html  200
 /:week/miami        /cities.html  200
 /:week/miami/*      /cities.html  200
 /:week/phoenix      /cities.html  200
 /:week/phoenix/*    /cities.html  200
+/:week/boston       /cities.html  200
+/:week/boston/*     /cities.html  200
 /c/*               /index.html  200
 /:week/welcome/*    /index.html  200
 /:week/welcome      /index.html  200

@@ -27,17 +27,17 @@
      the next weekly run overwrites it. Authored content that is not in
      the CSV (collection flavors/notes, bespoke art, short display
      names) lives in menu-data.overrides.json and survives every run. */
-  /* delivery-week: 2026-10-25 */
-  var DELIVERY_WEEK = "2026-10-25";
+  /* delivery-week: 2026-11-01 */
+  var DELIVERY_WEEK = "2026-11-01";
   var SECTIONS = [
     {
       label: "Chef Special",
       items: [
         {
-          id: "cheat", name: "Smash Burger Bowl", tag: "Chef special", img: "/assets/current/special.jpg",
-          desc: "Seasoned ground beef with a smoky special burger sauce and caramelized onions, apple cider cabbage slaw, and roasted sweet potato wedges.",
-          cal: 765, protein: 53, fat: 46, fiber: 7, carbs: 36,
-          diet: [["Dairy (yogurt)", "allergen"], ["Gluten free", "safe"]]
+          id: "cheat", name: "Birria Beef Bowl", tag: "Chef special", img: "/assets/current/special.jpg",
+          desc: "Adobo braised shredded beef with a mild cilantro salsa verde and roasted corn and peppers and onions over cilantro lime rice.",
+          cal: 659, protein: 64, fat: 21, fiber: 5, carbs: 55,
+          diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
         }
       ]
     },
@@ -45,15 +45,15 @@
       label: "Chicken",
       items: [
         {
-          id: "chicken", name: "Chicken Tikka", tag: "Chicken", img: "/assets/current/chicken.jpg",
-          desc: "Tikka marinated chicken thighs with a tikka masala sauce and roasted cauliflower and eggplant over cardamom basmati.",
-          cal: 706, protein: 58, fat: 30, fiber: 6, carbs: 47,
-          diet: [["Dairy (yogurt)", "allergen"], ["Gluten free", "safe"]]
+          id: "chicken", name: "Peri Peri Chicken", tag: "Chicken", img: "/assets/current/chicken.jpg",
+          desc: "Charred chicken with a peri peri glaze and fire charred sweet corn and roasted cauliflower over coconut rice.",
+          cal: 710, protein: 53, fat: 30, fiber: 6, carbs: 63,
+          diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
         },
         {
-          id: "chicken_2", name: "Chimichurri Chicken", tag: "Chicken", img: "/assets/current/chicken_2.jpg",
-          desc: "Grilled chicken thighs with a chimichurri and roasted red bell peppers and zucchini over wild rice.",
-          cal: 575, protein: 64, fat: 22, fiber: 5, carbs: 32,
+          id: "chicken_2", name: "Basil Pesto Chicken", tag: "Chicken", img: "/assets/current/chicken_2.jpg",
+          desc: "Blackened chicken breast over a basil pesto hummus with charred broccoli and roasted sweet potato and pickled red onions.",
+          cal: 608, protein: 62, fat: 24, fiber: 10, carbs: 35,
           diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
         }
       ]
@@ -62,10 +62,10 @@
       label: "Beef",
       items: [
         {
-          id: "beef", name: "Rosemary Thyme Steak", tag: "Beef", img: "/assets/current/beef.jpg",
-          desc: "Rosemary thyme steak with a savory steakhouse reduction and roasted garlic potatoes and cremini mushrooms and blistered green beans.",
-          cal: 733, protein: 65, fat: 31, fiber: 7, carbs: 44,
-          diet: [["Dairy (steakhouse reduction)", "allergen"], ["Gluten free", "safe"]]
+          id: "beef", name: "Balsamic Fig Short Ribs", tag: "Beef", img: "/assets/current/beef.jpg",
+          desc: "Braised short ribs with a balsamic fig glaze and caramelized pearl onions and roasted wild mushrooms over roasted baby potatoes.",
+          cal: 675, protein: 58, fat: 28, fiber: 7, carbs: 54,
+          diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
         }
       ]
     },
@@ -73,16 +73,16 @@
       label: "Seafood",
       items: [
         {
-          id: "seafood", name: "Marry Me Salmon", tag: "Seafood", img: "/assets/current/seafood.jpg",
-          desc: "Roasted salmon with a creamy sun dried tomato parmesan sauce, roasted mushrooms and broccoli over herb orzo.",
-          cal: 740, protein: 55, fat: 38, fiber: 7, carbs: 44,
-          diet: [["Dairy (cream, parmesan)", "allergen"], ["Gluten (orzo)", "allergen"]]
+          id: "seafood", name: "Lemon Caper Salmon", tag: "Seafood", img: "/assets/current/seafood.jpg",
+          desc: "Lemon caper salmon with a lemon caper dill sauce and roasted broccoli and beets over lemon herb quinoa.",
+          cal: 678, protein: 56, fat: 36, fiber: 8, carbs: 32,
+          diet: [["Dairy (lemon caper dill sauce)", "allergen"], ["Gluten free", "safe"]]
         },
         {
-          id: "seafood_2", name: "Asian Garlic Shrimp", tag: "Seafood", img: "/assets/current/seafood_2.jpg",
-          desc: "Asian garlic shrimp and hot honey sauce with spicy broccoli and carrots over cilantro lime rice.",
-          cal: 557, protein: 46, fat: 9, fiber: 6, carbs: 73,
-          diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
+          id: "seafood_2", name: "Garlic Butter Shrimp", tag: "Seafood", img: "/assets/current/seafood_2.jpg",
+          desc: "Garlic herb shrimp with a lemon garlic butter and roasted cauliflower and zucchini over orzo.",
+          cal: 593, protein: 54, fat: 23, fiber: 5, carbs: 37,
+          diet: [["Dairy (butter)", "allergen"], ["Gluten (orzo)", "allergen"]]
         }
       ]
     },
@@ -90,10 +90,10 @@
       label: "Pasta",
       items: [
         {
-          id: "pasta", name: "Vodka Pasta", tag: "Pasta", img: "/assets/current/pasta.jpg",
-          desc: "Blackened chicken breast over luxurious shell pasta with a dairy free vodka cream sauce.",
-          cal: 717, protein: 54, fat: 33, fiber: 4, carbs: 50,
-          diet: [["Dairy free", "safe"], ["Gluten (pasta)", "allergen"]]
+          id: "pasta", name: "Hot Honey Mac and Cheese", tag: "Pasta", img: "/assets/current/pasta.jpg",
+          desc: "Hot honey chicken with a hot honey sauce over creamy mac and cheese.",
+          cal: 775, protein: 50, fat: 39, fiber: 2, carbs: 54,
+          diet: [["Dairy (cheese)", "allergen"], ["Gluten (pasta)", "allergen"]]
         }
       ]
     },
@@ -101,9 +101,9 @@
       label: "Vegetarian",
       items: [
         {
-          id: "vegetarian", name: "Korean Seared Tofu", tag: "Vegetarian", img: "/assets/current/veg.jpg",
-          desc: "Crispy seared tofu with a gochujang glaze and charred broccoli and roasted cremini mushrooms over basmati rice.",
-          cal: 663, protein: 50, fat: 22, fiber: 10, carbs: 71,
+          id: "vegetarian", name: "Chickpea Tikka Masala", tag: "Vegetarian", img: "/assets/current/veg.jpg",
+          desc: "Seared tofu in a creamy coconut tikka masala with roasted cauliflower and chickpeas over basmati rice.",
+          cal: 753, protein: 40, fat: 33, fiber: 12, carbs: 68,
           diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
         }
       ]
@@ -112,16 +112,16 @@
       label: "Salads",
       items: [
         {
-          id: "salad", name: "Green Goddess Salad", tag: "Salad", img: "/assets/current/salad.jpg",
-          desc: "Diced lemon herb chicken over shredded purple cabbage and kale with pickled red onion, cucumber, roasted chickpeas, red grapes, toasted pumpkin seeds and dried apricots, with tahini green goddess on the side.",
-          cal: 479, protein: 45, fat: 20, fiber: 10, carbs: 31,
-          diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
+          id: "salad", name: "Chicken Caesar Crunch Salad", tag: "Salad", img: "/assets/current/salad.jpg",
+          desc: "Diced lemon herb chicken over shredded kale with roasted chickpeas, shaved celery, pickled cucumber, blueberries, and hemp seeds, with eggless caper Caesar dressing on the side.",
+          cal: 419, protein: 48, fat: 17, fiber: 8, carbs: 19,
+          diet: [["Dairy (yogurt)", "allergen"], ["Gluten free", "safe"]]
         },
         {
-          id: "salad_2", name: "Harvest Bowl Salad", tag: "Salad", img: "/assets/current/salad_2.jpg",
-          desc: "Diced lemon herb chicken over apple cider slaw and kale with roasted sweet potato, shaved carrot and celery, spiced pickled apple and goat cheese, with balsamic vinaigrette on the side.",
-          cal: 506, protein: 42, fat: 25, fiber: 9, carbs: 29,
-          diet: [["Dairy (goat cheese)", "allergen"], ["Gluten free", "safe"]]
+          id: "salad_2", name: "Chinese Chicken Salad", tag: "Salad", img: "/assets/current/salad_2.jpg",
+          desc: "Sesame chicken over kale and purple cabbage with edamame, carrots, roasted red pepper, dried mango, scallions, and pumpkin seeds, with ginger sesame tamari dressing on the side.",
+          cal: 555, protein: 49, fat: 25, fiber: 9, carbs: 28,
+          diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
         }
       ]
     },
@@ -131,22 +131,35 @@
       side: true,
       items: [
         {
-          id: "oats", name: "Classic Overnight Oats", tag: "Oats", side: true,
-          desc: "Premium rolled oats in organic milk, lightly sweetened with maple and vanilla, topped with fresh blueberries.",
-          cal: 232, protein: 17, fat: 2, fiber: 4, carbs: 32,
-          diet: [["Dairy (milk)", "allergen"], ["Gluten free", "safe"]]
+          id: "oats", name: "Cinnamon Roll Overnight Oats", tag: "Oats", side: true,
+          desc: "Cinnamon maple overnight oats with a brown sugar cinnamon swirl and a vanilla mascarpone style layer.",
+          cal: 397, protein: 27, fat: 8, fiber: 4, carbs: 51,
+          diet: [["Dairy (yogurt, mascarpone)", "allergen"], ["Gluten free", "safe"]]
         },
         {
-          id: "chia", name: "Apple Crisp Chia Pudding", tag: "Chia", side: true,
-          desc: "Cinnamon vanilla chia pudding with butter sautéed cinnamon apples and a toasted oat crisp.",
-          cal: 400, protein: 22, fat: 15, fiber: 13, carbs: 34,
+          id: "chia", name: "Chocolate Chia Pudding", tag: "Chia", side: true,
+          desc: "Chocolate chia pudding with a chocolate mascarpone cream and fresh raspberries.",
+          cal: 323, protein: 23, fat: 13, fiber: 10, carbs: 30,
           diet: [["Dairy (yogurt)", "allergen"], ["Gluten free", "safe"]]
         },
         {
-          id: "chia_2", name: "Tiramisu Chia Pudding", tag: "Chia", side: true,
-          desc: "Tiramisu chia pudding with a sweet tiramisu style cream topped with a light cocoa dusting.",
-          cal: 376, protein: 25, fat: 14, fiber: 11, carbs: 27,
-          diet: [["Dairy (yogurt)", "allergen"], ["Gluten free", "safe"]]
+          id: "chia_2", name: "Pumpkin Cheesecake Chia Pudding", tag: "Chia", side: true,
+          desc: "Pumpkin spice chia pudding with a maple vanilla mascarpone style cheesecake layer and graham oat crumble.",
+          cal: 454, protein: 25, fat: 17, fiber: 10, carbs: 39,
+          diet: [["Dairy (yogurt, mascarpone)", "allergen"], ["Gluten (graham)", "allergen"]]
+        }
+      ]
+    },
+    {
+      label: "Broths — $10",
+      drop: true,
+      side: true,
+      items: [
+        {
+          id: "broth", name: "Classic Bone Broth", tag: "Broth", side: true,
+          desc: "Our classic high protein and collagen rich chicken bone broth slow simmered for 24 hours.",
+          cal: 420, protein: 41, fat: 26, fiber: 0, carbs: 6,
+          diet: [["Dairy free", "safe"], ["Gluten free", "safe"]]
         }
       ]
     },
@@ -188,11 +201,14 @@
   }
 
   var excludedItems = (window.HAVN_CONFIG || {}).EXCLUDED_MENU_ITEM_IDS || [];
-  SECTIONS = SECTIONS.map(function (section) {
-    return Object.assign({}, section, { items: section.items.filter(function (item) {
-      return excludedItems.indexOf(item.id) === -1;
-    }) });
-  }).filter(function (section) { return section.items.length > 0; });
+  function visibleSections(sections) {
+    return sections.map(function (section) {
+      return Object.assign({}, section, { items: section.items.filter(function (item) {
+        return excludedItems.indexOf(item.id) === -1;
+      }) });
+    }).filter(function (section) { return section.items.length > 0; });
+  }
+  SECTIONS = visibleSections(SECTIONS);
   var ITEMS = indexItems(SECTIONS);
 
   var qty = {};
@@ -269,7 +285,7 @@
 
   function partnerWelcomeTiers() {
     var t = window.HAVN_CONFIG && window.HAVN_CONFIG.WELCOME_OFFER_TIERS;
-    return (window.HAVN_MENU_CITY === "miami" || window.HAVN_MENU_CITY === "phoenix") &&
+    return (window.HAVN_MENU_CITY === "miami" || window.HAVN_MENU_CITY === "phoenix" || window.HAVN_MENU_CITY === "boston") &&
       Array.isArray(t) && t.length === 2 ? t : null;
   }
 
@@ -1807,7 +1823,7 @@
        in the preserved prior-week snapshot before the hidden menu is revealed,
        so the operator toggle controls the first customer reveal by itself. */
     if (window.HAVN_PREVIOUS_MENU_SECTIONS) {
-      SECTIONS = window.HAVN_PREVIOUS_MENU_SECTIONS;
+      SECTIONS = visibleSections(window.HAVN_PREVIOUS_MENU_SECTIONS);
       ITEMS = indexItems(SECTIONS);
       qty = {};
       mods = {};

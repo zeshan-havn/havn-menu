@@ -1,4 +1,4 @@
-/* Miami and Phoenix menu pages (menu.havnclub.com/miami, /phoenix and their
+/* Miami, Phoenix and Boston menu pages (menu.havnclub.com/miami, /phoenix and their
    /welcome/quiz and /welcome/sms pages). These cities run on Havn OS.
 
    Loaded ONLY by cities.html, which qa/cities/build-cities-page.mjs generates
@@ -33,7 +33,8 @@
   var SMS_LABEL = "(833) 565-1133";
   var CITIES = {
     miami: { label: "Miami" },
-    phoenix: { label: "Phoenix" }
+    phoenix: { label: "Phoenix" },
+    boston: { label: "Boston" }
   };
   /* Partner welcome amounts come from Havn OS; the menu supports 5/7 meal tiers. */
   var GREETING = "Hi Chef, Here's my order:";
@@ -50,7 +51,7 @@
 
   var path = root.location.pathname || "/";
   var match = path.match(
-    /^\/(?:(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\d{1,2}\/)?(miami|phoenix)((?:\/[^/]*)*)$/i
+    /^\/(?:(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\d{1,2}\/)?(miami|phoenix|boston)((?:\/[^/]*)*)$/i
   );
   if (!match) return;
   var slug = match[1].toLowerCase();
@@ -74,7 +75,7 @@
   cfg.CITY = city.label;
   cfg.CITY_LABEL = city.label;
   cfg.CITY_SHORT = city.label;
-  cfg.EXCLUDED_MENU_ITEM_IDS = ["wellness_shots"];
+  cfg.EXCLUDED_MENU_ITEM_IDS = slug === "miami" || slug === "phoenix" ? ["wellness_shots"] : [];
   cfg.LANDING_VARIANT = "os-" + slug;
   cfg.QR = Object.assign({}, cfg.QR, { numberLabel: SMS_LABEL });
   /* menu.js fetches this once; it is replaced with Havn OS's answer below. */
