@@ -188,8 +188,11 @@
   }
 
   /* ── 3. Havn OS: the city and its menu status ───────────────────────── */
-  function statusUrl(open) {
-    return "data:application/json," + encodeURIComponent(JSON.stringify({ ordering: open ? "open" : "pending" }));
+  function statusUrl(open, publishedDate) {
+    return "data:application/json," + encodeURIComponent(JSON.stringify({
+      ordering: open ? "open" : publishedDate ? "closed" : "pending",
+      deliveryDate: publishedDate || null
+    }));
   }
   function getJSON(url) {
     return root.fetch(url, { cache: "no-cache", credentials: "omit" }).then(function (r) {
@@ -233,7 +236,8 @@
     root.HAVN_MENU_VARIANT = mode === "welcome" ? variant : "";
     root.HAVN_MENU_CITY = slug;
     /* Open unless Havn OS says otherwise; menu.js fails open the same way. */
-    cfg.MENU_STATUS_URL = statusUrl(!(osStatus && osStatus.open === false));
+    cfg.MENU_STATUS_URL = statusUrl(!(osStatus && osStatus.open === false),
+      osStatus && osStatus.menuId ? osStatus.deliveryDate : null);
     var s = document.createElement("script");
     s.src = "/menu.js";
     s.async = false;

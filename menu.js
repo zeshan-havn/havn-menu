@@ -1220,7 +1220,7 @@
     if (pendingMode) {
       sendBtn.classList.add("m-send-off");
       sendBtn.removeAttribute("href");
-      sendBtn.textContent = "Ordering opens when the new menu drops";
+      sendBtn.textContent = closedMenuMode ? "Ordering is currently closed" : "Ordering opens when the new menu drops";
     }
 
   }
@@ -1809,20 +1809,22 @@
      ?pending=1 as a QA override. Fail-open: if the status call errors or
      times out, the page behaves exactly as it does today. */
   var pendingMode = false;
+  var closedMenuMode = false;
 
   function revealResolvedMenu() {
     document.body.classList.remove("m-menu-checking");
   }
 
-  function enterPendingMode() {
+  function enterPendingMode(showCurrentMenu) {
     if (pendingMode) return;
     pendingMode = true;
+    closedMenuMode = !!showCurrentMenu;
     document.body.classList.add("m-pending");
 
     /* menu.js already contains the ready-to-launch week. Pending mode swaps
        in the preserved prior-week snapshot before the hidden menu is revealed,
        so the operator toggle controls the first customer reveal by itself. */
-    if (window.HAVN_PREVIOUS_MENU_SECTIONS) {
+    if (!closedMenuMode && window.HAVN_PREVIOUS_MENU_SECTIONS) {
       SECTIONS = visibleSections(window.HAVN_PREVIOUS_MENU_SECTIONS);
       ITEMS = indexItems(SECTIONS);
       qty = {};
@@ -1836,12 +1838,16 @@
        short: the persistent band right above already says the rest. */
     var introLabel = document.querySelector(".m-intro-label");
     if (introLabel) {
-      introLabel.innerHTML = "<i aria-hidden=\"true\"></i>Last week&rsquo;s menu";
+      introLabel.innerHTML = "<i aria-hidden=\"true\"></i>" +
+        (closedMenuMode ? "This week&rsquo;s menu" : "Last week&rsquo;s menu");
     }
 
     var banner = document.getElementById("m-pend-banner");
     var topbar = document.getElementById("topbar");
     if (banner) {
+      if (closedMenuMode) {
+        banner.innerHTML = '<span class="m-pend-banner-dot" aria-hidden="true"></span>Ordering is currently closed';
+      }
       banner.style.top = (topbar ? topbar.offsetHeight : 0) + "px";
       banner.hidden = false;
     }
@@ -1851,6 +1857,12 @@
     var pop = document.getElementById("m-pend");
     var popBackdrop = document.getElementById("m-pend-backdrop");
     var okBtn = document.getElementById("m-pend-ok");
+    if (closedMenuMode && pop) {
+      var closedTitle = document.getElementById("m-pend-title");
+      var closedBody = pop.querySelector(".m-pend-body");
+      if (closedTitle) closedTitle.innerHTML = "Ordering is<br><em>currently closed</em>";
+      if (closedBody) closedBody.textContent = "Browse this week’s menu. Ordering will reopen when the kitchen is ready.";
+    }
     if (pop && popBackdrop && okBtn) {
       pop.hidden = false;
       popBackdrop.hidden = false;
@@ -1900,7 +1912,8 @@
       fetch(url, ctrl ? { signal: ctrl.signal } : {})
         .then(function (r) { return r.ok ? r.json() : null; })
         .then(function (data) {
-          if (data && data.ordering === "pending") enterPendingMode();
+          if (data && data.ordering === "closed") enterPendingMode(data.deliveryDate === DELIVERY_WEEK);
+          else if (data && data.ordering === "pending") enterPendingMode();
           else revealResolvedMenu();
         })
         .catch(function () { revealResolvedMenu(); /* fail-open */ });
