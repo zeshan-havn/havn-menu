@@ -75,7 +75,8 @@
   cfg.CITY = city.label;
   cfg.CITY_LABEL = city.label;
   cfg.CITY_SHORT = city.label;
-  cfg.EXCLUDED_MENU_ITEM_IDS = slug === "miami" || slug === "phoenix" ? ["wellness_shots"] : [];
+  cfg.EXCLUDED_MENU_ITEM_IDS = ["salad", "salad_2", "oats"];
+  if (slug === "miami" || slug === "phoenix") cfg.EXCLUDED_MENU_ITEM_IDS.push("wellness_shots");
   cfg.LANDING_VARIANT = "os-" + slug;
   cfg.QR = Object.assign({}, cfg.QR, { numberLabel: SMS_LABEL });
   /* menu.js fetches this once; it is replaced with Havn OS's answer below. */
