@@ -1,4 +1,4 @@
-/* Miami, Phoenix, Chicago and Boston menu pages (menu.havnclub.com/miami, /phoenix, /chicago and their
+/* Miami, Phoenix and Chicago menu pages (menu.havnclub.com/miami, /phoenix, /chicago and their
    /welcome/quiz and /welcome/sms pages). These cities run on Havn OS.
 
    Loaded ONLY by cities.html, which qa/cities/build-cities-page.mjs generates
@@ -34,8 +34,7 @@
   var CITIES = {
     miami: { label: "Miami" },
     phoenix: { label: "Phoenix" },
-    chicago: { label: "Chicago" },
-    boston: { label: "Boston" }
+    chicago: { label: "Chicago" }
   };
   /* Partner welcome amounts come from Havn OS; the menu supports 5/7 meal tiers. */
   var GREETING = "Hi Chef, Here's my order:";
@@ -52,7 +51,7 @@
 
   var path = root.location.pathname || "/";
   var match = path.match(
-    /^\/(?:(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\d{1,2}\/)?(miami|phoenix|chicago|boston)((?:\/[^/]*)*)$/i
+    /^\/(?:(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\d{1,2}\/)?(miami|phoenix|chicago)((?:\/[^/]*)*)$/i
   );
   if (!match) return;
   var slug = match[1].toLowerCase();

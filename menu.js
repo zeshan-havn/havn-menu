@@ -285,7 +285,7 @@
 
   function partnerWelcomeTiers() {
     var t = window.HAVN_CONFIG && window.HAVN_CONFIG.WELCOME_OFFER_TIERS;
-    return (window.HAVN_MENU_CITY === "miami" || window.HAVN_MENU_CITY === "phoenix" || window.HAVN_MENU_CITY === "chicago" || window.HAVN_MENU_CITY === "boston") &&
+    return (window.HAVN_MENU_CITY === "miami" || window.HAVN_MENU_CITY === "phoenix" || window.HAVN_MENU_CITY === "chicago") &&
       Array.isArray(t) && t.length === 2 ? t : null;
   }
 
