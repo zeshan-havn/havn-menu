@@ -951,6 +951,29 @@ body.active-menu .m-intro { padding-top: 88px; }
   color: var(--cream);
   box-shadow: 0 6px 14px rgba(10, 22, 18, 0.22);
 }
+/* a dish that already is, or cannot be made, dairy/gluten free */
+.m-mod-pill.m-mod-off {
+  background: transparent;
+  border-style: dashed;
+  color: rgba(92, 90, 85, 0.55);
+}
+.m-mod-note[hidden], .m-detail-nocustom[hidden] { display: none; }
+.m-mod-note {
+  margin-top: 9px;
+  padding: 9px 12px;
+  border-radius: 10px;
+  background: var(--forest);
+  color: var(--cream);
+  font-size: 12.5px; font-weight: 600; line-height: 17px; text-align: center;
+  animation: mModNote 0.28s var(--ease-out);
+}
+@keyframes mModNote { from { opacity: 0; transform: translateY(4px); } }
+.m-detail-nocustom {
+  margin-top: 21px;
+  font-family: var(--serif); font-style: italic; font-weight: 500;
+  font-size: 15px;
+  color: var(--ink-soft);
+}
 
 /* ── the note: written onto the card, not typed into a box ── */
 .m-detail-custom { margin-top: 21px; }

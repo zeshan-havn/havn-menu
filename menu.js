@@ -696,10 +696,47 @@
   var dMods = document.getElementById("m-detail-mods");
   var dPills = document.getElementById("m-mod-pills");
   var dCustom = document.getElementById("m-custom-input");
+  var dCustomWrap = detail.querySelector(".m-detail-custom");
   var dEach = document.getElementById("m-detail-each");
   var dBody = detail.querySelector(".m-detail-body");
 
   var MODS = ["Dairy free", "Gluten free", "Low carb", "No carb", "Extra protein (+$2)", "Extra carbs"];
+
+  /* Dairy free / gluten free reach the kitchen only when they change the
+     dish. One the dish already is, or one the kitchen cannot make (pasta,
+     chia, oats, broth), would mark an unchanged meal as customized in HQ.
+     Chia, oats and broth take no customizations at all. Matched on the
+     tag and the slot id, so a renamed weekly dish keeps its rule. */
+  var DIET_MODS = ["Dairy free", "Gluten free"];
+  function kindOf(it) { return [String(it.tag || "").toLowerCase(), String(it.id || "").replace(/_\d+$/, "")]; }
+  function kindIn(it, kinds) { return kindOf(it).some(function (k) { return kinds.indexOf(k) !== -1; }); }
+  function noCustom(it) { return kindIn(it, ["chia", "oats", "broth"]); }
+  function modBlock(it, m) {
+    if (DIET_MODS.indexOf(m) === -1) return "";
+    if (noCustom(it) || kindIn(it, ["pasta"])) return "Sorry, this customization isn’t available on this meal.";
+    var already = (it.diet || []).some(function (t) { return t[1] === "safe" && t[0].toLowerCase() === m.toLowerCase(); });
+    return already ? "Don’t worry, this meal is already " + m.toLowerCase() + "." : "";
+  }
+  var modNoteTimer = null;
+  function showModNote(text) {
+    var n = document.getElementById("m-mod-note");
+    if (!n) {
+      n = document.createElement("p");
+      n.className = "m-mod-note";
+      n.id = "m-mod-note";
+      n.setAttribute("role", "status");
+      dMods.appendChild(n);
+    }
+    n.textContent = text;
+    n.hidden = false;
+    if (modNoteTimer) clearTimeout(modNoteTimer);
+    modNoteTimer = setTimeout(function () { n.hidden = true; }, 3200);
+  }
+  function hideModNote() {
+    if (modNoteTimer) { clearTimeout(modNoteTimer); modNoteTimer = null; }
+    var n = document.getElementById("m-mod-note");
+    if (n) n.hidden = true;
+  }
 
   function openDetail(id, trigger) {
     var it = ITEMS[id];
@@ -773,17 +810,21 @@
     }
 
     /* Make-it mods apply to meals, not sides or collections */
-    var modsApply = !it.side && !it.addon;
+    var modsApply = !it.side && !it.addon && !noCustom(it);
     dMods.hidden = !modsApply;
+    hideModNote();
     if (modsApply) {
       dPills.innerHTML = "";
       var active = mods[id] || [];
       MODS.forEach(function (m) {
         var b = document.createElement("button");
         b.type = "button";
-        b.className = "m-mod-pill" + (active.indexOf(m) !== -1 ? " on" : "");
+        var blocked = modBlock(it, m);
+        b.className = "m-mod-pill" + (active.indexOf(m) !== -1 ? " on" : "") + (blocked ? " m-mod-off" : "");
         b.textContent = m;
+        if (blocked) b.setAttribute("aria-disabled", "true");
         b.addEventListener("click", function () {
+          if (blocked) { showModNote(blocked); return; }
           var list = mods[id] = mods[id] || [];
           var i = list.indexOf(m);
           if (i === -1) list.push(m); else list.splice(i, 1);
@@ -794,6 +835,17 @@
       });
     }
 
+    var locked = noCustom(it);
+    dCustomWrap.hidden = locked;
+    var noCustomLine = document.getElementById("m-detail-nocustom");
+    if (!noCustomLine) {
+      noCustomLine = document.createElement("p");
+      noCustomLine.className = "m-detail-nocustom";
+      noCustomLine.id = "m-detail-nocustom";
+      noCustomLine.textContent = "Sorry, customizations aren’t available on this item.";
+      dCustomWrap.parentNode.insertBefore(noCustomLine, dCustomWrap);
+    }
+    noCustomLine.hidden = !locked;
     dCustom.value = notes[id] || "";
     detailQtyEl.textContent = qty[id] || 0;
     if (SIMPLE) {
@@ -1093,8 +1145,8 @@
     var out = [];
     SECTIONS.forEach(function (s) {
       s.items.forEach(function (it) {
-        if (!(qty[it.id] > 0)) return;
-        var parts = (mods[it.id] || []).slice();
+        if (!(qty[it.id] > 0) || noCustom(it)) return;
+        var parts = (mods[it.id] || []).filter(function (m) { return !modBlock(it, m); });
         var free = (notes[it.id] || "").trim();
         if (free) parts.push(free);
         if (parts.length) out.push(it.name + ": " + parts.join(", ").toLowerCase());
