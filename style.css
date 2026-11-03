@@ -103,6 +103,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .act, .ticker, .foot { width: 100%; }
 body > #root > * { max-width: 480px; margin-left: auto; margin-right: auto; }
 #root > .grain { max-width: none; }
+/* full-screen backdrops: a click beside the column must still close the sheet */
+#root > .m-sheet-backdrop, #root > .m-pend-backdrop { max-width: none; }
 
 /* ── film grain over everything ─────────────────────────────── */
 .grain {
