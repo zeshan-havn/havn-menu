@@ -1,5 +1,6 @@
-// Generates cities.html (the Miami/Phoenix menu page, a Havn OS city) from index.html.
-// It is index.html with three changes, each asserted to apply exactly once:
+// Generates cities.html (the Miami/Phoenix/Chicago Havn OS menu page) from index.html.
+// It is index.html with these changes, each asserted to apply exactly once:
+//   - static Open Graph metadata for SMS link previews (crawlers do not run cities.js),
 //   - no havnclub.com/hybrid/tracking.js (it reports visitors as DC/SD to HQ),
 //   - no havnclub.com/main-tasting/tracking.js (the DC/SD Tasting Menu tracker),
 //   - /cities.js in place of /menu.js (cities.js loads menu.js once Havn OS has answered).
@@ -19,6 +20,20 @@ function once(html, find, replace) {
 const tag = (src) => `<script src="${src}"></script>`;
 
 let out = index;
+// All city/menu/welcome routes rewrite to cities.html. Keep this generic so one
+// city cannot inherit another city's deadline or welcome offer in a cached card.
+// Use the same public preview image as the DC/SoCal campaign links.
+const preview = [
+  '<meta property="og:title" content="Havn Club - Weekly Menu">',
+  `<meta property="og:description" content="Explore this week's chef-made Havn menu and choose your meals.">`,
+  '<meta property="og:image" content="https://menu.havnclub.com/menu-preview.jpg">',
+  '<meta property="og:type" content="website">',
+  '<meta property="og:site_name" content="Havn Club">',
+  '<meta name="twitter:card" content="summary_large_image">',
+  '<meta name="twitter:title" content="Havn Club - Weekly Menu">',
+  '<meta name="twitter:image" content="https://menu.havnclub.com/menu-preview.jpg">',
+].join('\n');
+out = once(out, '</title>', '</title>\n' + preview);
 out = once(out, tag('https://havnclub.com/hybrid/tracking.js') + '\n', '');
 out = once(out, tag('https://havnclub.com/main-tasting/tracking.js') + '\n', '');
 out = once(out, tag('/menu.js'), tag('/cities.js'));
