@@ -75,7 +75,7 @@
   cfg.CITY = city.label;
   cfg.CITY_LABEL = city.label;
   cfg.CITY_SHORT = city.label;
-  cfg.EXCLUDED_MENU_ITEM_IDS = ["salad", "salad_2", "oats"];
+  cfg.EXCLUDED_MENU_ITEM_IDS = slug === "phoenix" ? [] : ["oats"];
   if (slug === "miami" || slug === "phoenix" || slug === "chicago") cfg.EXCLUDED_MENU_ITEM_IDS.push("wellness_shots");
   cfg.LANDING_VARIANT = "os-" + slug;
   cfg.QR = Object.assign({}, cfg.QR, { numberLabel: SMS_LABEL });
