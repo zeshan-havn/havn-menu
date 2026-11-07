@@ -1964,7 +1964,10 @@
       fetch(url, ctrl ? { signal: ctrl.signal } : {})
         .then(function (r) { return r.ok ? r.json() : null; })
         .then(function (data) {
-          if (data && data.ordering === "closed") enterPendingMode(data.deliveryDate === DELIVERY_WEEK);
+          /* Cities roll over at different local times; never bind a new menu's
+             slot-only order draft to the previous delivery week's catalog. */
+          if (data && data.deliveryDate && data.deliveryDate !== DELIVERY_WEEK) enterPendingMode();
+          else if (data && data.ordering === "closed") enterPendingMode(data.deliveryDate === DELIVERY_WEEK);
           else if (data && data.ordering === "pending") enterPendingMode();
           else revealResolvedMenu();
         })
