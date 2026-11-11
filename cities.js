@@ -67,6 +67,8 @@
 
   /* ── 1. config, before menu.js reads it ─────────────────────────────── */
   root.HAVN_CITY_SLUG = slug;
+  /* menu.havnclub.com/ and /<week> send this visitor back here (city-route.js). */
+  setCookie("havn_os_city", slug, 60 * 60 * 24 * 365);
   root.HAVN_MENU_CITY = slug;
   var cfg = root.HAVN_CONFIG || (root.HAVN_CONFIG = {});
   cfg.SMS_NUMBER = SMS_NUMBER;
