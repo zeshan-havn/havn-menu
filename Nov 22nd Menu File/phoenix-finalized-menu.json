@@ -3,7 +3,7 @@
   "week": "2026-11-22",
   "market_scope": "both",
   "authored_by": "Zeshan — Nov 14 selected lineup; developed locally by Codex. Publication pending owner confirmation.",
-  "notes": "Nov 22 lineup selected by Zeshan Nov 14. Complete development authorized; PUBLICATION ON HOLD until explicit confirmation. Lemon Herb Feta and Ruby Goddess are explicit two-week rotation exceptions. Current kitchen portions retained. Carne Asada resolves to the live skirt-steak recipe; nutrition uses existing cooked Skirt Steak values instead of the historical accidental pear-flank match. Two beef dishes. Featured: Smash Burger Bowl, Carne Asada Steak, Blackened Salmon. No tasting or dinner offers. Miami/Chicago exclude salads/oats/shots; Phoenix includes salads/oats, excludes shots. No live writes or sends authorized. Vanilla Chia uses current Almond Coconut Granola: no gluten grains in recipe; removed stale historical Gluten (Granola) label, consistent with Nov15 Strawberry correction. City: phoenix. Prepared locally only; no OS or Ops publication. Nov14 correction: regular Whipped Lemon Garlic Feta, no ruby beet feta. Owner clarified whole July12 regular feta dish selected; use matching existing photograph only. Regenerated candidates not selected.",
+  "notes": "Nov 22 lineup selected by Zeshan Nov 14. Complete development authorized; PUBLICATION ON HOLD until explicit confirmation. Lemon Herb Feta and Ruby Goddess are explicit two-week rotation exceptions. Current kitchen portions retained. Carne Asada resolves to the live skirt-steak recipe; nutrition uses existing cooked Skirt Steak values instead of the historical accidental pear-flank match. Two beef dishes. Featured: Smash Burger Bowl, Carne Asada Steak, Blackened Salmon. No tasting or dinner offers. Miami/Chicago exclude salads/oats/shots; Phoenix includes salads/oats, excludes shots. No live writes or sends authorized. Vanilla Chia uses current Almond Coconut Granola: no gluten grains in recipe; removed stale historical Gluten (Granola) label, consistent with Nov15 Strawberry correction. City: phoenix. Prepared locally only; no OS or Ops publication. Nov14 correction: regular Whipped Lemon Garlic Feta, no ruby beet feta. Owner clarified whole July12 regular feta dish selected; use matching existing photograph only. Regenerated candidates not selected. Nov14 owner portion adjustment: regular feta meal chicken 5.5oz.",
   "slots": {
     "cheat": {
       "display_name": "Smash Burger Bowl",
@@ -125,9 +125,9 @@
         "dairy"
       ],
       "macros": {
-        "calories": 686,
-        "protein_g": 68,
-        "fat_g": 32,
+        "calories": 651,
+        "protein_g": 59,
+        "fat_g": 31,
         "fiber_g": 7,
         "net_carbs_g": 32
       },
@@ -135,7 +135,7 @@
         {
           "recipe": "Lemon Herb Chicken",
           "type": "protein",
-          "oz": 6.5,
+          "oz": 5.5,
           "is_new": false
         },
         {

@@ -6,7 +6,7 @@
   },
   "menu_source": {
     "path": "CulinaryOps/Nov 22nd Menu File/finalized-menu.json",
-    "sha256": "df3ffd8df38abcf8df98215d00203fe6fbf6db8290cca31b8b4cbc463a63a036"
+    "sha256": "e2848472d57a32e4ccbf9cf4adc8aaf459fc55c2b23c38e4f7f4941856202ce2"
   },
   "transform": "Pillow RGB thumbnail max1600 long edge; JPEG quality90; no upscaling",
   "items": {
@@ -21,12 +21,6 @@
       "source_sha256": "3df9fda02025f9b088e9b5a70ace18844e7909fce7af8ec3a823821e9844e165",
       "output": "assets/current/chicken.jpg",
       "output_sha256": "6da1deed4a7ef7876467a642b4e1d1abbbd52cb8eb35b8efd2915fe3fb9ff5bf"
-    },
-    "chicken_2": {
-      "source": "CulinaryOps/Nov 22nd Menu File/meal-images/chicken_2-lemon-herb-feta-chicken.png",
-      "source_sha256": "d78f7588375253275ee4686e110e4578b3cf91a8c4ae8773c02c2a86798a1cb3",
-      "output": "assets/current/chicken_2.jpg",
-      "output_sha256": "ffa2b3d1497ba369b93888b3812bf22d0faed84a7bc39e31e30a4137f955add4"
     },
     "beef": {
       "source": "CulinaryOps/Nov 22nd Menu File/meal-images/beef-carne-asada-steak.png",
@@ -70,5 +64,6 @@
       "output": "assets/current/salad_2.jpg",
       "output_sha256": "13e5c35315a5a5f1547a05eb6ba09d9bea7f618ea9fdcf602d0bd865c24ffd2c"
     }
-  }
+  },
+  "draft_status": "INCOMPLETE \u2014 matching historical photograph for regular whipped-feta dish is missing; no generated or ruby replacement selected"
 }

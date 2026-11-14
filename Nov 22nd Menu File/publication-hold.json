@@ -5,5 +5,5 @@
   "tasting_enabled": false,
   "dinner_invitation_enabled": false,
   "photo_selection": "All regenerated candidates rejected. Nine historical photos selected; regular-dish photograph missing.",
-  "local_preview": "Stopped: previous preview contained the superseded ruby-dish/sauce-edit selection."
+  "local_preview": "Targeted local QA completed; preview stopped. Missing historical regular-feta photo blocks publication."
 }
