@@ -1,0 +1,362 @@
+{
+  "week": "2026-11-22",
+  "notes": "Derived from selected finalized-menu.json; publication held.",
+  "dishes": [
+    {
+      "dish": "Smash Burger Bowl",
+      "ops_match_name": "Smash Burger Bowl",
+      "components": [
+        {
+          "name": "Smash Burger Ground Beef",
+          "portion_oz": 6.0
+        },
+        {
+          "name": "Roasted Sweet Potatoes",
+          "portion_oz": 4.0
+        },
+        {
+          "name": "Apple Cider Cabbage Slaw",
+          "portion_oz": 3.0
+        },
+        {
+          "name": "Caramelized Onions",
+          "portion_oz": 1.0
+        },
+        {
+          "name": "Smoky Special Burger Sauce",
+          "portion_oz": 2.0
+        }
+      ]
+    },
+    {
+      "dish": "Thai Coconut Curry Chicken",
+      "ops_match_name": "Thai Coconut Curry Chicken",
+      "components": [
+        {
+          "name": "Soy Agave Chicken Breast",
+          "portion_oz": 6.5
+        },
+        {
+          "name": "Basmati Rice",
+          "portion_oz": 4
+        },
+        {
+          "name": "Broccoli",
+          "portion_oz": 3
+        },
+        {
+          "name": "Carrots",
+          "portion_oz": 3
+        },
+        {
+          "name": "Thai Coconut Curry Sauce",
+          "portion_oz": 3
+        }
+      ]
+    },
+    {
+      "dish": "Lemon Herb Feta Chicken",
+      "ops_match_name": "Lemon Herb Chicken with Whipped Feta",
+      "components": [
+        {
+          "name": "Lemon Herb Chicken",
+          "portion_oz": 6.5
+        },
+        {
+          "name": "Roasted Sweet Potatoes",
+          "portion_oz": 4.0
+        },
+        {
+          "name": "Lacinato Kale",
+          "portion_oz": 4.5
+        },
+        {
+          "name": "Ruby Beet Whipped Feta",
+          "portion_oz": 2.0
+        },
+        {
+          "name": "House Pickled Vegetable Medley",
+          "portion_oz": 2.0
+        },
+        {
+          "name": "Dried Cranberries",
+          "portion_oz": 0.25
+        },
+        {
+          "name": "Herb Finishing Oil",
+          "portion_oz": 0.25
+        }
+      ]
+    },
+    {
+      "dish": "Carne Asada Steak",
+      "ops_match_name": "Carne Asada Steak",
+      "components": [
+        {
+          "name": "Carne Asada Steak",
+          "portion_oz": 6.0
+        },
+        {
+          "name": "Cilantro Lime Rice (basmati Rice)",
+          "portion_oz": 4.0
+        },
+        {
+          "name": "Plantains",
+          "portion_oz": 3.0
+        },
+        {
+          "name": "Peruvian Aji Verde",
+          "portion_oz": 2.0
+        },
+        {
+          "name": "Pickled Red Onions",
+          "portion_oz": 2.0
+        }
+      ]
+    },
+    {
+      "dish": "Blackened Salmon",
+      "ops_match_name": "Blackened Salmon",
+      "components": [
+        {
+          "name": "Salmon",
+          "portion_oz": 5.5
+        },
+        {
+          "name": "Tri-color Quinoa",
+          "portion_oz": 4.5
+        },
+        {
+          "name": "Broccoli",
+          "portion_oz": 3.0
+        },
+        {
+          "name": "Beets",
+          "portion_oz": 3.0
+        },
+        {
+          "name": "Maple Honey Dijon Reduction",
+          "portion_oz": 1.5
+        }
+      ]
+    },
+    {
+      "dish": "Asian Garlic Shrimp",
+      "ops_match_name": "Soy Garlic Shrimp",
+      "components": [
+        {
+          "name": "Soy Garlic Shrimp",
+          "portion_oz": 6.0
+        },
+        {
+          "name": "Broccoli",
+          "portion_oz": 3.0
+        },
+        {
+          "name": "Carrots",
+          "portion_oz": 3.0
+        },
+        {
+          "name": "Cilantro Lime Rice (basmati Rice)",
+          "portion_oz": 4.5
+        },
+        {
+          "name": "Hot Honey Sauce",
+          "portion_oz": 1.5
+        }
+      ]
+    },
+    {
+      "dish": "Hot Honey Mac and Cheese",
+      "ops_match_name": "Hot Honey Mac and Cheese",
+      "components": [
+        {
+          "name": "Hot Honey Chicken",
+          "portion_oz": 5.0
+        },
+        {
+          "name": "Mac & Cheese",
+          "portion_oz": 6.0
+        },
+        {
+          "name": "Hot Honey Sauce",
+          "portion_oz": 1.5
+        }
+      ]
+    },
+    {
+      "dish": "Crispy Za'atar Chickpeas",
+      "ops_match_name": "Crispy Zaatar Chickpeas",
+      "components": [
+        {
+          "name": "Zaatar Crusted Tofu",
+          "portion_oz": 6.0
+        },
+        {
+          "name": "Zaatar Roasted Chickpeas",
+          "portion_oz": 3.0
+        },
+        {
+          "name": "Cauliflower",
+          "portion_oz": 1.5
+        },
+        {
+          "name": "Tri-color Quinoa",
+          "portion_oz": 5.0
+        },
+        {
+          "name": "Lemon Tahini Sauce",
+          "portion_oz": 2.0
+        }
+      ]
+    },
+    {
+      "dish": "Ruby Goddess Salad",
+      "ops_match_name": "Ruby Goddess Salad",
+      "components": [
+        {
+          "name": "Shredded Purple Cabbage",
+          "portion_oz": 3.5
+        },
+        {
+          "name": "Undressed Shredded Kale",
+          "portion_oz": 1.5
+        },
+        {
+          "name": "Roasted Chickpeas",
+          "portion_oz": 1.5
+        },
+        {
+          "name": "Pickled Red Onions",
+          "portion_oz": 1.5
+        },
+        {
+          "name": "Lemon Herb Chicken",
+          "portion_oz": 4.0
+        },
+        {
+          "name": "Acidulated Watermelon Radish",
+          "portion_oz": 1.25
+        },
+        {
+          "name": "Fresh Blueberries",
+          "portion_oz": 1.25
+        },
+        {
+          "name": "Pomegranate Arils",
+          "portion_oz": 0.75
+        },
+        {
+          "name": "Toasted Pumpkin Seeds",
+          "portion_oz": 0.4
+        },
+        {
+          "name": "Ruby Beet Tahini",
+          "portion_oz": 2.0
+        }
+      ]
+    },
+    {
+      "dish": "Chicken Caesar Crunch Salad",
+      "ops_match_name": "Chicken Caesar Crunch Salad",
+      "components": [
+        {
+          "name": "Lemon Herb Chicken",
+          "portion_oz": 4.0
+        },
+        {
+          "name": "Undressed Shredded Kale",
+          "portion_oz": 5.0
+        },
+        {
+          "name": "Roasted Chickpeas",
+          "portion_oz": 1.5
+        },
+        {
+          "name": "Shaved Celery",
+          "portion_oz": 1.25
+        },
+        {
+          "name": "Pickled Cucumbers",
+          "portion_oz": 1.25
+        },
+        {
+          "name": "Fresh Blueberries",
+          "portion_oz": 1.0
+        },
+        {
+          "name": "Eggless Caper Caesar Dressing",
+          "portion_oz": 1.75
+        },
+        {
+          "name": "Hemp Seeds",
+          "portion_oz": 0.25
+        }
+      ]
+    },
+    {
+      "dish": "Cinnamon Roll Overnight Oats",
+      "ops_match_name": "Cinnamon Roll Overnight Oats",
+      "components": [
+        {
+          "name": "Classic Overnight Oats Base",
+          "portion_oz": 8.0
+        },
+        {
+          "name": "Cinnamon Maple Swirl",
+          "portion_oz": 0.5
+        },
+        {
+          "name": "Vanilla Mascarpone-Style Layer",
+          "portion_oz": 2.0
+        }
+      ]
+    },
+    {
+      "dish": "Tiramisu Chia Pudding",
+      "ops_match_name": "Tiramisu Chia Pudding",
+      "components": [
+        {
+          "name": "Tiramisu Chia Pudding",
+          "portion_oz": 8.0
+        },
+        {
+          "name": "Vanilla Mascarpone-Style Layer",
+          "portion_oz": 2.0
+        },
+        {
+          "name": "Cocoa Dusting",
+          "portion_oz": 0.0706
+        }
+      ]
+    },
+    {
+      "dish": "Vanilla Chia Pudding",
+      "ops_match_name": "Vanilla Chia Pudding",
+      "components": [
+        {
+          "name": "Vanilla Chia Seed Pudding",
+          "portion_oz": 5.0
+        },
+        {
+          "name": "Almond Coconut Granola",
+          "portion_oz": 1.0
+        },
+        {
+          "name": "Fresh Blueberries",
+          "portion_oz": 1.0
+        }
+      ]
+    },
+    {
+      "dish": "Classic Bone Broth",
+      "ops_match_name": "Classic Bone Broth",
+      "components": [
+        {
+          "name": "Chicken Bone Broth",
+          "portion_oz": 14.0
+        }
+      ]
+    }
+  ]
+}

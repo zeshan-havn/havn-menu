@@ -1,0 +1,7 @@
+{
+  "week": "2026-11-22",
+  "status": "HELD",
+  "requires": "Explicit owner confirmation before any publish, push/deploy, Ops/OS write, print upload, Airtable filter update, promo update, campaign creation/scheduling/send.",
+  "tasting_enabled": false,
+  "dinner_invitation_enabled": false
+}

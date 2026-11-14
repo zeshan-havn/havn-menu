@@ -1,0 +1,785 @@
+{
+  "$schema": "../finalized-menu.schema.json",
+  "week": "2026-11-22",
+  "market_scope": "both",
+  "authored_by": "Zeshan — Nov 14 selected lineup; developed locally by Codex. Publication pending owner confirmation.",
+  "notes": "Nov 22 lineup selected by Zeshan Nov 14. Complete development authorized; PUBLICATION ON HOLD until explicit confirmation. Lemon Herb Feta and Ruby Goddess are explicit two-week rotation exceptions. Current kitchen portions retained. Carne Asada resolves to the live skirt-steak recipe; nutrition uses existing cooked Skirt Steak values instead of the historical accidental pear-flank match. Two beef dishes. Featured: Smash Burger Bowl, Carne Asada Steak, Blackened Salmon. No tasting or dinner offers. Miami/Chicago exclude salads/oats/shots; Phoenix includes salads/oats, excludes shots. No live writes or sends authorized. Vanilla Chia uses current Almond Coconut Granola: no gluten grains in recipe; removed stale historical Gluten (Granola) label, consistent with Nov15 Strawberry correction.",
+  "slots": {
+    "cheat": {
+      "display_name": "Smash Burger Bowl",
+      "ops_match_name": "Smash Burger Bowl",
+      "featured": true,
+      "protein_category": "beef",
+      "inherent_mods": [],
+      "short_description": "Seasoned Ground Beef with a Smoky Special Burger Sauce and Caramelized Onions, Apple Cider Cabbage Slaw, and Roasted Sweet Potato Wedges",
+      "long_description": "Seasoned ground beef finished with a smoky special burger sauce, served with caramelized onions, a crisp apple cider cabbage slaw, and roasted sweet potato wedges for a bold, craveable plate with a nostalgic, American finish.",
+      "dairy": "Dairy (Yogurt)",
+      "gluten": "Gluten Free",
+      "allergens": [
+        "dairy"
+      ],
+      "macros": {
+        "calories": 765,
+        "protein_g": 53,
+        "fat_g": 46,
+        "fiber_g": 7,
+        "net_carbs_g": 36
+      },
+      "components": [
+        {
+          "recipe": "Smash Burger Ground Beef",
+          "type": "protein",
+          "oz": 6.0,
+          "is_new": false
+        },
+        {
+          "recipe": "Roasted Sweet Potatoes",
+          "type": "carb",
+          "oz": 4.0,
+          "is_new": false
+        },
+        {
+          "recipe": "Apple Cider Cabbage Slaw",
+          "type": "vegetable",
+          "oz": 3.0,
+          "is_new": false
+        },
+        {
+          "recipe": "Caramelized Onions",
+          "type": "vegetable",
+          "oz": 1.0,
+          "is_new": false
+        },
+        {
+          "recipe": "Smoky Special Burger Sauce",
+          "type": "sauce",
+          "oz": 2.0,
+          "is_new": false
+        }
+      ],
+      "is_new_dish": false
+    },
+    "chicken": {
+      "display_name": "Thai Coconut Curry Chicken",
+      "ops_match_name": "Thai Coconut Curry Chicken",
+      "featured": false,
+      "protein_category": "chicken",
+      "inherent_mods": [],
+      "short_description": "Soy agave chicken breast with a Thai coconut curry sauce and spicy roasted broccoli and carrots over basmati rice",
+      "long_description": "Soy agave chicken breast finished with a Thai coconut curry sauce, served with spicy roasted broccoli and carrots over basmati rice for a creamy, aromatic plate with a gently spicy finish.",
+      "dairy": "Dairy Free",
+      "gluten": "Gluten Free",
+      "allergens": [],
+      "macros": {
+        "calories": 769,
+        "protein_g": 65,
+        "fat_g": 30,
+        "fiber_g": 6,
+        "net_carbs_g": 60
+      },
+      "components": [
+        {
+          "recipe": "Soy Agave Chicken Breast",
+          "type": "protein",
+          "oz": 6.5,
+          "is_new": false
+        },
+        {
+          "recipe": "Basmati Rice",
+          "type": "carb",
+          "oz": 4,
+          "is_new": false
+        },
+        {
+          "recipe": "Broccoli",
+          "type": "vegetable",
+          "oz": 3,
+          "is_new": false
+        },
+        {
+          "recipe": "Carrots",
+          "type": "vegetable",
+          "oz": 3,
+          "is_new": false
+        },
+        {
+          "recipe": "Thai Coconut Curry Sauce",
+          "type": "sauce",
+          "oz": 3,
+          "is_new": false
+        }
+      ],
+      "is_new_dish": false
+    },
+    "chicken_2": {
+      "display_name": "Lemon Herb Feta Chicken",
+      "ops_match_name": "Lemon Herb Chicken with Whipped Feta",
+      "featured": false,
+      "protein_category": "chicken",
+      "inherent_mods": [],
+      "short_description": "Lemon Herb Chicken with a Ruby Whipped Feta and Roasted Sweet Potato and Lacinato Kale with a House Pickled Vegetable Medley",
+      "long_description": "Lemon herb chicken breast with a ruby whipped feta and roasted sweet potato and lacinato kale with a house pickled vegetable medley and dried cranberries for a bright, herb forward plate with a creamy, beet tinted finish.",
+      "dairy": "Dairy (Feta)",
+      "gluten": "Gluten Free",
+      "allergens": [
+        "dairy"
+      ],
+      "macros": {
+        "calories": 675,
+        "protein_g": 66,
+        "fat_g": 31,
+        "fiber_g": 7,
+        "net_carbs_g": 33
+      },
+      "components": [
+        {
+          "recipe": "Lemon Herb Chicken",
+          "type": "protein",
+          "oz": 6.5,
+          "is_new": false
+        },
+        {
+          "recipe": "Roasted Sweet Potatoes",
+          "type": "vegetable",
+          "oz": 4.0,
+          "is_new": false
+        },
+        {
+          "recipe": "Lacinato Kale",
+          "type": "vegetable",
+          "oz": 4.5,
+          "is_new": false
+        },
+        {
+          "recipe": "Ruby Beet Whipped Feta",
+          "type": "sauce",
+          "oz": 2.0,
+          "is_new": false
+        },
+        {
+          "recipe": "House Pickled Vegetable Medley",
+          "type": "vegetable",
+          "oz": 2.0,
+          "is_new": false
+        },
+        {
+          "recipe": "Dried Cranberries",
+          "type": "vegetable",
+          "oz": 0.25,
+          "is_new": false
+        },
+        {
+          "recipe": "Herb Finishing Oil",
+          "type": "sauce",
+          "oz": 0.25,
+          "is_new": false
+        }
+      ],
+      "is_new_dish": false
+    },
+    "beef": {
+      "display_name": "Carne Asada Steak",
+      "ops_match_name": "Carne Asada Steak",
+      "featured": true,
+      "protein_category": "beef",
+      "inherent_mods": [],
+      "short_description": "Carne Asada Steak with a Creamy Peruvian Aji Verde and Roasted Sweet Plantains and Pickled Red Onions over Cilantro Lime Rice",
+      "long_description": "Citrus and garlic marinated skirt steak chargrilled and sliced, finished with a creamy Peruvian aji verde, served with roasted sweet plantains and pickled red onions over cilantro lime rice for a bold, Latin inspired plate with a bright, herbaceous finish.",
+      "dairy": "Dairy Free",
+      "gluten": "Gluten Free",
+      "allergens": [],
+      "macros": {
+        "calories": 761,
+        "protein_g": 54,
+        "fat_g": 31,
+        "fiber_g": 3,
+        "net_carbs_g": 67
+      },
+      "components": [
+        {
+          "recipe": "Carne Asada Steak",
+          "type": "protein",
+          "oz": 6.0,
+          "is_new": false
+        },
+        {
+          "recipe": "Cilantro Lime Rice (basmati Rice)",
+          "type": "carb",
+          "oz": 4.0,
+          "is_new": false
+        },
+        {
+          "recipe": "Plantains",
+          "type": "carb",
+          "oz": 3.0,
+          "is_new": false
+        },
+        {
+          "recipe": "Peruvian Aji Verde",
+          "type": "sauce",
+          "oz": 2.0,
+          "is_new": false
+        },
+        {
+          "recipe": "Pickled Red Onions",
+          "type": "vegetable",
+          "oz": 2.0,
+          "is_new": false
+        }
+      ],
+      "is_new_dish": false
+    },
+    "seafood": {
+      "display_name": "Blackened Salmon",
+      "ops_match_name": "Blackened Salmon",
+      "featured": true,
+      "protein_category": "seafood",
+      "inherent_mods": [],
+      "short_description": "Blackened Salmon with a Maple Honey Dijon Reduction and Roasted Broccoli and Roasted Beets over Tri Color Quinoa",
+      "long_description": "Blackened salmon finished with a maple honey dijon reduction, served with roasted broccoli and roasted beets over tri color quinoa for a sweet, savory seafood plate with a refined finish.",
+      "dairy": "Dairy Free",
+      "gluten": "Gluten Free",
+      "allergens": [],
+      "macros": {
+        "calories": 615,
+        "protein_g": 50,
+        "fat_g": 29,
+        "fiber_g": 8,
+        "net_carbs_g": 39
+      },
+      "components": [
+        {
+          "recipe": "Salmon",
+          "type": "protein",
+          "oz": 5.5,
+          "is_new": false
+        },
+        {
+          "recipe": "Tri-color Quinoa",
+          "type": "carb",
+          "oz": 4.5,
+          "is_new": false
+        },
+        {
+          "recipe": "Broccoli",
+          "type": "vegetable",
+          "oz": 3.0,
+          "is_new": false
+        },
+        {
+          "recipe": "Beets",
+          "type": "vegetable",
+          "oz": 3.0,
+          "is_new": false
+        },
+        {
+          "recipe": "Maple Honey Dijon Reduction",
+          "type": "sauce",
+          "oz": 1.5,
+          "is_new": false
+        }
+      ],
+      "is_new_dish": false
+    },
+    "seafood_2": {
+      "display_name": "Asian Garlic Shrimp",
+      "ops_match_name": "Soy Garlic Shrimp",
+      "featured": false,
+      "protein_category": "seafood",
+      "inherent_mods": [],
+      "short_description": "Asian garlic shrimp with a hot honey sauce and spicy broccoli and carrots over cilantro lime rice",
+      "long_description": "Asian garlic shrimp served with spicy broccoli and roasted carrots over cilantro lime rice, finished with a hot honey sauce for a sweet, savory bowl with a gently spicy finish.",
+      "dairy": "Dairy Free",
+      "gluten": "Gluten Free",
+      "allergens": [],
+      "macros": {
+        "calories": 557,
+        "protein_g": 46,
+        "fat_g": 9,
+        "fiber_g": 6,
+        "net_carbs_g": 73
+      },
+      "components": [
+        {
+          "recipe": "Soy Garlic Shrimp",
+          "type": "protein",
+          "oz": 6.0,
+          "is_new": false
+        },
+        {
+          "recipe": "Broccoli",
+          "type": "vegetable",
+          "oz": 3.0,
+          "is_new": false
+        },
+        {
+          "recipe": "Carrots",
+          "type": "vegetable",
+          "oz": 3.0,
+          "is_new": false
+        },
+        {
+          "recipe": "Cilantro Lime Rice (basmati Rice)",
+          "type": "carb",
+          "oz": 4.5,
+          "is_new": false
+        },
+        {
+          "recipe": "Hot Honey Sauce",
+          "type": "sauce",
+          "oz": 1.5,
+          "is_new": false
+        }
+      ],
+      "is_new_dish": false,
+      "short_name": "Hot Honey Shrimp"
+    },
+    "pasta": {
+      "display_name": "Hot Honey Mac and Cheese",
+      "ops_match_name": "Hot Honey Mac and Cheese",
+      "featured": false,
+      "protein_category": "chicken",
+      "inherent_mods": [],
+      "short_description": "Hot Honey Chicken with a Hot Honey Sauce over Creamy Mac and Cheese",
+      "long_description": "Tender hot honey chicken finished with a sweet and spicy hot honey sauce, served over rich and creamy mac and cheese for an indulgent, comfort forward plate with a bold, sweet heat finish.",
+      "dairy": "Dairy (Cheese)",
+      "gluten": "Gluten (Pasta)",
+      "allergens": [
+        "dairy",
+        "gluten"
+      ],
+      "macros": {
+        "calories": 775,
+        "protein_g": 50,
+        "fat_g": 39,
+        "fiber_g": 2,
+        "net_carbs_g": 54
+      },
+      "components": [
+        {
+          "recipe": "Hot Honey Chicken",
+          "type": "protein",
+          "oz": 5.0,
+          "is_new": false
+        },
+        {
+          "recipe": "Mac & Cheese",
+          "type": "carb",
+          "oz": 6.0,
+          "is_new": false
+        },
+        {
+          "recipe": "Hot Honey Sauce",
+          "type": "sauce",
+          "oz": 1.5,
+          "is_new": false
+        }
+      ],
+      "is_new_dish": false
+    },
+    "vegetarian": {
+      "display_name": "Crispy Za'atar Chickpeas",
+      "ops_match_name": "Crispy Zaatar Chickpeas",
+      "featured": false,
+      "protein_category": "vegetarian",
+      "inherent_mods": [],
+      "short_description": "Za’atar crusted tofu with crispy chickpeas and roasted cauliflower over tri color quinoa, with a lemon tahini sauce",
+      "long_description": "Za’atar crusted tofu and roasted chickpeas served with roasted cauliflower over tri color quinoa, finished with a lemon tahini sauce for a warm, savory bowl with a zesty finish.",
+      "dairy": "Dairy Free",
+      "gluten": "Gluten Free",
+      "allergens": [],
+      "macros": {
+        "calories": 722,
+        "protein_g": 51,
+        "fat_g": 33,
+        "fiber_g": 16,
+        "net_carbs_g": 51
+      },
+      "components": [
+        {
+          "recipe": "Zaatar Crusted Tofu",
+          "type": "protein",
+          "oz": 6.0,
+          "is_new": false
+        },
+        {
+          "recipe": "Zaatar Roasted Chickpeas",
+          "type": "vegetable",
+          "oz": 3.0,
+          "is_new": false
+        },
+        {
+          "recipe": "Cauliflower",
+          "type": "vegetable",
+          "oz": 1.5,
+          "is_new": false
+        },
+        {
+          "recipe": "Tri-color Quinoa",
+          "type": "carb",
+          "oz": 5.0,
+          "is_new": false
+        },
+        {
+          "recipe": "Lemon Tahini Sauce",
+          "type": "sauce",
+          "oz": 2.0,
+          "is_new": false
+        }
+      ],
+      "is_new_dish": false
+    },
+    "salad": {
+      "display_name": "Ruby Goddess Salad",
+      "ops_match_name": "Ruby Goddess Salad",
+      "featured": false,
+      "protein_category": "chicken",
+      "inherent_mods": [
+        "high protein"
+      ],
+      "short_description": "Lemon herb chicken over purple cabbage and kale with chickpeas, pickled red onions, watermelon radish, blueberries, pomegranate and pumpkin seeds, with a ruby beet tahini dressing",
+      "long_description": "Lemon herb chicken layered over purple cabbage and kale with roasted chickpeas, pickled red onions, acidulated watermelon radish, blueberries, pomegranate arils and toasted pumpkin seeds, served with a ruby beet tahini dressing for a bright, crunchy salad with a tangy finish.",
+      "dairy": "Dairy Free",
+      "gluten": "Gluten Free",
+      "allergens": [],
+      "macros": {
+        "calories": 513,
+        "protein_g": 47,
+        "fat_g": 23,
+        "fiber_g": 13,
+        "net_carbs_g": 30
+      },
+      "components": [
+        {
+          "recipe": "Shredded Purple Cabbage",
+          "type": "vegetable",
+          "oz": 3.5,
+          "is_new": false
+        },
+        {
+          "recipe": "Undressed Shredded Kale",
+          "type": "vegetable",
+          "oz": 1.5,
+          "is_new": false
+        },
+        {
+          "recipe": "Roasted Chickpeas",
+          "type": "vegetable",
+          "oz": 1.5,
+          "is_new": false
+        },
+        {
+          "recipe": "Pickled Red Onions",
+          "type": "vegetable",
+          "oz": 1.5,
+          "is_new": false
+        },
+        {
+          "recipe": "Lemon Herb Chicken",
+          "type": "protein",
+          "oz": 4.0,
+          "is_new": false
+        },
+        {
+          "recipe": "Acidulated Watermelon Radish",
+          "type": "vegetable",
+          "oz": 1.25,
+          "is_new": false
+        },
+        {
+          "recipe": "Fresh Blueberries",
+          "type": "vegetable",
+          "oz": 1.25,
+          "is_new": false
+        },
+        {
+          "recipe": "Pomegranate Arils",
+          "type": "base",
+          "oz": 0.75,
+          "is_new": false
+        },
+        {
+          "recipe": "Toasted Pumpkin Seeds",
+          "type": "base",
+          "oz": 0.4,
+          "is_new": false
+        },
+        {
+          "recipe": "Ruby Beet Tahini",
+          "type": "sauce",
+          "oz": 2.0,
+          "is_new": false
+        }
+      ],
+      "is_new_dish": false
+    },
+    "salad_2": {
+      "display_name": "Chicken Caesar Crunch Salad",
+      "ops_match_name": "Chicken Caesar Crunch Salad",
+      "featured": false,
+      "protein_category": "chicken",
+      "inherent_mods": [
+        "high protein"
+      ],
+      "short_description": "Diced lemon herb chicken over shredded kale with roasted chickpeas, shaved celery, pickled cucumber, blueberries, and hemp seeds, with an eggless caper Caesar dressing on the side",
+      "long_description": "Diced lemon herb chicken over shredded kale with roasted chickpeas, shaved celery, pickled cucumber, blueberries and hemp seeds, served with an eggless caper Caesar dressing on the side for a savory, crunchy salad with a tangy finish.",
+      "dairy": "Dairy (Yogurt)",
+      "gluten": "Gluten Free",
+      "allergens": [
+        "dairy"
+      ],
+      "macros": {
+        "calories": 419,
+        "protein_g": 48,
+        "fat_g": 17,
+        "fiber_g": 8,
+        "net_carbs_g": 19
+      },
+      "components": [
+        {
+          "recipe": "Lemon Herb Chicken",
+          "type": "protein",
+          "oz": 4.0,
+          "is_new": false
+        },
+        {
+          "recipe": "Undressed Shredded Kale",
+          "type": "vegetable",
+          "oz": 5.0,
+          "is_new": false
+        },
+        {
+          "recipe": "Roasted Chickpeas",
+          "type": "vegetable",
+          "oz": 1.5,
+          "is_new": false
+        },
+        {
+          "recipe": "Shaved Celery",
+          "type": "vegetable",
+          "oz": 1.25,
+          "is_new": false
+        },
+        {
+          "recipe": "Pickled Cucumbers",
+          "type": "vegetable",
+          "oz": 1.25,
+          "is_new": false
+        },
+        {
+          "recipe": "Fresh Blueberries",
+          "type": "vegetable",
+          "oz": 1.0,
+          "is_new": false
+        },
+        {
+          "recipe": "Eggless Caper Caesar Dressing",
+          "type": "sauce",
+          "oz": 1.75,
+          "is_new": false
+        },
+        {
+          "recipe": "Hemp Seeds",
+          "type": "base",
+          "oz": 0.25,
+          "is_new": false
+        }
+      ],
+      "is_new_dish": false
+    },
+    "oats": {
+      "display_name": "Cinnamon Roll Overnight Oats",
+      "ops_match_name": "Cinnamon Roll Overnight Oats",
+      "featured": false,
+      "protein_category": null,
+      "inherent_mods": [],
+      "short_description": "Cinnamon maple overnight oats with a brown sugar cinnamon swirl and a vanilla mascarpone style layer",
+      "long_description": "Creamy cinnamon maple overnight oats layered with a brown sugar cinnamon swirl and finished with a lightly sweet vanilla mascarpone style cream.",
+      "dairy": "Dairy (Yogurt, Mascarpone)",
+      "gluten": "Gluten Free",
+      "allergens": [
+        "dairy"
+      ],
+      "macros": {
+        "calories": 397,
+        "protein_g": 27,
+        "fat_g": 8,
+        "fiber_g": 4,
+        "net_carbs_g": 51
+      },
+      "components": [
+        {
+          "recipe": "Classic Overnight Oats Base",
+          "type": "base",
+          "oz": 8.0,
+          "is_new": false
+        },
+        {
+          "recipe": "Cinnamon Maple Swirl",
+          "type": "base",
+          "oz": 0.5,
+          "is_new": false
+        },
+        {
+          "recipe": "Vanilla Mascarpone-Style Layer",
+          "type": "base",
+          "oz": 2.0,
+          "is_new": false
+        }
+      ],
+      "is_new_dish": false
+    },
+    "chia": {
+      "display_name": "Tiramisu Chia Pudding",
+      "ops_match_name": "Tiramisu Chia Pudding",
+      "featured": false,
+      "protein_category": null,
+      "inherent_mods": [],
+      "short_description": "Tiramisu chia pudding with a vanilla mascarpone style layer and a light cocoa dusting",
+      "long_description": "Creamy tiramisu chia pudding layered with a vanilla mascarpone style cream and finished with a light cocoa dusting.",
+      "dairy": "Dairy (Yogurt)",
+      "gluten": "Gluten Free",
+      "allergens": [
+        "dairy"
+      ],
+      "macros": {
+        "calories": 376,
+        "protein_g": 25,
+        "fat_g": 14,
+        "fiber_g": 11,
+        "net_carbs_g": 27
+      },
+      "components": [
+        {
+          "recipe": "Tiramisu Chia Pudding",
+          "type": "base",
+          "oz": 8.0,
+          "is_new": false
+        },
+        {
+          "recipe": "Vanilla Mascarpone-Style Layer",
+          "type": "base",
+          "oz": 2.0,
+          "is_new": false
+        },
+        {
+          "recipe": "Cocoa Dusting",
+          "type": "base",
+          "oz": 0.0706,
+          "is_new": false
+        }
+      ],
+      "is_new_dish": false
+    },
+    "chia_2": {
+      "display_name": "Vanilla Chia Pudding",
+      "ops_match_name": "Vanilla Chia Pudding",
+      "featured": false,
+      "protein_category": null,
+      "inherent_mods": [],
+      "short_description": "Vanilla chia pudding with house granola and fresh blueberries.",
+      "long_description": "Vanilla chia pudding with house granola and fresh blueberries.",
+      "dairy": "Dairy (Yogurt)",
+      "gluten": "Gluten Free",
+      "allergens": [
+        "dairy"
+      ],
+      "macros": {
+        "calories": 311,
+        "protein_g": 18,
+        "fat_g": 13,
+        "fiber_g": 9,
+        "net_carbs_g": 24
+      },
+      "components": [
+        {
+          "recipe": "Vanilla Chia Seed Pudding",
+          "type": "base",
+          "oz": 5.0,
+          "is_new": false
+        },
+        {
+          "recipe": "Almond Coconut Granola",
+          "type": "base",
+          "oz": 1.0,
+          "is_new": false
+        },
+        {
+          "recipe": "Fresh Blueberries",
+          "type": "base",
+          "oz": 1.0,
+          "is_new": false
+        }
+      ],
+      "is_new_dish": false
+    },
+    "broth": {
+      "display_name": "Classic Bone Broth",
+      "ops_match_name": "Classic Bone Broth",
+      "featured": false,
+      "protein_category": null,
+      "inherent_mods": [],
+      "short_description": "Our classic high protein and collagen rich chicken bone broth slow simmered for 24 hours",
+      "long_description": "Our classic chicken bone broth slow simmered for 24 hours with fresh herbs and spices.",
+      "dairy": "Dairy Free",
+      "gluten": "Gluten Free",
+      "allergens": [],
+      "macros": {
+        "calories": 420,
+        "protein_g": 41,
+        "fat_g": 26,
+        "fiber_g": 0,
+        "net_carbs_g": 6
+      },
+      "is_new_dish": false,
+      "components": [
+        {
+          "recipe": "Chicken Bone Broth",
+          "type": "base",
+          "oz": 14.0,
+          "is_new": false
+        }
+      ]
+    },
+    "wellness_shots": {
+      "display_name": "Wellness Shots",
+      "ops_match_name": "Wellness Shot Bundle",
+      "featured": false,
+      "protein_category": null,
+      "inherent_mods": [],
+      "short_description": "Four 2oz wellness shots: Immunity, Endurance, Purify, Clarity",
+      "long_description": "Bundle of four 2oz wellness shots — Immunity, Endurance, Purify, and Clarity — cold-pressed daily and made with fresh ginger, turmeric, lemon, and seasonal botanicals.",
+      "dairy": "Dairy Free",
+      "gluten": "Gluten Free",
+      "allergens": [],
+      "macros": null,
+      "components": [
+        {
+          "recipe": "Immunity Gold Shot",
+          "type": "base",
+          "oz": 2.0,
+          "is_new": false
+        },
+        {
+          "recipe": "Endurance Red Shot",
+          "type": "base",
+          "oz": 2.0,
+          "is_new": false
+        },
+        {
+          "recipe": "Purify Green Shot",
+          "type": "base",
+          "oz": 2.0,
+          "is_new": false
+        },
+        {
+          "recipe": "Clarity Blue Shot",
+          "type": "base",
+          "oz": 2.0,
+          "is_new": false
+        }
+      ],
+      "is_new_dish": false
+    }
+  }
+}
