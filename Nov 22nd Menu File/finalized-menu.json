@@ -3,7 +3,7 @@
   "week": "2026-11-22",
   "market_scope": "both",
   "authored_by": "Zeshan — Nov 14 selected lineup; developed locally by Codex. Publication pending owner confirmation.",
-  "notes": "Nov 22 lineup selected by Zeshan Nov 14. Complete development authorized; PUBLICATION ON HOLD until explicit confirmation. Lemon Herb Feta and Ruby Goddess are explicit two-week rotation exceptions. Current kitchen portions retained. Carne Asada resolves to the live skirt-steak recipe; nutrition uses existing cooked Skirt Steak values instead of the historical accidental pear-flank match. Two beef dishes. Featured: Smash Burger Bowl, Carne Asada Steak, Blackened Salmon. No tasting or dinner offers. Miami/Chicago exclude salads/oats/shots; Phoenix includes salads/oats, excludes shots. No live writes or sends authorized. Vanilla Chia uses current Almond Coconut Granola: no gluten grains in recipe; removed stale historical Gluten (Granola) label, consistent with Nov15 Strawberry correction. Owner correction Nov14: use regular Whipped Lemon Garlic Feta (2oz), not Ruby Beet Whipped Feta, in Lemon Herb Feta Chicken. All other chicken portions retained; no live recipe writes.",
+  "notes": "Nov 22 lineup selected by Zeshan Nov 14. Complete development authorized; PUBLICATION ON HOLD until explicit confirmation. Lemon Herb Feta and Ruby Goddess are explicit two-week rotation exceptions. Current kitchen portions retained. Carne Asada resolves to the live skirt-steak recipe; nutrition uses existing cooked Skirt Steak values instead of the historical accidental pear-flank match. Two beef dishes. Featured: Smash Burger Bowl, Carne Asada Steak, Blackened Salmon. No tasting or dinner offers. Miami/Chicago exclude salads/oats/shots; Phoenix includes salads/oats, excludes shots. No live writes or sends authorized. Vanilla Chia uses current Almond Coconut Granola: no gluten grains in recipe; removed stale historical Gluten (Granola) label, consistent with Nov15 Strawberry correction. Owner correction Nov14: use regular Whipped Lemon Garlic Feta (2oz), not Ruby Beet Whipped Feta, in Lemon Herb Feta Chicken. All other chicken portions retained; no live recipe writes. Owner clarification: select the complete existing regular Lemon Herb Chicken with Whipped Feta dish from July12, not a ruby-dish sauce/prompt edit. Full July12 portions/copy restored. Regenerated comparison images rejected for menu use. Matching existing regular-dish photo not yet located; publication remains held and image slot unresolved.",
   "slots": {
     "cheat": {
       "display_name": "Smash Burger Bowl",
@@ -112,20 +112,20 @@
       "is_new_dish": false
     },
     "chicken_2": {
-      "display_name": "Lemon Herb Feta Chicken",
+      "display_name": "Lemon Herb Chicken with Whipped Feta",
       "ops_match_name": "Lemon Herb Chicken with Whipped Feta",
       "featured": false,
       "protein_category": "chicken",
       "inherent_mods": [],
-      "short_description": "Lemon herb chicken with a whipped lemon garlic feta and roasted sweet potato and lacinato kale with a house pickled vegetable medley",
-      "long_description": "Lemon herb chicken breast with a whipped lemon garlic feta, roasted sweet potato, lacinato kale, a house pickled vegetable medley and dried cranberries for a bright, herb forward plate with a creamy finish.",
+      "short_description": "Lemon herb chicken breast with a whipped lemon garlic feta and roasted sweet potato and lacinato kale with a house pickled vegetable medley and dried cranberries",
+      "long_description": "Lemon herb chicken breast with a whipped lemon garlic feta and roasted sweet potato and lacinato kale with a house pickled vegetable medley and dried cranberries for a bright, herb forward plate with a creamy finish.",
       "dairy": "Dairy (Feta)",
       "gluten": "Gluten Free",
       "allergens": [
         "dairy"
       ],
       "macros": {
-        "calories": 690,
+        "calories": 686,
         "protein_g": 68,
         "fat_g": 32,
         "fiber_g": 7,
@@ -140,7 +140,7 @@
         },
         {
           "recipe": "Roasted Sweet Potatoes",
-          "type": "vegetable",
+          "type": "carb",
           "oz": 4.0,
           "is_new": false
         },
@@ -151,15 +151,9 @@
           "is_new": false
         },
         {
-          "recipe": "Whipped Lemon Garlic Feta",
-          "type": "sauce",
-          "oz": 2.0,
-          "is_new": false
-        },
-        {
           "recipe": "House Pickled Vegetable Medley",
           "type": "vegetable",
-          "oz": 2.0,
+          "oz": 1.5,
           "is_new": false
         },
         {
@@ -169,13 +163,18 @@
           "is_new": false
         },
         {
+          "recipe": "Whipped Lemon Garlic Feta",
+          "type": "sauce",
+          "oz": 2.0,
+          "is_new": false
+        },
+        {
           "recipe": "Herb Finishing Oil",
           "type": "sauce",
           "oz": 0.25,
           "is_new": false
         }
-      ],
-      "is_new_dish": false
+      ]
     },
     "beef": {
       "display_name": "Carne Asada Steak",

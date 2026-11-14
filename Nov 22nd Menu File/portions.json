@@ -55,7 +55,7 @@
       ]
     },
     {
-      "dish": "Lemon Herb Feta Chicken",
+      "dish": "Lemon Herb Chicken with Whipped Feta",
       "ops_match_name": "Lemon Herb Chicken with Whipped Feta",
       "components": [
         {
@@ -71,16 +71,16 @@
           "portion_oz": 4.5
         },
         {
-          "name": "Whipped Lemon Garlic Feta",
-          "portion_oz": 2.0
-        },
-        {
           "name": "House Pickled Vegetable Medley",
-          "portion_oz": 2.0
+          "portion_oz": 1.5
         },
         {
           "name": "Dried Cranberries",
           "portion_oz": 0.25
+        },
+        {
+          "name": "Whipped Lemon Garlic Feta",
+          "portion_oz": 2.0
         },
         {
           "name": "Herb Finishing Oil",
