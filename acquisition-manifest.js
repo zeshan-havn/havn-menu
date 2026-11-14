@@ -1,11 +1,11 @@
-/* acquisition-manifest.json sha256=53cda13a4f3f63fc2b1de4c279bc8db4f81125acb04c1d77c7fe6a8aa03f844d */
+/* acquisition-manifest.json sha256=5c0cabe5d6d158a258af012106f870a96737c3af08a37bb6716d934b3177cc28 */
 window.HAVN_ACQUISITION_MANIFEST =
 {
   "schemaVersion": 1,
-  "releaseDigest": "fca14a37e725834bb7106a04271717bef0f70f551be41fff5ba51ca2971add35",
+  "releaseDigest": "4c0413ba1f414998dae806a5d43b63589a6a0df2ab110dc458a2c2ca870be0bc",
   "menu": {
     "id": "delivery-2026-11-22",
-    "version": "sha256-fca14a37e725834bb7106a04271717bef0f70f551be41fff5ba51ca2971add35",
+    "version": "sha256-4c0413ba1f414998dae806a5d43b63589a6a0df2ab110dc458a2c2ca870be0bc",
     "weekLabel": "November 22",
     "pricingPolicyId": "backend-25-10-v1",
     "offerPolicyId": "welcome-20-40-v1",
@@ -104,7 +104,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Dairy-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-fca14a37e725834bb7106a04271717bef0f70f551be41fff5ba51ca2971add35/cheat.jpg",
+          "url": "/assets/releases/sha256-4c0413ba1f414998dae806a5d43b63589a6a0df2ab110dc458a2c2ca870be0bc/cheat.jpg",
           "width": 1024,
           "height": 1408,
           "format": "jpeg",
@@ -139,7 +139,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-fca14a37e725834bb7106a04271717bef0f70f551be41fff5ba51ca2971add35/chicken.jpg",
+          "url": "/assets/releases/sha256-4c0413ba1f414998dae806a5d43b63589a6a0df2ab110dc458a2c2ca870be0bc/chicken.jpg",
           "width": 1164,
           "height": 1600,
           "format": "jpeg",
@@ -154,13 +154,13 @@ window.HAVN_ACQUISITION_MANIFEST =
         "menuSection": "Chicken",
         "name": "Lemon Herb Feta Chicken",
         "priceCents": 2500,
-        "description": "Lemon herb chicken breast with a ruby whipped feta and roasted sweet potato and lacinato kale with a house pickled vegetable medley and dried cranberries for a bright, herb forward plate with a creamy, beet tinted finish.",
+        "description": "Lemon herb chicken breast with a whipped lemon garlic feta, roasted sweet potato, lacinato kale, a house pickled vegetable medley and dried cranberries for a bright, herb forward plate with a creamy finish.",
         "macros": {
-          "calories": 675,
-          "protein": 66,
-          "fat": 31,
+          "calories": 690,
+          "protein": 68,
+          "fat": 32,
           "fiber": 7,
-          "netCarbs": 33
+          "netCarbs": 32
         },
         "diet": [
           "Dairy (Feta)",
@@ -177,11 +177,11 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Dairy-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-fca14a37e725834bb7106a04271717bef0f70f551be41fff5ba51ca2971add35/chicken_2.jpg",
-          "width": 654,
-          "height": 900,
+          "url": "/assets/releases/sha256-4c0413ba1f414998dae806a5d43b63589a6a0df2ab110dc458a2c2ca870be0bc/chicken_2.jpg",
+          "width": 1164,
+          "height": 1600,
           "format": "jpeg",
-          "sha256": "173ac39105386b2f4b22a04a37474d3eebc45559c1343898f686228b96c1acbc",
+          "sha256": "ffa2b3d1497ba369b93888b3812bf22d0faed84a7bc39e31e30a4137f955add4",
           "alt": "Lemon Herb Feta Chicken"
         }
       },
@@ -212,7 +212,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-fca14a37e725834bb7106a04271717bef0f70f551be41fff5ba51ca2971add35/beef.jpg",
+          "url": "/assets/releases/sha256-4c0413ba1f414998dae806a5d43b63589a6a0df2ab110dc458a2c2ca870be0bc/beef.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
@@ -247,7 +247,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-fca14a37e725834bb7106a04271717bef0f70f551be41fff5ba51ca2971add35/seafood.jpg",
+          "url": "/assets/releases/sha256-4c0413ba1f414998dae806a5d43b63589a6a0df2ab110dc458a2c2ca870be0bc/seafood.jpg",
           "width": 1024,
           "height": 1408,
           "format": "jpeg",
@@ -282,7 +282,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-fca14a37e725834bb7106a04271717bef0f70f551be41fff5ba51ca2971add35/seafood_2.jpg",
+          "url": "/assets/releases/sha256-4c0413ba1f414998dae806a5d43b63589a6a0df2ab110dc458a2c2ca870be0bc/seafood_2.jpg",
           "width": 1024,
           "height": 1408,
           "format": "jpeg",
@@ -322,7 +322,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Gluten-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-fca14a37e725834bb7106a04271717bef0f70f551be41fff5ba51ca2971add35/pasta.jpg",
+          "url": "/assets/releases/sha256-4c0413ba1f414998dae806a5d43b63589a6a0df2ab110dc458a2c2ca870be0bc/pasta.jpg",
           "width": 1024,
           "height": 1408,
           "format": "jpeg",
@@ -357,7 +357,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-fca14a37e725834bb7106a04271717bef0f70f551be41fff5ba51ca2971add35/vegetarian.jpg",
+          "url": "/assets/releases/sha256-4c0413ba1f414998dae806a5d43b63589a6a0df2ab110dc458a2c2ca870be0bc/vegetarian.jpg",
           "width": 1164,
           "height": 1600,
           "format": "jpeg",
@@ -393,7 +393,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-fca14a37e725834bb7106a04271717bef0f70f551be41fff5ba51ca2971add35/salad.jpg",
+          "url": "/assets/releases/sha256-4c0413ba1f414998dae806a5d43b63589a6a0df2ab110dc458a2c2ca870be0bc/salad.jpg",
           "width": 1280,
           "height": 1600,
           "format": "jpeg",
@@ -432,7 +432,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Dairy-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-fca14a37e725834bb7106a04271717bef0f70f551be41fff5ba51ca2971add35/salad_2.jpg",
+          "url": "/assets/releases/sha256-4c0413ba1f414998dae806a5d43b63589a6a0df2ab110dc458a2c2ca870be0bc/salad_2.jpg",
           "width": 1024,
           "height": 1280,
           "format": "jpeg",

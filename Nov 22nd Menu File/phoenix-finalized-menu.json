@@ -3,7 +3,7 @@
   "week": "2026-11-22",
   "market_scope": "both",
   "authored_by": "Zeshan — Nov 14 selected lineup; developed locally by Codex. Publication pending owner confirmation.",
-  "notes": "Nov 22 lineup selected by Zeshan Nov 14. Complete development authorized; PUBLICATION ON HOLD until explicit confirmation. Lemon Herb Feta and Ruby Goddess are explicit two-week rotation exceptions. Current kitchen portions retained. Carne Asada resolves to the live skirt-steak recipe; nutrition uses existing cooked Skirt Steak values instead of the historical accidental pear-flank match. Two beef dishes. Featured: Smash Burger Bowl, Carne Asada Steak, Blackened Salmon. No tasting or dinner offers. Miami/Chicago exclude salads/oats/shots; Phoenix includes salads/oats, excludes shots. No live writes or sends authorized. Vanilla Chia uses current Almond Coconut Granola: no gluten grains in recipe; removed stale historical Gluten (Granola) label, consistent with Nov15 Strawberry correction. City: phoenix. Prepared locally only; no OS or Ops publication.",
+  "notes": "Nov 22 lineup selected by Zeshan Nov 14. Complete development authorized; PUBLICATION ON HOLD until explicit confirmation. Lemon Herb Feta and Ruby Goddess are explicit two-week rotation exceptions. Current kitchen portions retained. Carne Asada resolves to the live skirt-steak recipe; nutrition uses existing cooked Skirt Steak values instead of the historical accidental pear-flank match. Two beef dishes. Featured: Smash Burger Bowl, Carne Asada Steak, Blackened Salmon. No tasting or dinner offers. Miami/Chicago exclude salads/oats/shots; Phoenix includes salads/oats, excludes shots. No live writes or sends authorized. Vanilla Chia uses current Almond Coconut Granola: no gluten grains in recipe; removed stale historical Gluten (Granola) label, consistent with Nov15 Strawberry correction. City: phoenix. Prepared locally only; no OS or Ops publication. Nov14 correction: regular Whipped Lemon Garlic Feta, no ruby beet feta.",
   "slots": {
     "cheat": {
       "display_name": "Smash Burger Bowl",
@@ -117,19 +117,19 @@
       "featured": false,
       "protein_category": "chicken",
       "inherent_mods": [],
-      "short_description": "Lemon Herb Chicken with a Ruby Whipped Feta and Roasted Sweet Potato and Lacinato Kale with a House Pickled Vegetable Medley",
-      "long_description": "Lemon herb chicken breast with a ruby whipped feta and roasted sweet potato and lacinato kale with a house pickled vegetable medley and dried cranberries for a bright, herb forward plate with a creamy, beet tinted finish.",
+      "short_description": "Lemon herb chicken with a whipped lemon garlic feta and roasted sweet potato and lacinato kale with a house pickled vegetable medley",
+      "long_description": "Lemon herb chicken breast with a whipped lemon garlic feta, roasted sweet potato, lacinato kale, a house pickled vegetable medley and dried cranberries for a bright, herb forward plate with a creamy finish.",
       "dairy": "Dairy (Feta)",
       "gluten": "Gluten Free",
       "allergens": [
         "dairy"
       ],
       "macros": {
-        "calories": 675,
-        "protein_g": 66,
-        "fat_g": 31,
+        "calories": 690,
+        "protein_g": 68,
+        "fat_g": 32,
         "fiber_g": 7,
-        "net_carbs_g": 33
+        "net_carbs_g": 32
       },
       "components": [
         {
@@ -151,7 +151,7 @@
           "is_new": false
         },
         {
-          "recipe": "Ruby Beet Whipped Feta",
+          "recipe": "Whipped Lemon Garlic Feta",
           "type": "sauce",
           "oz": 2.0,
           "is_new": false

@@ -6,7 +6,7 @@
   },
   "menu_source": {
     "path": "CulinaryOps/Nov 22nd Menu File/finalized-menu.json",
-    "sha256": "457d327bd4ac305a77c7db02bd8dc582e54a2c12e752853733611a1b7e3e7352"
+    "sha256": "df3ffd8df38abcf8df98215d00203fe6fbf6db8290cca31b8b4cbc463a63a036"
   },
   "transform": "Pillow RGB thumbnail max1600 long edge; JPEG quality90; no upscaling",
   "items": {
@@ -24,9 +24,9 @@
     },
     "chicken_2": {
       "source": "CulinaryOps/Nov 22nd Menu File/meal-images/chicken_2-lemon-herb-feta-chicken.png",
-      "source_sha256": "8bf4e7ec57d5e00a3fd5a31026ddb10c01bcc8b96babe08878aceabecdae1614",
+      "source_sha256": "d78f7588375253275ee4686e110e4578b3cf91a8c4ae8773c02c2a86798a1cb3",
       "output": "assets/current/chicken_2.jpg",
-      "output_sha256": "173ac39105386b2f4b22a04a37474d3eebc45559c1343898f686228b96c1acbc"
+      "output_sha256": "ffa2b3d1497ba369b93888b3812bf22d0faed84a7bc39e31e30a4137f955add4"
     },
     "beef": {
       "source": "CulinaryOps/Nov 22nd Menu File/meal-images/beef-carne-asada-steak.png",

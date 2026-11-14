@@ -52,8 +52,8 @@
         },
         {
           id: "chicken_2", name: "Lemon Herb Feta Chicken", tag: "Chicken", img: "/assets/current/chicken_2.jpg",
-          desc: "Lemon herb chicken with a ruby whipped feta and roasted sweet potato and lacinato kale with a house pickled vegetable medley.",
-          cal: 675, protein: 66, fat: 31, fiber: 7, carbs: 33,
+          desc: "Lemon herb chicken with a whipped lemon garlic feta and roasted sweet potato and lacinato kale with a house pickled vegetable medley.",
+          cal: 690, protein: 68, fat: 32, fiber: 7, carbs: 32,
           diet: [["Dairy (feta)", "allergen"], ["Gluten free", "safe"]]
         }
       ]
