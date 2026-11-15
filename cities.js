@@ -4,8 +4,8 @@
    Loaded ONLY by cities.html, which qa/cities/build-cities-page.mjs generates
    from index.html with three changes: no havnclub.com/hybrid/tracking.js, no
    main-tasting/tracking.js (both report visitors as DC/SD), and this file in
-   place of menu.js. DC and SD never load this file, and none of the files they
-   do load are edited, so their pages are unchanged.
+   place of menu.js. DC and SD do not load this city adapter. Their shared availability code
+   retains the existing operator controls.
 
    Before anything reads them, this file:
      - points texts at the Havn OS number, +1 833-565-1133, and HAVN_CONFIG at
@@ -81,9 +81,12 @@
   if (slug === "miami" || slug === "phoenix" || slug === "chicago") cfg.EXCLUDED_MENU_ITEM_IDS.push("wellness_shots");
   cfg.LANDING_VARIANT = "os-" + slug;
   cfg.QR = Object.assign({}, cfg.QR, { numberLabel: SMS_LABEL });
-  /* menu.js fetches this once; it is replaced with Havn OS's answer below. */
+  /* Shared menu code rechecks the live OS endpoint on focus and every 30 seconds. */
   cfg.MENU_STATUS_URL = OS_BASE + "/api/public/cities/" + slug + "/menu-status";
   cfg.MENU_STATUS_ADAPTER = function (data) {
+    var identity = String(data.menuId || "") + "|" + String(data.deliveryDate || "");
+    var identityChanged = identity !== appliedStatusIdentity;
+    appliedStatusIdentity = identity;
     osStatus = data;
     var local = root.HAVN_MENU_CATALOG;
     function normalized(name) { return String(name).toLowerCase().replace(/[^a-z0-9]/g, ""); }
@@ -94,7 +97,7 @@
       return !eligible.some(function (remote) { return remote.slot === item.slot && normalized(remote.name) === normalized(item.name); });
     })));
     return { ordering: data.open ? "open" : data.menuId ? "closed" : "pending",
-      catalogMismatch: mismatch, catalogWeek: data.catalogWeek, deliveryDate: data.deliveryDate, menuId: data.menuId };
+      identityChanged: identityChanged, catalogMismatch: mismatch, catalogWeek: data.catalogWeek, deliveryDate: data.deliveryDate, menuId: data.menuId };
   };
 
   /* ── 2. no HQ retention token ───────────────────────────────────────── */
@@ -228,7 +231,7 @@
     return String(label).replace(/^(Sun|Mon|Tue|Wed|Thu|Fri|Sat)\b\.? ?/, function (m, d) { return DAYS[d] + " at "; });
   }
 
-  var osCity = null, osStatus = null, started = false;
+  var osCity = null, osStatus = null, started = false, appliedStatusIdentity = null;
 
   function start() {
     if (started) return;
@@ -255,7 +258,7 @@
   Promise.all([
     settle(getJSON(OS_BASE + "/api/public/cities/" + slug)),
     settle(getJSON(OS_BASE + "/api/public/cities/" + slug + "/menu-status"))
-  ]).then(function (r) { osCity = r[0]; osStatus = r[1]; start(); });
+  ]).then(function (r) { osCity = r[0]; if (!started) osStatus = r[1]; start(); });
   setTimeout(start, OS_WAIT_MS);
 
   /* ── 4. after menu.js: cutoff, offer, order text, beacons ───────────── */
@@ -386,7 +389,7 @@
       if (send.getAttribute("href") === lastHref) return;
       var base = parts.body;
       var text = greeting + "\n\n" + base;
-      var key = text;
+      var key = text + "|" + (osStatus && osStatus.menuId || "") + "|" + (osStatus && osStatus.deliveryDate || "");
       if (timer) clearTimeout(timer);
       var mine = ++inflight; /* any older pending draft is now stale */
       writing = true;

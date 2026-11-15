@@ -2018,6 +2018,8 @@
           else if (data.ordering === "pending") enterPendingMode();
           else {
             exitPendingMode();
+            // Rebuild a same-catalog cart draft when its fulfillment date advances.
+            if (data.identityChanged) refresh();
             if (data.deliveryDate && /^\d{4}-\d{2}-\d{2}$/.test(data.deliveryDate)) {
               var label = document.getElementById("m-menu-date");
               if (label) { label.dateTime = data.deliveryDate; label.textContent = new Date(data.deliveryDate + "T12:00:00").toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" }); }
