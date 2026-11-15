@@ -23,10 +23,10 @@
       "output_sha256": "8b1ed9868d499ac7a3c0d8c38c0c1c2ccd7bd753f9279ee2ae4b721d58e84161"
     },
     "chicken_2": {
-      "source": "CulinaryOps/Nov 22nd Menu File/meal-images/chicken_2-lemon-herb-chicken-with-whipped-feta.png",
-      "source_sha256": "4a7198c2de7a9e7d70ea630ae5f77d4a33fdee257326c6f193bc19145c6ed9c0",
+      "source": "CulinaryOps/Nov 22nd Menu File/meal-images/chicken_2-lemon-herb-chicken-with-whipped-feta-v2.png",
+      "source_sha256": "8855313f4e91c2af517f07848c1ae58fe96bd2469b8f2f5e87a1c943a290daa2",
       "output": "assets/current/chicken_2.jpg",
-      "output_sha256": "ea01e5cef6014d6549e7a883c6738d4cd5218cc44d9df9307ce90370e03b0b2d"
+      "output_sha256": "56fd312b51886ae959bce927a12c8a56d2e9e9834d2f3243b29e066bfb14caef"
     },
     "beef": {
       "source": "CulinaryOps/Nov 22nd Menu File/meal-images/beef-carne-asada-steak.png",

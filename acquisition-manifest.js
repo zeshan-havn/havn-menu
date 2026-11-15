@@ -1,11 +1,11 @@
-/* acquisition-manifest.json sha256=35213288f7f03bbbf3cf4790c34a17a5b9f79f788a6d58cdc3441d80f6e65075 */
+/* acquisition-manifest.json sha256=323a63ece2211baafe8769fee5bd470b1e55846ae20d393170674e95231f4b44 */
 window.HAVN_ACQUISITION_MANIFEST =
 {
   "schemaVersion": 1,
-  "releaseDigest": "020bcd161b0d805a8370e70e4493c12fd859295824a7b9fe9953a5e4730d8abb",
+  "releaseDigest": "725f87c5ffe6e164ae50588e89414e7bd05dcb94252229b0332b8f0ea96e98db",
   "menu": {
     "id": "delivery-2026-11-22",
-    "version": "sha256-020bcd161b0d805a8370e70e4493c12fd859295824a7b9fe9953a5e4730d8abb",
+    "version": "sha256-725f87c5ffe6e164ae50588e89414e7bd05dcb94252229b0332b8f0ea96e98db",
     "weekLabel": "November 22",
     "pricingPolicyId": "backend-25-10-v1",
     "offerPolicyId": "welcome-20-40-v1",
@@ -104,7 +104,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Dairy-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-020bcd161b0d805a8370e70e4493c12fd859295824a7b9fe9953a5e4730d8abb/cheat.jpg",
+          "url": "/assets/releases/sha256-725f87c5ffe6e164ae50588e89414e7bd05dcb94252229b0332b8f0ea96e98db/cheat.jpg",
           "width": 1024,
           "height": 1408,
           "format": "jpeg",
@@ -139,7 +139,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-020bcd161b0d805a8370e70e4493c12fd859295824a7b9fe9953a5e4730d8abb/chicken.jpg",
+          "url": "/assets/releases/sha256-725f87c5ffe6e164ae50588e89414e7bd05dcb94252229b0332b8f0ea96e98db/chicken.jpg",
           "width": 1163,
           "height": 1600,
           "format": "jpeg",
@@ -177,11 +177,11 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Dairy-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-020bcd161b0d805a8370e70e4493c12fd859295824a7b9fe9953a5e4730d8abb/chicken_2.jpg",
+          "url": "/assets/releases/sha256-725f87c5ffe6e164ae50588e89414e7bd05dcb94252229b0332b8f0ea96e98db/chicken_2.jpg",
           "width": 1071,
-          "height": 1468,
+          "height": 1469,
           "format": "jpeg",
-          "sha256": "ea01e5cef6014d6549e7a883c6738d4cd5218cc44d9df9307ce90370e03b0b2d",
+          "sha256": "56fd312b51886ae959bce927a12c8a56d2e9e9834d2f3243b29e066bfb14caef",
           "alt": "Lemon Herb Chicken with Whipped Feta"
         }
       },
@@ -212,7 +212,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-020bcd161b0d805a8370e70e4493c12fd859295824a7b9fe9953a5e4730d8abb/beef.jpg",
+          "url": "/assets/releases/sha256-725f87c5ffe6e164ae50588e89414e7bd05dcb94252229b0332b8f0ea96e98db/beef.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
@@ -247,7 +247,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-020bcd161b0d805a8370e70e4493c12fd859295824a7b9fe9953a5e4730d8abb/seafood.jpg",
+          "url": "/assets/releases/sha256-725f87c5ffe6e164ae50588e89414e7bd05dcb94252229b0332b8f0ea96e98db/seafood.jpg",
           "width": 1024,
           "height": 1408,
           "format": "jpeg",
@@ -282,7 +282,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-020bcd161b0d805a8370e70e4493c12fd859295824a7b9fe9953a5e4730d8abb/seafood_2.jpg",
+          "url": "/assets/releases/sha256-725f87c5ffe6e164ae50588e89414e7bd05dcb94252229b0332b8f0ea96e98db/seafood_2.jpg",
           "width": 1024,
           "height": 1408,
           "format": "jpeg",
@@ -322,7 +322,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Gluten-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-020bcd161b0d805a8370e70e4493c12fd859295824a7b9fe9953a5e4730d8abb/pasta.jpg",
+          "url": "/assets/releases/sha256-725f87c5ffe6e164ae50588e89414e7bd05dcb94252229b0332b8f0ea96e98db/pasta.jpg",
           "width": 1024,
           "height": 1408,
           "format": "jpeg",
@@ -357,7 +357,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-020bcd161b0d805a8370e70e4493c12fd859295824a7b9fe9953a5e4730d8abb/vegetarian.jpg",
+          "url": "/assets/releases/sha256-725f87c5ffe6e164ae50588e89414e7bd05dcb94252229b0332b8f0ea96e98db/vegetarian.jpg",
           "width": 1163,
           "height": 1600,
           "format": "jpeg",
@@ -393,7 +393,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-020bcd161b0d805a8370e70e4493c12fd859295824a7b9fe9953a5e4730d8abb/salad.jpg",
+          "url": "/assets/releases/sha256-725f87c5ffe6e164ae50588e89414e7bd05dcb94252229b0332b8f0ea96e98db/salad.jpg",
           "width": 1280,
           "height": 1600,
           "format": "jpeg",
@@ -432,7 +432,7 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Dairy-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-020bcd161b0d805a8370e70e4493c12fd859295824a7b9fe9953a5e4730d8abb/salad_2.jpg",
+          "url": "/assets/releases/sha256-725f87c5ffe6e164ae50588e89414e7bd05dcb94252229b0332b8f0ea96e98db/salad_2.jpg",
           "width": 1024,
           "height": 1280,
           "format": "jpeg",
