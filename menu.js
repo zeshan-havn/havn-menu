@@ -210,6 +210,7 @@
   }
   SECTIONS = visibleSections(SECTIONS);
   var ITEMS = indexItems(SECTIONS);
+  window.HAVN_MENU_CATALOG = { week: DELIVERY_WEEK, items: Object.keys(ITEMS).map(function (id) { return { slot: id, name: ITEMS[id].name }; }) };
 
   var qty = {};
   var mods = {};   /* id -> array of active Make-it pills */
@@ -1860,8 +1861,35 @@
      dashboard (public read: api.havnclub.com/intake/menu-status), with
      ?pending=1 as a QA override. Fail-open: if the status call errors or
      times out, the page behaves exactly as it does today. */
+  var defaultSendText = sendBtn.textContent;
   var pendingMode = false;
   var closedMenuMode = false;
+  var publishedSections = SECTIONS;
+  var pendingCleanup = null;
+  var pendingIntro = document.querySelector(".m-intro-label");
+  var originalIntro = pendingIntro ? pendingIntro.innerHTML : "";
+
+  function exitPendingMode() {
+    if (!pendingMode) return;
+    if (pendingCleanup) { pendingCleanup(); pendingCleanup = null; }
+    pendingMode = false;
+    closedMenuMode = false;
+    document.body.classList.remove("m-pending");
+    ["m-pend", "m-pend-backdrop", "m-pend-banner"].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) { el.classList.remove("open"); el.hidden = true; }
+    });
+    if (SECTIONS !== publishedSections) {
+      SECTIONS = publishedSections;
+      ITEMS = indexItems(SECTIONS);
+      qty = {}; mods = {}; notes = {};
+      renderMenuSections();
+    }
+    if (pendingIntro) pendingIntro.innerHTML = originalIntro;
+    sendBtn.textContent = defaultSendText;
+    refresh();
+    revealResolvedMenu();
+  }
 
   function revealResolvedMenu() {
     document.body.classList.remove("m-menu-checking");
@@ -1940,6 +1968,11 @@
           okBtn.focus();
         }
       };
+      pendingCleanup = function () {
+        document.removeEventListener("keydown", handlePendKeydown);
+        okBtn.removeEventListener("click", closePend);
+        popBackdrop.removeEventListener("click", closePend);
+      };
       document.addEventListener("keydown", handlePendKeydown);
       okBtn.addEventListener("click", closePend);
       popBackdrop.addEventListener("click", closePend);
@@ -1958,21 +1991,48 @@
     if (qs && qs.has("pending")) { enterPendingMode(); return; }
     var url = (window.HAVN_CONFIG && window.HAVN_CONFIG.MENU_STATUS_URL) ||
       "https://api.havnclub.com/intake/menu-status";
-    try {
+    var checking = false;
+    function checkAvailability() {
+      if (checking || document.hidden) return;
+      checking = true;
       var ctrl = ("AbortController" in window) ? new AbortController() : null;
-      if (ctrl) setTimeout(function () { ctrl.abort(); }, 4000);
-      fetch(url, ctrl ? { signal: ctrl.signal } : {})
+      var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, 4000) : null;
+      fetch(url, { signal: ctrl ? ctrl.signal : undefined, cache: "no-store" })
         .then(function (r) { return r.ok ? r.json() : null; })
         .then(function (data) {
-          /* Cities roll over at different local times; never bind a new menu's
-             slot-only order draft to the previous delivery week's catalog. */
-          if (data && data.deliveryDate && data.deliveryDate !== DELIVERY_WEEK) enterPendingMode();
-          else if (data && data.ordering === "closed") enterPendingMode(data.deliveryDate === DELIVERY_WEEK);
-          else if (data && data.ordering === "pending") enterPendingMode();
-          else revealResolvedMenu();
+          var adapter = window.HAVN_CONFIG && window.HAVN_CONFIG.MENU_STATUS_ADAPTER;
+          if (data && adapter) data = adapter(data);
+          if (!data) { revealResolvedMenu(); return; }
+          /* Catalog identity and fulfillment date are separate. A lock advances only
+             the date; explicit publication changes the catalog. Never reuse stale slots. */
+          var catalog = data.catalogWeek || data.deliveryDate;
+          if ((catalog && catalog !== DELIVERY_WEEK) || data.catalogMismatch) {
+            enterPendingMode();
+            // A tab showing an older catalog needs fresh assets. One reload per
+            // publication avoids loops while the static deploy is still propagating.
+            if (data.catalogWeek && (data.catalogWeek > DELIVERY_WEEK || data.catalogMismatch) && data.menuId) {
+              var key = "havn-menu-refresh:" + data.menuId;
+              try { if (!sessionStorage.getItem(key)) { sessionStorage.setItem(key, "1"); location.reload(); } } catch (e) { /* retry on next focus */ }
+            }
+          } else if (data.ordering === "closed") enterPendingMode(true);
+          else if (data.ordering === "pending") enterPendingMode();
+          else {
+            exitPendingMode();
+            if (data.deliveryDate && /^\d{4}-\d{2}-\d{2}$/.test(data.deliveryDate)) {
+              var label = document.getElementById("m-menu-date");
+              if (label) { label.dateTime = data.deliveryDate; label.textContent = new Date(data.deliveryDate + "T12:00:00").toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" }); }
+              if (DINNER && DINNER.setDeliveryWeek) DINNER.setDeliveryWeek(data.deliveryDate);
+            }
+            revealResolvedMenu();
+          }
         })
-        .catch(function () { revealResolvedMenu(); /* fail-open */ });
-    } catch (e) { revealResolvedMenu(); /* fail-open */ }
+        .catch(function () { revealResolvedMenu(); })
+        .then(function () { checking = false; if (timer) clearTimeout(timer); });
+    }
+    checkAvailability();
+    setInterval(checkAvailability, 30000);
+    window.addEventListener("focus", checkAvailability);
+    document.addEventListener("visibilitychange", function () { if (!document.hidden) checkAvailability(); });
   })();
 
   /* Tasting Menu A/B (HQ docs/reference/tasting-welcome.md): the same Meta

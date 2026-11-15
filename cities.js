@@ -82,7 +82,20 @@
   cfg.LANDING_VARIANT = "os-" + slug;
   cfg.QR = Object.assign({}, cfg.QR, { numberLabel: SMS_LABEL });
   /* menu.js fetches this once; it is replaced with Havn OS's answer below. */
-  cfg.MENU_STATUS_URL = statusUrl(true);
+  cfg.MENU_STATUS_URL = OS_BASE + "/api/public/cities/" + slug + "/menu-status";
+  cfg.MENU_STATUS_ADAPTER = function (data) {
+    osStatus = data;
+    var local = root.HAVN_MENU_CATALOG;
+    function normalized(name) { return String(name).toLowerCase().replace(/[^a-z0-9]/g, ""); }
+    var eligible = Array.isArray(data.items) ? data.items.filter(function (item) {
+      return cfg.EXCLUDED_MENU_ITEM_IDS.indexOf(item.slot) === -1;
+    }) : null;
+    var mismatch = !!(local && eligible && (eligible.length !== local.items.length || local.items.some(function (item) {
+      return !eligible.some(function (remote) { return remote.slot === item.slot && normalized(remote.name) === normalized(item.name); });
+    })));
+    return { ordering: data.open ? "open" : data.menuId ? "closed" : "pending",
+      catalogMismatch: mismatch, catalogWeek: data.catalogWeek, deliveryDate: data.deliveryDate, menuId: data.menuId };
+  };
 
   /* ── 2. no HQ retention token ───────────────────────────────────────── */
   var intake = root.HAVN_INTAKE;
@@ -191,12 +204,6 @@
   }
 
   /* ── 3. Havn OS: the city and its menu status ───────────────────────── */
-  function statusUrl(open, publishedDate) {
-    return "data:application/json," + encodeURIComponent(JSON.stringify({
-      ordering: open ? "open" : publishedDate ? "closed" : "pending",
-      deliveryDate: publishedDate || null
-    }));
-  }
   function getJSON(url) {
     return root.fetch(url, { cache: "no-cache", credentials: "omit" }).then(function (r) {
       if (!r.ok) throw new Error(url + " " + r.status);
@@ -238,9 +245,6 @@
     root.HAVN_MENU_MODE = mode;
     root.HAVN_MENU_VARIANT = mode === "welcome" ? variant : "";
     root.HAVN_MENU_CITY = slug;
-    /* Open unless Havn OS says otherwise; menu.js fails open the same way. */
-    cfg.MENU_STATUS_URL = statusUrl(!(osStatus && osStatus.open === false),
-      osStatus && osStatus.menuId ? osStatus.deliveryDate : null);
     var s = document.createElement("script");
     s.src = "/menu.js";
     s.async = false;
@@ -393,7 +397,11 @@
       if (cache.key === key && cache.token) return;
       var payload = {
         citySlug: slug,
-        lines: cartLines(),
+        menuId: osStatus && osStatus.menuId || undefined,
+        lines: cartLines().map(function (line) {
+          var item = osStatus && osStatus.items && osStatus.items.find(function (i) { return i.slot === line.slot; });
+          return item ? { itemId: item.id, qty: line.qty } : line;
+        }),
         windowId: windowId(),
         container: /plastic|bpa/i.test(selected("data-container")) ? "plastic" : "glass",
         notes: notesFrom(base),
