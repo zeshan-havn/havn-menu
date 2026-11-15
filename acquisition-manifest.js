@@ -1,11 +1,11 @@
-/* acquisition-manifest.json sha256=5c0cabe5d6d158a258af012106f870a96737c3af08a37bb6716d934b3177cc28 */
+/* acquisition-manifest.json sha256=35213288f7f03bbbf3cf4790c34a17a5b9f79f788a6d58cdc3441d80f6e65075 */
 window.HAVN_ACQUISITION_MANIFEST =
 {
   "schemaVersion": 1,
-  "releaseDigest": "4c0413ba1f414998dae806a5d43b63589a6a0df2ab110dc458a2c2ca870be0bc",
+  "releaseDigest": "020bcd161b0d805a8370e70e4493c12fd859295824a7b9fe9953a5e4730d8abb",
   "menu": {
     "id": "delivery-2026-11-22",
-    "version": "sha256-4c0413ba1f414998dae806a5d43b63589a6a0df2ab110dc458a2c2ca870be0bc",
+    "version": "sha256-020bcd161b0d805a8370e70e4493c12fd859295824a7b9fe9953a5e4730d8abb",
     "weekLabel": "November 22",
     "pricingPolicyId": "backend-25-10-v1",
     "offerPolicyId": "welcome-20-40-v1",
@@ -104,11 +104,11 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Dairy-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-4c0413ba1f414998dae806a5d43b63589a6a0df2ab110dc458a2c2ca870be0bc/cheat.jpg",
+          "url": "/assets/releases/sha256-020bcd161b0d805a8370e70e4493c12fd859295824a7b9fe9953a5e4730d8abb/cheat.jpg",
           "width": 1024,
           "height": 1408,
           "format": "jpeg",
-          "sha256": "1275d9ef3a50f21c777e71004cdc78d3af1bd8510408b71441d740d03cc75651",
+          "sha256": "0a379aac79ad636297bc21acd91f395eb2fee43a1bb2a99a0877d100cbdc81ab",
           "alt": "Smash Burger Bowl"
         }
       },
@@ -139,11 +139,11 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-4c0413ba1f414998dae806a5d43b63589a6a0df2ab110dc458a2c2ca870be0bc/chicken.jpg",
-          "width": 1164,
+          "url": "/assets/releases/sha256-020bcd161b0d805a8370e70e4493c12fd859295824a7b9fe9953a5e4730d8abb/chicken.jpg",
+          "width": 1163,
           "height": 1600,
           "format": "jpeg",
-          "sha256": "6da1deed4a7ef7876467a642b4e1d1abbbd52cb8eb35b8efd2915fe3fb9ff5bf",
+          "sha256": "8b1ed9868d499ac7a3c0d8c38c0c1c2ccd7bd753f9279ee2ae4b721d58e84161",
           "alt": "Thai Coconut Curry Chicken"
         }
       },
@@ -152,13 +152,13 @@ window.HAVN_ACQUISITION_MANIFEST =
         "type": "meal",
         "category": "Chicken",
         "menuSection": "Chicken",
-        "name": "Lemon Herb Feta Chicken",
+        "name": "Lemon Herb Chicken with Whipped Feta",
         "priceCents": 2500,
-        "description": "Lemon herb chicken breast with a whipped lemon garlic feta, roasted sweet potato, lacinato kale, a house pickled vegetable medley and dried cranberries for a bright, herb forward plate with a creamy finish.",
+        "description": "Lemon herb chicken breast with a whipped lemon garlic feta and roasted sweet potato and lacinato kale with a house pickled vegetable medley and dried cranberries for a bright, herb forward plate with a creamy finish.",
         "macros": {
-          "calories": 690,
-          "protein": 68,
-          "fat": 32,
+          "calories": 651,
+          "protein": 59,
+          "fat": 31,
           "fiber": 7,
           "netCarbs": 32
         },
@@ -177,12 +177,12 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Dairy-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-4c0413ba1f414998dae806a5d43b63589a6a0df2ab110dc458a2c2ca870be0bc/chicken_2.jpg",
-          "width": 1164,
-          "height": 1600,
+          "url": "/assets/releases/sha256-020bcd161b0d805a8370e70e4493c12fd859295824a7b9fe9953a5e4730d8abb/chicken_2.jpg",
+          "width": 1071,
+          "height": 1468,
           "format": "jpeg",
-          "sha256": "ffa2b3d1497ba369b93888b3812bf22d0faed84a7bc39e31e30a4137f955add4",
-          "alt": "Lemon Herb Feta Chicken"
+          "sha256": "ea01e5cef6014d6549e7a883c6738d4cd5218cc44d9df9307ce90370e03b0b2d",
+          "alt": "Lemon Herb Chicken with Whipped Feta"
         }
       },
       {
@@ -212,11 +212,11 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-4c0413ba1f414998dae806a5d43b63589a6a0df2ab110dc458a2c2ca870be0bc/beef.jpg",
+          "url": "/assets/releases/sha256-020bcd161b0d805a8370e70e4493c12fd859295824a7b9fe9953a5e4730d8abb/beef.jpg",
           "width": 654,
           "height": 900,
           "format": "jpeg",
-          "sha256": "1110ae3f7eb67742c039840143c6c9ca4b9a43381856f8c2bdae4ae3af88fb72",
+          "sha256": "138d3012a0e424c85b72412576385971509ed4ecd5679b1b41ddfe9396837156",
           "alt": "Carne Asada Steak"
         }
       },
@@ -247,11 +247,11 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-4c0413ba1f414998dae806a5d43b63589a6a0df2ab110dc458a2c2ca870be0bc/seafood.jpg",
+          "url": "/assets/releases/sha256-020bcd161b0d805a8370e70e4493c12fd859295824a7b9fe9953a5e4730d8abb/seafood.jpg",
           "width": 1024,
           "height": 1408,
           "format": "jpeg",
-          "sha256": "0adfb24d87bfe9b6cfcffc00c748414ac739cc1041c393347a4f26f2604ee244",
+          "sha256": "60839ab6eeb05d66d8cd92f656b7c5aea510bdbee5aac9c5251a12956b704095",
           "alt": "Blackened Salmon"
         }
       },
@@ -282,11 +282,11 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-4c0413ba1f414998dae806a5d43b63589a6a0df2ab110dc458a2c2ca870be0bc/seafood_2.jpg",
+          "url": "/assets/releases/sha256-020bcd161b0d805a8370e70e4493c12fd859295824a7b9fe9953a5e4730d8abb/seafood_2.jpg",
           "width": 1024,
           "height": 1408,
           "format": "jpeg",
-          "sha256": "961175750d891795be0108a4a5731c6bd154b6dd0f6e1f119c11693329a0d56b",
+          "sha256": "03e9a70098179daf548813a8ad04c454374371c74f43526ab8f5fb0bdb66e6a1",
           "alt": "Asian Garlic Shrimp"
         }
       },
@@ -322,11 +322,11 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Gluten-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-4c0413ba1f414998dae806a5d43b63589a6a0df2ab110dc458a2c2ca870be0bc/pasta.jpg",
+          "url": "/assets/releases/sha256-020bcd161b0d805a8370e70e4493c12fd859295824a7b9fe9953a5e4730d8abb/pasta.jpg",
           "width": 1024,
           "height": 1408,
           "format": "jpeg",
-          "sha256": "5bab2e4f6e8a63c03362e82b11c69d086387d0ce2f64377c77bef4d2af212cee",
+          "sha256": "c488923b4bac1a9a621d3f4e27c2a8fc87be3b656a81e59d997957e632cbb6ae",
           "alt": "Hot Honey Mac and Cheese"
         }
       },
@@ -357,11 +357,11 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-4c0413ba1f414998dae806a5d43b63589a6a0df2ab110dc458a2c2ca870be0bc/vegetarian.jpg",
-          "width": 1164,
+          "url": "/assets/releases/sha256-020bcd161b0d805a8370e70e4493c12fd859295824a7b9fe9953a5e4730d8abb/vegetarian.jpg",
+          "width": 1163,
           "height": 1600,
           "format": "jpeg",
-          "sha256": "c7dc09c155f94af1b6f8302b2e1539fa0f43123a1fcc89b36ef34b55b9b7ee9a",
+          "sha256": "31bdd87d7432fe793ce0dabba7620bc4584aab1b0f915733b3d558d6f9ccc8b7",
           "alt": "Crispy Za'atar Chickpeas"
         }
       },
@@ -393,11 +393,11 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Extra protein"
         ],
         "image": {
-          "url": "/assets/releases/sha256-4c0413ba1f414998dae806a5d43b63589a6a0df2ab110dc458a2c2ca870be0bc/salad.jpg",
+          "url": "/assets/releases/sha256-020bcd161b0d805a8370e70e4493c12fd859295824a7b9fe9953a5e4730d8abb/salad.jpg",
           "width": 1280,
           "height": 1600,
           "format": "jpeg",
-          "sha256": "03c5ef8a19d1a60103cd829f8f311566bb9ceee3f1a56818474dc99a7d15c2e0",
+          "sha256": "98bf98d5ce3ab7e23ec49cd87e949ee6394655d8bad354bc367a2b1d184ac3af",
           "alt": "Ruby Goddess Salad"
         }
       },
@@ -432,11 +432,11 @@ window.HAVN_ACQUISITION_MANIFEST =
           "Dairy-free"
         ],
         "image": {
-          "url": "/assets/releases/sha256-4c0413ba1f414998dae806a5d43b63589a6a0df2ab110dc458a2c2ca870be0bc/salad_2.jpg",
+          "url": "/assets/releases/sha256-020bcd161b0d805a8370e70e4493c12fd859295824a7b9fe9953a5e4730d8abb/salad_2.jpg",
           "width": 1024,
           "height": 1280,
           "format": "jpeg",
-          "sha256": "13e5c35315a5a5f1547a05eb6ba09d9bea7f618ea9fdcf602d0bd865c24ffd2c",
+          "sha256": "58a03c914eb456ec20ddcfaa60fdffdf7da11606ad0947795985f68c5c13e795",
           "alt": "Chicken Caesar Crunch Salad"
         }
       },

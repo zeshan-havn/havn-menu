@@ -1,9 +1,9 @@
 {
   "week": "2026-11-22",
-  "status": "HELD",
-  "requires": "Explicit owner confirmation before any publish, push/deploy, Ops/OS write, print upload, Airtable filter update, promo update, campaign creation/scheduling/send.",
+  "status": "RELEASE AUTHORIZED",
+  "requires": "Owner explicitly said let\u2019s go live with the menu, then authorized creating one accurate regular-feta photo. Proceed through verified publication workflow.",
   "tasting_enabled": false,
   "dinner_invitation_enabled": false,
-  "photo_selection": "All regenerated candidates rejected. Nine historical photos selected; regular-dish photograph missing.",
-  "local_preview": "Targeted local QA completed; preview stopped. Missing historical regular-feta photo blocks publication."
+  "photo_selection": "Nine historical photos plus one newly authorized accurate regular-feta photo.",
+  "local_preview": "Refreshed for final release QA."
 }

@@ -8,62 +8,67 @@
     "path": "CulinaryOps/Nov 22nd Menu File/finalized-menu.json",
     "sha256": "e2848472d57a32e4ccbf9cf4adc8aaf459fc55c2b23c38e4f7f4941856202ce2"
   },
-  "transform": "Pillow RGB thumbnail max1600 long edge; JPEG quality90; no upscaling",
+  "transform": "sips -Z min(1600, source-long-edge) -s format jpeg -s formatOptions 90",
   "items": {
     "special": {
       "source": "CulinaryOps/Nov 22nd Menu File/meal-images/cheat-smash-burger-bowl.png",
       "source_sha256": "97ac373d14edc4c635bc3a908c33f79aa8b10982d6d1ab5764f7c6c2491f8377",
       "output": "assets/current/special.jpg",
-      "output_sha256": "1275d9ef3a50f21c777e71004cdc78d3af1bd8510408b71441d740d03cc75651"
+      "output_sha256": "0a379aac79ad636297bc21acd91f395eb2fee43a1bb2a99a0877d100cbdc81ab"
     },
     "chicken": {
       "source": "CulinaryOps/Nov 22nd Menu File/meal-images/chicken-thai-coconut-curry-chicken.png",
       "source_sha256": "3df9fda02025f9b088e9b5a70ace18844e7909fce7af8ec3a823821e9844e165",
       "output": "assets/current/chicken.jpg",
-      "output_sha256": "6da1deed4a7ef7876467a642b4e1d1abbbd52cb8eb35b8efd2915fe3fb9ff5bf"
+      "output_sha256": "8b1ed9868d499ac7a3c0d8c38c0c1c2ccd7bd753f9279ee2ae4b721d58e84161"
+    },
+    "chicken_2": {
+      "source": "CulinaryOps/Nov 22nd Menu File/meal-images/chicken_2-lemon-herb-chicken-with-whipped-feta.png",
+      "source_sha256": "4a7198c2de7a9e7d70ea630ae5f77d4a33fdee257326c6f193bc19145c6ed9c0",
+      "output": "assets/current/chicken_2.jpg",
+      "output_sha256": "ea01e5cef6014d6549e7a883c6738d4cd5218cc44d9df9307ce90370e03b0b2d"
     },
     "beef": {
       "source": "CulinaryOps/Nov 22nd Menu File/meal-images/beef-carne-asada-steak.png",
       "source_sha256": "8a2580ad9603a0eaea4b8216fabfa7018c9ff2ff3e11cafd61684ef933b9d841",
       "output": "assets/current/beef.jpg",
-      "output_sha256": "1110ae3f7eb67742c039840143c6c9ca4b9a43381856f8c2bdae4ae3af88fb72"
+      "output_sha256": "138d3012a0e424c85b72412576385971509ed4ecd5679b1b41ddfe9396837156"
     },
     "seafood": {
       "source": "CulinaryOps/Nov 22nd Menu File/meal-images/seafood-blackened-salmon.png",
       "source_sha256": "c488ab7ed715fc177f81dd8a16657374d38f876ec701123e4e21ff8bf60d37a8",
       "output": "assets/current/seafood.jpg",
-      "output_sha256": "0adfb24d87bfe9b6cfcffc00c748414ac739cc1041c393347a4f26f2604ee244"
+      "output_sha256": "60839ab6eeb05d66d8cd92f656b7c5aea510bdbee5aac9c5251a12956b704095"
     },
     "seafood_2": {
       "source": "CulinaryOps/Nov 22nd Menu File/meal-images/seafood_2-asian-garlic-shrimp.png",
       "source_sha256": "d2f498708fcc2cb05a54fb7641c19eed5a1dcb8b4add437a12717d6eb72f3720",
       "output": "assets/current/seafood_2.jpg",
-      "output_sha256": "961175750d891795be0108a4a5731c6bd154b6dd0f6e1f119c11693329a0d56b"
+      "output_sha256": "03e9a70098179daf548813a8ad04c454374371c74f43526ab8f5fb0bdb66e6a1"
     },
     "pasta": {
       "source": "CulinaryOps/Nov 22nd Menu File/meal-images/pasta-hot-honey-mac-and-cheese.png",
       "source_sha256": "815c2f4d30ce69a217d63e8ab38d658f08cd2ab039fb66ee4e1cdcc52e50433c",
       "output": "assets/current/pasta.jpg",
-      "output_sha256": "5bab2e4f6e8a63c03362e82b11c69d086387d0ce2f64377c77bef4d2af212cee"
+      "output_sha256": "c488923b4bac1a9a621d3f4e27c2a8fc87be3b656a81e59d997957e632cbb6ae"
     },
     "veg": {
       "source": "CulinaryOps/Nov 22nd Menu File/meal-images/vegetarian-crispy-za-atar-chickpeas.png",
       "source_sha256": "04578c78af56f1d813819636d62ad989a1ca9582ddb640369fd20004820bce3e",
       "output": "assets/current/veg.jpg",
-      "output_sha256": "c7dc09c155f94af1b6f8302b2e1539fa0f43123a1fcc89b36ef34b55b9b7ee9a"
+      "output_sha256": "31bdd87d7432fe793ce0dabba7620bc4584aab1b0f915733b3d558d6f9ccc8b7"
     },
     "salad": {
       "source": "CulinaryOps/Nov 22nd Menu File/meal-images/salad-ruby-goddess-salad.png",
       "source_sha256": "e0adf905696b6418daff03b17777d9f4b377566fa54945f0a762a4b113b85b20",
       "output": "assets/current/salad.jpg",
-      "output_sha256": "03c5ef8a19d1a60103cd829f8f311566bb9ceee3f1a56818474dc99a7d15c2e0"
+      "output_sha256": "98bf98d5ce3ab7e23ec49cd87e949ee6394655d8bad354bc367a2b1d184ac3af"
     },
     "salad_2": {
       "source": "CulinaryOps/Nov 22nd Menu File/meal-images/salad_2-chicken-caesar-crunch-salad.png",
       "source_sha256": "1693c82de05f02bbb8a5324628ec8e7bc492e053002553e1bc1176ce0efedfb9",
       "output": "assets/current/salad_2.jpg",
-      "output_sha256": "13e5c35315a5a5f1547a05eb6ba09d9bea7f618ea9fdcf602d0bd865c24ffd2c"
+      "output_sha256": "58a03c914eb456ec20ddcfaa60fdffdf7da11606ad0947795985f68c5c13e795"
     }
-  },
-  "draft_status": "INCOMPLETE \u2014 matching historical photograph for regular whipped-feta dish is missing; no generated or ruby replacement selected"
+  }
 }
