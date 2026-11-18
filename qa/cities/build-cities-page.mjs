@@ -22,16 +22,19 @@ const tag = (src) => `<script src="${src}"></script>`;
 let out = index;
 // All city/menu/welcome routes rewrite to cities.html. Keep this generic so one
 // city cannot inherit another city's deadline or welcome offer in a cached card.
-// Use the same public preview image as the DC/SoCal campaign links.
+// A menu-free brand card: the DC/SoCal menu-preview.jpg listed dishes (salads) that the
+// Miami/Phoenix/Chicago menus did not have (Miami customer, Nov 17 2026).
 const preview = [
   '<meta property="og:title" content="Havn Club - Weekly Menu">',
   `<meta property="og:description" content="Explore this week's chef-made Havn menu and choose your meals.">`,
-  '<meta property="og:image" content="https://menu.havnclub.com/menu-preview.jpg">',
+  '<meta property="og:image" content="https://menu.havnclub.com/assets/brand/menu-preview-cities.jpg">',
+  '<meta property="og:image:width" content="1200">',
+  '<meta property="og:image:height" content="630">',
   '<meta property="og:type" content="website">',
   '<meta property="og:site_name" content="Havn Club">',
   '<meta name="twitter:card" content="summary_large_image">',
   '<meta name="twitter:title" content="Havn Club - Weekly Menu">',
-  '<meta name="twitter:image" content="https://menu.havnclub.com/menu-preview.jpg">',
+  '<meta name="twitter:image" content="https://menu.havnclub.com/assets/brand/menu-preview-cities.jpg">',
 ].join('\n');
 out = once(out, '</title>', '</title>\n' + preview);
 out = once(out, tag('https://havnclub.com/hybrid/tracking.js') + '\n', '');
