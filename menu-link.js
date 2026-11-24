@@ -3,7 +3,7 @@
    byte format aligned with intake/return_links.py in HavnClub-HQ. */
 (function (root) {
   'use strict';
-  var match = (root.location.pathname || '').match(/^\/(?:sd\/)?c\/([A-Za-z0-9_-]{14,15})\/?$/);
+  var match = (root.location.pathname || '').match(/^\/(?:(?:dc|sd)\/)?c\/([A-Za-z0-9_-]{14,15})\/?$/);
   if (!match) return;
   try {
     var raw = root.atob(match[1].replace(/-/g,'+').replace(/_/g,'/') + '='.repeat((4 - match[1].length % 4) % 4));

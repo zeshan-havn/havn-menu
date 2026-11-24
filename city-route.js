@@ -1,30 +1,10 @@
-/* Miami, Phoenix and Chicago customers who type or search menu.havnclub.com land
-   on this DC/SoCal page and text their order to the DC/SD number (Nov 10 2026).
-   On the bare root (/) or a bare week (/nov15) only, never on a DC/SD link with
-   a city, offer or SMS segment:
-   - a visitor whose last menu was a Havn OS city page (cities.js sets the
-     havn_os_city cookie on Domain=havnclub.com) goes straight to that city page;
-   - on the root, everyone else sees a one-line picker for those three cities.
-   ?city=dcsd skips the redirect. */
+/* Cityless links use the DC menu. Offer the partner-city picker on the root. */
 (function (root) {
   'use strict';
   var CITIES = { miami: 'Miami', phoenix: 'Phoenix', chicago: 'Chicago' };
   var path = (root.location.pathname || '/').replace(/\/+$/, '');
   var bareRoot = path === '' || path === '/index.html';
-  var bareWeek = /^\/(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\d{1,2}$/i.test(path);
-  if (!bareRoot && !bareWeek) return;
-  var search = root.location.search || '';
-  if (/[?&]city=dcsd\b/i.test(search)) return;
-  var saved = '';
-  try {
-    var m = document.cookie.match(/(?:^|;)\s*havn_os_city\s*=\s*([^;]+)/);
-    saved = m ? decodeURIComponent(m[1]).toLowerCase() : '';
-  } catch (e) { /* ignore */ }
-  if (Object.prototype.hasOwnProperty.call(CITIES, saved)) {
-    root.location.replace((bareWeek ? path : '') + '/' + saved + search);
-    return;
-  }
-  if (!bareRoot) return;
+  if (!bareRoot || /[?&]city=dcsd\b/i.test(root.location.search || '')) return;
   function picker() {
     if (document.getElementById('havn-city-picker')) return;
     var bar = document.createElement('div');
