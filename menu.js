@@ -356,11 +356,11 @@
     if (sub) sub.hidden = false;
     var howto = document.getElementById("m-howto");
     if (howto) howto.hidden = false;
-    /* Order cutoffs: DMV Thursday 7pm, San Diego Thursday 4pm. */
     var cutoff = document.getElementById("m-howto-cutoff");
-    if (cutoff) {
-      cutoff.textContent = "Order by Thursday at " +
-        (window.HAVN_MENU_CITY === "SD" ? "4pm" : "7pm") + " for delivery Sunday or Monday.";
+    var release = window.HAVN_ACQUISITION_MANIFEST;
+    var market = release && release.cities[window.HAVN_MENU_CITY];
+    if (cutoff && market && release.menu.id === "delivery-" + DELIVERY_WEEK) {
+      cutoff.textContent = "Order by " + market.cutoffLabel + " for delivery Sunday or Monday.";
     }
   }
 

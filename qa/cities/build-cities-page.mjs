@@ -39,6 +39,8 @@ const preview = [
 out = once(out, '</title>', '</title>\n' + preview);
 out = once(out,  '<script defer src="https://havnclub.com/hybrid/tracking.js"></script>'  + '\n', '');
 out = once(out,  '<script defer src="https://havnclub.com/main-tasting/tracking.js"></script>'  + '\n', '');
+// Havn OS supplies these cities’ menu and cutoff. The acquisition release covers DMV and SoCal.
+out = once(out, tag('/acquisition-manifest.js') + '\n', '');
 out = once(out, tag('/menu.js'), tag('/cities.js'));
 for (const banned of ['hybrid/tracking.js', 'main-tasting/tracking.js', tag('/menu.js')]) {
   if (out.includes(banned)) throw new Error(`cities.html must not load ${banned}`);
