@@ -10,7 +10,7 @@
 }
 [data-harvest] .m-intro-title {max-width:62%;}
 [data-harvest=wheat] {--ornament:url('/assets/thanksgiving/wheat.svg');}
-[data-harvest=wheat] .m-intro {background:#16362b;border-bottom:3px double #c9ab78;}
+[data-harvest=wheat] .m-intro {background:linear-gradient(110deg,#602736 0%,#793531 58%,#92452c 100%);border-bottom:3px double #c9ab78;}
 [data-harvest=wheat] .m-intro-title {color:#f6f0df;}
 [data-harvest=wheat] .m-intro :is(.m-intro-label,em) {color:#e7ca98;}
 
