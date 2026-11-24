@@ -390,6 +390,16 @@
       '<p class="m-ribbon-note">' + note + '</p>';
   })();
 
+  var thanksgivingWeek = DELIVERY_WEEK === "2026-11-29" && !ARCHIVED_DELIVERY_DATE;
+  function setThanksgivingTheme(active) {
+    if (!thanksgivingWeek) return;
+    if (active) document.documentElement.dataset.harvest = "wheat";
+    else delete document.documentElement.dataset.harvest;
+  }
+  setThanksgivingTheme(true);
+  var weekLabel = document.getElementById("menu-week-label");
+  if (thanksgivingWeek && weekLabel) weekLabel.textContent = "Thanksgiving week";
+
   /* The label always identifies the Sunday delivery the menu is for. */
   (function () {
     var dateLabel = document.getElementById("m-menu-date");
@@ -1873,6 +1883,7 @@
     if (!pendingMode) return;
     if (pendingCleanup) { pendingCleanup(); pendingCleanup = null; }
     pendingMode = false;
+    setThanksgivingTheme(true);
     closedMenuMode = false;
     document.body.classList.remove("m-pending");
     ["m-pend", "m-pend-backdrop", "m-pend-banner"].forEach(function (id) {
@@ -1899,6 +1910,7 @@
     if (pendingMode) return;
     pendingMode = true;
     closedMenuMode = !!showCurrentMenu;
+    setThanksgivingTheme(closedMenuMode);
     document.body.classList.add("m-pending");
 
     /* menu.js already contains the ready-to-launch week. Pending mode swaps

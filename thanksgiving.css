@@ -1,0 +1,67 @@
+[data-harvest=wheat] .m-intro-label { color: #793d38; }
+[data-harvest=wheat] .m-intro-label i { background: #b07845; }
+[data-harvest=wheat] .m-intro .m-rule path { stroke: #b07845; }
+[data-harvest=wheat] .m-sec-label::after { background: linear-gradient(to right, #c8a886, var(--hairline-light)); }
+
+[data-harvest] .m-intro {position:relative; isolation:isolate;}
+[data-harvest] .m-intro::after {
+  content:""; position:absolute; right:14px; bottom:16px; width:clamp(84px,27vw,128px); height:90px;
+  background:var(--ornament) center/contain no-repeat;pointer-events:none;
+}
+[data-harvest] .m-intro-title {max-width:62%;}
+[data-harvest=wheat] {--ornament:url('/assets/thanksgiving/wheat.svg');}
+[data-harvest=wheat] .m-intro {background:#16362b;border-bottom:3px double #c9ab78;}
+[data-harvest=wheat] .m-intro-title {color:#f6f0df;}
+[data-harvest=wheat] .m-intro :is(.m-intro-label,em) {color:#e7ca98;}
+
+
+.wheat-leaves { display: none; }
+@media (prefers-reduced-motion: no-preference) {
+  [data-harvest=wheat] #root > .wheat-leaves {
+    display: block;
+    position: fixed;
+    inset: 0;
+    max-width: 480px;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 3;
+  }
+  .wheat-leaves i {
+    position: absolute;
+    top: -12px;
+    left: var(--lane);
+    width: 5px;
+    height: 9px;
+    border-radius: 90% 0 85% 0;
+    background: linear-gradient(65deg, #a47748 45%, #e3bd7d 50%, #c99251 56%);
+    animation: autumn-drift var(--period) linear var(--offset) infinite;
+  }
+  .wheat-leaves i:nth-child(3n) { width: 4px; height: 7px; }
+  .wheat-leaves i:nth-child(4n) { width: 6px; background-color: #bf8854; }
+  @keyframes autumn-drift {
+    0% { transform: translate(0,-1vh) rotate(-30deg); opacity: 0; }
+    12% { opacity: .66; }
+    36% { transform: translate(16px,36vh) rotate(55deg); }
+    69% { transform: translate(-12px,70vh) rotate(120deg); }
+    90% { opacity: .54; }
+    100% { transform: translate(9px,105vh) rotate(195deg); opacity: 0; }
+  }
+  .wheat-leaves i:nth-child(1) { --lane: 2.0%; --period: 12s; --offset: -0.33s; }
+  .wheat-leaves i:nth-child(2) { --lane: 7.6%; --period: 15s; --offset: -6.25s; }
+  .wheat-leaves i:nth-child(3) { --lane: 13.2%; --period: 18s; --offset: -14.50s; }
+  .wheat-leaves i:nth-child(4) { --lane: 18.8%; --period: 14s; --offset: -2.72s; }
+  .wheat-leaves i:nth-child(5) { --lane: 24.4%; --period: 17s; --offset: -9.92s; }
+  .wheat-leaves i:nth-child(6) { --lane: 30.0%; --period: 13s; --offset: -12.64s; }
+  .wheat-leaves i:nth-child(7) { --lane: 35.6%; --period: 16s; --offset: -5.78s; }
+  .wheat-leaves i:nth-child(8) { --lane: 41.2%; --period: 12s; --offset: -9.00s; }
+  .wheat-leaves i:nth-child(9) { --lane: 46.8%; --period: 15s; --offset: -2.08s; }
+  .wheat-leaves i:nth-child(10) { --lane: 52.4%; --period: 18s; --offset: -9.50s; }
+  .wheat-leaves i:nth-child(11) { --lane: 58.0%; --period: 14s; --offset: -12.83s; }
+  .wheat-leaves i:nth-child(12) { --lane: 63.6%; --period: 17s; --offset: -5.19s; }
+  .wheat-leaves i:nth-child(13) { --lane: 69.2%; --period: 13s; --offset: -9.03s; }
+  .wheat-leaves i:nth-child(14) { --lane: 74.8%; --period: 16s; --offset: -1.33s; }
+  .wheat-leaves i:nth-child(15) { --lane: 80.4%; --period: 12s; --offset: -5.67s; }
+  .wheat-leaves i:nth-child(16) { --lane: 86.0%; --period: 15s; --offset: -12.92s; }
+  .wheat-leaves i:nth-child(17) { --lane: 91.6%; --period: 18s; --offset: -4.50s; }
+  .wheat-leaves i:nth-child(18) { --lane: 97.2%; --period: 14s; --offset: -8.94s; }
+}
