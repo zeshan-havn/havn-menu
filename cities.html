@@ -30,8 +30,15 @@
 <link rel="stylesheet" href="/simple.css">
 <link rel="stylesheet" href="/dinner-offer.css">
 <link rel="stylesheet" href="/inactive-credit.css">
-<script src="/city-route.js"></script>
 <link rel="stylesheet" href="/thanksgiving.css">
+<link rel="preconnect" href="https://api.havnclub.com">
+<script>
+if (/^\/nov29\/(dc|sd|miami|phoenix|chicago)\/?$/i.test(location.pathname)) {
+  document.documentElement.dataset.harvest = "wheat";
+  document.documentElement.classList.add("harvest-opening");
+}
+</script>
+<script src="/city-route.js" defer></script>
 </head>
 <body class="menu-page m-menu-checking">
 <div id="root">

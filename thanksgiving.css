@@ -9,8 +9,21 @@
   background:var(--ornament) center/contain no-repeat;pointer-events:none;
 }
 [data-harvest] .m-intro-title {max-width:62%;}
-[data-harvest=wheat] {--ornament:url('/assets/thanksgiving/wheat.svg');}
-[data-harvest=wheat] .m-intro {background:#16362b;border-bottom:3px double #c9ab78;}
+[data-harvest=wheat] {
+  --ornament: url('/assets/thanksgiving/wheat.svg');
+  --harvest-background: linear-gradient(90deg, #602736, #793531 58%, #8b402a);
+}
+[data-harvest=wheat] .topbar.solid {
+  position: absolute;
+  background: var(--harvest-background);
+  justify-content: center;
+  padding: 10px 20px;
+}
+[data-harvest=wheat] .topbar :is(.topbar-mark, .topbar-name, .topbar-city) { display: none; }
+[data-harvest=wheat] .topbar-logo { height: 38px; width: auto; }
+[data-harvest=wheat] .m-head { background: var(--harvest-background); }
+[data-harvest=wheat] .m-intro {background:var(--harvest-background);border-bottom:3px double #c9ab78;}
+[data-harvest=wheat] body.active-menu .m-intro { padding-top: 60px; }
 [data-harvest=wheat] .m-intro-title {color:#f6f0df;}
 [data-harvest=wheat] .m-intro :is(.m-intro-label,em) {color:#e7ca98;}
 
@@ -65,3 +78,9 @@
   .wheat-leaves i:nth-child(17) { --lane: 91.6%; --period: 18s; --offset: -4.50s; }
   .wheat-leaves i:nth-child(18) { --lane: 97.2%; --period: 14s; --offset: -8.94s; }
 }
+
+/* Paint the branded shell while the menu-status check resolves. */
+.harvest-opening[data-harvest=wheat] .topbar-logo { display: block; }
+.harvest-opening[data-harvest=wheat] .m-head { display: none; }
+.harvest-opening[data-harvest=wheat] .m-intro { visibility: visible; padding-top: 60px; }
+.harvest-opening .m-intro-label { visibility: hidden; }

@@ -391,11 +391,15 @@
   })();
 
   var thanksgivingWeek = DELIVERY_WEEK === "2026-11-29" && !ARCHIVED_DELIVERY_DATE;
+  var headerLogo = document.getElementById("topbar-logo");
+  var logoNormallyHidden = headerLogo && headerLogo.hidden;
   function setThanksgivingTheme(active) {
     if (!thanksgivingWeek) return;
+    if (headerLogo) headerLogo.hidden = !active && logoNormallyHidden;
     if (active) document.documentElement.dataset.harvest = "wheat";
     else delete document.documentElement.dataset.harvest;
   }
+  if (!thanksgivingWeek) delete document.documentElement.dataset.harvest;
   setThanksgivingTheme(true);
   var weekLabel = document.getElementById("menu-week-label");
   if (thanksgivingWeek && weekLabel) weekLabel.textContent = "Thanksgiving week";
@@ -477,6 +481,14 @@
       '<p class="g-taste-one">Tap an item for ingredients and macros.</p>';
   }
 
+  function thumbnailURL(url) {
+    if (document.documentElement.dataset.harvest === "wheat" &&
+        /^\/assets\/current\/(special|chicken|chicken_2|beef|seafood|seafood_2|pasta|veg|salad|salad_2)\.jpg$/.test(url)) {
+      return url.replace("/current/", "/thanksgiving/thumbs/").replace(".jpg", ".webp");
+    }
+    return url;
+  }
+
   function renderMenuSections() {
     mount.innerHTML = "";
 
@@ -547,7 +559,8 @@
           card.className = "m-card";
           card.innerHTML =
             (SIMPLE && TASTING_MEAL_IDS.indexOf(item.id) !== -1 ? '<span class="g-badge">Fan favorite</span>' : "") +
-            '<span class="m-card-img" style="background-image:url(\'' + item.img + "')\"></span>" +
+            '<img class="m-card-img" alt="" decoding="async" loading="' + (item.id === "cheat" ? "eager" : "lazy") +
+            '" src="' + thumbnailURL(item.img) + '">' +
             '<span class="m-card-tag">' + item.tag + "</span>" +
             '<h3 class="m-card-name">' + item.name + "</h3>" +
             '<p class="m-card-macros">' + item.cal + " cal &middot; " + item.protein + "g protein</p>" +
@@ -1904,6 +1917,7 @@
 
   function revealResolvedMenu() {
     document.body.classList.remove("m-menu-checking");
+    document.documentElement.classList.remove("harvest-opening");
   }
 
   function enterPendingMode(showCurrentMenu) {

@@ -37,8 +37,8 @@ const preview = [
   '<meta name="twitter:image" content="https://menu.havnclub.com/assets/brand/menu-preview-cities.jpg">',
 ].join('\n');
 out = once(out, '</title>', '</title>\n' + preview);
-out = once(out, tag('https://havnclub.com/hybrid/tracking.js') + '\n', '');
-out = once(out, tag('https://havnclub.com/main-tasting/tracking.js') + '\n', '');
+out = once(out,  '<script defer src="https://havnclub.com/hybrid/tracking.js"></script>'  + '\n', '');
+out = once(out,  '<script defer src="https://havnclub.com/main-tasting/tracking.js"></script>'  + '\n', '');
 out = once(out, tag('/menu.js'), tag('/cities.js'));
 for (const banned of ['hybrid/tracking.js', 'main-tasting/tracking.js', tag('/menu.js')]) {
   if (out.includes(banned)) throw new Error(`cities.html must not load ${banned}`);

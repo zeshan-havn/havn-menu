@@ -20,9 +20,16 @@
 <link rel="stylesheet" href="/simple.css">
 <link rel="stylesheet" href="/dinner-offer.css">
 <link rel="stylesheet" href="/inactive-credit.css">
-<script src="/city-route.js"></script>
-<script src="https://havnclub.com/hybrid/tracking.js"></script>
 <link rel="stylesheet" href="/thanksgiving.css">
+<link rel="preconnect" href="https://api.havnclub.com">
+<script>
+if (/^\/nov29\/(dc|sd|miami|phoenix|chicago)\/?$/i.test(location.pathname)) {
+  document.documentElement.dataset.harvest = "wheat";
+  document.documentElement.classList.add("harvest-opening");
+}
+</script>
+<script src="/city-route.js" defer></script>
+<script defer src="https://havnclub.com/hybrid/tracking.js"></script>
 </head>
 <body class="menu-page m-menu-checking">
 <div id="root">
@@ -314,7 +321,7 @@
 <script src="/menu-link.js"></script>
 <script src="/config.js"></script>
 <script src="/intake.js"></script>
-<script src="https://havnclub.com/main-tasting/tracking.js"></script>
+<script defer src="https://havnclub.com/main-tasting/tracking.js"></script>
 <script src="/pricing.js"></script>
 <script src="/inactive-credit.js"></script>
 <script src="/dinner-offer.js"></script>
